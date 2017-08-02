@@ -1,0 +1,40 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <base target="_blank">
+</head>
+
+<body id="standalone-body">
+    <svg id="standalone-svg"></svg>
+</body>
+
+<style>
+    * {
+        font-family: 'Roboto Condensed', monospace;
+    }
+
+    #standalone-body {
+        text-align: center;
+    }
+
+    #standalone-body::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+
+    #standalone-svg {
+        margin-left: auto;
+        margin-top: auto;
+    }
+</style>
+
+<!-- Workbench libraries -->
+<script src="../../rel/#VERSION#/d3-wb.min.js"></script>
+<link rel="stylesheet" href="../../rel/#VERSION#/d3-wb.min.css">
+<!-- Server resources -->
+<link rel="stylesheet" href="../../res/robotocondensed.css">
+<link rel="stylesheet" href="../../res/main.css">
+<link rel="icon" href="../../res/favicon.png">
+
+<script src="svg.js"></script>

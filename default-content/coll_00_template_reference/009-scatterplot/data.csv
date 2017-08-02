@@ -1,0 +1,501 @@
+Global rank,Global rank preyear,Company,Country,Sector,Market value $m,Turnover $m,Net income $m,Total assets $m,Employees,Price $,P/e ratio,Dividend yield (%),Year End ,Country code,Sector code
+1,1,Apple,US,Technology hardware & equipment,724773.1,182795,39510,231839,92600,124.4,19.3,1.5,9/27/2014,0,0
+2,2,Exxon Mobil,US,Oil & gas producers,356548.7,364763,32520,349493,75300,85,11.2,3.2,12/31/2014,0,1
+3,5,Berkshire Hathaway,US,Nonlife insurance,356510.7,N/R,19872,526186,316000,217500,18,,12/31/2014,0,2
+4,4,Google,US,Software & computer services,345849.2,66001,14444,131133,53600,554.7,26.4,,12/31/2014,0,3
+5,3,Microsoft,US,Software & computer services,333524.8,86833,22074,172384,128000,40.7,15.5,2.8,6/30/2014,0,3
+6,16,PetroChina,China,Oil & gas producers,329715.1,367853.7,17268.6,385177.7,534652,1.1,12.3,3.6,12/31/2014,1,1
+7,7,Wells Fargo,US,Banks,279919.7,N/R,23057,1687155,264500,54.4,13.3,2.5,12/31/2014,0,4
+8,6,Johnson & Johnson,US,Pharmaceuticals & biotechnology,279723.9,74331,16323,127723,126500,100.6,17.6,2.7,12/28/2014,0,5
+9,21,Industrial & Commercial Bank of China,China,Banks,275389.1,N/R,44441.4,3316892.5,462282,0.7,5.7,5.4,12/31/2014,1,4
+10,14,Novartis,Switzerland,Pharmaceuticals & biotechnology,267897,49550.7,9432.7,117393.4,133413,99,25.4,2.6,12/31/2014,2,5
+11,25,China Mobile,Hong Kong,Mobile telecommunications,267252.3,103977,17713.8,205592.5,241550,13.1,15,2.9,12/31/2014,3,6
+12,10,Wal-Mart Stores,US,General retailers,265107.3,485651,16363,203706,2200000,82.3,16.3,2.3,1/31/2015,0,7
+13,8,General Electric,US,General industrials,249774.4,148589,15212,645808,305000,24.8,16.5,3.6,12/31/2014,0,8
+14,11,Nestle,Switzerland,Food producers,243701.8,92165.3,14543.3,132185.6,339000,75.6,16.6,2.9,12/31/2014,2,9
+15,23,Toyota Motor,Japan,Automobiles & parts,238924.8,248954.6,17666,400235.1,338875,69.9,12.5,2.3,3/31/2014,4,10
+16,9,Roche,Switzerland,Pharmaceuticals & biotechnology,237747.6,47748.7,9388.4,73251.8,88509,276,25,2.9,12/31/2014,2,5
+17,13,JP Morgan Chase,US,Banks,225861.1,N/R,21218,2573126,241359,60.6,11.5,2.6,12/31/2014,0,4
+18,17,Procter & Gamble,US,Household goods & home construction,221279.6,83062,11643,144266,118000,81.9,20.9,3,6/30/2014,0,11
+19,18,Samsung Electronics,South Korea,Leisure goods,214039.7,188475.9,21097.4,206469.3,99927,1298.8,9.3,1.4,12/31/2014,5,12
+20,19,Pfizer,US,Pharmaceuticals & biotechnology,213621.9,49605,9134,167730,78300,34.8,24.7,3,12/31/2014,0,5
+21,29,China Construction Bank,China,Banks,209139.8,N/R,36710.3,2691627.3,493583,0.8,5.5,6,12/31/2014,1,4
+22,22,Verizon Communications,US,Fixed line telecommunications,198035.3,127079,9625,232708,177300,48.6,20.1,4.4,12/31/2014,0,13
+23,15,Chevron,US,Oil & gas producers,197381.3,191755,19241,262429,64700,105,10.4,4,12/31/2014,0,1
+24,52,Bank of China,China,Banks,197225.6,N/R,27326.8,2453420,308128,0.6,5.8,5.2,12/31/2014,1,4
+25,32,Anheuser-Busch InBev,Belgium,Beverages,196554.3,43098.8,8439.7,141492,154029,122.2,23.6,3,12/31/2014,6,14
+26,12,Royal Dutch Shell,UK,Oil & gas producers,192134.9,385634.5,13621.1,344985,94000,29.8,13.8,6.2,12/31/2014,7,1
+27,38,Agricultural Bank of China,China,Banks,189297.4,N/R,28916.6,2561243.9,493583,0.5,5.5,6.1,12/31/2014,1,4
+28,27,Oracle,US,Software & computer services,188438.8,38275,10955,89507,122000,43.2,18.1,1.1,5/31/2014,0,3
+29,49,Facebook,US,Software & computer services,183860.1,12466,2925,40184,9199,82.2,74.7,,12/31/2014,0,3
+30,39,Walt Disney,US,Media,178267.1,48813,7501,84186,180000,104.9,24.6,0.8,9/27/2014,0,15
+31,42,Tencent,Hong Kong,Software & computer services,177960.6,12718.3,3836.5,27528.1,27690,19,45.2,0.3,12/31/2014,3,3
+32,31,Coca-Cola,US,Beverages,177142.3,46052,7098,92023,129200,40.6,25.3,3,12/31/2014,0,14
+33,35,Amazon.com,US,General retailers,172797.3,88988,-241,54505,154100,372.1,,,12/31/2014,0,7
+34,26,AT&T,US,Fixed line telecommunications,169458.8,132447,6224,292829,253000,32.7,27.4,5.7,12/31/2014,0,13
+35,24,HSBC,UK,Banks,164249.6,N/R,12953.9,2627024,257603,8.5,13.1,5.8,12/31/2014,7,4
+36,33,Merck,US,Pharmaceuticals & biotechnology,163139.3,42237,11920,98335,70000,57.5,14.1,3.1,12/31/2014,0,5
+37,28,Bank of America,US,Banks,161908.8,N/R,4833,2104534,224000,15.4,42.8,0.8,12/31/2014,0,4
+38,20,IBM,US,Software & computer services,158642,92793,12022,112724,379592,160.5,13.5,2.6,12/31/2014,0,3
+39,131,China Life Insurance,China,Life insurance,157029.7,N/R,5190.2,361823.1,103123,4.4,24.3,1.4,12/31/2014,1,16
+40,37,Citigroup,US,Banks,156359.8,N/R,7202,1842530,241000,51.5,23.4,0.1,12/31/2014,0,4
+41,59,Home Depot,US,General retailers,148533.1,83176,6345,39895,371000,113.6,24.1,1.7,1/2/2015,0,7
+42,46,Intel,US,Technology hardware & equipment,148094.7,55870,11704,91334,106700,31.3,13.5,2.9,12/27/2014,0,0
+43,60,Gilead Sciences,US,Pharmaceuticals & biotechnology,145532.9,24890,12101,34428,7000,98.1,13.4,,12/31/2014,0,5
+44,44,Comcast,US,Media,142798.5,68775,8380,159339,139000,56.5,17.6,1.6,12/31/2014,0,15
+45,47,PepsiCo,US,Beverages,141742.7,66683,6513,70509,271000,95.6,22.4,2.6,12/27/2014,0,14
+46,56,Cisco Systems,US,Technology hardware & equipment,140507.8,47142,7853,103434,74042,27.5,18.5,2.6,7/26/2014,0,0
+47,40,Sanofi,France,Pharmaceuticals & biotechnology,130260,41244.3,5308.3,111888.8,113496,98.7,24.4,3.5,12/31/2014,8,5
+48,61,Visa,US,Financial services,128455.3,N/R,5421,38561,7000,65.4,30.4,0.2,9/30/2014,0,17
+49,50,Volkswagen,Germany,Automobiles & parts,124335.3,244810.2,13117.3,417570.8,592586,257.5,9.7,2.3,12/31/2014,9,10
+50,57,Bayer,Germany,Chemicals,124157.7,51075,4142.7,81321.7,118888,150.1,30,1.8,12/31/2014,9,18
+51,30,BHP Billiton,Australia/UK,Mining,122335.4,69372.1,14277.8,145017.6,47044,23.7,8.8,5.2,6/30/2014,10,19
+52,80,Amgen,US,Pharmaceuticals & biotechnology,121303.9,20063,5158,69009,17900,159.9,23.9,1.5,12/31/2014,0,5
+53,67,Taiwan Semiconductor Manufacturing,Taiwan,Technology hardware & equipment,120577.1,24112.3,8341.8,47096,43591,4.7,14.5,3,12/31/2014,11,0
+54,285,Actavis,US,Pharmaceuticals & biotechnology,120536.1,13062.3,-1630.5,52421.7,21600,297.6,,,12/31/2014,0,5
+55,74,Sinopec,China,Oil & gas producers,119104.8,433310.2,7642.4,232734.4,358571,0.8,11.4,3.8,12/31/2014,1,1
+56,51,Unilever,Netherlands/UK,Personal goods,118902.5,58568.3,6257.6,56819.8,173000,41.8,19,3.3,12/31/2014,12,20
+57,34,Total,France,Oil & gas producers,118541.9,194159.3,3886.5,225719,100307,49.7,29.1,5.9,12/31/2014,8,1
+58,36,BP,UK,Oil & gas producers,118345.6,334605.9,3577.3,281995.6,84500,6.5,34.1,6,12/31/2014,7,1
+59,88,CVS Caremark,US,Food & drug retailers,117170.8,139367,4644,74252,217800,103.2,26,1.1,12/31/2014,0,21
+60,43,Philip Morris International,US,Tobacco,116693.1,29767,7459,35187,82500,75.3,15.8,5.2,12/31/2014,0,22
+61,55,Commonwealth Bank of Australia,Australia,Banks,115688.2,N/R,8142.5,746102,44329,71.4,14.2,5.3,6/30/2014,13,4
+62,41,Qualcomm,US,Technology hardware & equipment,114380.5,26487,7967,47400,31300,69.3,14.9,2.2,9/28/2014,0,0
+63,172,Ping An Insurance,China,Life insurance,113119,N/R,6329,639758.6,235999,12,15,1,12/31/2014,1,16
+64,68,Novo Nordisk,Denmark,Pharmaceuticals & biotechnology,112977.6,14428.3,4302.4,11643.1,40957,53.5,32.6,1.5,12/31/2014,14,5
+65,100,UnitedHealth Group,US,Health care equipment & services,112812.6,130474,5619,85826,170000,118.3,20.8,1.2,12/31/2014,0,23
+66,45,GlaxoSmithKline,UK,Pharmaceuticals & biotechnology,111649.6,35834.8,4292.8,59132.3,98702,23,25.8,5.4,12/31/2014,7,5
+67,144,Medtronic,US,Health care equipment & services,111140.9,17005,3065,37643,49000,78,25.8,1.4,4/25/2014,0,23
+68,93,Bristol Myers Squibb,US,Pharmaceuticals & biotechnology,107500.1,15879,2004,32834,25000,64.5,53.8,2.2,12/31/2014,0,5
+69,48,Schlumberger,US,Oil equipment & services,106628.4,48631,5438,66904,120000,83.4,20.1,1.9,12/31/2014,0,24
+70,62,United Technologies,US,Aerospace & defence,106470.3,65100,6220,89795,211000,117.2,17.2,2,12/31/2014,0,25
+71,58,Banco Santander,Spain,Banks,105960.3,N/R,7032.7,1504392,185405,7.5,13.2,8.8,12/31/2014,15,4
+72,81,Boeing,US,Aerospace & defence,105032.2,90762,5440,92622,165500,150.1,20.3,2.1,12/31/2014,0,25
+73,87,3M,US,General industrials,104795.4,31821,4956,30380,89800,165,22,2.1,12/31/2014,0,8
+74,66,Daimler,Germany,Automobiles & parts,103741,157039.9,8418.4,224318.1,279972,97,12.3,3.1,12/31/2014,9,10
+75,71,L'Oreal,France,Personal goods,103279.4,27245.5,5937.4,37756.7,78611,184,17.9,1.8,12/31/2014,8,20
+76,79,Inditex,Spain,General retailers,100013.2,22539.1,3203.5,17825.6,128313,32.1,31.2,0.4,1/31/2014,15,7
+77,115,Biogen Idec,US,Pharmaceuticals & biotechnology,99063.5,9703.3,2934.8,14316.6,7550,422.2,34.1,,12/31/2014,0,5
+78,109,Altria Group,US,Tobacco,98505.2,17945,5058,34475,9000,50,19.5,4,12/31/2014,0,22
+79,63,British American Tobacco,UK,Tobacco,96536.7,21761.7,4852,40274.1,90118,51.8,19.8,4.5,12/31/2014,7,22
+80,95,Mastercard,US,Financial services,96001.8,N/R,3617,15233,10300,86.4,28,0.6,12/31/2014,0,17
+81,94,Union Pacific,US,Industrial transportation,95451.8,23988,5180,52716,47201,108.3,18.8,1.8,12/31/2014,0,26
+82,70,Westpac Banking,Australia,Banks,93870.4,N/R,6606.3,673179.7,36373,30.1,14.1,5.3,9/30/2014,13,4
+83,73,McDonald's,US,Travel & leisure,93651.4,27441.3,4757.8,34281.4,420000,97.4,20.2,3.4,12/31/2014,0,27
+84,97,Abbvie,US,Pharmaceuticals & biotechnology,93204.1,19960,1774,27547,26000,58.5,53.2,2.8,12/31/2014,0,5
+85,138,Walgreen,US,Food & drug retailers,92298.9,76392,1932,37187,251000,84.7,42.3,1.5,8/31/2014,0,21
+86,166,Celgene,US,Pharmaceuticals & biotechnology,92292,7670.4,1999.9,17340.1,6012,115.3,48.2,,12/31/2014,0,5
+87,65,Basf,Germany,Chemicals,91489.5,89874.3,6233.4,83634.8,113292,99.6,14.7,3.4,12/31/2014,9,18
+88,54,Ambev,Brazil,Beverages,90732.6,14326.4,4539.3,26617.8,51871,5.8,19.9,2.8,12/31/2014,16,14
+89,314,Kinder Morgan,US,Oil equipment & services,90622.5,16190,1026,77547,11535,42.1,46.7,4.1,12/31/2014,0,24
+90,53,Siemens,Germany,General industrials,90196.5,90808.4,6784.1,128213.8,343000,108,13.4,3.9,9/30/2014,9,8
+91,82,LVMH,France,Personal goods,89497.4,37047.2,6829.5,62788.4,121289,176.3,12.9,2.2,12/31/2014,8,20
+92,69,SAP,Germany,Software & computer services,88793.3,21233.4,3966.1,46133,74406,72.3,21.8,1.8,12/31/2014,9,3
+93,104,Mitsubishi UFJ Financial,Japan,Banks,87866.4,N/R,9543.2,2500032.5,106141,6.2,9.4,2.6,3/31/2014,4,4
+94,77,Royal Bank Canada,Canada,Banks,86842.8,N/R,7905.9,832445.9,78000,60.2,11.3,4.2,10/31/2014,17,4
+95,98,AstraZeneca,UK,Pharmaceuticals & biotechnology,86763.1,24695.5,1166.9,57375.9,57500,68.7,73.8,4,12/31/2014,7,5
+96,72,Vodafone Group,UK,Mobile telecommunications,86760.2,63910.1,98756.9,168722,92812,3.3,3.6,7,3/31/2014,7,6
+97,101,SabMiller,UK,Beverages,84939.6,17430.1,3528,53636.1,69947,52.6,23.8,2,3/31/2014,7,14
+98,116,Deutsche Telekom,Germany,Mobile telecommunications,83314,75765.4,3535.7,150170.5,227811,18.4,23.3,3.3,12/31/2014,9,6
+99,89,Lloyds Banking Group,UK,Banks,82941,N/R,1848.9,1325155.3,84490,1.2,38.7,0.9,12/31/2014,7,4
+100,110,Goldman Sachs,US,Financial services,81883.6,N/R,8477,851059,34000,188,11,1.2,12/31/2014,0,17
+101,113,Honeywell International,US,General industrials,81427.3,40306,4239,45047,127000,104.3,19.6,1.8,12/31/2014,0,8
+102,132,Eli Lilly,US,Pharmaceuticals & biotechnology,80714.4,19615.6,2390.5,37178.2,39135,72.7,32.6,2.7,12/31/2014,0,5
+103,99,BMW,Germany,Automobiles & parts,80263.3,97220.1,7010.9,184694.1,116324,125,11.7,2.8,12/31/2014,9,10
+104,125,Tata Consultancy Services,India,Software & computer services,79935.9,13629.4,3192.7,11115.2,300464,40.8,24.9,1.3,3/31/2014,18,3
+105,76,American Express,US,Financial services,79617.9,N/R,5839,156993,54000,78.1,14.1,1.3,12/31/2014,0,17
+106,106,Allianz,Germany,Nonlife insurance,79417.8,N/R,7522.4,954296.4,147425,173.8,10.5,4.8,12/31/2014,9,2
+107,91,Toronto-Dominion Bank,Canada,Banks,79165.7,N/R,6899.7,836497.3,81137,42.8,11.6,3.8,10/31/2014,17,4
+108,103,US Bancorp,US,Banks,77784.5,N/R,5826,402529,66750,43.7,14.2,2.2,12/31/2014,0,4
+109,96,ANZ Banking,Australia,Banks,77424.4,N/R,6361.3,675130.7,50328,28,12,5.6,9/30/2014,13,4
+110,64,Rio Tinto,Australia/UK,Mining,77074.5,45107.7,6177,104286.8,59775,41.2,12.3,5.1,12/31/2014,10,19
+111,92,ConocoPhillips,US,Oil & gas producers,76670.7,52464,6869,116539,19100,62.3,11.3,4.6,12/31/2014,0,1
+112,165,AIA Group,Hong Kong,Life insurance,75815.8,N/R,3450.3,165251.9,20000,6.3,21.7,1,11/30/2014,3,16
+113,75,BNP Paribas,France,Banks,75696.8,N/R,189.8,2503748.8,187903,60.8,,3,12/31/2014,8,4
+114,114,American International Group,US,Nonlife insurance,74183.9,N/R,7529,496242,65000,54.8,10.5,0.9,12/31/2014,0,2
+115,199,Lowe's Companies,US,General retailers,71414.3,56223,2682,31827,266000,74.4,27.5,1.2,1/30/2015,0,7
+116,107,National Australia Bank,Australia,Banks,71303.9,N/R,4475.1,771376.5,42853,29.5,15.2,5.9,9/30/2014,13,4
+117,120,Twenty-First Century Fox,US,Media,71181.8,31867,4514,54793,27000,33.8,17,0.7,6/30/2014,0,15
+118,127,NTT DoCoMo,Japan,Mobile telecommunications,71051.7,43229.1,4503.2,70141.4,23890,17.4,16,3.3,3/31/2014,4,6
+119,170,Starbucks,US,Travel & leisure,71006,16447.8,2068.1,9849.6,191000,94.7,69.6,0.3,9/28/2014,0,27
+120,146,Morgan Stanley,US,Financial services,70545.3,N/R,3409,801510,55802,35.7,22.3,1,12/31/2014,0,17
+121,102,UBS,Switzerland,Banks,70519.7,N/R,3486.9,1057768.6,60155,18.9,20.1,2.7,12/31/2014,2,4
+122,210,Bank of Communications,China,Banks,70487,N/R,10610.4,1007420.5,93658,0.9,6.1,4.7,12/31/2014,1,4
+123,117,Telefonica,Spain,Fixed line telecommunications,70326.6,60915.4,3402.7,139579.2,123700,14.2,19.2,5.7,12/31/2014,15,13
+124,162,Time Warner,US,Media,70129.3,27359,3813,63259,25600,84.4,19.5,1.5,12/31/2014,0,15
+125,143,Nippon Telegraph & Telephone,Japan,Fixed line telecommunications,70111.7,105864.9,5673.2,190151.2,239756,61.7,12.5,2.7,3/31/2014,4,13
+126,119,eBay,US,General retailers,69945.6,17902,46,45132,34600,57.7,,,12/31/2014,0,7
+127,157,Abbott Laboratories,US,Pharmaceuticals & biotechnology,69910.9,20247,2284,39725,77000,46.3,30.9,1.9,12/31/2014,0,5
+128,85,Softbank,Japan,Mobile telecommunications,69882.1,64599.9,5107,160003.9,70336,58.2,13.5,0.7,3/31/2014,4,6
+129,105,Diageo,UK,Beverages,69404.9,17535,3842.7,38834.2,26588,27.6,18,3.2,6/30/2014,7,14
+130,182,Nike,US,Personal goods,68620.7,27799,2693,16975,56500,100.3,33.8,0.9,5/31/2014,0,20
+131,126,United Parcel Service,US,Industrial transportation,68085.1,58232,3032,34819,270000,96.9,29.6,2.8,12/31/2014,0,26
+132,226,Valeant Pharmaceuticals International,Canada,Pharmaceuticals & biotechnology,67339,7878.5,870.9,26298.9,16800,197.6,75.7,,12/31/2014,17,5
+133,201,Costco Wholesale,US,General retailers,66653.9,112640,2058,33024,195000,151.5,32.6,0.9,8/31/2014,0,7
+134,145,E I Du Pont de Nemours,US,Chemicals,64709.9,34906,3625,46225,63000,71.5,18.2,2.6,12/31/2014,0,18
+135,215,Naspers,South Africa,Media,64697.6,5955.4,546,12117.5,22557,154.3,,0.3,3/31/2014,19,15
+136,183,Lockheed Martin,US,Aerospace & defence,64192.5,45600,3614,33060,112000,203,18.1,2.7,12/31/2014,0,25
+137,78,Saudi Basic Industries,Saudi Arabia,Chemicals,63940.8,50138.4,6222.5,90515.9,40000,21.3,10.3,6.9,12/31/2014,20,18
+138,121,BBVA,Spain,Banks,63794,N/R,3165.7,749112.6,109239,10.1,19.1,4.4,12/31/2014,15,4
+139,175,Prudential,UK,Life insurance,63738,N/R,3451.7,559612.9,23047,24.8,18.3,2.3,12/31/2014,7,16
+140,139,Japan Tobacco,Japan,Tobacco,63381.3,23980.8,4140.6,38237.5,51341,31.7,16.3,2.9,12/31/2014,4,22
+141,163,Express Scripts,US,Health care equipment & services,63237.3,100887.1,2007.6,53798.9,29500,86.8,32.9,,12/31/2014,0,23
+142,129,CNOOC,Hong Kong,Oil & gas producers,63115.3,44517.4,9758.1,105859.5,21046,1.4,6.4,5,12/31/2014,3,1
+143,245,China Merchants Bank,China,Banks,63023.8,N/R,9008.9,760781.4,75109,2.4,6.8,4.5,12/31/2014,1,4
+144,148,Ford Motor,US,Automobiles & parts,63010.7,144077,3187,194888,187000,16.1,20.2,3.1,12/31/2014,0,10
+145,84,Eni,Italy,Oil & gas producers,62954.9,132825.9,1561.1,170466.8,84405,17.3,40.3,7.9,12/31/2014,21,1
+146,156,Colgate-Palmolive,US,Personal goods,62880,17277,2180,13383,37700,69.3,29.4,2,12/31/2014,0,20
+147,212,China Shenhua Energy,China,Mining,62119.2,40018.3,6234,86503.5,92738,2.6,8.2,4.7,12/31/2014,1,19
+148,160,Reckitt Benckiser,UK,Household goods & home construction,61656.4,13763.2,5020.2,24042,37200,86.1,12.4,2.5,12/31/2014,7,11
+149,140,Axa,France,Nonlife insurance,61520.4,N/R,5706.2,990202.1,96279,25.2,10.7,4.6,12/31/2014,8,2
+150,187,Simon Property Group,US,Real estate investment trusts,61493.9,N/R,1408.6,29532.3,5250,195.6,43.3,2.6,12/31/2014,0,28
+151,184,KDDI,Japan,Mobile telecommunications,61042.8,41992.9,3120.6,47155.8,27073,22.7,17.6,0.6,3/31/2014,4,6
+152,123,Bank of Nova Scotia,Canada,Banks,60687.1,N/R,6274.2,713311.2,86932,50.2,9.9,4.5,10/31/2014,17,4
+153,180,Blackrock,US,Financial services,60511.8,N/R,3294,239808,12200,365.8,19,2.1,12/31/2014,0,17
+154,142,Priceline.com,US,Travel & leisure,60465,8442,2421.8,14940.6,12700,1164.2,25.5,,12/31/2014,0,27
+155,173,General Motors,US,Automobiles & parts,60388.7,155929,3949,152263,216000,37.5,22.7,3.2,12/31/2014,0,10
+156,202,Teva Pharmaceutical,Israel,Pharmaceuticals & biotechnology,60038.5,18664,2812.7,46420,43009,62.8,19,2,12/31/2014,22,5
+157,181,Danaher,US,General industrials,60034.1,19913.8,2598.4,36991.7,71000,84.9,23.4,0.5,12/31/2014,0,8
+158,191,Texas Instruments,US,Technology hardware & equipment,59880.8,13045,2777,17550,31003,57.2,22.3,2.2,12/31/2014,0,0
+159,135,Barclays,UK,Banks,59431.5,N/R,-271,2108682.1,132300,3.6,,2.8,12/31/2014,7,4
+160,141,Hennes & Mauritz,Sweden,General retailers,59195.3,20297.7,2677.8,9833.9,93351,40.5,25,3.2,11/30/2014,23,7
+161,159,Mondelez International,US,Food producers,59181,34244,2184,66815,104000,36.1,28.2,1.6,12/31/2014,0,9
+162,167,Hutchison Whampoa,Hong Kong,General industrials,59168.8,35100.6,8661.1,111460,280000,13.9,6.8,2.2,12/31/2014,3,8
+163,134,Honda Motor,Japan,Automobiles & parts,58953.6,114753.4,5563.1,151377.5,198561,32.6,10.5,2.5,3/31/2014,4,10
+164,161,Telstra,Australia,Fixed line telecommunications,58935.2,23886.9,4033,37125.6,31931,4.8,15.1,5.8,6/30/2014,13,13
+165,193,Accenture,US,Support services,58673.8,31874.7,2941.5,16778.4,305000,93.7,20.7,2,8/31/2014,0,29
+166,112,Itau Unibanco,Brazil,Banks,58391.1,N/R,8109.4,412365,93175,11.1,7.5,3.2,12/31/2014,16,4
+167,171,Intesa Sanpaolo,Italy,Banks,56781.5,N/R,1512.7,767856.2,89486,3.4,37.8,2.4,12/31/2014,21,4
+168,147,Hewlett-Packard,US,Technology hardware & equipment,56635.1,111454,5013,102466,302000,31.2,11.9,2,10/31/2014,0,0
+169,155,Metlife,US,Life insurance,56577.5,N/R,6309,902337,68000,50.6,9.3,2.6,12/31/2014,0,16
+170,83,Gazprom,Russia,Oil & gas producers,56569.8,95924.6,2739.6,261507.8,450000,2.4,19.9,,12/31/2014,24,1
+171,174,ING,Netherlands,Banks,56545.6,N/R,605.8,1199167,68431,14.7,22.5,1,12/31/2014,25,4
+172,86,Statoil,Norway,Oil & gas producers,56499.9,81189.8,2930.2,130254.3,22516,17.7,19.3,5.4,12/31/2014,26,1
+173,,Citic Securities,China,Financial services,56453.9,N/R,1826.8,76863.9,13209,3.7,24.7,1.3,12/31/2014,1,17
+174,366,Industrial Bank,China,Banks,56423.2,N/R,7651,710184,50214,3,7.4,3,12/31/2014,1,4
+175,108,Occidental Petroleum,US,Oil & gas producers,56251.3,19442,1543,56259,11700,73,,3.9,12/31/2014,0,1
+176,128,Glencore,UK,Mining,55505.2,209216.7,2184.2,150537.8,181349,4.2,24.9,3.8,12/31/2014,7,19
+177,158,Dow Chemical,US,Chemicals,55274,58167,3745,66661,53000,48,16.7,3.2,12/31/2014,0,18
+178,197,BT Group,UK,Fixed line telecommunications,54437.1,30478.4,3363.3,39063.4,87800,6.5,15.1,2.8,3/31/2014,7,13
+179,154,Monsanto,US,Food producers,54389,15848,2740,21531,22400,112.5,21.6,1.6,8/31/2014,0,9
+180,195,Duke Energy,US,"Gas, water & multiutilities",54361.5,23925,1883,120709,28344,76.8,28.9,4.1,12/31/2014,0,30
+181,149,Sumitomo Mitsui Financial,Japan,Banks,54257,N/R,8094.6,1563590.1,66475,38.4,6.5,3,3/31/2014,4,4
+182,211,Canadian National Railway,Canada,Industrial transportation,54048.2,10442.4,2725.5,27359.9,25530,67,20.1,1.3,12/31/2014,17,26
+183,207,Thermo Fisher Scientific,US,Health care equipment & services,53303.8,16889.6,1894.4,42852.1,51000,134.3,28.5,0.4,12/31/2014,0,23
+184,246,McKesson,US,Food & drug retailers,52669.4,137609,1263,51759,42800,226.2,41.7,0.4,3/31/2014,0,21
+185,268,Target,US,General retailers,52667.5,72618,-1636,41404,347000,82.1,,2.4,1/31/2015,0,7
+186,236,Fanuc,Japan,Industrial engineering,52425.2,4370,1074.9,13022.4,5469,218.9,39.8,0.8,3/31/2014,4,31
+187,315,Kraft Foods Group,US,Food producers,51234.7,18205,1038,22947,22100,87.1,50.1,2.5,12/27/2014,0,9
+188,308,China Minsheng Banking,China,Banks,51057.2,N/R,7177.7,645063.3,59659,1.2,5.8,2.5,12/31/2014,1,4
+189,168,Airbus,France,Aerospace & defence,50953.8,73413.6,2833.1,109292.6,138622,64.9,17.9,2.2,12/31/2014,8,25
+190,214,Singapore Telecom,Singapore,Mobile telecommunications,50909.1,13392.7,2903,30597.3,22000,3.2,17.7,4.1,3/31/2014,27,6
+191,218,Zurich Financial Services,Switzerland,Nonlife insurance,50751.8,N/R,3598.5,388419.5,54551,339,13.9,5,12/31/2014,2,2
+192,169,EMC,US,Technology hardware & equipment,50527.6,24440,2714,45885,70000,25.6,19.4,1.7,12/31/2014,0,0
+193,176,EOG Resources,US,Oil & gas producers,50288.8,17527.8,2915.5,34762.7,3000,91.7,17.2,0.8,12/31/2014,0,1
+194,164,Nordea Bank,Sweden,Banks,49449.9,N/R,3890.6,809204.3,29400,12.2,12.7,6.1,12/31/2014,23,4
+195,153,ABB,Switzerland,Industrial engineering,49165.7,37152.4,2395.6,44367.2,140400,21.2,20.2,2.6,12/31/2014,2,31
+196,330,China Citic Bank,China,Banks,49087,N/R,6556.7,665386,50735,0.8,5.4,,12/31/2014,1,4
+197,213,PNC Financial Services,US,Banks,48549.1,N/R,4173,345072,53587,93.2,12.8,2,12/31/2014,0,4
+198,137,Caterpillar,US,Industrial engineering,48511.5,55184,3695,83277,114233,80,13.6,3.4,12/31/2014,0,31
+199,232,TJX Cos,US,General retailers,48257.4,29078.4,2215.1,11103.8,198000,70.1,21.8,1,1/31/2015,0,7
+200,220,Henkel,Germany,Chemicals,48145.6,19864.6,1968.6,24332.5,49750,104.4,23,1.5,12/31/2014,9,18
+201,130,GDF Suez,France,"Gas, water & multiutilities",48136.4,90309.6,2950.4,198700.2,147400,19.8,15.8,6.1,12/31/2014,8,30
+202,190,National Grid,UK,"Gas, water & multiutilities",47992,24681.7,4126.7,87306.8,23909,12.8,11.6,5.5,3/31/2014,7,30
+203,217,Deutsche Bank,Germany,Banks,47978.8,N/R,2010.9,2057845.5,98138,34.8,21.5,2.6,12/31/2014,9,4
+204,427,China Pacific Insurance,China,Life insurance,47585.1,N/R,1780.3,130158.4,90000,4.8,23.8,1.7,12/31/2014,1,16
+205,367,Shanghai Pudong Development Bank,China,Banks,47509.2,N/R,7577.3,674366.4,43654,2.6,6.2,4.7,12/31/2014,1,4
+206,266,CK Hutchison,Hong Kong,Real estate investment & services,47440.3,N/R,6947.5,59060.7,8100,20.5,7.1,2.3,12/31/2014,3,32
+207,243,Canon,Japan,Technology hardware & equipment,47244.7,31122.6,2127.6,37246.2,191889,35.4,18.5,3.5,12/31/2014,4,0
+208,204,Continental,Germany,Automobiles & parts,47106.4,41724,2872.2,34664.7,189168,235.5,16.4,1.7,12/31/2014,9,10
+209,375,Shire,UK,Pharmaceuticals & biotechnology,47009.3,5699.1,3222.9,13520,5016,79.6,14.5,0.3,12/31/2014,7,5
+210,256,Fedex,US,Industrial transportation,46947.5,45567,2093,33070,162000,165.5,24.5,0.4,5/31/2014,0,26
+211,240,Nextera Energy,US,Electricity,46211,17021,2465,74929,13400,104.1,18.6,2.8,12/31/2014,0,33
+212,247,Nissan Motor,Japan,Automobiles & parts,46140.1,101575.6,3769.7,141338,142925,10.2,11.3,2.8,3/31/2014,4,10
+213,122,Rosneft,Russia,Oil & gas producers,45973.8,92628.5,5996,150107.8,248900,4.3,7.9,3.2,12/31/2014,24,1
+214,189,Schneider Electric,France,Electronic & electrical equipment,45418.5,30156,2347,47156,185965,77.7,19,3,12/31/2014,8,34
+215,216,AMX,Mexico,Mobile telecommunications,45373.1,57512.2,3113.5,80783.2,189935,1,20.6,1.9,12/31/2014,28,6
+216,185,A P Moller - Maersk,Denmark,Industrial transportation,45292.4,43627,4599.4,68308,89207,2090.3,9.9,15.3,12/31/2014,14,26
+217,364,Regeneron Pharmaceuticals,US,Pharmaceuticals & biotechnology,45008.9,2819.6,348.1,3605,2925,451.5,,,12/31/2014,0,5
+218,250,Bank of New York Mellon,US,Financial services,44853,N/R,2524,385303,50300,40.2,18.7,1.6,12/31/2014,0,17
+219,272,General Dynamics,US,Aerospace & defence,44815.8,30852,2533,35355,99500,135.7,18.3,1.8,12/31/2014,0,25
+220,111,EDF,France,Electricity,44625.9,88118.5,4475.2,320874.3,148024,24,10,6.3,12/31/2014,8,33
+221,242,ASML Holding,Netherlands,Technology hardware & equipment,44616.4,7081.4,1447,14722.1,14072,101.8,30.8,0.8,12/31/2014,25,0
+222,235,Air Liquide,France,Chemicals,44391.6,18571.1,2013.3,32018.6,50300,128.7,21.9,2.4,12/31/2014,8,18
+223,320,Sun Hung Kai Properties,Hong Kong,Real estate investment & services,44303.3,N/R,4325.1,71875.9,37000,15.4,9.6,2.8,6/30/2014,3,32
+224,456,Saic Motor,China,Automobiles & parts,44211.8,101101.7,4507.4,64631.3,151820,4,9.8,5.2,12/31/2014,1,10
+225,259,Liberty Global,US,Media,44101.9,18248.3,-695,72841.9,38000,51.5,,,12/31/2014,0,15
+226,133,Las Vegas Sands,US,Travel & leisure,43950,14583.9,2840.6,22330,48500,55,15.6,3.6,12/31/2014,0,27
+227,249,Heineken,Netherlands,Beverages,43939.5,23285.4,1833.1,41316.8,76136,76.3,23.9,1.7,12/31/2014,25,14
+228,238,Walmex,Mexico,General retailers,43787.7,29899,2062.9,16684.3,229946,2.5,25,3.6,12/31/2014,28,7
+229,233,Jardine Matheson,Hong Kong,General industrials,43661.8,39930.3,1710.4,66152,110000,63.2,13.7,2.3,12/31/2014,3,8
+230,295,Salesforce.com,US,Software & computer services,43466.6,5373.6,-262.7,10683.7,16000,66.8,,,1/31/2015,0,3
+231,186,Credit Suisse Group,Switzerland,Banks,43320.3,N/R,1805.8,927027.6,45800,27,25,2.6,12/31/2014,2,4
+232,225,Capital One Financial,US,Financial services,43308.3,N/R,4410,308854,46000,78.8,10.4,1.5,12/31/2014,0,17
+233,223,Danone,France,Food producers,43296,25567.1,1353.1,37377.3,99927,67.3,29.5,2.7,12/31/2014,8,9
+234,151,Bradesco,Brazil,Banks,43225.9,N/R,6413,388423,95520,9.3,6.1,5.8,12/31/2014,16,4
+235,205,Mizuho Financial Group,Japan,Banks,43161.3,N/R,6670.8,1702707.2,54911,1.8,6.5,3.4,3/31/2014,4,4
+236,276,Hon Hai Precision Industry,Taiwan,Electronic & electrical equipment,43045.7,133178.4,4126.2,77297.2,1290000,2.9,10.5,,12/31/2014,11,34
+237,262,DirecTV,US,Media,42788.4,33260,2756,25459,32150,85.1,15.8,,12/31/2014,0,15
+238,194,Reliance Industries,India,Oil & gas producers,42707.3,72381,3747.3,71445.2,23853,13.2,10.3,1.2,3/31/2014,18,1
+239,230,Anadarko Petroleum,US,Oil & gas producers,42686.7,16375,-1754,61689,6100,82.8,,1.2,12/31/2014,0,1
+240,,Citic,Hong Kong,General industrials,42656.3,51858,5137,767086,125273,1.7,8.2,1.8,12/31/2014,3,8
+241,228,Phillips 66,US,Oil & gas producers,42626.9,161212,4755,48741,14000,78.6,9.4,2.4,12/31/2014,0,1
+242,257,Orange,France,Fixed line telecommunications,42572.4,47696.5,1118.5,103490.9,156000,16.1,37.4,4.5,12/31/2014,8,13
+243,178,Enel,Italy,Electricity,42536.3,88667.5,625.2,192946.8,68961,4.5,64.6,3.8,12/31/2014,21,33
+244,188,Suncor Energy,Canada,Oil & gas producers,42231.9,34304.8,2322.7,68541.7,13980,29.2,18.4,3,12/31/2014,17,1
+245,269,Time Warner Cable,US,Media,42101.3,22812,2013,48501,55170,149.9,21.1,2,12/31/2014,0,15
+246,263,Imperial Tobacco,UK,Tobacco,42098.3,22199.4,2304.7,41763.5,33900,44,18.3,4.7,9/30/2014,7,22
+247,198,Richemont,Switzerland,Personal goods,42081.6,14761.6,2872.2,21265.8,29101,80.6,15.7,2,3/31/2014,2,20
+248,136,BG Group,UK,Oil & gas producers,42019.4,18254.5,-988,57896.9,5143,12.3,,2.3,12/31/2014,7,1
+249,219,Oil & Natural Gas,India,Oil & gas producers,41881.2,29067.9,4416,54015.4,33988,4.9,9.4,3.3,3/31/2014,18,1
+250,203,LyondellBasell Industries,US,Chemicals,41880.4,41766.3,3811.4,24012,13100,87.8,11.9,3,12/31/2014,0,18
+251,208,ITC,India,Tobacco,41735.5,5883.8,1481.3,6805.4,25917,5.2,27.4,1.9,3/31/2014,18,22
+252,244,Dominion Resources,US,Electricity,41698.2,12436,1310,54327,14400,70.9,31.6,3.4,12/31/2014,0,33
+253,282,Yahoo,US,Software & computer services,41596.5,4618.1,7521.7,61934.2,12500,44.4,6,,12/31/2014,0,3
+254,,Shenwan Hongyuan,China,Financial services,41361.9,N/R,556.3,32607,,2.8,,,12/31/2014,1,17
+255,227,Ericsson,Sweden,Technology hardware & equipment,41336,29238.8,1483.6,36010,118055,12.6,27.3,3.4,12/31/2014,23,0
+256,,China Communications Construction,China,Construction & materials,41271.6,58980.4,2253.4,101071.1,103357,1.4,10.1,2.1,12/31/2014,1,35
+257,387,Wellpoint,US,Health care equipment & services,41194.6,73923.1,2569.7,61784.6,51500,154.4,17.2,1.1,12/31/2014,0,23
+258,224,Iberdrola,Spain,Electricity,41179.6,36314.8,2813.2,106328.9,28212,6.4,14.6,5.1,12/31/2014,15,33
+259,264,Fast Retailing,Japan,General retailers,41124.8,13290,716.4,9427.9,30448,387.7,55.1,0.7,8/31/2014,4,7
+260,270,Enbridge,Canada,Oil equipment & services,41075.4,32393.5,1209.1,62217.2,8882,48.2,39.2,2.5,12/31/2014,17,24
+261,355,HDFC Bank,India,Banks,40961,N/R,1456.7,83583.5,68165,16.3,26.8,0.7,3/31/2014,18,4
+262,338,Infosys Technologies,India,Software & computer services,40710.5,8352.2,1774,9396.1,160405,35.5,22.7,0.7,3/31/2014,18,3
+263,274,Automatic Data Processing,US,Support services,40692,12206.5,1515.9,32051.7,61000,85.6,27.3,2.2,6/30/2014,0,29
+264,234,Denso,Japan,Automobiles & parts,40419.8,39689.5,2784.8,42889.1,139842,45.7,13.1,2.2,3/31/2014,4,10
+265,261,Southern,US,Electricity,40289.4,18467,2031,70923,26369,44.3,20.3,4.7,12/31/2014,0,33
+266,192,Standard Chartered,UK,Banks,40139.6,N/R,2472.9,725394.9,90940,16.2,16.7,5.2,12/31/2014,7,4
+267,289,Charles Schwab,US,Financial services,39967.8,N/R,1321,154642,14600,30.4,31.7,0.8,12/31/2014,0,17
+268,179,Unicredit,Italy,Banks,39859.9,N/R,2427.9,1003528.2,129021,6.8,16.2,2.2,12/31/2014,21,4
+269,150,Hyundai Motor,South Korea,Automobiles & parts,39832.1,81580.3,6715,133969.8,65340,151.9,6.2,1.8,12/31/2014,5,10
+270,329,American Tower,US,Real estate investment trusts,39783.9,N/R,824.9,21078.4,2974,94.2,47.1,1.5,12/31/2014,0,28
+271,206,Lukoil,Russia,Oil & gas producers,39581.6,81537.4,3151.2,111075,,46.5,11.5,5.5,12/31/2014,24,1
+272,271,Takeda Pharmaceutical,Japan,Pharmaceuticals & biotechnology,39511.9,16392.6,1033.5,42255.4,31225,50,38.2,3.5,3/31/2014,4,5
+273,90,Petrobras,Brazil,Oil & gas producers,39362.6,143351,-9175,298598,86111,3,,,12/31/2014,16,1
+274,248,Jardine Strategic,Hong Kong,General industrials,39220.3,32243.5,1832.4,64518,,35,11.6,0.8,12/31/2014,3,8
+275,,China Railway Group,China,Construction & materials,39130.2,95093.5,1653.5,109342.3,293592,1,12.8,1,12/31/2014,1,35
+276,239,Kimberly-Clark,US,Personal goods,39116.6,19724,1526,15526,43000,107.1,26.5,3.1,12/31/2014,0,20
+277,200,Societe Generale,France,Banks,38888.3,N/R,2754.5,1574349.7,148322,48.3,13.7,3,12/31/2014,8,4
+278,209,Emerson Electric,US,Electronic & electrical equipment,38796.1,24537,2147,24177,115100,56.6,18.7,3,9/30/2014,0,34
+279,231,Bank of Montreal,Canada,Banks,38775.5,N/R,3795,519644.2,47000,59.9,10.5,4.6,10/31/2014,17,4
+280,294,Atlas Copco,Sweden,Industrial engineering,38718.3,12019.7,1560.7,13303.6,44056,29.6,23.1,2.6,12/31/2014,23,31
+281,348,Cognizant Technology Solutions,US,Software & computer services,38034,10262.7,1439.3,11574.5,211500,62.4,26.5,,12/31/2014,0,3
+282,221,Deutsche Post,Germany,Industrial transportation,37852.2,68476.4,2504.2,42596.1,488824,31.3,15.1,3.3,12/31/2014,9,26
+283,254,Credit Agricole,France,Banks,37837.6,N/R,2562.3,1918232.4,72567,14.7,14.5,2.9,12/31/2014,8,4
+284,395,Williams Cos.,US,Oil equipment & services,37836.1,7637,2114,50563,6742,50.6,17.3,3.9,12/31/2014,0,24
+285,275,Linde,Germany,Chemicals,37787.2,20613.1,1332.5,41256.4,65591,203.4,28.3,1.9,12/31/2014,9,18
+286,229,Wesfarmers,Australia,General retailers,37740.1,56774.8,2536.8,37062.4,203000,33.6,14.9,5.5,6/30/2014,13,7
+287,352,Boc Hong Kong,Hong Kong,Banks,37706.1,N/R,3169.7,282341.1,14926,3.6,11.9,3.9,12/31/2014,3,4
+288,498,Kroger,US,Food & drug retailers,37664.9,108465,1711,30556,400000,76.7,22,0.9,1/31/2015,0,21
+289,,Hanergy Thin Film Power Group,Hong Kong,Alternative energy,37504.2,1240.1,426.6,3211.2,2033,0.9,,,12/31/2014,3,36
+290,363,Carnival,US/UK,Travel & leisure,37364.6,15884,1236,39532,94100,47.8,30.1,2.1,11/30/2014,29,27
+291,462,Central Japan Railway,Japan,Travel & leisure,37352.3,16013.2,2477.6,48517.3,28619,181.3,14.4,0.6,3/31/2014,4,27
+292,303,Seven & I Holding,Japan,General retailers,37349.9,55304.5,1725.3,46925.3,55364,42.1,21.6,1.6,2/28/2014,4,7
+293,196,Halliburton,US,Oil equipment & services,37283.6,32870,3500,32240,80000,43.9,10.7,1.4,12/31/2014,0,24
+294,255,Munich Re,Germany,Nonlife insurance,37258.2,N/R,3812.6,305013.3,43316,215.4,9.7,4.4,12/31/2014,9,2
+295,,Hermes International,France,Personal goods,37233.2,4980.2,1038.5,5359.6,11718,352.7,35.4,2.7,12/31/2014,8,20
+296,252,Baxter International,US,Health care equipment & services,37231.9,16671,2497,25917,66000,68.5,15,3,12/31/2014,0,23
+297,284,Qatar National Bank,Qatar,Banks,37184.6,N/R,2871.4,133577.9,,53.1,13,3.9,12/31/2014,30,4
+298,407,Aetna,US,Health care equipment & services,37147,58003.2,2040.8,52959.1,48800,106.5,18.8,0.9,12/31/2014,0,23
+299,,China State Construction Engineering,China,Construction & materials,37115.3,129852,3663,148133,238079,1.2,10.3,2.4,12/31/2014,1,35
+300,408,Astellas Pharma,Japan,Pharmaceuticals & biotechnology,37074.9,11045.7,880.6,15577.4,17649,16.4,42.1,1.6,3/31/2014,4,5
+301,362,Delta Air Lines,US,Travel & leisure,37059.3,40362,659,49801,79655,45,57.6,0.7,12/31/2014,0,27
+302,324,Adobe Systems,US,Software & computer services,36989.9,4147.1,268.4,10786.1,12499,73.9,,,11/28/2014,0,3
+303,336,DBS Group,Singapore,Banks,36802.6,N/R,3051.3,332134.5,21000,14.8,12.1,3,12/31/2014,27,4
+304,,American Airlines,US,Travel & leisure,36769.2,42650,2882,43771,113300,52.8,13.4,0.4,12/31/2014,0,27
+305,313,Reed Elsevier,Netherlands/UK,Media,36747.9,9001.6,1496.9,17287.4,28500,17.2,25.7,2.4,12/31/2014,12,15
+306,380,Reynolds American,US,Tobacco,36661,8471,1470,15196,5400,68.9,25.1,3.9,12/31/2014,0,22
+307,317,Ace,US,Nonlife insurance,36495.4,N/R,2853,97953,21000,111.5,13.2,2.3,12/31/2014,0,2
+308,260,Prudential Financial,US,Life insurance,36475.5,N/R,1367,766655,48331,80.3,24.9,2.7,12/31/2014,0,16
+309,339,China Unicom,Hong Kong,Mobile telecommunications,36447,46146,1954.1,86826,228270,1.5,19,2,12/31/2014,3,6
+310,302,Illinois Tool Works,US,Industrial engineering,36264.6,14484,2946,17377,49000,97.1,13.3,1.9,12/31/2014,0,31
+311,429,Kweichow Moutai,China,Beverages,36096.9,4881,2473.3,10481.8,17487,31.6,14.6,2.2,12/31/2014,1,14
+312,297,Swiss RE,Switzerland,Nonlife insurance,35915.4,N/R,3233.5,191393.7,12224,96.9,10.3,7.5,12/31/2014,2,2
+313,312,BCE,Canada,Fixed line telecommunications,35621.4,18108.5,2151.5,39703.3,57234,42.3,16.5,5,12/31/2014,17,13
+314,354,Alexion Pharmaceuticals,US,Pharmaceuticals & biotechnology,35032.3,2233.7,656.9,4167,2273,173.3,53.2,,12/31/2014,0,5
+315,346,Stryker,US,Health care equipment & services,34960.6,9675,515,17674,26000,92.3,68.3,1.4,12/31/2014,0,23
+316,,CSR,China,Industrial engineering,34953.6,19000.5,856.4,24074.7,88925,1.3,22,,12/31/2014,1,31
+317,265,Praxair,US,Chemicals,34847,12273,1694,19704,27780,120.7,21.1,2.2,12/31/2014,0,18
+318,357,Travelers Cos.,US,Nonlife insurance,34749.6,N/R,3665,103045,30200,108.1,10.1,2,12/31/2014,0,2
+319,349,Hang Seng Bank,Hong Kong,Banks,34646.2,N/R,1951.5,163016.8,10192,18.1,17.8,4,12/31/2014,3,4
+320,293,Christian Dior,France,Personal goods,34300.7,42443.7,1952.1,82303.9,117806,188.7,17.3,2.2,6/30/2014,8,20
+321,,Haitong Securities,China,Financial services,34191,N/R,1242.4,56726.7,7464,2.4,18.7,1.6,12/31/2014,1,17
+322,,China Everbright Bank,China,Banks,34156.4,N/R,4653.9,440525.6,39015,0.6,5.5,5.4,12/31/2014,1,4
+323,318,Yum! Brands,US,Travel & leisure,34116.8,13279,1051,7774,537000,78.7,33.9,2,12/27/2014,0,27
+324,369,Public Storage,US,Real estate investment trusts,34058.1,N/R,1140.8,9818.7,5300,197.1,37.6,2.8,12/31/2014,0,28
+325,327,Ecolab,US,Chemicals,34010.9,14280.5,1202.8,19395.2,47000,114.4,29.1,1,12/31/2014,0,18
+326,,Sun Pharmaceutical Industries,India,Pharmaceuticals & biotechnology,33886.6,2679,523.4,4695.5,14000,16.4,65.4,0.2,3/31/2014,18,5
+327,,China Railway Construction,China,Construction & materials,33870.3,92974.6,1827.7,99063,249624,1.5,10,1.3,12/31/2014,1,35
+328,253,Imperial Oil,Canada,Oil & gas producers,33829.8,30015.7,3257.3,35137.9,5500,39.9,10.3,1.1,12/31/2014,17,1
+329,222,Vinci,France,Construction & materials,33764,47210.4,3006.1,75906.9,185300,57.2,10.6,3.7,12/31/2014,8,35
+330,434,Brookfield Asset Management,Canada,Financial services,33761.2,N/R,2965.1,128065.6,30000,53.5,11.7,1.2,12/31/2014,17,17
+331,334,General Mills,US,Food producers,33738.7,17909.6,1824.4,23145.7,43000,56.6,20,2.7,5/25/2014,0,9
+332,353,Norfolk Southern,US,Industrial transportation,33618.3,11624,1994,33241,29482,102.9,16.1,2.2,12/31/2014,0,26
+333,273,Vivendi,France,Media,33604.3,12199.5,5736.4,42355.5,15000,24.8,5.8,4.9,12/31/2014,8,15
+334,342,Raytheon,US,Aerospace & defence,33575,22826,2244,26669,61000,109.3,15.2,2.2,12/31/2014,0,25
+335,237,Canadian Natural Resources,Canada,Oil & gas producers,33486.8,16233.3,3381.3,51807.5,7657,30.7,9.9,2.5,12/31/2014,17,1
+336,292,Saudi Telecom,Saudi Arabia,Fixed line telecommunications,33467.3,12213.5,2920.9,24218.5,,16.7,11.5,5.6,12/31/2014,20,13
+337,487,Cigna,US,Health care equipment & services,33462.6,34950,2102,55603,37200,129.4,16.5,0,12/31/2014,0,23
+338,288,Manulife Financial,Canada,Life insurance,33457.5,N/R,3012.9,479823.7,,17,10.8,2.9,12/31/2014,17,16
+339,152,Sands China,Hong Kong,Travel & leisure,33405,9507.5,2548.3,11323.7,,4.1,12.9,6.3,12/31/2014,3,27
+340,441,Keyence,Japan,Electronic & electrical equipment,33259.2,2568,832.4,8352.7,2038,547,39.8,0.1,3/20/2014,4,34
+341,286,Hitachi,Japan,Electronic & electrical equipment,33178.3,93181,2567.6,106753.8,320725,6.9,12.9,1.5,3/31/2014,4,34
+342,337,Johnson Controls,US,Automobiles & parts,33153.9,42828,1215,32804,168000,50.4,28,1.7,9/30/2014,0,10
+343,,China CNR,China,Industrial engineering,33135.7,16738.4,885,23908.1,86762,1.4,18,,12/31/2014,1,31
+344,280,Associated British Foods,UK,Food producers,33118.2,21500,1265.8,17142.9,118209,41.8,26.1,1.3,9/13/2014,7,9
+345,481,Housing Development Finance,India,Financial services,33106.2,N/R,1321.9,49408.8,1956,21,24.7,1.1,3/31/2014,18,17
+346,341,CSL,Australia,Pharmaceuticals & biotechnology,33081.3,5702.4,1349.1,5978.6,12196,70.4,25.2,1.7,6/30/2014,13,5
+347,368,CSX,US,Industrial transportation,32841.5,12669,1926,33053,32000,33.1,17.3,1.9,12/26/2014,0,26
+348,347,Mitsubishi,Japan,Support services,32778.7,73984.8,3501.6,153637.9,68383,20.2,9.5,3.3,3/31/2014,4,29
+349,385,Valero Energy,US,Oil & gas producers,32702.5,130844,3628,45550,10065,63.6,9.3,1.7,12/31/2014,0,1
+350,374,Bridgestone,Japan,Automobiles & parts,32652.9,30677.6,2509.9,32318.1,144632,40.2,12.6,2.1,12/31/2014,4,10
+351,,Avago Technologies,US,Technology hardware & equipment,32581.4,4196.7,258.5,10629.6,8400,127,,1,2/11/2014,0,0
+352,,National Commercial Bank,Saudi Arabia,Banks,32550.2,N/R,2306.8,115903.7,,16.3,13.8,1,12/31/2014,20,4
+353,335,Femsa,Mexico,Beverages,32532.9,17861.8,1132.3,25078.9,,9.4,,1.6,12/31/2014,28,14
+354,400,Twitter,US,Software & computer services,32443.7,1403,-577.8,5583.1,3638,50.1,,,12/31/2014,0,3
+355,439,Air Products & Chemicals,US,Chemicals,32415.4,10439,991.7,17722.5,21200,151.3,32.8,2,9/30/2014,0,18
+356,328,Royal Bank of Scotland,UK,Banks,32374.8,N/R,-4316.2,1634301.2,108700,5.1,,,12/31/2014,7,4
+357,321,Mitsubishi Estate,Japan,Real estate investment & services,32312.2,N/R,623,46078.1,7952,23.2,51.6,0.5,3/31/2014,4,32
+358,466,State Bank of India,India,Banks,32286.9,N/R,2361.4,399099.6,222033,4.3,12.6,0.2,3/31/2014,18,4
+359,391,Panasonic,Japan,Leisure goods,32257.4,74967.1,1167.1,49301.8,271789,13.2,25.8,1,3/31/2014,4,12
+360,392,Thomson Reuters,Canada,Media,32123.2,12607,1909,30547,53000,40.5,17.3,3.3,12/31/2014,17,15
+361,405,V F,US,Personal goods,32043.5,12282.2,1047.5,9959.9,59000,75.3,31.6,1.5,3/1/2015,0,20
+362,444,CME Group,US,Financial services,31949.5,N/R,1127.1,72241.5,2680,94.7,28.3,2,12/31/2014,0,17
+363,415,Northrop Grumman,US,Aerospace & defence,31935.4,23979,2069,24950,64300,161,16.5,1.7,12/31/2014,0,25
+364,301,Franklin Resources,US,Financial services,31912.2,N/R,2370,16259,9300,51.3,13.5,0.9,9/30/2014,0,17
+365,287,Eaton,US,General industrials,31763,22552,1793,33301,102000,67.9,18.1,2.9,12/31/2014,0,8
+366,291,Syngenta,Switzerland,Chemicals,31646.3,13981.8,1495.7,18921.1,29000,340.5,20.9,3.3,12/31/2014,2,18
+367,365,East Japan Railway,Japan,Travel & leisure,31630.9,26191.3,1937.4,69825.1,73551,80.4,16.3,1.5,3/31/2014,4,27
+368,477,HCA Holdings,US,Health care equipment & services,31559.3,36918,1875,31199,225000,75.2,18.1,,12/31/2014,0,23
+369,344,Pernod-Ricard,France,Beverages,31398.5,10883.5,1391.8,35191.7,18308,118.3,22.4,1.9,6/30/2014,8,14
+370,267,MTN Group,South Africa,Mobile telecommunications,31257.1,12697.7,2772.3,21827.6,,16.9,11.2,6.4,12/31/2014,19,6
+371,,Sony,Japan,Leisure goods,31109.9,75264.8,-1243.9,147562,140900,26.6,,0.9,3/31/2014,4,12
+372,,Murata Manufacturing,Japan,Electronic & electrical equipment,31058.9,8204.7,903,11959.3,37061,137.9,32.2,0.9,3/31/2014,4,34
+373,424,Oversea-Chinese Banking,Singapore,Banks,30768.4,N/R,2897.4,302495.6,29512,7.7,10,3.5,12/31/2014,27,4
+374,413,PPG Industries,US,Chemicals,30763.1,15360,2102,17078,44400,225.5,15,1.2,12/31/2014,0,18
+375,296,Generali,Italy,Nonlife insurance,30614.7,N/R,2019.4,596229.8,78333,19.7,15.1,3.7,12/31/2014,21,2
+376,396,Luxottica,Italy,Personal goods,30581.4,9253.1,777,11373.8,77734,63.5,38.9,2.7,12/31/2014,21,20
+377,399,Investor,Sweden,Financial services,30357.7,N/R,6496.6,41336.8,15560,39.9,4.7,2.9,12/31/2014,23,17
+378,309,Telenor,Norway,Mobile telecommunications,30349.2,14255.1,1214.5,25468,33000,20.2,25.3,4.8,12/31/2014,26,6
+379,356,State Street,US,Financial services,30315,N/R,2034,273905,29970,73.5,16.1,1.6,12/31/2014,0,17
+380,331,Transcanada,Canada,Oil equipment & services,30304.4,8765.1,1583.5,50574.3,6059,42.8,20.1,4.3,12/31/2014,17,24
+381,410,Marsh & Mclennan,US,Nonlife insurance,30199.3,N/R,1465,16964,57000,56.1,21.2,1.9,12/31/2014,0,2
+382,,Hindustan Unilever,India,Personal goods,30199.1,4870.3,657.3,2264.1,,14,45,1.6,3/31/2014,18,20
+383,489,Fresenius,Germany,Health care equipment & services,30129.9,28090.7,1290.2,47854.9,216275,59.4,24.9,0.9,12/31/2014,9,23
+384,333,Swisscom,Switzerland,Fixed line telecommunications,30107.2,11773.7,1704.2,20638.9,21125,581.2,17.7,,12/31/2014,2,13
+385,418,Canadian Pacific Railway,Canada,Industrial transportation,30095,5697.1,1270.2,14320.2,14698,183.1,24.8,0.7,12/31/2014,17,26
+386,490,Becton Dickinson,US,Health care equipment & services,29983.2,8446,1185,12447,30619,143.6,24,1.5,9/30/2014,0,23
+387,,Southwest Airlines,US,Travel & leisure,29946.5,18605,1140,20200,46278,44.3,27,0.5,12/31/2014,0,27
+388,464,SK Hynix,South Korea,Technology hardware & equipment,29889.1,15652.8,3834.7,24322.6,,41.1,7.7,0.7,12/31/2014,5,0
+389,,China Merchants Securities,China,Financial services,29820.2,N/R,620.5,31104.2,5505,5.1,46.6,1.4,12/31/2014,1,17
+390,258,E On,Germany,"Gas, water & multiutilities",29817.3,134892.4,-3821,144520,58503,14.9,,4.1,12/31/2014,9,30
+391,382,Archer Daniels Midland,US,Food producers,29811.6,81201,2248,44027,33900,47.4,13.8,1.8,12/31/2014,0,9
+392,465,Cardinal Health,US,Food & drug retailers,29800.9,91084,1166,26033,34000,90.3,26.7,1.4,6/30/2014,0,21
+393,398,WPP,UK,Media,29790.9,17957.8,1677.9,41299.2,179000,22.7,15.7,2.6,12/31/2014,7,15
+394,279,Precision Castparts,US,Aerospace & defence,29771.2,9616,1777,18586,29100,210,17.3,0.1,3/30/2014,0,25
+395,310,Deere,US,Industrial engineering,29770.4,36066.9,3160.7,58559.8,59600,87.7,10.2,2.5,10/31/2014,0,31
+396,,China Shipbuilding Industries,China,Industrial engineering,29736,9896,369,33283,55779,1.6,,0.6,12/31/2014,1,31
+397,437,Allstate,US,Nonlife insurance,29637.1,N/R,2850,100043,40200,71.2,11.4,1.6,12/31/2014,0,2
+398,,Guosen Securities,China,Financial services,29336.7,N/R,799.8,26005,7174,3.6,32.5,0.8,12/31/2014,1,17
+399,,Hilton Worldwide,US,Travel & leisure,29248.1,10502,673,25970,157000,29.6,43.6,,12/31/2014,0,27
+400,442,Micron Technology,US,Technology hardware & equipment,29227.5,16358,3045,21682,30400,27.1,10.7,,8/28/2014,0,0
+401,463,ICICI Bank,India,Banks,29225.2,N/R,1839.5,124382.9,,5,15.8,0.4,3/31/2014,18,4
+402,411,Mitsui Fudosan,Japan,Real estate investment & services,29178.5,N/R,744.6,43949.3,16585,29.4,34.6,0.7,3/31/2014,4,32
+403,251,Tesco,UK,Food & drug retailers,29163.7,106460.5,1631.5,83904.4,510444,3.6,18,7,2/22/2014,7,21
+404,373,Safran,France,Aerospace & defence,29111.8,18191.1,-152.4,31324.1,68945,69.8,,2.1,12/31/2014,8,25
+405,448,TE Connectivity,US,Electronic & electrical equipment,29093.5,13912,1773,18094,83000,71.6,16.8,1.5,9/26/2014,0,34
+406,,Ping An Bank,China,Banks,29024.8,N/R,3190.7,351203,35069,2.5,11,0.8,12/31/2014,1,4
+407,,Mylan,US,Pharmaceuticals & biotechnology,28985.9,7719.6,929.4,15803.2,25000,59.4,23.8,,12/31/2014,0,5
+408,,China Yangtze Power,China,Electricity,28983.3,4264,1920.1,23691,8087,1.8,14.7,3.4,12/31/2014,1,33
+409,406,Compass Group,UK,Travel & leisure,28945.6,27646.8,1402,13692.1,514718,17.4,22,2.5,9/30/2014,7,27
+410,377,Exelon,US,Electricity,28937.8,27429,1623,86814,28993,33.6,17.9,3.7,12/31/2014,0,33
+411,397,Great West Lifeco,Canada,Life insurance,28818.4,N/R,2296.1,290684.1,,28.9,13.1,3.7,12/31/2014,17,16
+412,299,CIBC,Canada,Banks,28795.6,N/R,2855.4,367698.6,44000,72.5,10.4,4.8,10/31/2014,17,4
+413,371,Corning,US,Technology hardware & equipment,28776.4,9715,2472,28174,34600,22.7,13.1,1.8,12/31/2014,0,0
+414,480,Tokio Marine,Japan,Nonlife insurance,28668.1,N/R,1784.1,182985.2,33310,37.8,16.2,1.8,3/31/2014,4,2
+415,,Hong Kong Exchanges & Clearing,Hong Kong,Financial services,28631.1,N/R,666.1,32481.7,1420,24.5,43,2.1,12/31/2014,3,17
+416,,Vertex Pharmaceuticals,US,Pharmaceuticals & biotechnology,28559.2,580.4,-738.6,2334.7,1830,118,,,12/31/2014,0,5
+417,241,Woolworths,Australia,Food & drug retailers,28458.1,57502.3,2312.9,22195.5,198000,22.5,12.2,5.7,6/29/2014,13,21
+418,419,PTT,Thailand,Oil & gas producers,28352.3,86147.5,1678.2,53764,,9.9,16.8,3.3,12/31/2014,31,1
+419,,Mcgraw Hill Financial,US,Financial services,28340.3,N/R,-115,6771,17000,103.4,,1.2,12/31/2014,0,17
+420,,Equity Residential Trust Properties,US,Real estate investment trusts,28325.3,N/R,631.3,22950.6,3500,77.9,46.9,2.6,12/31/2014,0,28
+421,417,Mmc Norilsk Nickel,Russia,Industrial metals & mining,28310.2,7708.9,1611.1,12694.6,81855,178.9,18.2,13.3,12/31/2014,24,37
+422,446,Shin-Etsu Chemical,Japan,Chemicals,28284.6,11296.8,1101,21148.3,17892,65.5,25.3,1.5,3/31/2014,4,18
+423,370,Sampo,Finland,Nonlife insurance,28218.1,N/R,1862.2,41625.2,6739,50.5,15.2,4.7,12/31/2014,32,2
+424,340,Svenska Handelsbanken,Sweden,Banks,28164.8,N/R,1947.2,361188.8,11692,45.1,14.8,5,12/31/2014,23,4
+425,381,BB&T,US,Banks,28106.1,N/R,2151,186814,33400,39,14.2,2.4,12/31/2014,0,4
+426,393,Nokia,Finland,Technology hardware & equipment,28086.1,15395.4,4186.2,22180.2,61656,7.6,20.1,2.2,12/31/2014,32,0
+427,379,Aflac,US,Life insurance,28062.4,N/R,2951,119767,9235,64,9.8,2.3,12/31/2014,0,16
+428,435,Marathon Petroleum,US,Oil & gas producers,27951,97928,2520,30460,45340,102.4,11.7,1.8,12/31/2014,0,1
+429,118,Vale,Brazil,Mining,27857.6,33210.7,359.1,112435.4,,5.6,,12.7,12/31/2014,16,19
+430,300,CBS,US,Media,27856.2,13806,2959,24072,17310,60.6,11.5,0.9,12/31/2014,0,15
+431,,MTR,Hong Kong,Travel & leisure,27762.1,5178.9,2012.7,29289.3,24154,4.8,13.6,2.9,12/31/2014,3,27
+432,124,Viacom,US,Media,27734.8,13783,2391,23117,9900,68.3,12.6,1.8,9/30/2014,0,15
+433,447,Applied Materials,US,Technology hardware & equipment,27719.4,9072,1072,13018,14000,22.6,25.9,1.8,10/26/2014,0,0
+434,485,Bank Central Asia,Indonesia,Banks,27675.4,N/R,1330.4,44422.3,23106,1.1,22.6,0.9,12/31/2014,33,4
+435,383,Baker Hughes,US,Oil equipment & services,27629.6,24551,1719,28827,62000,63.6,16.2,1,12/31/2014,0,24
+436,,Oriental Land,Japan,Travel & leisure,27581.9,4588.9,683.8,6430.8,4348,75.8,37,0.1,3/31/2014,4,27
+437,,L Brands,US,General retailers,27569.8,11454.1,1042,7544,80100,94.3,26.9,1.4,1/31/2015,0,7
+438,450,Crown Castle International,US,Real estate investment trusts,27557.4,N/R,390.5,21122.4,2200,82.5,79.4,2.3,12/31/2014,0,28
+439,449,American Electric Power,US,Electricity,27541.2,17020,1634,59633,18529,56.3,16.8,3.6,12/31/2014,0,33
+440,326,TeliaSonera,Sweden,Mobile telecommunications,27514.7,12960.9,1859.9,34128.7,26166,6.4,14.8,6,12/31/2014,23,6
+441,332,Surgutneftegas,Russia,Oil & gas producers,27469.4,15344.6,15245.5,56945.1,118000,0.6,1.6,,12/31/2014,24,1
+442,325,CaixaBank,Spain,Banks,27350.6,N/R,749.7,398105.5,31210,4.7,36.5,4.6,12/31/2014,15,4
+443,,Linkedin,US,Support services,27299.2,2218.8,-15.8,5427.3,6897,249.9,,,12/31/2014,0,29
+444,,Huatai Securities,China,Financial services,27197.9,N/R,722.9,43835,6421,4.9,37.4,1.6,12/31/2014,1,17
+445,,Health Care Reit,US,Real estate investment trusts,27084,N/R,512.2,25014.3,438,77.4,54.1,4.1,12/31/2014,0,28
+446,402,United Overseas Bank,Singapore,Banks,27071.8,N/R,2401,231150.4,25009,16.8,11.3,3.2,12/31/2014,27,4
+447,351,Swedbank,Sweden,Banks,27052.9,N/R,2109.3,271974.5,14583,23.9,12.5,6.1,12/31/2014,23,4
+448,,Sherwin-Williams,US,Construction & materials,27047,11129.5,861,5706.1,39674,284.5,32.4,0.8,12/31/2014,0,35
+449,428,Emirates Telecom.,UAE,Mobile telecommunications,27014.7,13277.3,2420.9,35194.3,,3.4,12.2,4.7,12/31/2014,34,6
+450,440,Cielo,Brazil,Financial services,26971.1,N/R,1211.4,6743,,14.3,19.3,1.2,12/31/2014,16,17
+451,472,Sempra Energy,US,"Gas, water & multiutilities",26964.9,11018,1162,39694,17046,109,23.5,2.4,12/31/2014,0,30
+452,436,Aon,US,Nonlife insurance,26937.7,N/R,1397,29628,69000,96.1,20.6,1,12/31/2014,0,2
+453,378,Renault,France,Automobiles & parts,26922.5,49643.3,2285.4,97744.9,117395,91,10.9,2.5,12/31/2014,8,10
+454,,Altice,Netherlands,Fixed line telecommunications,26855.2,4757.6,-499.5,42886,9363,108.3,,,12/31/2014,25,13
+455,500,Intuit,US,Software & computer services,26831.3,4506,907,5201,8000,97,31.1,0.8,7/31/2014,0,3
+456,345,Potash Corporation of Saskatchewan,Canada,Chemicals,26813.3,6783.5,1464.4,17714,5136,32.2,18.4,4.2,12/31/2014,17,18
+457,,Illumina,US,Pharmaceuticals & biotechnology,26695,1861.4,353.4,3289.8,3700,185.6,78.3,,12/28/2014,0,5
+458,,GF Securities,China,Financial services,26638.5,N/R,809.3,38650.2,9276,4.5,32.1,0.7,12/31/2014,1,17
+459,,Humana,US,Health care equipment & services,26636.8,48500,1147,23466,57000,178,24.2,0.6,12/31/2014,0,23
+460,,Korea Electric Power,South Korea,Electricity,26617.1,52532,2455.8,149147.8,20223,41.5,10.6,1.1,12/31/2014,5,33
+461,,Tata Motors,India,Industrial engineering,26614,38790.1,2330.9,36260.7,66593,8.8,12.2,0.3,3/31/2014,18,31
+462,388,Danske Bank,Denmark,Banks,26607.4,N/R,582.5,560946.2,18478,26.4,45.5,3.4,12/31/2014,14,4
+463,421,Astra International,Indonesia,Automobiles & parts,26550.4,16277.3,1547.9,18814.2,156097,0.7,16.5,3,12/31/2014,33,10
+464,,Numericable SFR,France,Media,26534.7,2623.9,-212.8,33954.1,11800,54.5,,,12/31/2014,8,15
+465,322,Philips Electronics,Netherlands,General industrials,26529.6,25865.8,501.8,31308.4,105365,28.4,51.6,3.4,12/31/2014,25,8
+466,,Daqin Railway,China,Industrial transportation,26450.2,8759.9,2302.2,17138,102503,1.8,11.9,4.5,12/31/2014,1,26
+467,438,Unibail-Rodamco,France,Real estate investment trusts,26442.8,N/R,2020,42993.8,2089,269.6,13,4.3,12/31/2014,8,28
+468,,China Overseas Land & Investments,Hong Kong,Real estate investment & services,26410,N/R,3569.9,44894.3,25705,3.2,7.3,2.2,12/31/2014,3,32
+469,384,DNB,Norway,Banks,26213.2,N/R,2758.6,354319.5,12064,16.1,9.5,3.2,12/31/2014,26,4
+470,,General Growth Properties,US,Real estate investment trusts,26164.7,N/R,665.9,25331.5,1800,29.6,42.8,2.1,12/31/2014,0,28
+471,307,Rolls-Royce,UK,Aerospace & defence,26145.4,21395.6,107.5,34042,54100,14.2,,,12/31/2014,7,25
+472,486,Intercontinental Exchange,US,Financial services,26128.3,N/R,981,68279,2902,233.3,27.3,1.1,12/31/2014,0,17
+473,,Fuji Heavy Industries,Japan,Automobiles & parts,26053.1,23334.8,2002.1,18120.6,28545,33.3,12.9,1.4,3/31/2014,4,10
+474,,Broadcom,US,Technology hardware & equipment,25931,8428,652,12471,10650,43.3,40.1,1.1,12/31/2014,0,0
+475,,Firstrand,South Africa,Banks,25852.3,N/R,1760.4,88799.3,38542,4.6,14.4,3.5,6/30/2014,19,4
+476,,United Continental,US,Travel & leisure,25839.2,38901,1132,37353,84000,67.3,23,,12/31/2014,0,27
+477,431,KBC Group,Belgium,Banks,25826,N/R,1673.5,294374.9,36258,61.8,15.4,3.9,12/31/2014,6,4
+478,,Fresenius Medical Care,Germany,Health care equipment & services,25800,14498.1,957.2,25306.1,99895,82.9,26.2,1.1,12/31/2014,9,23
+479,304,Volvo,Sweden,Industrial engineering,25764.8,36288.1,269.2,47076.1,92822,12.1,,3.1,12/31/2014,23,31
+480,416,T-Mobile US,US,Mobile telecommunications,25598.5,29564,247,56653,45000,31.7,,,12/31/2014,0,6
+481,305,Repsol,Spain,Oil & gas producers,25592.9,57104,1949.2,57946.8,24289,18.6,13.1,6.1,12/31/2014,15,1
+482,461,Mitsubishi Electric,Japan,Industrial engineering,25576.6,39286.7,1487.2,35009.6,124305,11.9,17.3,1.4,3/31/2014,4,31
+483,,Larsen & Toubro,India,Construction & materials,25543.1,14182.4,816.7,28279.1,54579,27.5,30.9,0.9,3/31/2014,18,35
+484,360,SEB,Sweden,Banks,25388.8,N/R,2464.7,338529.9,15714,11.7,10.4,5.2,12/31/2014,23,4
+485,,PG&E,US,Electricity,25370.9,17090,1450,57737,22581,53.1,17.3,3.4,12/31/2014,0,33
+486,468,Sky,UK,Media,25340.2,13046.1,1478.6,10970.9,497,14.7,15.5,3.7,6/30/2014,7,15
+487,,Synchrony Financial,US,Financial services,25304.8,N/R,2109,75707,11000,30.4,10.9,,12/31/2014,0,17
+488,,NXP Semiconductors,US,Technology hardware & equipment,25265.7,5171.3,493.6,6893,27884,100.4,48.3,,12/31/2014,0,0
+489,,Kao,Japan,Personal goods,25215.8,11704.3,664.6,9833,32707,50,38.5,1.2,12/31/2014,4,20
+490,,Netflix,US,General retailers,25208.9,5504.7,266.8,7056.7,2450,416.7,,,12/31/2014,0,7
+491,403,Discover Financial Services,US,Financial services,25139.7,N/R,2307,83126,14676,56.4,11.5,1.6,12/31/2014,0,17
+492,401,Cummins,US,Industrial engineering,25136.3,19221,1651,15776,54600,138.6,15.4,2,12/31/2014,0,31
+493,,Bharti Airtel,India,Mobile telecommunications,25122.2,14304.9,461.9,29474,24893,6.3,52.3,1,3/31/2014,18,6
+494,,Cerner,US,Software & computer services,25098,3402.7,525.4,4530.6,15800,73.3,48.8,,3/1/2015,0,3
+495,,Amerisourcebergen,US,Food & drug retailers,24962.5,119569.1,276.5,21532.2,13000,113.7,,0.8,9/30/2014,0,21
+496,358,Al Rajhi Bank,Saudi Arabia,Banks,24896.2,N/R,1822,82011.3,12542,15.3,13.7,3.1,12/31/2014,20,4
+497,,Waste Management,US,Support services,24815.1,13996,1298,21412,39800,54.2,,2.8,12/31/2014,0,29
+498,,Bank Rakyat Indonesia,Indonesia,Banks,24796,N/R,1956.3,64583.8,48814,1,12.8,2,12/31/2014,33,4
+499,,China Vanke,China,Real estate investment & services,24794,N/R,2537.1,81310,40467,2.2,9.7,3.6,12/31/2014,1,32
+500,404,Devon Energy,US,Oil & gas producers,24793.4,17555,1590,50637,6600,60.3,15.4,1.6,12/31/2014,0,1

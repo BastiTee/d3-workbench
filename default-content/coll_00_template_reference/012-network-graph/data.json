@@ -1,0 +1,1526 @@
+{
+  "links": [
+    {
+      "source": "c136e7ce",
+      "value": 7,
+      "target": "c1369d14"
+    },
+    {
+      "source": "c13222ca",
+      "value": 3,
+      "target": "c10fd9cc"
+    },
+    {
+      "source": "c1381dba",
+      "value": 4,
+      "target": "c123c978"
+    },
+    {
+      "source": "c1381dba",
+      "value": 5,
+      "target": "c119aa10"
+    },
+    {
+      "source": "c13d7a08",
+      "value": 4,
+      "target": "c127bfba"
+    },
+    {
+      "source": "c115f30c",
+      "value": 6,
+      "target": "c10e190c"
+    },
+    {
+      "source": "c115f30c",
+      "value": 3,
+      "target": "c11dbd80"
+    },
+    {
+      "source": "c1351b9c",
+      "value": 13,
+      "target": "c10e190c"
+    },
+    {
+      "source": "c1351b9c",
+      "value": 3,
+      "target": "c11c82e4"
+    },
+    {
+      "source": "c12649dc",
+      "value": 5,
+      "target": "c10b433a"
+    },
+    {
+      "source": "c12b4766",
+      "value": 4,
+      "target": "painvc11681f0"
+    },
+    {
+      "source": "c1202494",
+      "value": 5,
+      "target": "c137cc70"
+    },
+    {
+      "source": "c10449ea",
+      "value": 3,
+      "target": "c110bca2"
+    },
+    {
+      "source": "c133f942",
+      "value": 3,
+      "target": "c12120f6"
+    },
+    {
+      "source": "c133f942",
+      "value": 8,
+      "target": "c1163876"
+    },
+    {
+      "source": "c1102328",
+      "value": 6,
+      "target": "c139a202"
+    },
+    {
+      "source": "c1284b9c",
+      "value": 3,
+      "target": "c11c82e4"
+    },
+    {
+      "source": "c1284b9c",
+      "value": 6,
+      "target": "c1208484"
+    },
+    {
+      "source": "c12ea37a",
+      "value": 4,
+      "target": "c11c38de"
+    },
+    {
+      "source": "c12be748",
+      "value": 3,
+      "target": "c1369d14"
+    },
+    {
+      "source": "c12be748",
+      "value": 3,
+      "target": "c11ee57a"
+    },
+    {
+      "source": "c12a5950",
+      "value": 4,
+      "target": "c110bca2"
+    },
+    {
+      "source": "c10e190c",
+      "value": 4,
+      "target": "c115f30c"
+    },
+    {
+      "source": "c10e190c",
+      "value": 9,
+      "target": "c10fd9cc"
+    },
+    {
+      "source": "c10e190c",
+      "value": 3,
+      "target": "c119aa10"
+    },
+    {
+      "source": "c10f49a8",
+      "value": 20,
+      "target": "c127bfba"
+    },
+    {
+      "source": "c10f49a8",
+      "value": 3,
+      "target": "c11c82e4"
+    },
+    {
+      "source": "c128d148",
+      "value": 5,
+      "target": "c12aabe4"
+    },
+    {
+      "source": "c10eb1b4",
+      "value": 3,
+      "target": "c133a71c"
+    },
+    {
+      "source": "c11f744a",
+      "value": 3,
+      "target": "c12af6ee"
+    },
+    {
+      "source": "c126ddc0",
+      "value": 3,
+      "target": "c12a0888"
+    },
+    {
+      "source": "c12c8158",
+      "value": 6,
+      "target": "c12d6f3c"
+    },
+    {
+      "source": "c114e066",
+      "value": 3,
+      "target": "c103f90e"
+    },
+    {
+      "source": "c11cda0a",
+      "value": 3,
+      "target": "c11c82e4"
+    },
+    {
+      "source": "c11cda0a",
+      "value": 3,
+      "target": "c1277726"
+    },
+    {
+      "source": "c1390e00",
+      "value": 10,
+      "target": "c120cd04"
+    },
+    {
+      "source": "c13780bc",
+      "value": 3,
+      "target": "c1326a82"
+    },
+    {
+      "source": "c13a33f2",
+      "value": 5,
+      "target": "c11f2de6"
+    },
+    {
+      "source": "c114426e",
+      "value": 3,
+      "target": "c1191140"
+    },
+    {
+      "source": "c11c82e4",
+      "value": 3,
+      "target": "c1284b9c"
+    },
+    {
+      "source": "c12563b4",
+      "value": 4,
+      "target": "c1051578"
+    },
+    {
+      "source": "c12563b4",
+      "value": 3,
+      "target": "c11a39ee"
+    },
+    {
+      "source": "c12563b4",
+      "value": 6,
+      "target": "c11d6902"
+    },
+    {
+      "source": "c12563b4",
+      "value": 3,
+      "target": "c12db640"
+    },
+    {
+      "source": "c12563b4",
+      "value": 3,
+      "target": "c119aa10"
+    },
+    {
+      "source": "c12ef24e",
+      "value": 3,
+      "target": "c1288d6e"
+    },
+    {
+      "source": "c12c33c4",
+      "value": 10,
+      "target": "c127bfba"
+    },
+    {
+      "source": "c12c33c4",
+      "value": 4,
+      "target": "c109918e"
+    },
+    {
+      "source": "c12c33c4",
+      "value": 4,
+      "target": "c10d3668"
+    },
+    {
+      "source": "c12c33c4",
+      "value": 4,
+      "target": "c13194fe"
+    },
+    {
+      "source": "c13954be",
+      "value": 4,
+      "target": "c122e4ea"
+    },
+    {
+      "source": "c13480a6",
+      "value": 5,
+      "target": "c12563b4"
+    },
+    {
+      "source": "c13480a6",
+      "value": 5,
+      "target": "c11d6902"
+    },
+    {
+      "source": "c13480a6",
+      "value": 3,
+      "target": "c109479c"
+    },
+    {
+      "source": "c13480a6",
+      "value": 5,
+      "target": "c12db640"
+    },
+    {
+      "source": "c11e9aa2",
+      "value": 4,
+      "target": "c10e68c6"
+    },
+    {
+      "source": "c137331e",
+      "value": 3,
+      "target": "c112c42a"
+    },
+    {
+      "source": "c1195ff6",
+      "value": 3,
+      "target": "c119aa10"
+    },
+    {
+      "source": "c10fd9cc",
+      "value": 3,
+      "target": "c10c0392"
+    },
+    {
+      "source": "c1291360",
+      "value": 7,
+      "target": "c11b5de2"
+    },
+    {
+      "source": "c105ede0",
+      "value": 4,
+      "target": "c11bef00"
+    },
+    {
+      "source": "c12af6ee",
+      "value": 3,
+      "target": "c1111256"
+    },
+    {
+      "source": "c12af6ee",
+      "value": 3,
+      "target": "c11681f0"
+    },
+    {
+      "source": "c11e5b32",
+      "value": 5,
+      "target": "c112c42a"
+    },
+    {
+      "source": "c138c8d2",
+      "value": 3,
+      "target": "c110bca2"
+    },
+    {
+      "source": "c1049602",
+      "value": 4,
+      "target": "c12dfc2c"
+    },
+    {
+      "source": "c11831bc",
+      "value": 5,
+      "target": "c1364f6c"
+    },
+    {
+      "source": "c11831bc",
+      "value": 4,
+      "target": "c13be47c"
+    },
+    {
+      "source": "c13cfda8",
+      "value": 5,
+      "target": "c1115bb2"
+    },
+    {
+      "source": "c11a86d8",
+      "value": 7,
+      "target": "c10e190c"
+    },
+    {
+      "source": "c10559f2",
+      "value": 10,
+      "target": "c11681f0"
+    },
+    {
+      "source": "c11ba234",
+      "value": 3,
+      "target": "c11520f8"
+    },
+    {
+      "source": "c1135b60",
+      "value": 3,
+      "target": "c1127100"
+    },
+    {
+      "source": "c10862b4",
+      "value": 4,
+      "target": "c13b0ed0"
+    },
+    {
+      "source": "c1172218",
+      "value": 3,
+      "target": "c1296068"
+    },
+    {
+      "source": "c132bc30",
+      "value": 3,
+      "target": "c13b53c2"
+    },
+    {
+      "source": "c129b874",
+      "value": 6,
+      "target": "c1131538"
+    },
+    {
+      "source": "c10ca694",
+      "value": 4,
+      "target": "c11fc440"
+    },
+    {
+      "source": "c10ca694",
+      "value": 3,
+      "target": "c108b246"
+    },
+    {
+      "source": "c1386c52",
+      "value": 8,
+      "target": "c12f37fe"
+    },
+    {
+      "source": "c12697fc",
+      "value": 5,
+      "target": "c13ac772"
+    },
+    {
+      "source": "c10c4d34",
+      "value": 4,
+      "target": "c1148f62"
+    },
+    {
+      "source": "c11579cc",
+      "value": 3,
+      "target": "c1277726"
+    },
+    {
+      "source": "c12b9860",
+      "value": 3,
+      "target": "c12b9860"
+    },
+    {
+      "source": "c1233364",
+      "value": 3,
+      "target": "c11c38de"
+    },
+    {
+      "source": "c1233364",
+      "value": 3,
+      "target": "c10e190c"
+    },
+    {
+      "source": "c139e744",
+      "value": 3,
+      "target": "c13fac38"
+    },
+    {
+      "source": "c105a538",
+      "value": 3,
+      "target": "c10e190c"
+    },
+    {
+      "source": "c135b624",
+      "value": 4,
+      "target": "c12af6ee"
+    },
+    {
+      "source": "c1248372",
+      "value": 3,
+      "target": "c1248372"
+    },
+    {
+      "source": "c119eef8",
+      "value": 4,
+      "target": "c1122cae"
+    },
+    {
+      "source": "c135fc60",
+      "value": 3,
+      "target": "c11ad110"
+    },
+    {
+      "source": "c12d2dce",
+      "value": 4,
+      "target": "c11bef00"
+    },
+    {
+      "source": "c12d2dce",
+      "value": 3,
+      "target": "c1248372"
+    },
+    {
+      "source": "c12d2dce",
+      "value": 3,
+      "target": "c13fac38"
+    },
+    {
+      "source": "c12d2dce",
+      "value": 6,
+      "target": "c123c978"
+    },
+    {
+      "source": "c12d2dce",
+      "value": 10,
+      "target": "c11fc440"
+    },
+    {
+      "source": "c113a0d4",
+      "value": 3,
+      "target": "c103b69c"
+    },
+    {
+      "source": "c134d0a6",
+      "value": 6,
+      "target": "c13c8a58"
+    },
+    {
+      "source": "c1308c1c",
+      "value": 8,
+      "target": "c103f90e"
+    },
+    {
+      "source": "c118c23a",
+      "value": 3,
+      "target": "c1364f6c"
+    },
+    {
+      "source": "c13569d0",
+      "value": 3,
+      "target": "c11c82e4"
+    },
+    {
+      "source": "c13569d0",
+      "value": 10,
+      "target": "c113ed64"
+    },
+    {
+      "source": "c13569d0",
+      "value": 3,
+      "target": "c13e8fd8"
+    },
+    {
+      "source": "c1343736",
+      "value": 3,
+      "target": "c116c9d0"
+    },
+    {
+      "source": "c1272726",
+      "value": 3,
+      "target": "c111a428"
+    },
+    {
+      "source": "c10cef5a",
+      "value": 3,
+      "target": "c1107012"
+    },
+    {
+      "source": "c10cef5a",
+      "value": 4,
+      "target": "c11f2de6"
+    },
+    {
+      "source": "c13c35bc",
+      "value": 6,
+      "target": "c10d81e0"
+    },
+    {
+      "source": "c13c35bc",
+      "value": 4,
+      "target": "c1081b10"
+    },
+    {
+      "source": "c109e396",
+      "value": 3,
+      "target": "c13f59fe"
+    },
+    {
+      "source": "c107037e",
+      "value": 3,
+      "target": "c12f9046"
+    },
+    {
+      "source": "c107037e",
+      "value": 3,
+      "target": "c1284b9c"
+    },
+    {
+      "source": "c107037e",
+      "value": 3,
+      "target": "c107bf08"
+    },
+    {
+      "source": "c107037e",
+      "value": 4,
+      "target": "c1288d6e"
+    },
+    {
+      "source": "c11e1316",
+      "value": 3,
+      "target": "c112c42a"
+    },
+    {
+      "source": "c111e69a",
+      "value": 3,
+      "target": "c12276d6"
+    },
+    {
+      "source": "c123c978",
+      "value": 3,
+      "target": "c1284b9c"
+    },
+    {
+      "source": "c123c978",
+      "value": 14,
+      "target": "c12d2dce"
+    },
+    {
+      "source": "c123c978",
+      "value": 4,
+      "target": "c1208484"
+    },
+    {
+      "source": "c123c978",
+      "value": 5,
+      "target": "c119aa10"
+    },
+    {
+      "source": "c125a75c",
+      "value": 3,
+      "target": "c10bb482"
+    },
+    {
+      "source": "c11b1a8a",
+      "value": 3,
+      "target": "c12e597e"
+    },
+    {
+      "source": "c10f8e90",
+      "value": 3,
+      "target": "82hd282d123r"
+    },
+    {
+      "source": "c12802ae",
+      "value": 5,
+      "target": "c119aa10"
+    },
+    {
+      "source": "c125f70c",
+      "value": 4,
+      "target": "c13046ee"
+    },
+    {
+      "source": "c119aa10",
+      "value": 4,
+      "target": "c12563b4"
+    },
+    {
+      "source": "c108f80a",
+      "value": 3,
+      "target": "82hd82d1h2d1"
+    },
+    {
+      "source": "c1330a5a",
+      "value": 3,
+      "target": "n9d8912dh12d"
+    },
+    {
+      "source": "c11d2172",
+      "value": 9,
+      "target": "c103f90e"
+    },
+    {
+      "source": "c1335a1e",
+      "value": 3,
+      "target": "c1081b10"
+    },
+    {
+      "source": "c13b999a",
+      "value": 5,
+      "target": "c10efc00"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "c136e7ce",
+      "weight": 1196347.85,
+      "group": 0
+    },
+    {
+      "id": "c1369d14",
+      "weight": 2405230.0588235296,
+      "group": 2
+    },
+    {
+      "id": "c13222ca",
+      "weight": 874798.1428571428,
+      "group": 0
+    },
+    {
+      "id": "c10fd9cc",
+      "weight": 555814.5757575758,
+      "group": 1
+    },
+    {
+      "id": "c1381dba",
+      "weight": 3141733.75,
+      "group": 0
+    },
+    {
+      "id": "c123c978",
+      "weight": 2795278.1,
+      "group": 0
+    },
+    {
+      "id": "c119aa10",
+      "weight": 2697406.109090909,
+      "group": 1
+    },
+    {
+      "id": "c13d7a08",
+      "weight": 1488434.794117647,
+      "group": 0
+    },
+    {
+      "id": "c127bfba",
+      "weight": 2708693.422222222,
+      "group": 2
+    },
+    {
+      "id": "c115f30c",
+      "weight": 898714.6078431372,
+      "group": 0
+    },
+    {
+      "id": "c10e190c",
+      "weight": 1724351.857142857,
+      "group": 0
+    },
+    {
+      "id": "c11dbd80",
+      "weight": 379969.5,
+      "group": 2
+    },
+    {
+      "id": "c1351b9c",
+      "weight": 2789038.346153846,
+      "group": 0
+    },
+    {
+      "id": "c11c82e4",
+      "weight": 1984913.7105263157,
+      "group": 0
+    },
+    {
+      "id": "c12649dc",
+      "weight": 1092320.6,
+      "group": 0
+    },
+    {
+      "id": "c10b433a",
+      "weight": 1338943.4285714286,
+      "group": 2
+    },
+    {
+      "id": "c12b4766",
+      "weight": 128221.125,
+      "group": 0
+    },
+    {
+      "id": "painvc11681f0",
+      "weight": 152301.16666666666,
+      "group": 2
+    },
+    {
+      "id": "c1202494",
+      "weight": 306471.4117647059,
+      "group": 0
+    },
+    {
+      "id": "c137cc70",
+      "weight": 195430.33333333334,
+      "group": 2
+    },
+    {
+      "id": "c10449ea",
+      "weight": 697764.75,
+      "group": 0
+    },
+    {
+      "id": "c110bca2",
+      "weight": 324469.6153846154,
+      "group": 2
+    },
+    {
+      "id": "c133f942",
+      "weight": 106311.63888888889,
+      "group": 0
+    },
+    {
+      "id": "c12120f6",
+      "weight": 61284,
+      "group": 2
+    },
+    {
+      "id": "c1163876",
+      "weight": 45406.125,
+      "group": 2
+    },
+    {
+      "id": "c1102328",
+      "weight": 114558.53846153847,
+      "group": 0
+    },
+    {
+      "id": "c139a202",
+      "weight": 121587.66666666667,
+      "group": 2
+    },
+    {
+      "id": "c1284b9c",
+      "weight": 599286.0273972603,
+      "group": 0
+    },
+    {
+      "id": "c1208484",
+      "weight": 3020863,
+      "group": 2
+    },
+    {
+      "id": "c12ea37a",
+      "weight": 664877.7,
+      "group": 0
+    },
+    {
+      "id": "c11c38de",
+      "weight": 561874.8666666667,
+      "group": 2
+    },
+    {
+      "id": "c12be748",
+      "weight": 5548358.578947368,
+      "group": 0
+    },
+    {
+      "id": "c11ee57a",
+      "weight": 9469851,
+      "group": 2
+    },
+    {
+      "id": "c12a5950",
+      "weight": 991278.3214285715,
+      "group": 0
+    },
+    {
+      "id": "c10f49a8",
+      "weight": 2138126.4032258065,
+      "group": 0
+    },
+    {
+      "id": "c128d148",
+      "weight": 540270.2,
+      "group": 0
+    },
+    {
+      "id": "c12aabe4",
+      "weight": 748285,
+      "group": 2
+    },
+    {
+      "id": "c10eb1b4",
+      "weight": 3382385.6666666665,
+      "group": 0
+    },
+    {
+      "id": "c133a71c",
+      "weight": 4127396,
+      "group": 2
+    },
+    {
+      "id": "c11f744a",
+      "weight": 1417787.5384615385,
+      "group": 0
+    },
+    {
+      "id": "c12af6ee",
+      "weight": 2409839.566666667,
+      "group": 1
+    },
+    {
+      "id": "c126ddc0",
+      "weight": 239455,
+      "group": 0
+    },
+    {
+      "id": "c12a0888",
+      "weight": 199272.8,
+      "group": 2
+    },
+    {
+      "id": "c12c8158",
+      "weight": 216275.1,
+      "group": 0
+    },
+    {
+      "id": "c12d6f3c",
+      "weight": 216130.14285714287,
+      "group": 2
+    },
+    {
+      "id": "c114e066",
+      "weight": 444523.6,
+      "group": 0
+    },
+    {
+      "id": "c103f90e",
+      "weight": 1345317.7727272727,
+      "group": 2
+    },
+    {
+      "id": "c11cda0a",
+      "weight": 2406508.827586207,
+      "group": 0
+    },
+    {
+      "id": "c1277726",
+      "weight": 3982975.3333333335,
+      "group": 2
+    },
+    {
+      "id": "c1390e00",
+      "weight": 103534.9375,
+      "group": 0
+    },
+    {
+      "id": "c120cd04",
+      "weight": 122475.95,
+      "group": 2
+    },
+    {
+      "id": "c13780bc",
+      "weight": 2405006.3157894737,
+      "group": 1
+    },
+    {
+      "id": "c1326a82",
+      "weight": 6257817,
+      "group": 2
+    },
+    {
+      "id": "c13a33f2",
+      "weight": 168926.0294117647,
+      "group": 0
+    },
+    {
+      "id": "c11f2de6",
+      "weight": 279301.347826087,
+      "group": 2
+    },
+    {
+      "id": "c114426e",
+      "weight": 48523.142857142855,
+      "group": 0
+    },
+    {
+      "id": "c1191140",
+      "weight": 71630.66666666667,
+      "group": 2
+    },
+    {
+      "id": "c12563b4",
+      "weight": 3477660.25,
+      "group": 0
+    },
+    {
+      "id": "c1051578",
+      "weight": 6648137.666666667,
+      "group": 2
+    },
+    {
+      "id": "c11a39ee",
+      "weight": 749395.6666666666,
+      "group": 2
+    },
+    {
+      "id": "c11d6902",
+      "weight": 2138416.8333333335,
+      "group": 2
+    },
+    {
+      "id": "c12db640",
+      "weight": 2418603.5,
+      "group": 2
+    },
+    {
+      "id": "c12ef24e",
+      "weight": 119459,
+      "group": 0
+    },
+    {
+      "id": "c1288d6e",
+      "weight": 178347.33333333334,
+      "group": 1
+    },
+    {
+      "id": "c12c33c4",
+      "weight": 1681969.9607843137,
+      "group": 0
+    },
+    {
+      "id": "c109918e",
+      "weight": 887161.75,
+      "group": 2
+    },
+    {
+      "id": "c10d3668",
+      "weight": 1059666.4285714286,
+      "group": 2
+    },
+    {
+      "id": "c13194fe",
+      "weight": 2183428,
+      "group": 2
+    },
+    {
+      "id": "c13954be",
+      "weight": 270383.875,
+      "group": 0
+    },
+    {
+      "id": "c122e4ea",
+      "weight": 321577.7272727273,
+      "group": 2
+    },
+    {
+      "id": "c13480a6",
+      "weight": 3473499.035714286,
+      "group": 0
+    },
+    {
+      "id": "c109479c",
+      "weight": 8586950,
+      "group": 2
+    },
+    {
+      "id": "c11e9aa2",
+      "weight": 72259.83333333333,
+      "group": 0
+    },
+    {
+      "id": "c10e68c6",
+      "weight": 84671.2,
+      "group": 2
+    },
+    {
+      "id": "c137331e",
+      "weight": 3613073.1666666665,
+      "group": 0
+    },
+    {
+      "id": "c112c42a",
+      "weight": 4235361.333333333,
+      "group": 2
+    },
+    {
+      "id": "c1195ff6",
+      "weight": 450384.5675675676,
+      "group": 0
+    },
+    {
+      "id": "c10c0392",
+      "weight": 242517.3,
+      "group": 0
+    },
+    {
+      "id": "c1291360",
+      "weight": 995447.0625,
+      "group": 0
+    },
+    {
+      "id": "c11b5de2",
+      "weight": 394263.78571428574,
+      "group": 2
+    },
+    {
+      "id": "c105ede0",
+      "weight": 823996.7083333334,
+      "group": 0
+    },
+    {
+      "id": "c11bef00",
+      "weight": 1574473.8,
+      "group": 2
+    },
+    {
+      "id": "c1111256",
+      "weight": 2779846.1666666665,
+      "group": 2
+    },
+    {
+      "id": "c11681f0",
+      "weight": 2804006.8,
+      "group": 2
+    },
+    {
+      "id": "c11e5b32",
+      "weight": 983780.5,
+      "group": 0
+    },
+    {
+      "id": "c138c8d2",
+      "weight": 261882.33333333334,
+      "group": 0
+    },
+    {
+      "id": "c1049602",
+      "weight": 847778.8666666667,
+      "group": 0
+    },
+    {
+      "id": "c12dfc2c",
+      "weight": 219714.5,
+      "group": 2
+    },
+    {
+      "id": "c11831bc",
+      "weight": 71270.71428571429,
+      "group": 0
+    },
+    {
+      "id": "c1364f6c",
+      "weight": 174118.75,
+      "group": 2
+    },
+    {
+      "id": "c13be47c",
+      "weight": 88050.8,
+      "group": 2
+    },
+    {
+      "id": "c13cfda8",
+      "weight": 774613.25,
+      "group": 0
+    },
+    {
+      "id": "c1115bb2",
+      "weight": 576701.4,
+      "group": 2
+    },
+    {
+      "id": "c11a86d8",
+      "weight": 939503.8823529412,
+      "group": 0
+    },
+    {
+      "id": "c10559f2",
+      "weight": 1868713.375,
+      "group": 0
+    },
+    {
+      "id": "c11ba234",
+      "weight": 290723.5,
+      "group": 0
+    },
+    {
+      "id": "c11520f8",
+      "weight": 409901.3333333333,
+      "group": 2
+    },
+    {
+      "id": "c1135b60",
+      "weight": 527534,
+      "group": 0
+    },
+    {
+      "id": "c1127100",
+      "weight": 262250.375,
+      "group": 2
+    },
+    {
+      "id": "c10862b4",
+      "weight": 512551.44444444444,
+      "group": 0
+    },
+    {
+      "id": "c13b0ed0",
+      "weight": 161636,
+      "group": 2
+    },
+    {
+      "id": "c1172218",
+      "weight": 391253.6,
+      "group": 0
+    },
+    {
+      "id": "c1296068",
+      "weight": 948698.1428571428,
+      "group": 2
+    },
+    {
+      "id": "c132bc30",
+      "weight": 218811.19047619047,
+      "group": 1
+    },
+    {
+      "id": "c13b53c2",
+      "weight": 518219,
+      "group": 2
+    },
+    {
+      "id": "c129b874",
+      "weight": 141739.09677419355,
+      "group": 0
+    },
+    {
+      "id": "c1131538",
+      "weight": 89288.66666666667,
+      "group": 2
+    },
+    {
+      "id": "c10ca694",
+      "weight": 108009.54545454546,
+      "group": 0
+    },
+    {
+      "id": "c11fc440",
+      "weight": 1038109.3529411765,
+      "group": 2
+    },
+    {
+      "id": "c108b246",
+      "weight": 270070,
+      "group": 2
+    },
+    {
+      "id": "c1386c52",
+      "weight": 92854.80952380953,
+      "group": 0
+    },
+    {
+      "id": "c12f37fe",
+      "weight": 113359.63157894737,
+      "group": 2
+    },
+    {
+      "id": "c12697fc",
+      "weight": 3174119.4166666665,
+      "group": 0
+    },
+    {
+      "id": "c13ac772",
+      "weight": 3673707.5,
+      "group": 2
+    },
+    {
+      "id": "c10c4d34",
+      "weight": 323640.6666666667,
+      "group": 0
+    },
+    {
+      "id": "c1148f62",
+      "weight": 369202.25,
+      "group": 2
+    },
+    {
+      "id": "c11579cc",
+      "weight": 98483.44444444444,
+      "group": 0
+    },
+    {
+      "id": "c12b9860",
+      "weight": 1330079,
+      "group": 0
+    },
+    {
+      "id": "c1233364",
+      "weight": 1983607.5106382978,
+      "group": 0
+    },
+    {
+      "id": "c139e744",
+      "weight": 42460.5,
+      "group": 0
+    },
+    {
+      "id": "c13fac38",
+      "weight": 1861176.1,
+      "group": 2
+    },
+    {
+      "id": "c105a538",
+      "weight": 5064717,
+      "group": 0
+    },
+    {
+      "id": "c135b624",
+      "weight": 675557.125,
+      "group": 0
+    },
+    {
+      "id": "c1248372",
+      "weight": 1248906,
+      "group": 0
+    },
+    {
+      "id": "c119eef8",
+      "weight": 294635.44444444444,
+      "group": 0
+    },
+    {
+      "id": "c1122cae",
+      "weight": 295750.9375,
+      "group": 2
+    },
+    {
+      "id": "c135fc60",
+      "weight": 420954.09523809527,
+      "group": 0
+    },
+    {
+      "id": "c11ad110",
+      "weight": 172246.14285714287,
+      "group": 2
+    },
+    {
+      "id": "c12d2dce",
+      "weight": 1120580.5789473683,
+      "group": 0
+    },
+    {
+      "id": "c113a0d4",
+      "weight": 262412,
+      "group": 0
+    },
+    {
+      "id": "c103b69c",
+      "weight": 295220.3333333333,
+      "group": 2
+    },
+    {
+      "id": "c134d0a6",
+      "weight": 124494.66666666667,
+      "group": 0
+    },
+    {
+      "id": "c13c8a58",
+      "weight": 124494.66666666667,
+      "group": 2
+    },
+    {
+      "id": "c1308c1c",
+      "weight": 787654.5263157894,
+      "group": 0
+    },
+    {
+      "id": "c118c23a",
+      "weight": 1046077.4545454546,
+      "group": 0
+    },
+    {
+      "id": "c13569d0",
+      "weight": 4557832.808080808,
+      "group": 0
+    },
+    {
+      "id": "c113ed64",
+      "weight": 7096250.545454546,
+      "group": 2
+    },
+    {
+      "id": "c13e8fd8",
+      "weight": 3817236.4,
+      "group": 2
+    },
+    {
+      "id": "c1343736",
+      "weight": 54372.333333333336,
+      "group": 0
+    },
+    {
+      "id": "c116c9d0",
+      "weight": 167670.15384615384,
+      "group": 2
+    },
+    {
+      "id": "c1272726",
+      "weight": 2632607.8,
+      "group": 0
+    },
+    {
+      "id": "c111a428",
+      "weight": 1485304,
+      "group": 2
+    },
+    {
+      "id": "c10cef5a",
+      "weight": 245440.10344827586,
+      "group": 0
+    },
+    {
+      "id": "c1107012",
+      "weight": 452440.1818181818,
+      "group": 2
+    },
+    {
+      "id": "c13c35bc",
+      "weight": 2006234.4545454546,
+      "group": 0
+    },
+    {
+      "id": "c10d81e0",
+      "weight": 2591330.8571428573,
+      "group": 2
+    },
+    {
+      "id": "c1081b10",
+      "weight": 725606.6666666666,
+      "group": 2
+    },
+    {
+      "id": "c109e396",
+      "weight": 37422.4,
+      "group": 0
+    },
+    {
+      "id": "c13f59fe",
+      "weight": 43466.666666666664,
+      "group": 2
+    },
+    {
+      "id": "c107037e",
+      "weight": 397887.1538461539,
+      "group": 0
+    },
+    {
+      "id": "c12f9046",
+      "weight": 339127.4,
+      "group": 2
+    },
+    {
+      "id": "c107bf08",
+      "weight": 650959.3333333334,
+      "group": 2
+    },
+    {
+      "id": "c11e1316",
+      "weight": 4898150.75,
+      "group": 0
+    },
+    {
+      "id": "c111e69a",
+      "weight": 43677.666666666664,
+      "group": 0
+    },
+    {
+      "id": "c12276d6",
+      "weight": 51395,
+      "group": 2
+    },
+    {
+      "id": "c125a75c",
+      "weight": 2370398.8235294116,
+      "group": 0
+    },
+    {
+      "id": "c10bb482",
+      "weight": 1714535.3333333333,
+      "group": 2
+    },
+    {
+      "id": "c11b1a8a",
+      "weight": 107815,
+      "group": 0
+    },
+    {
+      "id": "c12e597e",
+      "weight": 73143.25,
+      "group": 0
+    },
+    {
+      "id": "c10f8e90",
+      "weight": 801510.8695652174,
+      "group": 0
+    },
+    {
+      "id": "82hd282d123r",
+      "weight": 1337132.4,
+      "group": 2
+    },
+    {
+      "id": "c12802ae",
+      "weight": 4545297.421052632,
+      "group": 0
+    },
+    {
+      "id": "c125f70c",
+      "weight": 3115067.8372093025,
+      "group": 0
+    },
+    {
+      "id": "c13046ee",
+      "weight": 2727704.2,
+      "group": 2
+    },
+    {
+      "id": "c108f80a",
+      "weight": 339740.375,
+      "group": 0
+    },
+    {
+      "id": "82hd82d1h2d1",
+      "weight": 231297.375,
+      "group": 2
+    },
+    {
+      "id": "c1330a5a",
+      "weight": 208438,
+      "group": 0
+    },
+    {
+      "id": "n9d8912dh12d",
+      "weight": 80921,
+      "group": 2
+    },
+    {
+      "id": "c11d2172",
+      "weight": 1270228.5714285714,
+      "group": 0
+    },
+    {
+      "id": "c1335a1e",
+      "weight": 356178.36363636365,
+      "group": 0
+    },
+    {
+      "id": "c13b999a",
+      "weight": 154690,
+      "group": 0
+    },
+    {
+      "id": "c10efc00",
+      "weight": 146464.8260869565,
+      "group": 2
+    }
+  ]
+}

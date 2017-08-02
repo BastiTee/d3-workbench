@@ -1,0 +1,66 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <base target="_blank">
+</head>
+
+<body id="standalone-body">
+    <svg id="standalone-svg"></svg>
+</body>
+
+<style>
+    * {
+        font-family: 'Roboto Condensed', monospace;
+    }
+
+    #standalone-body {
+        text-align: center;
+    }
+
+    #standalone-body::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+
+    #standalone-svg {
+        margin-left: auto;
+        margin-top: auto;
+    }
+</style>
+
+<!-- External libraries -->
+<script src="../../d3_wb/libs/d3/d3.js"></script>
+<script src="../../d3_wb/libs/d3-layout-cloud/d3.layout.cloud.js"></script>
+<script src="../../d3_wb/libs/d3-sankey/d3-sankey.js"></script>
+<script src="../../d3_wb/libs/d3-legend/d3-legend.js"></script>
+<script src="../../d3_wb/libs/d3-annotation/d3-annotation.js"></script>
+<script src="../../d3_wb/libs/jquery/jquery.js"></script>
+<script src="../../d3_wb/libs/underscore/underscore.js"></script>
+<!-- Main workbench library -->
+<script src="../../d3_wb/d3-wb.js"></script>
+<script src="../../d3_wb/d3-wb-colors.js"></script>
+<script src="../../d3_wb/d3-wb-locale.js"></script>
+<script src="../../d3_wb/d3-wb-append.js"></script>
+<script src="../../d3_wb/d3-wb-data.js"></script>
+<script src="../../d3_wb/d3-wb-tooltip.js"></script>
+<script src="../../d3_wb/templates/d3-wb-chord.js"></script>
+<script src="../../d3_wb/templates/d3-wb-donut.js"></script>
+<script src="../../d3_wb/templates/d3-wb-heatmap.js"></script>
+<script src="../../d3_wb/templates/d3-wb-packedbubbles.js"></script>
+<script src="../../d3_wb/templates/d3-wb-treemap.js"></script>
+<script src="../../d3_wb/templates/d3-wb-timeseries.js"></script>
+<script src="../../d3_wb/templates/d3-wb-wordcloud.js"></script>
+<script src="../../d3_wb/templates/d3-wb-sankey.js"></script>
+<script src="../../d3_wb/templates/d3-wb-scatterplot.js"></script>
+<script src="../../d3_wb/templates/d3-wb-staticnums.js"></script>
+<script src="../../d3_wb/templates/d3-wb-lineplot.js"></script>
+<script src="../../d3_wb/templates/d3-wb-networkgraph.js"></script>
+<script src="../../d3_wb/templates/d3-wb-barchart.js"></script>
+<script src="../../d3_wb/templates/d3-wb-reusable-template.js"></script>
+<!-- Server resources -->
+<link rel="stylesheet" href="../../res/robotocondensed.css">
+<link rel="stylesheet" href="../../res/main.css">
+<link rel="icon" href="../../res/favicon.png">
+
+<script src="svg.js"></script>

@@ -1,0 +1,20 @@
+{
+    "name": "d3-workbench",
+    "version": "0.3.0-pre",
+    "description": "A workbench to simplify local development with d3.js.",
+    "main": "d3-wb-server.js",
+    "scripts": {
+        "start": "node d3-wb-server.js -h"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BastiTee/d3-workbench"
+    },
+    "author": "Basti Tee",
+    "license": "GPL-3.0",
+    "homepage": "https://github.com/BastiTee/d3-workbench",
+    "dependencies": {
+        "express": "^4.13.4",
+        "minimist": "^1.2.0"
+    }
+}
