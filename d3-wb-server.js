@@ -25,7 +25,6 @@ Optional arguments:
     const server = express();
     const fs = require("fs");
     const path = require("path");
-    const auth = require("basic-auth");
     const parse = require("minimist")
 
     // argument parser
