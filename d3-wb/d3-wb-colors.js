@@ -149,17 +149,16 @@
         return "Roboto Condensed"
     }
 
-
     d3wb.theme = function(theme) {
-        if (!arguments.length) return currentTheme
+        if (!arguments.length) {
+            return d3wb.color
+        }
         var newTheme = themes[theme]
         var color = {}
-        console.log("switching to theme '" + theme + "'");
         for (var key in newTheme) {
             color[key] = d3.rgb(newTheme[key])
             color[key] = extendColor(color[key], key)
         }
-        console.log(color);
         d3wb.color = color
     }
 

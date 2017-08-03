@@ -56,7 +56,8 @@ var data = d3wb.colorCategory()
 plotGradient(data, id, "d3wb schema category")
 
 /* ------ hi lo gradients using left/right function ----- */
-var cols = Object.keys(d3wb.theme)
+var cols = Object.keys(d3wb.theme())
+console.log(cols);
 // var cols = ["red"]
 for (var i = 0; i < cols.length; i++) {
     id += 1
