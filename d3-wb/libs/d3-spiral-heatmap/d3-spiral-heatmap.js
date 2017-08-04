@@ -53,7 +53,6 @@ function spiralHeatmap () {
       arcLabelsG
         .append('text')
         .text(function (d) {
-            console.log(data[d]);
           return data[d][arcLabel]
         })
         .attr('x', function (d, i) {
