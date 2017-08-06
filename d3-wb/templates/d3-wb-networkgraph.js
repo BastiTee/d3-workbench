@@ -39,10 +39,6 @@
             .style("stroke", d3wb.color.foreground)
             .style("stroke-opacity", "0.6")
 
-        var tt = d3wb.tooltip(cv, {
-            selector: attr.tooltipSelector
-        })
-
         var node = cv.svg.append("g")
             .selectAll("circle")
             .data(data.nodes)
@@ -55,9 +51,10 @@
             })
             .style("stroke", d3wb.color.foreground)
             .style("stroke-width", "1")
-            .on("mouseover", tt.mouseover)
-            .on("mousemove", tt.mousemove)
-            .on("mouseout", tt.mouseout)
+            .call(d3wb.tooltip, {
+                selector: attr.tooltipSelector,
+                root: cv
+            })
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)

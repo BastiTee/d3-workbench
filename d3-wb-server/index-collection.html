@@ -41,9 +41,16 @@
     <link rel="icon" href="../res/favicon.png">
     <link rel="stylesheet" href="local.css">
     <script src="local.js"></script>
+
 </head>
 
 <body id="main">
+    <div id="loadoverlay"></div>
+    <div id="loadspinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+
     <div class="header">
         <div class="image"><img src="../res/favicon.png"></div>
         <div class="text">#PAGE#</div>
@@ -57,6 +64,12 @@
     <div class="footer">
         <a href="https://basti.site/">made with ❤ and wifi by basti.tee</a>
     </div>
+    <script>
+        window.onload = function() {
+            $("#loadspinner").fadeOut()
+            $("#loadoverlay").fadeOut()
+        }
+    </script>
 </body>
 
 </html>

@@ -4,11 +4,6 @@ var cv = d3wb.initConfig()
     .initCanvas()
 
 var plotGradient = function(data, idx, descr) {
-    var tt = d3wb.tooltip(cv, {
-        selector: function() {
-            return descr
-        }
-    })
     idx = idx * height
     var rectWid = cv.config.width / data.length
     cv.svg.append("g")
@@ -24,10 +19,12 @@ var plotGradient = function(data, idx, descr) {
         .attr("fill", function(d) {
             return d
         })
-        .on("mouseover", tt.mouseover)
-        .on("mousemove", tt.mousemove)
-        .on("mouseout", tt.mouseout)
-
+        .call(d3wb.tooltip, {
+            root: cv,
+            selector: function() {
+                return descr
+            }
+        })
 }
 
 ///////////////////////////////////////////////////////////////////////////////

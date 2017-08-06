@@ -44,8 +44,7 @@ Optional arguments:
         return fs.readFileSync(
             path.join(argv.s, file), "utf8")
     }
-    const idxTemplate = fileToStr("index-collection.html")
-    const idxTemplateLegacy = fileToStr("index-collection-legacy.html")
+
     const canvasTemplate = fileToStr("index-canvas.html")
     const canvasTemplateLegacy = fileToStr("index-canvas-legacy.html")
     const figTemplate = fileToStr("template-figure.html")
@@ -99,7 +98,9 @@ Optional arguments:
         });
 
         var pageJson = createAndLoadInfoJson(fsPath)
-        var template = argv.v ? idxTemplateLegacy : idxTemplate
+        var template = argv.v ? 
+            fileToStr("index-collection-legacy.html") :
+            fileToStr("index-collection.html")
         var indexDoc = template
             .replace(/#LINKS#/g, figs)
             .replace(/#COLLS#/g, colls)

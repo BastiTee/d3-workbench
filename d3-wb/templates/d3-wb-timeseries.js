@@ -96,12 +96,6 @@
 
         cv.barwid = cv.wid / xAxisTicks.length - padding1
 
-        var tt = d3wb.tooltip(cv, {
-            selector: function(d) {
-                return xAxisFormat(d.x0) + "\n" + d.length
-            }
-        })
-
         cv.svg.selectAll("rect")
             .data(bins)
             .enter().append("rect")
@@ -118,9 +112,12 @@
             .attr("height", function(d) {
                 return cv.hei - y(d.length);
             })
-            .on("mouseover", tt.mouseover)
-            .on("mousemove", tt.mousemove)
-            .on("mouseout", tt.mouseout)
+            .call(d3wb.tooltip, {
+                root: cv,
+                selector: function(d) {
+                    return xAxisFormat(d.x0) + "\n" + d.length
+                }
+            })
 
         d3wb.appendYAxis(cv, y)
         d3wb.appendTitle(cv, attr.title)
@@ -147,13 +144,6 @@
                 .range([cv.hei, 0])
                 .domain([0, maxVals + 1]);
 
-            var tt2 = d3wb.tooltip(cv, {
-                selector: function(d) {
-                    return xAxisFormat(d.x0) + "\n" +
-                        d3.formatPrefix(".1", 1e6)(d.mean)
-                }
-            })
-
             cv.svg.selectAll(".dim")
                 .data(bins)
                 .enter().append("rect")
@@ -171,10 +161,14 @@
                 .attr("height", function(d) {
                     return cv.hei - y(d.mean);
                 })
-                .on("mouseover", tt2.mouseover)
-                .on("mousemove", tt2.mousemove)
-                .on("mouseout", tt2.mouseout)
-
+                .call(d3wb.tooltip, {
+                    selector: function(d) {
+                        return xAxisFormat(d.x0) + "\n" +
+                            d3.formatPrefix(".1", 1e6)(d.mean)
+                    },
+                    root: cv
+                })
+                
             d3wb.appendYAxisRight(cv, y)
             d3wb.appendRotatedYAxisLabelRight(cv, attr.yLabel2)
 

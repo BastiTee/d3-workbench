@@ -2,9 +2,13 @@
     font-family: 'Roboto Condensed', monospace;
 }
 
+*::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
 .d3entry {
     position: relative;
-    /*border: 1px solid green;*/
 }
 
 .d3entry-title {
@@ -125,5 +129,67 @@
     }
     .d3coll .button {
         font-size: 260%;
+    }
+}
+
+#loadoverlay {
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    position: absolute;
+    padding: 0;
+    margin: 0px;
+    padding: 0px;
+    z-index: 998;
+}
+
+#loadspinner {
+    position: absolute;
+    z-index: 999;
+    width: 30px;
+    height: 30px;
+}
+
+.double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+#loadspinner>* {
+    background-color: #61A2EF;
+}
+
+.double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+    0%, 100% {
+        -webkit-transform: scale(0.0)
+    }
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes sk-bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
     }
 }

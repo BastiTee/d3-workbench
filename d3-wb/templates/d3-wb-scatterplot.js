@@ -30,15 +30,10 @@
             .style("fill", function(d) {
                 return color(d[attr.colorSelector])
             })
-
-        var tt = d3wb.tooltip(cv, {
-            selector: attr.tooltipSelector
-        })
-        rects
-            .on("mouseover", tt.mouseover)
-            .on("mousemove", tt.mousemove)
-            .on("mouseout", tt.mouseout)
-
+            .call(d3wb.tooltip, {
+                selector: attr.tooltipSelector,
+                root: cv
+            })
 
         d3wb.appendYAxis(cv, y)
         d3wb.appendRotatedYAxisLabel(cv, attr.yLabel)

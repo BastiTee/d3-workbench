@@ -20,13 +20,6 @@
                 return d[attr.ySelector];
             })])
 
-        var tt = d3wb.tooltip(cv, {
-            selector: function(d) {
-                return d[attr.xSelector] + "\n" + d[attr.ySelector] + " " +
-                    attr.yLabel
-            }
-        })
-
         cv.svg.selectAll("rect")
             .data(data)
             .enter().append("rect")
@@ -41,9 +34,13 @@
                 return cv.hei - y(d[attr.ySelector]);
             })
             .attr("fill", d3wb.color.blue)
-            .on("mouseover", tt.mouseover)
-            .on("mousemove", tt.mousemove)
-            .on("mouseout", tt.mouseout);
+            .call(d3wb.tooltip, {
+                selector: function(d) {
+                    return d[attr.xSelector] + "\n" + d[attr.ySelector] + " " +
+                        attr.yLabel
+                },
+                root: cv
+            })
 
         d3wb.appendXAxis(cv, x)
         d3wb.appendYAxis(cv, y)
@@ -85,17 +82,6 @@
         })]).nice();
         z.domain(keys);
 
-        var tt = d3wb.tooltip(cv, {
-            selector: function(d) {
-                var infos = [d.data.id]
-                for (var key in keys) {
-                    infos.push(keys[key] + ": " + d.data[keys[key]])
-                }
-                infos.push("total: " + d.data.total)
-                return infos.join('\n')
-            }
-        })
-
         cv.svg.append("g")
             .selectAll("g")
             .data(d3.stack().keys(keys)(data))
@@ -118,9 +104,17 @@
                 return y(d[0]) - y(d[1]);
             })
             .attr("width", x.bandwidth())
-            .on("mouseover", tt.mouseover)
-            .on("mousemove", tt.mousemove)
-            .on("mouseout", tt.mouseout);
+            .call(d3wb.tooltip, {
+                selector: function(d) {
+                    var infos = [d.data.id]
+                    for (var key in keys) {
+                        infos.push(keys[key] + ": " + d.data[keys[key]])
+                    }
+                    infos.push("total: " + d.data.total)
+                    return infos.join('\n')
+                },
+                root: cv
+            })
 
         cv.svg.append("g")
             .attr("class", "axis")

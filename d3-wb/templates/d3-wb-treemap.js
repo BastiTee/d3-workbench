@@ -7,7 +7,6 @@
             return d3.interpolateRgb(color, "#fff")(0.2);
         }
         var color = d3wb.getOrdinalColors()
-        // .scaleOrdinal(d3.schemeCategory20c.map(fader))
         var format = d3.format(",d");
 
         var treemap = d3.treemap()
@@ -80,16 +79,12 @@
 
         d3wb.appendTitle(cv, attr.title)
 
-        var tt = d3wb.tooltip(cv, {
+        cell.call(d3wb.tooltip, {
             selector: function(d) {
                 return d.data.id + "\n" + format(d.value) + " " + attr.unit;
-            }
-        });
-
-        cell
-            .on("mouseover", tt.mouseover)
-            .on("mousemove", tt.mousemove)
-            .on("mouseout", tt.mouseout)
+            },
+            root: cv
+        })
 
         return treemap
     }

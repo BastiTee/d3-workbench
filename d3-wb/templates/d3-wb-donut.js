@@ -23,13 +23,6 @@
             .outerRadius(outerRadius)
             .innerRadius(innerRadius)
 
-        var tt = d3wb.tooltip(cv, {
-            selector: function(d) {
-                return d.data.label + "\nTotal: " + d.data.count +
-                    "\nProzent: " + d3.format(",.2f")(d.data.percent)
-            }
-        })
-
         var path = cv.svg.selectAll("path")
             .data(pie(data))
             .enter()
@@ -38,10 +31,14 @@
             .attr("fill", function(d, i) {
                 return color(d.data.label);
             })
-            .on("mouseover", tt.mouseover)
-            .on("mousemove", tt.mousemove)
-            .on("mouseout", tt.mouseout)
-
+            .call(d3wb.tooltip, {
+                selector: function(d) {
+                    return d.data.label + "\nTotal: " + d.data.count +
+                        "\nProzent: " + d3.format(",.2f")(d.data.percent)
+                },
+                root: cv
+            })
+            
         var ordinal = d3.scaleOrdinal()
             .domain(data.map(function(d) {
                 return d.label;

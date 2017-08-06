@@ -48,24 +48,6 @@
 
         var colors = d3wb.getOrdinalColors()
 
-        var groupTooltip = d3wb.tooltip(cv, {
-            selector: function(d) {
-                var d1 = mapReader(d)
-                return d1.gname + "\n" + d1.gvalue + " samples";
-            }
-        })
-        var pathTooltip = d3wb.tooltip(cv, {
-            selector: function(d) {
-                var d1 = mapReader(d)
-                var p = d3.format(".1%"),
-                    q = d3.format(",.2r")
-                return d1.sname + " w/ " + d1.tname + "\n" +
-                    d1.svalue + " samples\n" +
-                    d1.tname + " w/ " + d1.sname + "\n" +
-                    d1.tvalue + " samples";
-            }
-        })
-
         cv.svg
             .attr("class", "chord-circle")
             .datum(chord(mapper.getMatrix()));
@@ -80,15 +62,13 @@
             })
             .enter().append("g")
             .style("fill-opacity", ".8")
-            .on("mouseover", function(d, i) {
-                chordPaths.classed("fade", function(p) {
-                    return p.source.index != i &&
-                        p.target.index != i;
-                });
-                groupTooltip.mouseover(d)
+            .call(d3wb.tooltip, {
+                selector: function(d) {
+                    var d1 = mapReader(d)
+                    return d1.gname + "\n" + d1.gvalue + " samples";
+                },
+                root: cv
             })
-            .on("mousemove", groupTooltip.mousemove)
-            .on("mouseout", groupTooltip.mouseout)
 
         g.append("path")
             .style("stroke", d3.color.foreground)
@@ -128,10 +108,18 @@
                 return colors(i)
             })
             .attr("d", ribbon.radius(innerRadius))
-            .on("mouseover", pathTooltip.mouseover)
-            .on("mousemove", pathTooltip.mousemove)
-            .on("mouseout", pathTooltip.mouseout)
-
+            .call(d3wb.tooltip, {
+                selector: function(d) {
+                    var d1 = mapReader(d)
+                    var p = d3.format(".1%"),
+                        q = d3.format(",.2r")
+                    return d1.sname + " w/ " + d1.tname + "\n" +
+                        d1.svalue + " samples\n" +
+                        d1.tname + " w/ " + d1.sname + "\n" +
+                        d1.tvalue + " samples"
+                },
+                root: cv
+            })
     }
 
 

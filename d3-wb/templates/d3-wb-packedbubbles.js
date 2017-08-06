@@ -33,22 +33,20 @@
                 return "translate(" + d.x + "," + d.y + ")";
             });
 
-
-        var tt = d3wb.tooltip(cv, {
-            selector: attr.tooltipSelector
-        })
+        var tt = {
+            selector: attr.tooltipSelector,
+            root: cv
+        }
 
         nodes
             .append("a").attr("xlink:href", function(d) {
                 return d.data.link
             })
             .append("circle")
-            .on("mouseover", tt.mouseover)
-            .on("mousemove", tt.mousemove)
-            .on("mouseout", tt.mouseout)
             .attr("id", function(d) {
                 return d.id;
             })
+            .call(d3wb.tooltip, tt)
             .transition().duration(attr.transitionDuration)
             .attr("r", function(d) {
                 return d.r;
@@ -63,15 +61,12 @@
                 return "1.0";
             })
 
-
         nodes
             .append("a").attr("xlink:href", function(d) {
                 return d.data.link
             })
             .append("text")
-            .on("mouseover", tt.mouseover)
-            .on("mousemove", tt.mousemove)
-            .on("mouseout", tt.mouseout)
+            .call(d3wb.tooltip, tt)
             .style("font-size", "10px")
             .style("text-anchor", "middle")
             .style("alignment-baseline", "middle")

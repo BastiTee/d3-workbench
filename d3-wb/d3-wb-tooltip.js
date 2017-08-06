@@ -1,14 +1,14 @@
 (function() {
     "use strict";
 
-    d3wb.tooltip = function(cv, attr) {
-
+    d3wb.tooltip = function(selection, attr) {
         var defaultAttr = {
+            root: undefined,
             selector: function(d) {
                 return d;
             },
             opacity: 0.9,
-            padding: 5
+            padding: 5,
         }
         attr = attr || defaultAttr
         attr.selector = attr.selector || defaultAttr.selector
@@ -21,13 +21,19 @@
         }
 
         tt.mousemove = function() {
-            var pos = d3.mouse(cv.canvas.node())
+            var pos = d3.mouse(attr.root.canvas.node())
             var txtBox = tt.rect.node().getBBox()
             var newx = pos[0]
             var newy = pos[1] - txtBox.height
-            // stop on borders
+            // STOP ON BORDERS
+            // left side 
             newx = newx - (txtBox.width / 2) < 0 ? txtBox.width / 2 : newx
+            // right side
+            newx = newx + (txtBox.width / 2) > attr.root.config.width ? attr.root.config.width - (txtBox.width / 2) : newx
+            // top side
             newy = newy - tt.attr.padding < 0 ? tt.attr.padding : newy
+            // bottom side 
+            newy = newy + txtBox.height - tt.attr.padding > attr.root.config.height ? attr.root.config.height - txtBox.height + tt.attr.padding : newy
             // move 
             tt.group.attr("transform", "translate(" +
                 newx + "," + newy + ")")
@@ -47,7 +53,7 @@
             }
             tt.active = true
             // create a new tooltip element
-            tt.group = cv.tooltips
+            tt.group = attr.root.tooltips
                 .append("g")
                 .style("pointer-events", "none")
             tt.rect = tt.group.append("rect")
@@ -77,7 +83,13 @@
                 .attr("opacity", attr.opacity)
                 .style("fill", d3wb.color.background)
         }
+
+        selection.on("mouseover", tt.mouseover)
+        selection.on("mouseout", tt.mouseout)
+        selection.on("mousemove", tt.mousemove)
+
         return tt
     }
+
 
 })()

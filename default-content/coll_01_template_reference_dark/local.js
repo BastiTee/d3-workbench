@@ -5,7 +5,15 @@
         background-color: ` + d3wb.color.background + `;
         color: ` + d3wb.color.foreground + `;
     }
-
+    
+    #loadoverlay {
+        background-color: ` + d3wb.color.background + `;
+    }
+    
+    #loadspinner>* {
+        background-color: ` + d3wb.color.foreground + `;
+    }
+    
     .footer {
         display: none;
     }

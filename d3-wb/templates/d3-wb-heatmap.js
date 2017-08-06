@@ -50,12 +50,6 @@
             .style("fill", d3wb.color.foreground)
             .attr("transform", "translate(" + gridSizeX / 2 + ", -6)")
 
-        var tt = d3wb.tooltip(cv, {
-            selector: function(d) {
-                return d.value
-            }
-        })
-
         var heatMap = cv.svg.selectAll(".hour")
             .data(data)
             .enter().append("rect")
@@ -71,9 +65,12 @@
             .attr("stroke", d3wb.color.foreground)
             .attr("stroke-width", "1")
             .style("fill", d3wb.color.grey)
-            .on("mouseover", tt.mouseover)
-            .on("mouseout", tt.mouseout)
-            .on("mousemove", tt.mousemove)
+            .call(d3wb.tooltip, {
+                selector: function(d) {
+                    return d.value
+                },
+                root: cv
+            })
 
         var minMax = d3.extent(data, function(d) {
             return d.value;
