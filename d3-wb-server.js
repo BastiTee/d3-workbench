@@ -39,22 +39,20 @@ Optional arguments:
     argv.w = argv.w || argv.r + "/d3-wb"
     argv.s = argv.s || argv.r + "/d3-wb-server"
 
+    //////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
+
     // load templates
-    const fileToStr = (file) => {
-        return fs.readFileSync(
-            path.join(argv.s, file), "utf8")
+    var fileToStr = (file) => {
+
+        file = file.split("/")
+        var filepath = argv.s
+        for (var i in file) {
+            filepath = path.join(filepath, file[i])
+        }
+        return fs.readFileSync(filepath, "utf8")
     }
-
-    const canvasTemplate = fileToStr("index-canvas.html")
-    const canvasTemplateLegacy = fileToStr("index-canvas-legacy.html")
-    const figTemplate = fileToStr("template-figure.html")
-    const collTemplate = fileToStr("template-collection.html")
-    const svgTemplate = fileToStr("template-svg.js")
-    const dataTemplate = fileToStr("template-data.csv")
-
-    //////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////
 
     var generateIndexDocument = function(requestPath, fsPath, level) {
 
@@ -75,7 +73,7 @@ Optional arguments:
             if (level == 1) {
                 // Search for subfolders acting as collection folders
                 var json = createAndLoadInfoJson(absPath)
-                var coll = collTemplate
+                var coll = fileToStr("templates/template-collection.html")
                     .replace(/#FILE#/g, file).replace(/#TITLE#/g, json.title)
                 colls = colls + coll + "\n"
             } else if (level == 2) {
@@ -83,7 +81,7 @@ Optional arguments:
                 var json = {}
                 var json = createAndLoadInfoJson(absPath)
                 json.height = json.height || 500
-                var fig = figTemplate
+                var fig = fileToStr("templates/template-figure.html")
                     .replace(/#TITLE#/g, json.title)
                     .replace(/#ID#/g, uuid(file))
                     .replace(/#FILE#/g, file)
@@ -98,8 +96,8 @@ Optional arguments:
         });
 
         var pageJson = createAndLoadInfoJson(fsPath)
-        var template = argv.v ? 
-            fileToStr("index-collection-legacy.html") :
+        var template = argv.v ?
+            fileToStr("legacy/index-collection-legacy.html") :
             fileToStr("index-collection.html")
         var indexDoc = template
             .replace(/#LINKS#/g, figs)
@@ -133,8 +131,8 @@ Optional arguments:
 
     var getSubDirs = function(fsPath) {
         return fs.readdirSync(fsPath).filter(function(f) {
-            return fs.lstatSync(path.join(fsPath, f)).isDirectory()
-            || fs.lstatSync(path.join(fsPath, f)).isSymbolicLink()
+            return fs.lstatSync(path.join(fsPath, f)).isDirectory() ||
+                fs.lstatSync(path.join(fsPath, f)).isSymbolicLink()
         })
     }
 
@@ -171,13 +169,13 @@ Optional arguments:
                 "this folder */\n", "UTF-8")
         }
     }
-    
+
     var createLocalJs = function(fsPath, level) {
         try {
             fs.readFileSync(fsPath + "/local.js")
         } catch (error) {
             fs.writeFileSync(fsPath + "/local.js",
-`(function(){
+                `(function(){
     // add code here
 })()`, "UTF-8")
         }
@@ -228,9 +226,9 @@ Optional arguments:
         })
         if (fsList.length == 0) {
             fs.writeFileSync(path.join(fsPath, "svg.js"),
-                svgTemplate, "UTF-8")
+                fileToStr("templates/template-svg.js"), "UTF-8")
             fs.writeFileSync(path.join(fsPath, "data.csv"),
-                dataTemplate, "UTF-8")
+                fileToStr("templates/template-data.csv"), "UTF-8")
         }
     }
 
@@ -270,7 +268,9 @@ Optional arguments:
             response.writeHead(200, {
                 "Content-Type": "text/html"
             });
-            var template = argv.v ? canvasTemplateLegacy : canvasTemplate
+            var template = argv.v ?
+                fileToStr("legacy/index-canvas-legacy.html") :
+                fileToStr("index-canvas.html")
             if (argv.v) {
                 template = template.replace(/#VERSION#/g, argv.v)
                 // external CSS was removed after 0.2.0-pre

@@ -1,5 +1,12 @@
+@font-face {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 300;
+    src: url('robotocondensed-light.ttf') format('woff2');
+}
+
 * {
-    font-family: 'Roboto Condensed', monospace;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 *::-webkit-scrollbar {
