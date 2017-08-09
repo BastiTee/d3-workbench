@@ -14,7 +14,7 @@
             }  
             `)
     }
-    
+
     d3wb.appendDropShadow = function(cv, id, config) {
         config = config || {
             "blur": 3,
@@ -133,6 +133,40 @@
             .style("fill", d3wb.color.foreground)
             .style("font-size", "120%")
             .text(textContent);
+    }
+
+    d3wb.appendHint = function(cv, textContent) {
+        if (textContent === undefined) {
+            return
+        }
+        textContent = textContent.trim()
+        var g = cv.svg.append("g").attr("id", "figure-hint")
+        var pad = 5
+        var box = g.append("rect")
+        var text = g.append("text").attr("id", "figure-hint")
+        var split = textContent.split("\n")
+        for (var i in split) {
+            text.append("tspan")
+                .style("text-anchor", "middle")
+                .style("alignment-baseline", "ideographic")
+                .style("font-size", "80%")
+                .style("fill", d3wb.color.foreground)
+                .attr("x", cv.wid + cv.mar.right - pad)
+                .attr("dy", function() {
+                    return i == 0 ? 0 : 15
+                })
+                .text(split[i])
+        }
+        var txtBox = text.node().getBBox()
+        text.attr("transform", "translate(-" +
+            (txtBox.width / 2 - pad) + ",0)")
+        box.attr("rx", "5").attr("ry", "5")
+            .attr("width", txtBox.width)
+            .attr("height", txtBox.height)
+            .attr("x", txtBox.x - txtBox.width / 2 + pad)
+            .attr("y", txtBox.y)
+            .style("fill", d3wb.color.foreground)
+            .style("opacity", 0.1)
     }
 
     d3wb.appendTitleAbsolute = function(cv, textContent) {
