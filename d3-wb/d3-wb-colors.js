@@ -37,7 +37,19 @@
             red: "#D78787",
             white: "#FFFFFF",
             yellow: "#FFFFAF"
-        }
+        },
+        sweetlove: {
+            background: "#1F1F1F",
+            black: "#4A3637",
+            blue: "#535C5C",
+            cyan: "#6D715E",
+            foreground: "#C0B18B",
+            green: "#7B8748",
+            magenta: "#775759",
+            red: "#D17B49",
+            white: "#C0B18B",
+            yellow: "#AF865A"
+        },
     }
 
     var extendColor = function(colorObj, colorName) {
