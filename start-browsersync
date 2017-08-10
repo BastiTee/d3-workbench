@@ -12,5 +12,5 @@ content_alt=$( echo $@ | tr " " "\n" | grep "\-i" -A1 | tail -n1 )
 echo "-- content folder is: $content"
 echo "-- starting server"
 ./start $@ &
-browser-sync start --proxy "localhost:50321" \
+browser-sync start --proxy "$( hostname ):50321" \
 --files d3-wb-server.js d3-wb-server/* d3-wb/* ${content}/*
