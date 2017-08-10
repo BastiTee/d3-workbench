@@ -13,8 +13,12 @@
 
     d3wb.plotChordDiagram = function(data, cv, attr) {
 
+        attr = attr || {}
+        attr.indicator = attr.indicator || "samples"
+        console.log(cv.mar.left);
         cv.svg.attr("transform",
-            "translate(" + cv.wid / 2 + "," + cv.hei / 2 + ")")
+            "translate(" + (cv.wid / 2 + cv.mar.left) + "," +
+            (cv.hei / 2 + cv.mar.top) + ")")
 
         var mapper = chordMapper(data);
         mapper
@@ -62,13 +66,14 @@
             })
             .enter().append("g")
             .style("fill-opacity", ".8")
-            .call(d3wb.tooltip, {
-                selector: function(d) {
-                    var d1 = mapReader(d)
-                    return d1.gname + "\n" + d1.gvalue + " samples";
-                },
-                root: cv
+            .on("mouseover", function(d, i) {
+                chordPaths.classed("fade", function(p) {
+                    return p.source.index != i &&
+                        p.target.index != i;
+                });
             })
+            .on("mousemove", function() {})
+            .on("mouseout", function() {})
 
         g.append("path")
             .style("stroke", d3.color.foreground)
@@ -114,9 +119,9 @@
                     var p = d3.format(".1%"),
                         q = d3.format(",.2r")
                     return d1.sname + " w/ " + d1.tname + "\n" +
-                        d1.svalue + " samples\n" +
+                        d1.svalue + " " + attr.indicator + "\n" +
                         d1.tname + " w/ " + d1.sname + "\n" +
-                        d1.tvalue + " samples"
+                        d1.tvalue + " " + attr.indicator
                 },
                 root: cv
             })

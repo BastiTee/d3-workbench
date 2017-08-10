@@ -50,6 +50,19 @@
     }
 
     d3wb.plotStackedBarChart = function(data, cv, attr) {
+        
+        d3wb.injectCSS(`
+            .axis line{
+              stroke: ` + d3wb.color.foreground + `;
+            }
+            .axis path{
+              stroke: ` + d3wb.color.foreground + `;
+            }
+            .axis text{
+              fill: ` + d3wb.color.foreground + `;
+            }  
+            `)
+            
         data.forEach(function(d, i) {
             var keys = Object.keys(d)
             d.total = 0
@@ -121,11 +134,12 @@
             .attr("transform", "translate(0," + cv.hei + ")")
             .call(d3.axisBottom(x))
             .selectAll("text")
-            .attr("y", 0)
-            .attr("x", 9)
+            .attr("y", -2)
+            .attr("x", -9)
             .attr("dy", ".35em")
-            .attr("transform", "rotate(90)")
-            .style("text-anchor", "start");
+            .style("text-anchor", "end")    
+            .attr("transform", "rotate(-90)")
+            .style("font-size", "130%")
 
         cv.svg.append("g")
             .attr("class", "axis")
