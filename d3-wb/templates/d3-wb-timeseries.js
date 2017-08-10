@@ -54,8 +54,15 @@
             var xAxisFormat = d3.timeFormat("%B")
         } else if (attr.target == "year") {
             var xAxisTicks = d3.timeYears(new Date(minMax[0], 0, 1),
-                new Date(minMax[1], 31, 12))
-            var xAxisFormat = d3.timeFormat("%Y")
+                new Date(minMax[1], 12, 1))
+            var xAxisFormat = function(f) {
+                return f
+            }
+            var sub = []
+            xAxisTicks.forEach(function(d) {
+                sub.push( d.getFullYear())
+            })
+            xAxisTicks = sub
         } else if (attr.target == "weekday") {
             var xAxisTicks = [0, 1, 2, 3, 4, 5, 6]
             var xAxisFormat = d3.timeFormat("%A")
@@ -77,7 +84,7 @@
         var histogram = d3.histogram().value(function(d) {
             return d[attr.target]
         }).thresholds(xAxisTicks)
-
+        
         var bins = histogram(data);
 
         var maxVals = d3.max(bins, function(d) {
@@ -115,7 +122,7 @@
             .call(d3wb.tooltip, {
                 root: cv,
                 selector: function(d) {
-                    return xAxisFormat(d.x0) + "\n" + d.length
+                    return d.length
                 }
             })
 
@@ -163,8 +170,7 @@
                 })
                 .call(d3wb.tooltip, {
                     selector: function(d) {
-                        return xAxisFormat(d.x0) + "\n" +
-                            d3.formatPrefix(".1", 1e6)(d.mean)
+                        return d3.formatPrefix(".1", 1e6)(d.mean)
                     },
                     root: cv
                 })

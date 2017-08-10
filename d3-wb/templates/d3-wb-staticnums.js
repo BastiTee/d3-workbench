@@ -6,8 +6,9 @@
         var columnWid = cv.wid / data.length
         var columnPad = cv.wid / 20;
         var labelDownwardPercent = 0.2
-        var colors = d3wb.colorCategory()
-
+        var colors = attr.colors || [d3wb.colorCategory()[1], d3wb.colorCategory()[6]]
+        var numColor = colors[0]
+        var labColor = colors[1]
 
         cv.svg.selectAll("number-value")
             .data(data)
@@ -22,7 +23,7 @@
             .attr("y", cv.hei)
             .attr("text-anchor", "left")
             .attr("alignment-baseline", "baseline")
-            .attr("fill", colors[1])
+            .attr("fill", numColor)
             .style("font-size", "20")
             .style("font-weight", "bold")
             .text(function(d) {
@@ -50,7 +51,7 @@
                 return cv.hei - d.numberBox.height + (labelDownwardPercent * d.numberBox.height)
             })
             .attr("text-anchor", "left")
-            .attr("fill", colors[6])
+            .attr("fill", labColor)
             .style("font-size", "20")
             .text(function(d) {
                 return d.label
