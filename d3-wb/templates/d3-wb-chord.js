@@ -15,7 +15,6 @@
 
         attr = attr || {}
         attr.indicator = attr.indicator || "samples"
-        console.log(cv.mar.left);
         cv.svg.attr("transform",
             "translate(" + (cv.wid / 2 + cv.mar.left) + "," +
             (cv.hei / 2 + cv.mar.top) + ")")

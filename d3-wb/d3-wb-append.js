@@ -47,26 +47,6 @@
         return "url(#" + id + ")"
     }
 
-    d3wb.appendButton = function(cv, text, xy, callback) {
-        var btn = cv.canvas.append("g")
-            .attr("transform", "translate(" + xy[0] + "," + xy[1] + ")")
-        btn.append("rect")
-            .attr("class", "button-light")
-            .attr("rx", "8").attr("ry", "8")
-            .on("click", callback)
-        btn.append("text")
-            .attr("class", "button-light-text")
-            .attr("x", function() {
-                return btn.select("rect").node().getBBox().width / 2
-            })
-            .attr("y", function() {
-                return btn.select("rect").node().getBBox().height / 2
-            })
-            .on("click", callback)
-            .text(text)
-        return btn
-    }
-
     d3wb.appendXAxis = function(cv, x) {
         applyCss()
         cv.svg.append("g")
@@ -184,3 +164,96 @@
     }
 
 })()
+
+d3wb.button = function() {
+
+    var x = 0
+    var y = 0
+    var id = "d3wb-button-1"
+    var padding = 3
+    var callback = function() {}
+    var label = "Hello"
+    var fontSize = "100%"
+
+    var redraw = function() {
+
+        var btn = d3.select("#" + id)
+        var txt = btn.select("text")
+        var rect = btn.select("rect")
+        txt.text(label)
+
+        var bbox = txt.node().getBBox();
+        rect
+            .attr("x", bbox.x)
+            .attr("y", bbox.y)
+            .attr("width", bbox.width + padding * 2)
+            .attr("height", bbox.height + padding * 2)
+            .attr("ry", 5).attr("rx", 5)
+            .on("click", callback)
+            .style("cursor", "pointer")
+            .style("fill", d3wb.color.blue)
+            .style("fill-opacity", ".3")
+            .style("stroke", d3wb.color.cyan)
+            .style("stroke-width", "1.5px");
+
+        var rectBbox = rect.node().getBBox();
+        btn.attr("transform", "translate(" + x + "," +
+            (y - rectBbox.y) + ")")
+
+    }
+
+
+    function button(selection) {
+
+        selection.each(function(data, i) {
+            var sel = d3.select(this)
+            var btn = sel.append("g").attr("id", id)
+            var rect = btn.append("rect")
+            var text = btn.append("text")
+                .attr("pointer-events", "none")
+                .attr("text-anchor", "left")
+                .attr("alignment-baseline", "hanging")
+                .style("cursor", "pointer")
+                .style("font-size", fontSize)
+                .style("fill", d3wb.color.foreground)
+                .attr("transform", "translate(" + padding + "," + padding + ")")
+            redraw()
+        })
+    }
+
+    button.x = function(value) {
+        if (!arguments.length) return x
+        x = value;
+        return button;
+    }
+
+    button.y = function(value) {
+        if (!arguments.length) return y
+        y = value;
+        return button;
+    }
+
+    button.label = function(value) {
+        if (!arguments.length) return label
+        label = value;
+        return button;
+    }
+
+    button.callback = function(value) {
+        if (!arguments.length) return callback
+        callback = value;
+        return button;
+    }
+
+    button.fontSize = function(value) {
+        if (!arguments.length) return fontSize
+        fontSize = value;
+        return button;
+    }
+
+    button.update = function() {
+        redraw()
+    }
+
+    return button
+}
