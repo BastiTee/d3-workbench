@@ -12,6 +12,9 @@ function scatterPlot() {
     var yDataPoints = "y"
     var zDataPoints = "x"
     var axisColor = "white"
+    var href = function() {
+        return undefined
+    }
     var opacityDataPoints = undefined
     var opacityRange = [0.0, 1.0]
     var formatXAxis = function(xAxis) {
@@ -51,7 +54,9 @@ function scatterPlot() {
                 .range([colorLow, colorHigh]);
 
             var rects = sel.selectAll("circle")
-                .data(data).enter().append("circle")
+                .data(data).enter()
+                .append("a").attr("xlink:href", href)
+                .append("circle")
                 .attr("transform", function(d) {
                     return "translate(" +
                         (x(d[xDataPoints]) + dpSize) +
@@ -183,6 +188,12 @@ function scatterPlot() {
     chart.colorHigh = function(value) {
         if (!arguments.length) return colorHigh
         colorHigh = value;
+        return chart;
+    }
+
+    chart.href = function(value) {
+        if (!arguments.length) return href
+        href = value;
         return chart;
     }
 
