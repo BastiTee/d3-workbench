@@ -21,6 +21,8 @@ function scatterPlot() {
         return yAxis;
     }
 
+    var updateOpacityDataPoints = function() {}
+
     function chart(selection) {
 
         selection.each(function(data, i) {
@@ -48,14 +50,6 @@ function scatterPlot() {
                 .interpolate(d3.interpolate)
                 .range([colorLow, colorHigh]);
 
-            if (opacityDataPoints !== undefined) {
-                var o = d3.scaleLog().domain(d3.extent(data, function(d) {
-                    return d[opacityDataPoints];
-                })).range(opacityRange)
-            } else {
-
-            }
-
             var rects = sel.selectAll("circle")
                 .data(data).enter().append("circle")
                 .attr("transform", function(d) {
@@ -70,15 +64,24 @@ function scatterPlot() {
                     return z(d[zDataPoints])
                 })
 
-            sel.selectAll("circle")
-                .transition()
-                .duration(750)
-                .attr("opacity", function(d) {
-                    if (opacityDataPoints !== undefined) {
-                        return o(d[opacityDataPoints])
-                    }
-                    return 1.0
-                })
+            updateOpacityDataPoints = function() {
+                if (opacityDataPoints !== undefined) {
+                    var o = d3.scaleLog()
+                        .domain(d3.extent(data, function(d) {
+                            return d[opacityDataPoints];
+                        })).range(opacityRange)
+                }
+                sel.selectAll("circle")
+                    .transition()
+                    .duration(750)
+                    .attr("opacity", function(d) {
+                        if (opacityDataPoints !== undefined) {
+                            return o(d[opacityDataPoints])
+                        }
+                        return 1.0
+                    })
+            }
+            updateOpacityDataPoints()
 
             var yAxis = d3.axisLeft(y)
             formatYAxis(yAxis)
@@ -154,6 +157,14 @@ function scatterPlot() {
     chart.opacityDataPoints = function(value) {
         if (!arguments.length) return opacityDataPoints
         opacityDataPoints = value;
+        updateOpacityDataPoints()
+        return chart;
+    }
+
+    chart.opacityRange = function(value) {
+        if (!arguments.length) return opacityRange
+        opacityRange = value;
+        updateOpacityDataPoints()
         return chart;
     }
 

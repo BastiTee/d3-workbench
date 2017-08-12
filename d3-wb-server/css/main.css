@@ -1,12 +1,7 @@
-@font-face {
-    font-family: 'Roboto Condensed';
-    font-style: normal;
-    font-weight: 300;
-    src: url('robotocondensed-light.ttf') format('woff2');
-}
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 * {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 *::-webkit-scrollbar {
@@ -19,7 +14,7 @@
 }
 
 .d3entry-title {
-    position: absolute;
+    position: absolute; 
     font-size: 130%;
     width: 100%;
     top: 0px;

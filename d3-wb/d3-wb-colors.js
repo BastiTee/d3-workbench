@@ -158,7 +158,7 @@
     }
 
     d3wb.getDefaultFont = function() {
-        return "Roboto Condensed"
+        return "Source Sans Pro"
     }
 
     d3wb.theme = function(theme) {
