@@ -16,26 +16,40 @@
     d3.csv(cv.config.data(), function(error, data) {
         if (error) throw error;
         data.forEach(function(d) {
-            d["Market value $m"] = +d["Market value $m"]
-            d["Employees"] = +d["Employees"]
+            d["x"] = +d["Market value $m"]
+            d["y"] = +d["Employees"]
+            d["Country code"] = +d["Country code"]
         });
         // Remove outliers «Hon Hai precision» and «Wal-Mart»
         data = data.filter(function(d) {
             return d["Employees"] <= 1100000
         })
-        d3wb.plotScatterPlot(data, cv, {
-            xAxisScale: d3.scaleLog(),
-            yAxisScale: d3.scaleLinear(),
-            xDataPoints: "Market value $m",
-            xLabel: "Market value $m",
-            yDataPoints: "Employees",
-            yLabel: "Employees",
-            colorSelector: "Country code",
-            tooltipSelector: function(d) {
-                return d["Company"] + " (" + d["Country"] +
-                    ")\n" + d["Market value $m"] + " M$\n"
-            }
-        });
+
+        console.log(data[0]);
+
+        var plot = wbScatterPlot()
+            .height(cv.hei)
+            .width(cv.wid)
+            .xAxisScale(d3.scaleLog())
+            .zDataPoints("Country code")
+            .colorLow(d3wb.color.blue)
+            .colorHigh(d3wb.color.red)
+            .axisColor(d3wb.color.foreground)
+
+        cv.svg.datum(data).call(plot)
+
+        cv.svg.selectAll("circle")
+            .call(d3wb.tooltip, {
+                selector: function(d) {
+                    return d["Company"] + " (" + d["Country"] +
+                        ")\n" + d["Market value $m"] + " M$\n"
+                },
+                root: cv
+            })
+
+        d3wb.appendXAxisLabel(cv, "Market value $m")
+        d3wb.appendRotatedYAxisLabel(cv, "Employees")
+
     });
 
 

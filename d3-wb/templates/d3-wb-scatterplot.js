@@ -1,45 +1,213 @@
-(function() {
+function wbScatterPlot() {
     "use strict";
 
-    d3wb.plotScatterPlot = function(data, cv, attr) {
+    var width = 800
+    var height = 300
+    var xAxisScale = d3.scaleLinear()
+    var yAxisScale = d3.scaleLinear()
+    var zAxisScale = d3.scaleLinear()
+    var colorLow = "green"
+    var colorHigh = "red"
+    var xDataPoints = "x"
+    var yDataPoints = "y"
+    var zDataPoints = "x"
+    var axisColor = "white"
+    var href = function() {
+        return undefined
+    }
+    var opacityDataPoints = undefined
+    var opacityRange = [0.0, 1.0]
+    var formatXAxis = function(xAxis) {
+        return xAxis;
+    }
+    var formatYAxis = function(yAxis) {
+        return yAxis;
+    }
 
-        var rectSize = 5
+    var updateOpacityDataPoints = function() {}
 
-        var x = attr.xAxisScale.range([0, cv.wid]).domain(
-            d3.extent(data, function(d) {
-                return d[attr.xDataPoints];
-            }));
+    function chart(selection) {
 
-        var y = attr.yAxisScale.range([cv.hei, 0]).domain(
-            d3.extent(data, function(d) {
-                return d[attr.yDataPoints];
-            }));
+        selection.each(function(data, i) {
+            var sel = d3.select(this)
 
-        var color = d3wb.getOrdinalColors()
-
-        var rects = cv.svg.selectAll("circle")
-            .data(data).enter().append("circle")
-            .attr("transform", function(d) {
-                return "translate(" +
-                    (x(d[attr.xDataPoints]) + rectSize) +
-                    ", " +
-                    (y(d[attr.yDataPoints]) - rectSize) +
-                    ")"
+            data = data.sort(function(a, b) {
+                return a[zDataPoints] - b[zDataPoints]
             })
-            .attr("r", rectSize)
-            .style("fill", function(d) {
-                return color(d[attr.colorSelector])
-            })
-            .call(d3wb.tooltip, {
-                selector: attr.tooltipSelector,
-                root: cv
-            })
 
-        d3wb.appendYAxis(cv, y)
-        d3wb.appendRotatedYAxisLabel(cv, attr.yLabel)
-        d3wb.appendXAxis(cv, x)
-        d3wb.appendXAxisLabel(cv, attr.xLabel)
-        d3wb.appendTitle(cv, attr.title)
+            var dpSize = 5
 
-    };
-})()
+            var x = xAxisScale.range([0, width]).domain(
+                d3.extent(data, function(d) {
+                    return d[xDataPoints];
+                }));
+
+            var y = yAxisScale.range([height, 0]).domain(
+                d3.extent(data, function(d) {
+                    return d[yDataPoints];
+                }));
+
+            var z = zAxisScale.domain(d3.extent(data, function(d) {
+                    return d[zDataPoints];
+                }))
+                .interpolate(d3.interpolate)
+                .range([colorLow, colorHigh]);
+
+            var rects = sel.selectAll("circle")
+                .data(data).enter()
+                .append("a").attr("xlink:href", href)
+                .append("circle")
+                .attr("transform", function(d) {
+                    return "translate(" +
+                        (x(d[xDataPoints]) + dpSize) +
+                        ", " +
+                        (y(d[yDataPoints]) - dpSize) +
+                        ")"
+                })
+                .attr("r", dpSize)
+                .style("fill", function(d) {
+                    return z(d[zDataPoints])
+                })
+
+            updateOpacityDataPoints = function() {
+                if (opacityDataPoints !== undefined) {
+                    var o = d3.scaleLog()
+                        .domain(d3.extent(data, function(d) {
+                            return d[opacityDataPoints];
+                        })).range(opacityRange)
+                }
+                sel.selectAll("circle")
+                    .transition()
+                    .duration(750)
+                    .attr("opacity", function(d) {
+                        if (opacityDataPoints !== undefined) {
+                            return o(d[opacityDataPoints])
+                        }
+                        return 1.0
+                    })
+            }
+            updateOpacityDataPoints()
+
+            var yAxis = d3.axisLeft(y)
+            formatYAxis(yAxis)
+            sel.append("g")
+                .attr("class", "axis")
+                .call(yAxis)
+
+            var xAxis = d3.axisBottom(x)
+            formatXAxis(xAxis)
+            sel.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+
+            sel.selectAll(".axis line")
+                .attr("stroke", axisColor)
+            sel.selectAll(".axis path")
+                .attr("stroke", axisColor)
+            sel.selectAll(".axis text")
+                .attr("fill", axisColor)
+
+        })
+    }
+
+    chart.width = function(value) {
+        if (!arguments.length) return width
+        width = value;
+        return chart;
+    }
+
+    chart.height = function(value) {
+        if (!arguments.length) return height
+        height = value;
+        return chart;
+    }
+
+    chart.xAxisScale = function(value) {
+        if (!arguments.length) return xAxisScale
+        xAxisScale = value;
+        return chart;
+    }
+
+    chart.yAxisScale = function(value) {
+        if (!arguments.length) return yAxisScale
+        yAxisScale = value;
+        return chart;
+    }
+
+    chart.zAxisScale = function(value) {
+        if (!arguments.length) return zAxisScale
+        zAxisScale = value;
+        return chart;
+    }
+
+    chart.xDataPoints = function(value) {
+        if (!arguments.length) return xDataPoints
+        xDataPoints = value;
+        return chart;
+    }
+
+    chart.yDataPoints = function(value) {
+        if (!arguments.length) return yDataPoints
+        yDataPoints = value;
+        return chart;
+    }
+
+    chart.zDataPoints = function(value) {
+        if (!arguments.length) return zDataPoints
+        zDataPoints = value;
+        return chart;
+    }
+
+    chart.opacityDataPoints = function(value) {
+        if (!arguments.length) return opacityDataPoints
+        opacityDataPoints = value;
+        updateOpacityDataPoints()
+        return chart;
+    }
+
+    chart.opacityRange = function(value) {
+        if (!arguments.length) return opacityRange
+        opacityRange = value;
+        updateOpacityDataPoints()
+        return chart;
+    }
+
+    chart.axisColor = function(value) {
+        if (!arguments.length) return axisColor
+        axisColor = value;
+        return chart;
+    }
+
+    chart.colorLow = function(value) {
+        if (!arguments.length) return colorLow
+        colorLow = value;
+        return chart;
+    }
+
+    chart.colorHigh = function(value) {
+        if (!arguments.length) return colorHigh
+        colorHigh = value;
+        return chart;
+    }
+
+    chart.href = function(value) {
+        if (!arguments.length) return href
+        href = value;
+        return chart;
+    }
+
+    chart.formatXAxis = function(value) {
+        if (!arguments.length) return formatXAxis
+        formatXAxis = value;
+        return chart;
+    }
+
+    chart.formatYAxis = function(value) {
+        if (!arguments.length) return formatYAxis
+        formatYAxis = value;
+        return chart;
+    }
+
+    return chart
+}
