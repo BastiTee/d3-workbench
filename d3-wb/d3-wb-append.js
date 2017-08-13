@@ -120,33 +120,34 @@
             return
         }
         textContent = textContent.trim()
-        var g = cv.svg.append("g").attr("id", "figure-hint")
         var pad = 5
+        var g = cv.svg.append("g")
         var box = g.append("rect")
-        var text = g.append("text").attr("id", "figure-hint")
+        var text = g.append("text")
         var split = textContent.split("\n")
         for (var i in split) {
             text.append("tspan")
                 .style("text-anchor", "middle")
-                .style("alignment-baseline", "ideographic")
                 .style("font-size", "80%")
                 .style("fill", d3wb.color.foreground)
-                .attr("x", cv.wid + cv.mar.right - pad)
+                .attr("x", 0)
                 .attr("dy", function() {
-                    return i == 0 ? 0 : 15
+                    return i == 0 ? 0 : 13
                 })
                 .text(split[i])
         }
         var txtBox = text.node().getBBox()
-        text.attr("transform", "translate(-" +
-            (txtBox.width / 2 - pad) + ",0)")
+        text.attr("transform", "translate(-" + (txtBox.width / 2 - pad) + ",0)")
         box.attr("rx", "5").attr("ry", "5")
-            .attr("width", txtBox.width)
-            .attr("height", txtBox.height)
-            .attr("x", txtBox.x - txtBox.width / 2 + pad)
-            .attr("y", txtBox.y)
+            .attr("width", txtBox.width + pad * 2)
+            .attr("height", txtBox.height + pad * 2)
+            .attr("x", txtBox.x - txtBox.width / 2)
+            .attr("y", txtBox.y - pad)
             .style("fill", d3wb.color.foreground)
             .style("opacity", 0.1)
+        g.attr("transform", "translate(" +
+            (cv.wid-cv.mar.right) + "," + (txtBox.height-pad*2) + ")")
+
     }
 
     d3wb.appendTitleAbsolute = function(cv, textContent) {

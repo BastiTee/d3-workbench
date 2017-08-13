@@ -9,7 +9,9 @@ function wbButton() {
     var fontSize = "80%"
     var foreground = "white"
     var background = "red"
+    var backgroundHighlight = "orange"
     var maxChars
+    var pulse = true
     var updateLabel = function() {}
 
     function button(selection) {
@@ -19,7 +21,8 @@ function wbButton() {
             var btn = sel.append("g")
             var rect = btn.append("rect")
             var text = btn.append("text")
-                .attr("pointer-events", "none")
+
+            text.attr("pointer-events", "none")
                 .attr("text-anchor", "left")
                 .attr("alignment-baseline", "hanging")
                 .style("cursor", "pointer")
@@ -28,7 +31,7 @@ function wbButton() {
                 .attr("transform", "translate(" + padding + "," + padding + ")")
 
             updateLabel = function() {
-                // setup text label with X's to avoid problems with non 
+                // setup text label with X's to avoid problems with non  
                 // mono fonts and the bounding boxes
                 maxChars = Math.max(maxChars, label.length) || label.length
                 text.text(Array(maxChars).join("X"))
@@ -40,17 +43,62 @@ function wbButton() {
                     .attr("width", bbox.width + padding * 2)
                     .attr("height", bbox.height + padding * 2)
                     .attr("ry", 5).attr("rx", 5)
-                    .on("click", callback)
                     .style("cursor", "pointer")
                     .style("fill", background)
                     .style("fill-opacity", ".3")
+                    .on("click", function() {
+                        pulse = false // user discovered the button
+                        callback()
+                    })
+                    .on("mouseover", function(d, i) {
+                        pulse = false // user discovered the button
+                        d3.select(this)
+                            .transition()
+                            .duration(250)
+                            .style("fill", backgroundHighlight)
+                            .attr("stroke", foreground)
+                            .attr("stroke-width", 1)
+
+                    })
+                    .on("mouseout", function(d, i) {
+                        d3.select(this)
+                            .transition()
+                            .duration(250)
+                            .style("fill", background)
+                            .attr("stroke-width", 0)
+                    })
+
                 var rectBbox = rect.node().getBBox()
                 btn.attr("transform", "translate(" + x + "," +
                     (y - rectBbox.y) + ")")
                 // reset the label 
                 text.text(label)
+                bbox = text.node().getBBox()
+                // move bounding box so text is centered 
+                var diff = rectBbox.width - bbox.width
+                rect.attr("transform", "translate(" +
+                    (-diff / 2 + padding) + ",0)")
+                // move button to original location
+                btn.attr("transform", "translate(" +
+                    (x + diff / 2) + "," + y + ")")
             }
             updateLabel()
+            setInterval(function() {
+                if (!pulse) {
+                    return
+                }
+                rect
+                    .transition()
+                    .duration(500)
+                    .style("fill", backgroundHighlight)
+                    .attr("stroke", foreground)
+                    .attr("stroke-width", 1)
+                    .transition()
+                    .duration(500)
+                    .style("fill", background)
+                    .attr("stroke-width", 0)
+            }, 5000);
+
         })
     }
 
@@ -98,9 +146,21 @@ function wbButton() {
         return button;
     }
 
+    button.backgroundHighlight = function(value) {
+        if (!arguments.length) return backgroundHighlight
+        backgroundHighlight = value;
+        return button;
+    }
+
     button.background = function(value) {
         if (!arguments.length) return background
         background = value;
+        return button;
+    }
+
+    button.pulse = function(value) {
+        if (!arguments.length) return pulse
+        pulse = value;
         return button;
     }
 
