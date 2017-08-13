@@ -23,10 +23,7 @@ function wbScatterPlot() {
     var formatYAxis = function(yAxis) {
         return yAxis;
     }
-
-    var updateOpacityDataPoints = function() {}
-    var updateAxis = function() {}
-    var updateDataPoints = function() {}
+    var update = function() {}
 
     function chart(selection) {
 
@@ -62,9 +59,17 @@ function wbScatterPlot() {
                 .attr("class", "axis axis-x")
                 .attr("transform", "translate(0," + height + ")")
             sel.append("g").attr("class", "axis axis-y")
-            var x, y, z, xAxis, yAxis
+            var x, y, z, o, xAxis, yAxis
 
-            updateAxis = function() {
+            update = function(first) {
+                first = first || false
+
+                if (opacityDataPoints !== undefined) {
+                    o = d3.scaleLog()
+                        .domain(d3.extent(data, function(d) {
+                            return d[opacityDataPoints];
+                        })).range(opacityRange)
+                }
                 x = xAxisScale.range([0, width]).domain(xMinMax);
                 y = yAxisScale.range([height, 0]).domain(yMinMax);
                 z = zAxisScale.domain(zMinMax)
@@ -72,7 +77,6 @@ function wbScatterPlot() {
                     .range([colorLow, colorHigh]);
                 yAxis = d3.axisLeft(y)
                 formatYAxis(yAxis)
-
                 xAxis = d3.axisBottom(x)
                 formatXAxis(xAxis)
 
@@ -85,44 +89,32 @@ function wbScatterPlot() {
                     .attr("stroke", axisColor)
                 sel.selectAll(".axis text")
                     .attr("fill", axisColor)
-                updateDataPoints()
-            }
-            updateAxis()
 
-            sel.selectAll(".datapoint")
-                .style("fill", function(d) {
-                    return z(d[zDataPoints])
-                })
+                var up
+                if (first) {
+                    up = sel.selectAll(".datapoint")
+                } else {
+                    up = sel.selectAll(".datapoint")
+                        .transition().duration(500)
+                }
 
-            updateDataPoints = function() {
-                sel.selectAll(".datapoint")
-                    .transition().duration(500)
+                up.attr("opacity", function(d) {
+                        if (opacityDataPoints !== undefined) {
+                            return o(d[opacityDataPoints])
+                        }
+                        return 1.0
+                    })
                     .attr("x", function(d) {
                         return x(d[xDataPoints]) - dpSize / 2
                     })
                     .attr("y", function(d) {
                         return y(d[yDataPoints]) - dpSize / 2
                     })
-
-            }
-            updateDataPoints()
-
-            updateOpacityDataPoints = function() {
-                if (opacityDataPoints !== undefined) {
-                    var o = d3.scaleLog()
-                        .domain(d3.extent(data, function(d) {
-                            return d[opacityDataPoints];
-                        })).range(opacityRange)
-                }
-                sel.selectAll(".datapoint")
-                    .attr("opacity", function(d) {
-                        if (opacityDataPoints !== undefined) {
-                            return o(d[opacityDataPoints])
-                        }
-                        return 1.0
+                    .style("fill", function(d) {
+                        return z(d[zDataPoints])
                     })
             }
-            updateOpacityDataPoints()
+            update(true)
 
         })
     }
@@ -142,21 +134,18 @@ function wbScatterPlot() {
     chart.xAxisScale = function(value) {
         if (!arguments.length) return xAxisScale
         xAxisScale = value;
-        updateAxis()
         return chart;
     }
 
     chart.yAxisScale = function(value) {
         if (!arguments.length) return yAxisScale
         yAxisScale = value;
-        updateAxis()
         return chart;
     }
 
     chart.zAxisScale = function(value) {
         if (!arguments.length) return zAxisScale
         zAxisScale = value;
-        updateAxis()
         return chart;
     }
 
@@ -181,14 +170,12 @@ function wbScatterPlot() {
     chart.opacityDataPoints = function(value) {
         if (!arguments.length) return opacityDataPoints
         opacityDataPoints = value;
-        updateOpacityDataPoints()
         return chart;
     }
 
     chart.opacityRange = function(value) {
         if (!arguments.length) return opacityRange
         opacityRange = value;
-        updateOpacityDataPoints()
         return chart;
     }
 
@@ -226,6 +213,11 @@ function wbScatterPlot() {
         if (!arguments.length) return formatYAxis
         formatYAxis = value;
         return chart;
+    }
+
+    chart.update = function() {
+        update()
+        return chart
     }
 
     return chart
