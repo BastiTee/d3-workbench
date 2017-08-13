@@ -25,6 +25,8 @@ function wbScatterPlot() {
     }
 
     var updateOpacityDataPoints = function() {}
+    var updateAxis = function() {}
+    var updateDataPoints = function() {}
 
     function chart(selection) {
 
@@ -35,39 +37,75 @@ function wbScatterPlot() {
                 return a[zDataPoints] - b[zDataPoints]
             })
 
-            var dpSize = 5
+            var dpSize = 8
 
-            var x = xAxisScale.range([0, width]).domain(
-                d3.extent(data, function(d) {
-                    return d[xDataPoints];
-                }));
+            var xMinMax = d3.extent(data, function(d) {
+                return d[xDataPoints];
+            })
+            var yMinMax = d3.extent(data, function(d) {
+                return d[yDataPoints];
+            })
+            var zMinMax = d3.extent(data, function(d) {
+                return d[zDataPoints];
+            })
 
-            var y = yAxisScale.range([height, 0]).domain(
-                d3.extent(data, function(d) {
-                    return d[yDataPoints];
-                }));
-
-            var z = zAxisScale.domain(d3.extent(data, function(d) {
-                    return d[zDataPoints];
-                }))
-                .interpolate(d3.interpolate)
-                .range([colorLow, colorHigh]);
-
-            var rects = sel.selectAll("circle")
+            sel.selectAll(".datapoint")
                 .data(data).enter()
                 .append("a").attr("xlink:href", href)
-                .append("circle")
-                .attr("transform", function(d) {
-                    return "translate(" +
-                        (x(d[xDataPoints]) + dpSize) +
-                        ", " +
-                        (y(d[yDataPoints]) - dpSize) +
-                        ")"
-                })
-                .attr("r", dpSize)
+                .append("rect")
+                .attr("class", "datapoint")
+                .attr("width", dpSize)
+                .attr("height", dpSize)
+                .attr("rx", 5)
+
+            sel.append("g")
+                .attr("class", "axis axis-x")
+                .attr("transform", "translate(0," + height + ")")
+            sel.append("g").attr("class", "axis axis-y")
+            var x, y, z, xAxis, yAxis
+
+            updateAxis = function() {
+                x = xAxisScale.range([0, width]).domain(xMinMax);
+                y = yAxisScale.range([height, 0]).domain(yMinMax);
+                z = zAxisScale.domain(zMinMax)
+                    .interpolate(d3.interpolate)
+                    .range([colorLow, colorHigh]);
+                yAxis = d3.axisLeft(y)
+                formatYAxis(yAxis)
+
+                xAxis = d3.axisBottom(x)
+                formatXAxis(xAxis)
+
+                d3.select(".axis-x").transition().duration(500).call(xAxis)
+                d3.select(".axis-y").transition().duration(500).call(yAxis)
+
+                sel.selectAll(".axis line")
+                    .attr("stroke", axisColor)
+                sel.selectAll(".axis path")
+                    .attr("stroke", axisColor)
+                sel.selectAll(".axis text")
+                    .attr("fill", axisColor)
+                updateDataPoints()
+            }
+            updateAxis()
+
+            sel.selectAll(".datapoint")
                 .style("fill", function(d) {
                     return z(d[zDataPoints])
                 })
+
+            updateDataPoints = function() {
+                sel.selectAll(".datapoint")
+                    .transition().duration(500)
+                    .attr("x", function(d) {
+                        return x(d[xDataPoints]) - dpSize / 2
+                    })
+                    .attr("y", function(d) {
+                        return y(d[yDataPoints]) - dpSize / 2
+                    })
+
+            }
+            updateDataPoints()
 
             updateOpacityDataPoints = function() {
                 if (opacityDataPoints !== undefined) {
@@ -76,9 +114,7 @@ function wbScatterPlot() {
                             return d[opacityDataPoints];
                         })).range(opacityRange)
                 }
-                sel.selectAll("circle")
-                    .transition()
-                    .duration(750)
+                sel.selectAll(".datapoint")
                     .attr("opacity", function(d) {
                         if (opacityDataPoints !== undefined) {
                             return o(d[opacityDataPoints])
@@ -87,26 +123,6 @@ function wbScatterPlot() {
                     })
             }
             updateOpacityDataPoints()
-
-            var yAxis = d3.axisLeft(y)
-            formatYAxis(yAxis)
-            sel.append("g")
-                .attr("class", "axis")
-                .call(yAxis)
-
-            var xAxis = d3.axisBottom(x)
-            formatXAxis(xAxis)
-            sel.append("g")
-                .attr("class", "axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis)
-
-            sel.selectAll(".axis line")
-                .attr("stroke", axisColor)
-            sel.selectAll(".axis path")
-                .attr("stroke", axisColor)
-            sel.selectAll(".axis text")
-                .attr("fill", axisColor)
 
         })
     }
@@ -126,18 +142,21 @@ function wbScatterPlot() {
     chart.xAxisScale = function(value) {
         if (!arguments.length) return xAxisScale
         xAxisScale = value;
+        updateAxis()
         return chart;
     }
 
     chart.yAxisScale = function(value) {
         if (!arguments.length) return yAxisScale
         yAxisScale = value;
+        updateAxis()
         return chart;
     }
 
     chart.zAxisScale = function(value) {
         if (!arguments.length) return zAxisScale
         zAxisScale = value;
+        updateAxis()
         return chart;
     }
 
