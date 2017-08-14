@@ -18,7 +18,8 @@
         return reducedData;
     }
 
-    d3wb.countCsvColumn = function(data, column) {
+    d3wb.countCsvColumn = function(data, column, sort) {
+        sort = sort === undefined ? true : sort
         var nestedData = d3.nest()
             .key(function(d) {
                 return d[column];
@@ -38,9 +39,11 @@
         countData.forEach(function(d) {
             d.percent = (+d.count / sum) * 100
         });
-        countData.sort(function(a, b) {
-            return b.percent - a.percent
-        })
+        if (sort) {
+            countData.sort(function(a, b) {
+                return b.percent - a.percent
+            })
+        }
         return countData
     }
 

@@ -53,6 +53,15 @@ Optional arguments:
         }
         return fs.readFileSync(filepath, "utf8")
     }
+    
+    var ignored = function(ignore, file) {
+        for (var i in ignore) {
+            if (file === ignore[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     var generateIndexDocument = function(requestPath, fsPath, level) {
 
@@ -62,14 +71,17 @@ Optional arguments:
 
         var figs = ""
         var colls = ""
-
+        var pageJson = createAndLoadInfoJson(fsPath)
+        var ignore = pageJson["ignore"] || []
         var fsList = fs.readdirSync(fsPath)
         fsList.forEach(file => {
+            if (ignored(ignore, file)) {
+                return
+            }
             var absPath = path.resolve(fsPath, file)
             if (fs.lstatSync(absPath).isFile()) {
                 return
             }
-
             if (level == 1) {
                 // Search for subfolders acting as collection folders
                 var json = createAndLoadInfoJson(absPath)
@@ -95,7 +107,6 @@ Optional arguments:
             }
         });
 
-        var pageJson = createAndLoadInfoJson(fsPath)
         var template = argv.v ?
             fileToStr("legacy/index-collection-legacy.html") :
             fileToStr("index-collection.html")
