@@ -28,13 +28,8 @@ function wbScatterPlot() {
     function chart(selection) {
 
         selection.each(function(data, i) {
-            var sel = d3.select(this)
-
-            data = data.sort(function(a, b) {
-                return a[zDataPoints] - b[zDataPoints]
-            })
-
-            var dpSize = 8
+            var s = d3.select(this)
+            var rsize = 8
 
             var xMinMax = d3.extent(data, function(d) {
                 return d[xDataPoints];
@@ -46,19 +41,19 @@ function wbScatterPlot() {
                 return d[zDataPoints];
             })
 
-            sel.selectAll(".datapoint")
+            s.selectAll(".datapoint")
                 .data(data).enter()
                 .append("a").attr("xlink:href", href)
                 .append("rect")
                 .attr("class", "datapoint")
-                .attr("width", dpSize)
-                .attr("height", dpSize)
+                .attr("width", rsize)
+                .attr("height", rsize)
                 .attr("rx", 5)
 
-            sel.append("g")
+            s.append("g")
                 .attr("class", "axis axis-x")
                 .attr("transform", "translate(0," + height + ")")
-            sel.append("g").attr("class", "axis axis-y")
+            s.append("g").attr("class", "axis axis-y")
             var x, y, z, o, xAxis, yAxis
 
             update = function(first) {
@@ -80,21 +75,21 @@ function wbScatterPlot() {
                 xAxis = d3.axisBottom(x)
                 formatXAxis(xAxis)
 
-                d3.select(".axis-x").transition().duration(500).call(xAxis)
-                d3.select(".axis-y").transition().duration(500).call(yAxis)
+                s.select(".axis-x").transition().duration(500).call(xAxis)
+                s.select(".axis-y").transition().duration(500).call(yAxis)
 
-                sel.selectAll(".axis line")
+                s.selectAll(".axis line")
                     .attr("stroke", axisColor)
-                sel.selectAll(".axis path")
+                s.selectAll(".axis path")
                     .attr("stroke", axisColor)
-                sel.selectAll(".axis text")
+                s.selectAll(".axis text")
                     .attr("fill", axisColor)
 
-                var up
+                var up;
                 if (first) {
-                    up = sel.selectAll(".datapoint")
+                    up = s.selectAll(".datapoint")
                 } else {
-                    up = sel.selectAll(".datapoint")
+                    up = s.selectAll(".datapoint")
                         .transition().duration(500)
                 }
 
@@ -105,10 +100,10 @@ function wbScatterPlot() {
                         return 1.0
                     })
                     .attr("x", function(d) {
-                        return x(d[xDataPoints]) - dpSize / 2
+                        return x(d[xDataPoints]) - rsize / 2
                     })
                     .attr("y", function(d) {
-                        return y(d[yDataPoints]) - dpSize / 2
+                        return y(d[yDataPoints]) - rsize / 2
                     })
                     .style("fill", function(d) {
                         return z(d[zDataPoints])
