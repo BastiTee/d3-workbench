@@ -1,4 +1,4 @@
-export default function wbGeoMap() {
+function wbGeoMap() {
     "use strict";
     // Inspired by: http://bl.ocks.org/oscar6echo/4423770
 
