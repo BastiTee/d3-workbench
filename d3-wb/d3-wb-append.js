@@ -146,7 +146,7 @@
             .style("fill", d3wb.color.foreground)
             .style("opacity", 0.1)
         g.attr("transform", "translate(" +
-            (cv.wid-cv.mar.right) + "," + (txtBox.height-pad*2) + ")")
+            (cv.wid - cv.mar.right) + "," + (txtBox.height - pad * 2) + ")")
 
     }
 
@@ -162,6 +162,43 @@
             .style("fill", d3wb.color.foreground)
             .style("font-size", "120%")
             .text(textContent);
+    }
+
+    var appendHintV2 = function(cv, textContent) {
+        if (textContent === undefined) {
+            return
+        }
+        textContent = textContent.trim()
+        var g = cv.svg.append("g")
+        var box = g.append("rect")
+        var text = g.append("text")
+        var split = textContent.split("\n")
+        for (var i in split) {
+            text.append("tspan")
+                .style("text-anchor", "end")
+                .style("alignment-baseline", "hanging")
+                .style("font-size", "80%")
+                .style("fill", d3wb.color.foreground)
+                .attr("x", 0)
+                .attr("dy", function() {
+                    return i == 0 ? 0 : 13
+                })
+                .text(split[i])
+        }
+        var pad = 5
+        var cornerDist = 5
+        var txtBox = text.node().getBBox()
+        // text.attr("transform", "translate(-" + pad/2 + ",0)")
+        box.attr("rx", "5").attr("ry", "5")
+            .attr("width", txtBox.width + pad * 2)
+            .attr("height", txtBox.height + pad * 2)
+            .attr("x", txtBox.x - pad)
+            .attr("y", txtBox.y - pad)
+            .style("fill", d3wb.color.foreground)
+            .style("opacity", 0.1)
+        var xAbs = cv.wid - pad - cornerDist
+        var yAbs = pad + cornerDist
+        g.attr("transform", "translate(" + xAbs + "," + yAbs + ")")
     }
 
 })()
