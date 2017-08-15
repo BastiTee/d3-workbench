@@ -10,9 +10,9 @@ var d3wb = (function(d3, $) {
     d3wb.initConfig = function() {
         var dc = {
             /* Desired width of SVG element */
-            width: 500,
+            width: $(window).width(),
             /* Desired height of SVG element */
-            height: 400,
+            height: $(window).height(),
             /* Desired inner margins of SVG element */
             margin: {
                 top: 0,
