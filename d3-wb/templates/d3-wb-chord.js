@@ -112,18 +112,16 @@
                 return colors(i)
             })
             .attr("d", ribbon.radius(innerRadius))
-            .call(d3wb.tooltip, {
-                selector: function(d) {
-                    var d1 = mapReader(d)
-                    var p = d3.format(".1%"),
-                        q = d3.format(",.2r")
-                    return d1.sname + " w/ " + d1.tname + "\n" +
-                        d1.svalue + " " + attr.indicator + "\n" +
-                        d1.tname + " w/ " + d1.sname + "\n" +
-                        d1.tvalue + " " + attr.indicator
-                },
-                root: cv
-            })
+            .call(wbCooltip().selector(function(d) {
+                var d1 = mapReader(d)
+                var p = d3.format(".1%"),
+                    q = d3.format(",.2r")
+                return d1.sname + " w/ " + d1.tname + "\n" +
+                    d1.svalue + " " + attr.indicator + "\n" +
+                    d1.tname + " w/ " + d1.sname + "\n" +
+                    d1.tvalue + " " + attr.indicator
+
+            }))
     }
 
 

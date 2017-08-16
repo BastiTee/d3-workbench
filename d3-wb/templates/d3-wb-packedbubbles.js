@@ -33,11 +33,8 @@
                 return "translate(" + d.x + "," + d.y + ")";
             });
 
-        var tt = {
-            selector: attr.tooltipSelector,
-            root: cv
-        }
 
+        var tt = wbCooltip().selector(attr.tooltipSelector)
         nodes
             .append("a").attr("xlink:href", function(d) {
                 return d.data.link
@@ -46,7 +43,6 @@
             .attr("id", function(d) {
                 return d.id;
             })
-            .call(d3wb.tooltip, tt)
             .transition().duration(attr.transitionDuration)
             .attr("r", function(d) {
                 return d.r;
@@ -59,14 +55,15 @@
                     return opScale(d.value)
                 }
                 return "1.0";
-            })
+            })            
+            .call(tt)
 
         nodes
             .append("a").attr("xlink:href", function(d) {
                 return d.data.link
             })
             .append("text")
-            .call(d3wb.tooltip, tt)
+            .call(tt)
             .style("font-size", "10px")
             .style("text-anchor", "middle")
             .style("alignment-baseline", "middle")

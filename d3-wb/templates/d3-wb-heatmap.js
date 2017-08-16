@@ -65,12 +65,9 @@
             .attr("stroke", d3wb.color.foreground)
             .attr("stroke-width", "1")
             .style("fill", d3wb.color.grey)
-            .call(d3wb.tooltip, {
-                selector: function(d) {
-                    return d.value
-                },
-                root: cv
-            })
+            .call(wbCooltip().selector(function(d) {
+                return d.value
+            }))
 
         var minMax = d3.extent(data, function(d) {
             return d.value;

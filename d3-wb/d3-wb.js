@@ -120,12 +120,9 @@ var d3wb = (function(d3, $) {
                 "translate(" + config.margin.left + "," +
                 config.margin.top + ")")
 
-        var tooltipGroup = svg.append("g")
-
         return {
             canvas: svg,
             svg: g,
-            tooltips: tooltipGroup,
             width: config.innerWidth,
             wid: config.innerWidth, // shorthand type 1
             w: config.innerWidth, // shorthand type 2

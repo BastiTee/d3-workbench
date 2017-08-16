@@ -25,8 +25,6 @@
             return d["Employees"] <= 1100000
         })
 
-        console.log(data[0]);
-
         var plot = wbScatterPlot()
             .height(cv.hei)
             .width(cv.wid)
@@ -38,14 +36,11 @@
 
         cv.svg.datum(data).call(plot)
 
-        cv.svg.selectAll("circle")
-            .call(d3wb.tooltip, {
-                selector: function(d) {
-                    return d["Company"] + " (" + d["Country"] +
-                        ")\n" + d["Market value $m"] + " M$\n"
-                },
-                root: cv
-            })
+        cv.svg.selectAll("rect")
+            .call(wbCooltip().selector(function(d) {
+                return d["Company"] + " (" + d["Country"] +
+                    ")\n" + d["Market value $m"] + " M$\n"
+            }))
 
         d3wb.appendXAxisLabel(cv, "Market value $m")
         d3wb.appendRotatedYAxisLabel(cv, "Employees")

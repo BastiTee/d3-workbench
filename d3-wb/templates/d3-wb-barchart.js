@@ -34,13 +34,10 @@
                 return cv.hei - y(d[attr.ySelector]);
             })
             .attr("fill", d3wb.color.blue)
-            .call(d3wb.tooltip, {
-                selector: function(d) {
-                    return d[attr.xSelector] + "\n" + d[attr.ySelector] + " " +
-                        attr.yLabel
-                },
-                root: cv
-            })
+            .call(wbCooltip().selector(function(d) {
+                return d[attr.xSelector] + "\n" + d[attr.ySelector] + " " +
+                    attr.yLabel
+            }))
 
         d3wb.appendXAxis(cv, x)
         d3wb.appendYAxis(cv, y)
@@ -50,7 +47,7 @@
     }
 
     d3wb.plotStackedBarChart = function(data, cv, attr) {
-        
+
         d3wb.injectCSS(`
             .axis line{
               stroke: ` + d3wb.color.foreground + `;
@@ -62,7 +59,7 @@
               fill: ` + d3wb.color.foreground + `;
             }  
             `)
-            
+
         data.forEach(function(d, i) {
             var keys = Object.keys(d)
             d.total = 0
@@ -117,17 +114,14 @@
                 return y(d[0]) - y(d[1]);
             })
             .attr("width", x.bandwidth())
-            .call(d3wb.tooltip, {
-                selector: function(d) {
-                    var infos = [d.data.id]
-                    for (var key in keys) {
-                        infos.push(keys[key] + ": " + d.data[keys[key]])
-                    }
-                    infos.push("total: " + d.data.total)
-                    return infos.join('\n')
-                },
-                root: cv
-            })
+            .call(wbCooltip().selector(function(d) {
+                var infos = [d.data.id]
+                for (var key in keys) {
+                    infos.push(keys[key] + ": " + d.data[keys[key]])
+                }
+                infos.push("total: " + d.data.total)
+                return infos.join('\n')
+            }))
 
         cv.svg.append("g")
             .attr("class", "axis")
@@ -137,7 +131,7 @@
             .attr("y", -2)
             .attr("x", -9)
             .attr("dy", ".35em")
-            .style("text-anchor", "end")    
+            .style("text-anchor", "end")
             .attr("transform", "rotate(-90)")
             .style("font-size", "130%")
 

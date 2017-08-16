@@ -6,6 +6,12 @@ var cv = d3wb.initConfig()
 var plotGradient = function(data, idx, descr) {
     idx = idx * height
     var rectWid = cv.config.width / data.length
+    
+    var tt = wbCooltip()
+        .selector(function() {
+            return descr
+        })
+    
     cv.svg.append("g")
         .attr("id", "gradient" + idx)
         .attr("transform", "translate(0, " + idx + ")").selectAll("rect")
@@ -19,12 +25,7 @@ var plotGradient = function(data, idx, descr) {
         .attr("fill", function(d) {
             return d
         })
-        .call(d3wb.tooltip, {
-            root: cv,
-            selector: function() {
-                return descr
-            }
-        })
+        .call(tt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////

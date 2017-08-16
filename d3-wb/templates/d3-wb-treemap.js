@@ -79,12 +79,9 @@
 
         d3wb.appendTitle(cv, attr.title)
 
-        cell.call(d3wb.tooltip, {
-            selector: function(d) {
-                return d.data.id + "\n" + format(d.value) + " " + attr.unit;
-            },
-            root: cv
-        })
+        cell.call(wbCooltip().selector(function(d) {
+            return d.data.id + "\n" + format(d.value) + " " + attr.unit;
+        }))
 
         return treemap
     }

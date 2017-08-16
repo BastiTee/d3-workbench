@@ -51,10 +51,7 @@
             })
             .style("stroke", d3wb.color.foreground)
             .style("stroke-width", "1")
-            .call(d3wb.tooltip, {
-                selector: attr.tooltipSelector,
-                root: cv
-            })
+            .call(wbCooltip().selector(attr.tooltipSelector))
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)

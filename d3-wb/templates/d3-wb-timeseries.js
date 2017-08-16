@@ -60,7 +60,7 @@
             }
             var sub = []
             xAxisTicks.forEach(function(d) {
-                sub.push( d.getFullYear())
+                sub.push(d.getFullYear())
             })
             xAxisTicks = sub
         } else if (attr.target == "weekday") {
@@ -84,7 +84,7 @@
         var histogram = d3.histogram().value(function(d) {
             return d[attr.target]
         }).thresholds(xAxisTicks)
-        
+
         var bins = histogram(data);
 
         var maxVals = d3.max(bins, function(d) {
@@ -119,12 +119,9 @@
             .attr("height", function(d) {
                 return cv.hei - y(d.length);
             })
-            .call(d3wb.tooltip, {
-                root: cv,
-                selector: function(d) {
-                    return d.length
-                }
-            })
+            .call(wbCooltip().selector(function(d) {
+                return d.length
+            }))
 
         d3wb.appendYAxis(cv, y)
         d3wb.appendTitle(cv, attr.title)
@@ -168,18 +165,15 @@
                 .attr("height", function(d) {
                     return cv.hei - y(d.mean);
                 })
-                .call(d3wb.tooltip, {
-                    selector: function(d) {
-                        return d3.formatPrefix(".1", 1e6)(d.mean)
-                    },
-                    root: cv
-                })
-                
-            d3wb.appendYAxisRight(cv, y)
+                .call(wbCooltip().selector(function(d) {
+                    return d3.formatPrefix(".1", 1e6)(d.mean)
+                }))
+
+            d3wb.appendYAxisRight(cv, y) 
             d3wb.appendRotatedYAxisLabelRight(cv, attr.yLabel2)
 
         }
-        
+
         // manually generate the discrete x-axis
         var bar = cv.svg.append("g")
             .attr("transform", "translate(0," + cv.hei + ")")
