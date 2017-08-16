@@ -58,9 +58,7 @@ var d3wb = (function(d3, $) {
         }
         /* Initializer when configuration object is ready */
         dc.locale = function(locale) {
-            if (locale == "de") {
-                d3wb.setGermanLocale()
-            }
+            d3wb.util.setLocale(locale)
             return this
         }
         return dc;

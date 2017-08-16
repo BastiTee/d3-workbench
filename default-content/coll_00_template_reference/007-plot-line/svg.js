@@ -1,8 +1,6 @@
 (function() {
     // d3wb.setGermanLocale()
     var cv = d3wb.initConfig()
-        .attr("width", 1000)
-        .attr("height", 500)
         .attr("margin", {
             top: 10,
             right: 10,
@@ -10,8 +8,9 @@
             left: 30
         })
         .data("data.csv")
-        .locale("de") // translate axis to German
+        // .locale("de")
         .initCanvas()
+    d3wb.util.setLocale("de")
 
     d3.csv(cv.config.data(), function(error, data) {
 
@@ -45,7 +44,7 @@
         })
 
         // create an averaged data set
-        var data = d3wb.reduceData(data, "date", "close", 100)
+        var data = d3wb.util.reduceData(data, "date", "close", 100)
 
         // create a low resolution line
         d3wb.plotLine(cv, data, {

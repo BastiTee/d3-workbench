@@ -8,7 +8,7 @@
         .initCanvas()
 
     d3.csv(cv.config.data(), function(error, data) {
-        data = d3wb.countCsvColumn(data, "category")
+        data = d3wb.util.countCsvColumn(data, "category")
         d3wb.plotDonutChart(data, cv, {
             /* no attributes currently */
         });
