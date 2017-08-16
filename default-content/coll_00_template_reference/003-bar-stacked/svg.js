@@ -13,7 +13,7 @@
         .initCanvas()
 
     d3.csv(cv.config.data(), function(error, data) {
-        var col = d3wb.colorCategory()
+        var col = d3wb.color.category()
         d3wb.plotStackedBarChart(data, cv, {
             colors: [col[0], col[3], col[7]]
         });

@@ -66,7 +66,7 @@ d3.queue()
         cv.svg.selectAll("circle").call(ct)
 
         // annotate bonn
-        d3wb.injectCSS(`
+        d3wb.util.injectCSS(`
             .annotation path {
                 stroke: ` + d3wb.color.foreground + `;
             }

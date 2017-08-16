@@ -3,7 +3,7 @@
 
     d3wb.plotSankeyDiagram = function(data, cv, attr) {
 
-        d3wb.injectCSS(`
+        d3wb.util.injectCSS(`
             .sankey-node rect {
                 cursor: move;
                 shape-rendering: crispEdges;
@@ -29,7 +29,7 @@
             format = function(d) {
                 return formatNumber(d) + " TWh";
             }
-        var color = d3wb.getOrdinalColors()
+        var color = d3wb.color.ordinal()
 
         var sankey = d3.sankey()
             .nodeWidth(15)

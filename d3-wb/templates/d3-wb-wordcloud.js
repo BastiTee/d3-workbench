@@ -9,13 +9,13 @@
         var minMax = d3.extent(data, function(d) {
             return d.textrank
         })
-        var fgColors = d3wb.getLinearColorGradient(minMax, [cv.config.bgColor, d3wb.color.foreground])
+        var fgColors = d3wb.color.linearGradient(minMax, [cv.config.bgColor, d3wb.color.foreground])
 
         d3.layout.cloud().size([cv.wid, cv.hei])
             .words(data)
             .padding(1)
             .rotate(0)
-            .font(d3wb.getDefaultFont())
+            .font("Source Sans Pro")
             .fontSize(function(d) {
                 return d.fontsize;
             })

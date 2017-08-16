@@ -6,7 +6,7 @@
         var columnWid = cv.wid / data.length
         var columnPad = cv.wid / 20;
         var labelDownwardPercent = 0.2
-        var colors = attr.colors || [d3wb.colorCategory()[1], d3wb.colorCategory()[6]]
+        var colors = attr.colors || [d3wb.color.category()[1], d3wb.color.category()[6]]
         var numColor = colors[0]
         var labColor = colors[1]
 

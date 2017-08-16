@@ -1,39 +1,50 @@
 function wbButton() {
     "use strict";
 
+    var getMaxChars = function(labels) {
+        return d3.max(labels, function(d) {
+            return d.length
+        })
+    }
     var x = 0
     var y = 0
     var padding = 3
-    var callback = function() {}
-    var label = "Hello"
+    var callback = function() {
+        updateLabels()
+        console.log("d3wb: button clicked");
+    }
+    var labels = ["Button State", "Another State"]
+    var pointer = -1
+    var maxChars = getMaxChars(labels)
     var fontSize = "80%"
-    var foreground = "white"
-    var background = "red"
-    var backgroundHighlight = "orange"
-    var maxChars
+    var color = "white"
+    var fill = "red"
+    var fillHighlight = "orange"
     var pulse = true
-    var updateLabel = function() {}
+    var opacity = 0.8
+    var updateLabels = function() {}
+    var buttonGroup;
 
     function button(selection) {
 
         selection.each(function(data, i) {
             var sel = d3.select(this)
-            var btn = sel.append("g")
-            var rect = btn.append("rect")
-            var text = btn.append("text")
+            buttonGroup = sel.append("g").attr("class", "wb-button")
+            var rect = buttonGroup.append("rect")
+            var text = buttonGroup.append("text")
 
             text.attr("pointer-events", "none")
                 .attr("text-anchor", "left")
                 .attr("alignment-baseline", "hanging")
                 .style("cursor", "pointer")
                 .style("font-size", fontSize)
-                .style("fill", foreground)
+                .style("fill", color)
                 .attr("transform", "translate(" + padding + "," + padding + ")")
 
-            updateLabel = function() {
+            updateLabels = function() {
                 // setup text label with X's to avoid problems with non  
                 // mono fonts and the bounding boxes
-                maxChars = Math.max(maxChars, label.length) || label.length
+                maxChars = getMaxChars(labels)
                 text.text(Array(maxChars).join("X"))
                 var bbox = text.node().getBBox();
                 // create the rect 
@@ -44,8 +55,8 @@ function wbButton() {
                     .attr("height", bbox.height + padding * 2)
                     .attr("ry", 5).attr("rx", 5)
                     .style("cursor", "pointer")
-                    .style("fill", background)
-                    .style("fill-opacity", ".3")
+                    .style("fill", fill)
+                    .style("fill-opacity", opacity)
                     .on("click", function() {
                         pulse = false // user discovered the button
                         callback()
@@ -55,8 +66,8 @@ function wbButton() {
                         d3.select(this)
                             .transition()
                             .duration(250)
-                            .style("fill", backgroundHighlight)
-                            .attr("stroke", foreground)
+                            .style("fill", fillHighlight)
+                            .attr("stroke", color)
                             .attr("stroke-width", 1)
 
                     })
@@ -64,25 +75,26 @@ function wbButton() {
                         d3.select(this)
                             .transition()
                             .duration(250)
-                            .style("fill", background)
+                            .style("fill", fill)
                             .attr("stroke-width", 0)
                     })
 
                 var rectBbox = rect.node().getBBox()
-                btn.attr("transform", "translate(" + x + "," +
+                buttonGroup.attr("transform", "translate(" + x + "," +
                     (y - rectBbox.y) + ")")
-                // reset the label 
-                text.text(label)
+                // reset the label
+                pointer = (pointer + 1) % labels.length
+                text.text(labels[pointer])
                 bbox = text.node().getBBox()
                 // move bounding box so text is centered 
                 var diff = rectBbox.width - bbox.width
                 rect.attr("transform", "translate(" +
                     (-diff / 2 + padding) + ",0)")
                 // move button to original location
-                btn.attr("transform", "translate(" +
+                buttonGroup.attr("transform", "translate(" +
                     (x + diff / 2) + "," + y + ")")
             }
-            updateLabel()
+            updateLabels()
             setInterval(function() {
                 if (!pulse) {
                     return
@@ -90,12 +102,12 @@ function wbButton() {
                 rect
                     .transition()
                     .duration(500)
-                    .style("fill", backgroundHighlight)
-                    .attr("stroke", foreground)
+                    .style("fill", fillHighlight)
+                    .attr("stroke", color)
                     .attr("stroke-width", 1)
                     .transition()
                     .duration(500)
-                    .style("fill", background)
+                    .style("fill", fill)
                     .attr("stroke-width", 0)
             }, 5000);
 
@@ -114,17 +126,18 @@ function wbButton() {
         return button;
     }
 
-    button.label = function(value) {
-        if (!arguments.length) return label
-        if (value === undefined || value == "") return button
-        label = value.trim();
-        updateLabel(label)
+    button.labels = function(value) {
+        if (!arguments.length) return labels
+        labels = value
         return button;
     }
 
     button.callback = function(value) {
         if (!arguments.length) return callback
-        callback = value;
+        callback = function() {
+            updateLabels()
+            value()
+        }
         return button;
     }
 
@@ -134,27 +147,27 @@ function wbButton() {
         return button;
     }
 
-    button.maxChars = function(value) {
-        if (!arguments.length) return maxChars
-        maxChars = value;
+    button.color = function(value) {
+        if (!arguments.length) return color
+        color = value;
         return button;
     }
 
-    button.foreground = function(value) {
-        if (!arguments.length) return foreground
-        foreground = value;
+    button.fillHighlight = function(value) {
+        if (!arguments.length) return fillHighlight
+        fillHighlight = value;
         return button;
     }
 
-    button.backgroundHighlight = function(value) {
-        if (!arguments.length) return backgroundHighlight
-        backgroundHighlight = value;
+    button.fill = function(value) {
+        if (!arguments.length) return fill
+        fill = value;
         return button;
     }
 
-    button.background = function(value) {
-        if (!arguments.length) return background
-        background = value;
+    button.opacity = function(value) {
+        if (!arguments.length) return opacity
+        opacity = value;
         return button;
     }
 

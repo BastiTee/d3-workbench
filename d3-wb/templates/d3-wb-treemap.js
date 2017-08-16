@@ -6,7 +6,7 @@
         var fader = function(color) {
             return d3.interpolateRgb(color, "#fff")(0.2);
         }
-        var color = d3wb.getOrdinalColors()
+        var color = d3wb.color.ordinal()
         var format = d3.format(",d");
 
         var treemap = d3.treemap()
@@ -77,7 +77,7 @@
                 return d;
             });
 
-        d3wb.appendTitle(cv, attr.title)
+        cv.svg.call(d3wb.add.title(attr.title).color(d3wb.color.foreground))
 
         cell.call(wbCooltip().selector(function(d) {
             return d.data.id + "\n" + format(d.value) + " " + attr.unit;

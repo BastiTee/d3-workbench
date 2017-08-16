@@ -1,37 +1,132 @@
-(function() {
+function wbLinePlot() {
     "use strict";
 
-    d3wb.injectCSS(`
-        .basic-stroke {
-            fill: none;
-            stroke-linejoin: round;
-            stroke-linecap: round;
-            stroke-width: 1;
-        }
-    `)
+    var width = 500
+    var height = 300
+    var xAxisScale = d3.scaleLinear()
+    var yAxisScale = d3.scaleLinear()
+    var xDataPoints = "x"
+    var yDataPoints = "y"
+    var scaleX;
+    var scaleY;
+    var stroke = "red"
+    var axisColor = "white"
+    var curving = d3.curveBasis
+    var update = function() {}
 
-    d3wb.plotLine = function(cv, data, attr) {
+    function chart(selection) {
 
-        var line = d3.line()
-            .x(function(d) {
-                return attr.xAxis(d[attr.xDataPoints]);
-            })
-            .y(function(d) {
-                return attr.yAxis(d[attr.yDataPoints]);
-            })
-        if (attr.smoothing) {
-            line.curve(d3.curveBasis)
-        }
-        var path = cv.svg.append("path")
-            .datum(data)
-            .attr("d", line)
-            .attr("class", "basic-stroke")
-            .style("stroke", d3wb.color.red)
+        selection.each(function(data, i) {
+            var s = d3.select(this)
 
-        if (attr.addAxis) {
-            d3wb.appendXAxis(cv, attr.xAxis)
-            d3wb.appendYAxis(cv, attr.yAxis)
-        }
+            s.append("path").attr("class", "line")
+
+            update = function(data) {
+                
+                var xMinMax = d3.extent(data, function(d) {
+                    return d[xDataPoints];
+                })
+                var yMinMax = d3.extent(data, function(d) {
+                    return d[yDataPoints];
+                })
+                scaleX = xAxisScale.rangeRound([0, width]).domain(
+                    d3.extent(data, function(d) {
+                        return d[xDataPoints];
+                    }));
+                scaleY = yAxisScale.rangeRound([height, 0]).domain(
+                    d3.extent(data, function(d) {
+                        return d[yDataPoints]
+                    }));
+                var line = d3.line()
+                    .curve(curving)
+                    .x(function(d) {
+                        return scaleX(d[xDataPoints]);
+                    })
+                    .y(function(d) {
+                        return scaleY(d[yDataPoints]);
+                    })
+
+                var c = s.selectAll(".line")
+                    .transition().duration(500)
+                    .attr("d", line(data))
+                    .style("fill", "none")
+                    .style("stroke-linecap", "round")
+                    .style("stroke-linejoin", "round")
+                    .style("stroke-width", "1")
+                    .style("stroke", stroke)
+
+            }
+            update(data)
+
+        })
     }
 
-})()
+    chart.width = function(value) {
+        if (!arguments.length) return width
+        width = value;
+        return chart;
+    }
+
+    chart.height = function(value) {
+        if (!arguments.length) return height
+        height = value;
+        return chart;
+    }
+
+    chart.xAxisScale = function(value) {
+        if (!arguments.length) return xAxisScale
+        xAxisScale = value;
+        return chart;
+    }
+
+    chart.yAxisScale = function(value) {
+        if (!arguments.length) return yAxisScale
+        yAxisScale = value;
+        return chart;
+    }
+
+    chart.xDataPoints = function(value) {
+        if (!arguments.length) return xDataPoints
+        xDataPoints = value;
+        return chart;
+    }
+
+    chart.yDataPoints = function(value) {
+        if (!arguments.length) return yDataPoints
+        yDataPoints = value;
+        return chart;
+    }
+
+    chart.axisColor = function(value) {
+        if (!arguments.length) return axisColor
+        axisColor = value;
+        return chart;
+    }
+
+    chart.stroke = function(value) {
+        if (!arguments.length) return stroke
+        stroke = value;
+        return chart;
+    }
+
+    chart.curving = function(value) {
+        if (!arguments.length) return curving
+        curving = value;
+        return chart;
+    }
+
+    chart.scaleX = function() {
+        return scaleX;
+    }
+
+    chart.scaleY = function() {
+        return scaleY;
+    }
+
+    chart.update = function(data) {
+        update(data)
+        return chart
+    }
+
+    return chart
+}

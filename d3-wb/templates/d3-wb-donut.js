@@ -13,7 +13,7 @@
         var outerRadius = Math.min(cv.wid, cv.hei) / 2;
         var innerRadius = Math.min(cv.wid, cv.hei) / 8;
 
-        var color = d3wb.getOrdinalColors()
+        var color = d3wb.color.ordinal()
 
         cv.svg.attr("transform", "translate(" +
             (cv.wid / 2 + cv.mar.left) + "," +

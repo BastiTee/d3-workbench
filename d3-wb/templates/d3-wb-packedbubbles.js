@@ -6,9 +6,9 @@
         var minMax = d3.extent(data, function(d) {
             return d.value
         })
-        var bgColors = d3wb.getLinearColorGradient(minMax, 
+        var bgColors = d3wb.color.linearGradient(minMax, 
             [d3wb.color.blue, d3wb.color.blue.fade(10)]);
-        var fgColors = d3wb.getLinearColorGradient(minMax, [d3wb.color.foreground.fade(30), d3wb.color.foreground]);;
+        var fgColors = d3wb.color.linearGradient(minMax, [d3wb.color.foreground.fade(30), d3wb.color.foreground]);;
         if (attr.fadeOpacity) {
             var opScale = d3.scaleLog().domain(minMax)
                 .range(attr.fadeOpacity);

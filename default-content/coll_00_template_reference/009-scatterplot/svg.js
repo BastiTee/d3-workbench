@@ -42,8 +42,8 @@
                     ")\n" + d["Market value $m"] + " M$\n"
             }))
 
-        d3wb.appendXAxisLabel(cv, "Market value $m")
-        d3wb.appendRotatedYAxisLabel(cv, "Employees")
+        cv.svg.call(d3wb.add.xAxisLabel("Market value $m").color(d3wb.color.foreground).orientation("bottom"))
+        cv.svg.call(d3wb.add.yAxisLabel("Employees").color(d3wb.color.foreground))
 
     });
 

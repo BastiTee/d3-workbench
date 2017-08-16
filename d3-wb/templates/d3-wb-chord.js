@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    d3wb.injectCSS(`
+    d3wb.util.injectCSS(`
         .chord-circle circle {
             fill: none;
             pointer-events: all;
@@ -49,7 +49,7 @@
         var ribbon = d3.ribbon()
             .radius(innerRadius);
 
-        var colors = d3wb.getOrdinalColors()
+        var colors = d3wb.color.ordinal()
 
         cv.svg
             .attr("class", "chord-circle")

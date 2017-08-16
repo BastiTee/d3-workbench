@@ -7,7 +7,7 @@
         .initCanvas()
 
     d3.json(cv.config.data(), function(error, data) {
-        var colors = d3wb.colorCategory()
+        var colors = d3wb.color.category()
         d3wb.plotNetworkGraph(data, cv, {
             tooltipSelector: function(d) {
                 var type = d.group == 0 ? "type1" : d.group == 1 ?

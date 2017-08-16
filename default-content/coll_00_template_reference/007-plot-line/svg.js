@@ -1,11 +1,11 @@
 (function() {
-    // d3wb.setGermanLocale()
+
     var cv = d3wb.initConfig()
         .attr("margin", {
             top: 10,
             right: 10,
-            bottom: 30,
-            left: 30
+            bottom: 50,
+            left: 50
         })
         .data("data.csv")
         // .locale("de")
@@ -21,40 +21,36 @@
             d.close = +d.close;
         })
 
-        // create X axis
-        var x = d3.scaleTime().rangeRound([0, cv.wid]).domain(
-            d3.extent(data, function(d) {
-                return d.date;
-            }));
+        var chart = wbLinePlot()
+            .width(cv.wid)
+            .height(cv.hei)
+            .stroke(d3wb.color.blue)
+            .xAxisScale(d3.scaleTime())
+            .xDataPoints("date")
+            .yDataPoints("close")
+        cv.svg.append("g").datum(data).call(chart)
 
-        // create Y axis
-        var y = d3.scaleLinear().rangeRound([cv.hei, 0]).domain(
-            d3.extent(data, function(d) {
-                return d.close;
-            }));
+        var dataSmooth = d3wb.util.smoothData(data, "date", "close", 30)
 
-        // create a high resolution line
-        d3wb.plotLine(cv, data, {
-            xAxis: x,
-            yAxis: y,
-            xDataPoints: "date",
-            yDataPoints: "close",
-            smoothing: true,
-            addAxis: true
-        })
+        var chart2 = wbLinePlot()
+            .width(cv.wid)
+            .height(cv.hei)
+            .stroke(d3wb.color.foreground)
+            .xAxisScale(d3.scaleTime())
+            .xDataPoints("date")
+            .yDataPoints("close")
+        cv.svg.append("g").datum(dataSmooth).call(chart2)
 
-        // create an averaged data set
-        var data = d3wb.util.reduceData(data, "date", "close", 100)
-
-        // create a low resolution line
-        d3wb.plotLine(cv, data, {
-            xAxis: x,
-            yAxis: y,
-            xDataPoints: "date",
-            yDataPoints: "close",
-            smoothing: true,
-            addAxis: false
-        })
+        cv.svg.call(d3wb.add.xAxisBottom(chart.scaleX())
+            .y(cv.hei)
+            .color(d3wb.color.foreground))
+        cv.svg.call(d3wb.add.yAxis(chart.scaleY())
+            .color(d3wb.color.foreground))
+        cv.svg.call(d3wb.add.xAxisLabel("Datum")
+            .color(d3wb.color.foreground)
+            .orientation("bottom"))
+        cv.svg.call(d3wb.add.yAxisLabel("Wert")
+            .color(d3wb.color.foreground))
 
     });
 

@@ -75,8 +75,8 @@
 
         var start = d3wb.color.cyan.fade(50)
         var end = d3wb.color.red.fade(20)
-        var colors = d3wb.getGradientAsArray(start, end, attr.quantiles)
-        var colorScale = d3wb.getColorsQuantile(minMax, colors)
+        var colors = d3wb.color.gradientArray(start, end, attr.quantiles)
+        var colorScale = d3wb.color.quantile(minMax, colors)
 
         heatMap.style("fill", function(d) {
             return colorScale(d.value);

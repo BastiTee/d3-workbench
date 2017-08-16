@@ -18,21 +18,55 @@
         }
     }
 
-    var reduceData = function(data, xSel, ySel, window) {
+
+    var guid = function() {
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    }
+
+    var s4 = function() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+
+
+    var smoothData = function(data, xSel, ySel, window) {
         var windowArr = []
-        var reducedData = data.filter(function(value, index) {
+        var winAggs = []
+        // for each window create an aggregated value
+        data.forEach(function(value, index) {
+            var innerIdx = index + 1
             windowArr.push(value[ySel])
-            if (index % window == 0 || index == data.length - 1) {
-                var windowMean = d3.mean(windowArr)
-                var result = {
-                    xSel: value[xSel],
-                    ySel: windowMean
-                }
+            if (innerIdx % window == 0 || innerIdx == data.length) {
+                var winAgg = d3.median(windowArr)
+                winAggs.push(winAgg)
                 windowArr = []
-                return result;
             };
         });
-        return reducedData;
+        // recreate original array size 
+        var smoothData = []
+        var covered = 0
+        var finalPt = 0
+        for (var i in winAggs) {
+            var aggr = winAggs[i]
+            covered += window
+            var winLen = covered > data.length ? data.length % window : window
+            var left = i == 0 ? data[0][ySel] : winAggs[i - 1]
+            var right = winAggs[i]
+            var ip = d3.interpolate(left, right)
+            var shift = 1.0 / winLen
+            var curr = 0
+            for (var j = 0; j < winLen; j++) {
+                curr += shift
+                var set = {}
+                set[xSel] = data[finalPt][xSel]
+                set[ySel] = ip(curr)
+                smoothData.push(set)
+                finalPt += 1
+            }
+        }
+        return smoothData;
     }
 
     var countCsvColumn = function(data, column, sort) {
@@ -64,10 +98,24 @@
         return countData
     }
 
+
+    var injectCSS = function(css) {
+        var head = document.getElementsByTagName('head')[0];
+        var s = document.createElement('style');
+        if (s.styleSheet) { // IE
+            s.styleSheet.cssText = css;
+        } else { // the world
+            s.appendChild(document.createTextNode(css));
+        }
+        head.appendChild(s);
+    }
+
     d3wb.util = {
         setLocale: setLocale,
-        reduceData: reduceData,
-        countCsvColumn: countCsvColumn
+        smoothData: smoothData,
+        countCsvColumn: countCsvColumn,
+        guid: guid,
+        injectCSS: injectCSS
     }
 
 })()

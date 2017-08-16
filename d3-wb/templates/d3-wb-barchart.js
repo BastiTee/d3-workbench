@@ -39,16 +39,16 @@
                     attr.yLabel
             }))
 
-        d3wb.appendXAxis(cv, x)
-        d3wb.appendYAxis(cv, y)
-        d3wb.appendXAxisLabel(cv, attr.xLabel)
-        d3wb.appendRotatedYAxisLabel(cv, attr.yLabel)
+        cv.svg.call(d3wb.add.yAxis(y).color(d3wb.color.foreground))
+        cv.svg.call(d3wb.add.xAxis(x).y(cv.hei).color(d3wb.color.foreground))
+        cv.svg.call(d3wb.add.xAxisLabel(attr.xLabel).color(d3wb.color.foreground).orientation("bottom"))
+        cv.svg.call(d3wb.add.yAxisLabel(attr.yLabel).color(d3wb.color.foreground))
 
     }
 
     d3wb.plotStackedBarChart = function(data, cv, attr) {
 
-        d3wb.injectCSS(`
+        d3wb.util.injectCSS(`
             .axis line{
               stroke: ` + d3wb.color.foreground + `;
             }

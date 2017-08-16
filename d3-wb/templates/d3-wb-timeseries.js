@@ -99,7 +99,7 @@
         var minMax = d3.extent(bins, function(d) {
             return d.length;
         })
-        var colors = d3wb.getLinearColorGradient(minMax, [d3wb.color.blue, d3wb.color.blue.fade(20)])
+        var colors = d3wb.color.linearGradient(minMax, [d3wb.color.blue, d3wb.color.blue.fade(20)])
 
         cv.barwid = cv.wid / xAxisTicks.length - padding1
 
@@ -123,10 +123,10 @@
                 return d.length
             }))
 
-        d3wb.appendYAxis(cv, y)
-        d3wb.appendTitle(cv, attr.title)
-        d3wb.appendXAxisLabel(cv, attr.xLabel)
-        d3wb.appendRotatedYAxisLabel(cv, attr.yLabel)
+
+        cv.svg.call(d3wb.add.yAxis(y).color(d3wb.color.foreground))
+        cv.svg.call(d3wb.add.xAxisLabel(attr.xLabel).color(d3wb.color.foreground).orientation("bottom"))
+        cv.svg.call(d3wb.add.yAxisLabel(attr.yLabel).color(d3wb.color.foreground))
 
         if (attr.valueColumn) {
 
@@ -169,8 +169,8 @@
                     return d3.formatPrefix(".1", 1e6)(d.mean)
                 }))
 
-            d3wb.appendYAxisRight(cv, y) 
-            d3wb.appendRotatedYAxisLabelRight(cv, attr.yLabel2)
+            cv.svg.call(d3wb.add.yAxisRight(y).x(cv.wid).color(d3wb.color.foreground))
+            cv.svg.call(d3wb.add.yAxisLabel(attr.yLabel2).orientation("right").color(d3wb.color.foreground))
 
         }
 
