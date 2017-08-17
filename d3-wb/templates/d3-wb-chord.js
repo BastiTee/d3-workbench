@@ -11,29 +11,13 @@
         }
     `)
 
-    d3wb.plotChordDiagram = function(data, cv, attr) {
+    d3wb.plotChordDiagram = function(mat, keys, cv, attr) {
 
         attr = attr || {}
         attr.indicator = attr.indicator || "samples"
         cv.svg.attr("transform",
             "translate(" + (cv.wid / 2 + cv.mar.left) + "," +
             (cv.hei / 2 + cv.mar.top) + ")")
-
-        var mapper = chordMapper(data);
-        mapper
-            .addValuesToMap(attr.leftSideColumn)
-            .addValuesToMap(attr.rightSideColumn)
-            .setFilter(function(row, a, b) {
-                return (row[attr.leftSideColumn] === a.name &&
-                    row[attr.rightSideColumn] === b.name)
-            })
-            .setAccessor(function(recs, a, b) {
-                if (!recs[0]) return 0;
-                return +recs[0][attr.countColumn];
-            })
-
-        var mapReader = chordReader(
-            mapper.getMatrix(), mapper.getMap());
 
         var innerRadius = cv.hei / 2 - 100;
 
@@ -51,10 +35,10 @@
 
         var colors = d3wb.color.ordinal()
 
+        var chords = chord(mat)
         cv.svg
             .attr("class", "chord-circle")
-            .datum(chord(mapper.getMatrix()));
-
+            .datum(chords)
 
         cv.svg.append("circle")
             .attr("r", innerRadius + 20)
@@ -73,12 +57,8 @@
             })
             .on("mousemove", function() {})
             .on("mouseout", function() {})
-
         g.append("path")
             .style("stroke", d3.color.foreground)
-            .style("fill", function(d) {
-                return mapReader(d).gdata;
-            })
             .style("fill", d3wb.color.foreground)
             .attr("d", arc);
 
@@ -98,7 +78,7 @@
             })
             .style("fill", d3wb.color.foreground)
             .text(function(d) {
-                return mapReader(d).gname;
+                return keys[d.index].key
             });
 
         var chordPaths = cv.svg.selectAll("chord")
@@ -113,113 +93,12 @@
             })
             .attr("d", ribbon.radius(innerRadius))
             .call(wbCooltip().selector(function(d) {
-                var d1 = mapReader(d)
-                var p = d3.format(".1%"),
-                    q = d3.format(",.2r")
-                return d1.sname + " w/ " + d1.tname + "\n" +
-                    d1.svalue + " " + attr.indicator + "\n" +
-                    d1.tname + " w/ " + d1.sname + "\n" +
-                    d1.tvalue + " " + attr.indicator
+                return keys[d.source.index].key + " w/ " 
+                    + keys[d.source.subindex].key + "\n"
+                    + d.source.value
+                    
 
             }))
-    }
-
-
-    var chordMapper = function(data) {
-        var mpr = {},
-            mmap = {},
-            n = 0,
-            matrix = [],
-            filter, accessor;
-
-        mpr.setFilter = function(fun) {
-                filter = fun;
-                return this;
-            },
-            mpr.setAccessor = function(fun) {
-                accessor = fun;
-                return this;
-            },
-            mpr.getMatrix = function() {
-                matrix = [];
-                _.each(mmap, function(a) {
-                    if (!matrix[a.id]) matrix[a.id] = [];
-                    _.each(mmap, function(b) {
-                        var recs = _.filter(data, function(row) {
-                            return filter(row, a, b);
-                        })
-                        matrix[a.id][b.id] = accessor(recs, a, b);
-                    });
-                });
-                return matrix;
-            },
-            mpr.getMap = function() {
-                return mmap;
-            },
-            mpr.addToMap = function(value, info) {
-                if (!mmap[value]) {
-                    mmap[value] = {
-                        name: value,
-                        id: n++,
-                        data: info
-                    }
-                }
-            },
-            mpr.addValuesToMap = function(varName, info) {
-                var values = _.uniq(_.pluck(data, varName));
-                _.map(values, function(v) {
-                    if (!mmap[v]) {
-                        mmap[v] = {
-                            name: v,
-                            id: n++,
-                            data: info
-                        }
-                    }
-                });
-                return this;
-            }
-        return mpr;
-    }
-
-    var chordReader = function(matrix, mmap) {
-        return function(d) {
-            var i, j, s, t, g, m = {};
-            if (d.source) {
-                i = d.source.index;
-                j = d.target.index;
-                s = _.where(mmap, {
-                    id: i
-                });
-                t = _.where(mmap, {
-                    id: j
-                });
-                m.sname = s[0].name;
-                m.sdata = d.source.value;
-                m.svalue = +d.source.value;
-                m.stotal = _.reduce(matrix[i], function(k, n) {
-                    return k + n
-                }, 0);
-                m.tname = t[0].name;
-                m.tdata = d.target.value;
-                m.tvalue = +d.target.value;
-                m.ttotal = _.reduce(matrix[j], function(k, n) {
-                    return k + n
-                }, 0);
-            } else {
-                g = _.where(mmap, {
-                    id: d.index
-                });
-                m.gname = g[0].name;
-                m.gdata = g[0].data;
-                m.gvalue = d.value;
-            }
-            m.mtotal = _.reduce(matrix, function(m1, n1) {
-                return m1 + _.reduce(n1, function(m2, n2) {
-                    return m2 + n2
-                }, 0);
-            }, 0);
-            return m;
-        }
     }
 
 })()

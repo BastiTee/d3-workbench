@@ -18,7 +18,6 @@
         }
     }
 
-
     var guid = function() {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
             s4() + '-' + s4() + s4() + s4();
@@ -29,7 +28,6 @@
             .toString(16)
             .substring(1);
     }
-
 
     var smoothData = function(data, xSel, ySel, window) {
         var windowArr = []

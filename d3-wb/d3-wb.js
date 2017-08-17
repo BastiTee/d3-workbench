@@ -1,4 +1,4 @@
-var d3wb = (function(d3, $) {
+var d3wb = (function() {
     "use strict";
 
     /* Global workbench object */
@@ -8,11 +8,12 @@ var d3wb = (function(d3, $) {
     d3wb.DEFAULT_DEBUG_STATE = false
 
     d3wb.initConfig = function() {
+
         var dc = {
             /* Desired width of SVG element */
-            width: $(window).width(),
+            width: getDocumentDimension("Width"),
             /* Desired height of SVG element */
-            height: $(window).height(),
+            height: getDocumentDimension("Height"),
             /* Desired inner margins of SVG element */
             margin: {
                 top: 0,
@@ -35,14 +36,26 @@ var d3wb = (function(d3, $) {
         }
         /* Generic setter method for attributes */
         dc.attr = function(key, value) {
-            if (!key.match(/^margin\..+$/)) {
-                // default key access, e.g. "width"
-                this[key] = value
-                return this
-            } else {
-                // key access with sublevel, e.g., "margin.top"
+            if (key.match(/^margin\..+$/)) {
+                // margin access with sublevel, e.g., "margin.top"
                 var split = key.split(".")
                 this[split[0]][split[1]] = value
+                return this
+            } else if (key == "margin" &&
+                String(value).match(
+                    /^[0-9]+[ ]+[0-9]+[ ]+[0-9]+[ ]+[0-9]+$/)) {
+                // margin accessw with TRBL mode 
+                var split = value.split(/[ ]+/)
+                this["margin"] = {
+                    top: split[0],
+                    right: split[1],
+                    bottom: split[2],
+                    left: split[3]
+                }
+                return this
+            } else {
+                // default key access, e.g. "width"
+                this[key] = value
                 return this
             }
         }
@@ -93,7 +106,8 @@ var d3wb = (function(d3, $) {
         config.innerHeight = config.height -
             config.margin.top - config.margin.bottom;
 
-        if (!isVoid(config.svgId) && $(config.svgId).length > 0) {
+        if (!isVoid(config.svgId) &&
+            d3.select(config.svgId).node() != null) {
             var svg = d3.select(config.svgId)
         } else {
             var svg = d3.select("svg")
@@ -108,7 +122,8 @@ var d3wb = (function(d3, $) {
             .attr("fill", config.bgColor)
 
         // if standalone-svg div is present, make background the same color
-        $("#standalone-body").css("background-color", config.bgColor)
+        d3.select("#standalone-body")
+            .style("background-color", config.bgColor)
 
         drawDebugCanvas(svg, config)
         drawDebugGroup(svg, config)
@@ -268,16 +283,17 @@ var d3wb = (function(d3, $) {
             return
         }
         // return if div id not found
-        if ($(config.parentDivId).length != 1) {
+        if (d3.select(config.parentDivId).node() == null) {
             return
         }
 
-        var newWid = $(config.parentDivId).width()
+        var bbox = d3.select(config.parentDivId).node().getBoundingClientRect()
+        var newWid = bbox.width
         if (newWid < 1) {
             newWid = config.width
         }
         var scaling = newWid / config.width
-        var newHei = $(config.parentDivId).height()
+        var newHei = bbox.height
         config.width = newWid
         config.height = newHei
 
@@ -290,6 +306,19 @@ var d3wb = (function(d3, $) {
             object === "");
     };
 
+    var getSelectionDimension = function(sel, dim) {
+        console.log(sel.node().getBoundingClientRect())
+    }
+
+    var getDocumentDimension = function(dim) {
+        return Math.max(
+            document.documentElement["client" + dim],
+            document.body["scroll" + dim],
+            document.documentElement["scroll" + dim],
+            document.body["offset" + dim],
+            document.documentElement["offset" + dim])
+    }
+
     return d3wb;
 
-})(d3, $)
+})()

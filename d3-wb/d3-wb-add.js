@@ -95,7 +95,7 @@
 
         return chart
     }
-    
+
     var yAxisRight = function(scale) {
         return yAxis(scale).type(d3.axisRight)
     }
@@ -232,13 +232,13 @@
 
     var infoBox = function(text) {
 
-        var color = "yellow"
-        var fill = "blue"
+        var color = "white"
+        var fill = "red"
         var fontSize = "80%"
         var padding = 10
         var margin = 10
         var opacity = 0.8
-        var lineHeight = 20
+        var lineHeight = 15
         var orientation = "topright"
 
         function chart(selection) {

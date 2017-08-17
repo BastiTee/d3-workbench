@@ -12,8 +12,6 @@
     <script src="../d3_wb/libs/d3-legend/d3-legend.js"></script>
     <script src="../d3_wb/libs/d3-annotation/d3-annotation.js"></script>
     <script src="../d3_wb/libs/d3-spiral-heatmap/d3-spiral-heatmap.js"></script>
-    <script src="../d3_wb/libs/jquery/jquery.js"></script>
-    <script src="../d3_wb/libs/underscore/underscore.js"></script>
     <!-- Main workbench library -->
     <script src="../d3_wb/d3-wb.js"></script>
     <script src="../d3_wb/d3-wb-util.js"></script>
@@ -46,12 +44,6 @@
 </head>
 
 <body id="main">
-    <div id="loadoverlay"></div>
-    <div id="loadspinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
-    </div>
-
     <div class="header">
         <div class="image"><img src="../res/gfx/favicon.png"></div>
         <div class="text">#PAGE#</div>
@@ -65,12 +57,6 @@
     <div class="footer">
         <a href="https://basti.site/">made with ❤ and wifi by basti.tee</a>
     </div>
-    <script>
-        window.onload = function() {
-            $("#loadspinner").fadeOut()
-            $("#loadoverlay").fadeOut()
-        }
-    </script>
 </body>
 
 </html>
