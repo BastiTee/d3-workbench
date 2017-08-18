@@ -1,10 +1,6 @@
 (function() {
 
-    var cv = d3wb.initConfig()
-        .attr("width", 1000)
-        .attr("height", 600)
-        .attr("margin.top", 20)
-        .attr("margin.bottom", 20)
+    var cv = d3wb.initConfig().attr("margin", "20 20 20 20")
         .data("data.json")
         .initCanvas()
 

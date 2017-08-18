@@ -1,8 +1,7 @@
 (function() {
 
     var cv = d3wb.initConfig()
-        .attr("width", 800)
-        .attr("height", 140)
+        .attr("height", 150)
         .attr("margin.bottom", 20)
         .data("data.json")
         .initCanvas()

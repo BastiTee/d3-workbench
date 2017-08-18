@@ -1,8 +1,6 @@
 (function() {
 
     var cv = d3wb.initConfig()
-        .attr("width", 600)
-        .attr("height", 1000)
         .attr("margin", {
             top: 10,
             right: 10,

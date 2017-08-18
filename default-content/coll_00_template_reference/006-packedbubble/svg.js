@@ -1,9 +1,6 @@
 (function() {
 
     var cv = d3wb.initConfig()
-        .attr("width", 900)
-        .attr("height", 900)
-        .attr("bgColor", d3wb.color.background)
         .data("data.csv")
         .initCanvas()
 
