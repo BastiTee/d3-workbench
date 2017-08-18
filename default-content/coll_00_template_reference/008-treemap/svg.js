@@ -6,7 +6,7 @@
 
     d3.json(cv.config.data(), function(error, data) {
 
-        var chart = wbTreemap()
+        var chart = wbTreeMap()
             .width(cv.wid)
             .height(cv.hei)
             .colors(d3wb.color.ordinal())

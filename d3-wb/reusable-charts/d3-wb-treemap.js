@@ -1,4 +1,4 @@
-function wbTreemap() {
+function wbTreeMap() {
     "use strict";
 
     var width = 500

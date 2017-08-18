@@ -29,12 +29,16 @@
             return d3.formatPrefix(".1", 1e6)(d.mean)
         }))
         
-        cv.svg.call(d3wb.add.yAxis(chart.scaleY()).color(d3wb.color.foreground))
-        cv.svg.call(d3wb.add.xAxisLabel("Weekday").color(d3wb.color.foreground).orientation("bottom"))
-        cv.svg.call(d3wb.add.yAxisLabel("Count").color(d3wb.color.foreground))
-
-        cv.svg.call(d3wb.add.yAxisRight(chart.scaleY2()).x(cv.wid).color(d3wb.color.foreground))
-        cv.svg.call(d3wb.add.yAxisLabel("Other count").orientation("right").color(d3wb.color.foreground))
+        cv.svg.call(d3wb.add.yAxis(chart.scaleY())
+            .color(d3wb.color.foreground))
+        cv.svg.call(d3wb.add.xAxisLabel("Weekday")
+            .color(d3wb.color.foreground).orientation("bottom"))
+        cv.svg.call(d3wb.add.yAxisLabel("Count")
+            .color(d3wb.color.foreground))
+        cv.svg.call(d3wb.add.yAxisRight(chart.scaleY2())
+            .x(cv.wid).color(d3wb.color.foreground))
+        cv.svg.call(d3wb.add.yAxisLabel("Other count")
+            .orientation("right").color(d3wb.color.foreground))
         
     });
 }())

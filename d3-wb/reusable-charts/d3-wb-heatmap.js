@@ -1,4 +1,4 @@
-function wbHeatmap() {
+function wbHeatMap() {
     "use strict";
 
     var width = 500

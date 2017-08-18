@@ -95,7 +95,8 @@ function wbStackedBarChart() {
                 .attr("dy", "0.32em")
                 .text(function(d) {
                     return d;
-                });
+                })
+                .attr("fill", legendFill)
 
             // add initialization code here
 

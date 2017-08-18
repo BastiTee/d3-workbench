@@ -30,13 +30,13 @@ d3.queue()
         var geoMap = wbGeoMap()
             .width(cv.width)
             .height(cv.height)
-            .mapFill(d3wb.color.yellow)
-            .mapStroke(d3wb.color.yellow.fade(10))
+            .mapFill(d3wb.color.blue)
+            .mapStroke(d3wb.color.blue.fade(10))
             .dotFill(function(d) {
                 if (d["fern"] == 1) {
-                    return d3wb.color.red
+                    return d3wb.color.yellow
                 } else {
-                    return d3wb.color.magenta
+                    return d3wb.color.yellow.fade(20)
                 }
             })
             .dotStroke(d3wb.color.yellow.fade(10))
@@ -44,7 +44,7 @@ d3.queue()
                 if (d["fern"] == 1) {
                     return 4
                 } else {
-                    return 2
+                    return 1
                 }
             })
             .mapData(mapData)

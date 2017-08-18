@@ -11,7 +11,7 @@
         var end = d3wb.color.red.fade(20)
         var colors = d3wb.color.gradientArray(start, end, 12)
         
-        var chart = wbHeatmap()
+        var chart = wbHeatMap()
             .width(cv.wid)
             .height(cv.hei)
             .colors(colors)

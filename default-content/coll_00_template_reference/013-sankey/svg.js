@@ -6,9 +6,11 @@
 
     d3.json(cv.config.data(), function(error, data) {
 
-        var chart = wbSankey()
+        var chart = wbSankeyDiagram()
             .width(cv.wid)
             .height(cv.hei)
+            .fill(d3wb.color.foreground)
+            .colors(d3wb.color.ordinal())
         cv.svg.datum(data).call(chart)
 
     })

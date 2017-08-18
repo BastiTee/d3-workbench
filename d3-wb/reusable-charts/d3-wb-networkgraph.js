@@ -1,4 +1,4 @@
-function wbNetwork() {
+function wbNetworkDiagram() {
     "use strict";
 
     var width = 500

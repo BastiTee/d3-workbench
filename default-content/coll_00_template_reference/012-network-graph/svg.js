@@ -6,7 +6,7 @@
 
     d3.json(cv.config.data(), function(error, data) {
 
-        var chart = wbNetwork()
+        var chart = wbNetworkDiagram()
             .width(cv.wid)
             .height(cv.hei)
             .legend([

@@ -6,9 +6,10 @@
 
     d3.csv(cv.config.data(), function(error, data) {
 
-        var chart = wbWordcloud()
+        var chart = wbWordCloud()
             .width(cv.wid)
             .height(cv.hei)
+            .colorRange([d3wb.color.black, d3wb.color.blue])
         cv.svg.datum(data).call(chart)
 
     });

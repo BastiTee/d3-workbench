@@ -1,4 +1,4 @@
-function wbWordcloud() {
+function wbWordCloud() {
     "use strict";
 
     var width = 500
@@ -71,34 +71,11 @@ function wbWordcloud() {
         height = value;
         return chart;
     }
-
-    chart.xSelector = function(value) {
-        if (!arguments.length) return xSelector
-        xSelector = value;
+    
+    chart.colorRange = function(value) {
+        if (!arguments.length) return colorRange
+        colorRange = value;
         return chart;
-    }
-
-    chart.ySelector = function(value) {
-        if (!arguments.length) return ySelector
-        ySelector = value;
-        return chart;
-    }
-
-    chart.scaleX = function(value) {
-        if (!arguments.length) return scaleX
-        scaleX = value;
-        return chart;
-    }
-
-    chart.scaleY = function(value) {
-        if (!arguments.length) return scaleY
-        scaleY = value;
-        return chart;
-    }
-
-    chart.update = function() {
-        update()
-        return chart
     }
 
     return chart

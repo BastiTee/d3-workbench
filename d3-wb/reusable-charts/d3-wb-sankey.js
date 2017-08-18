@@ -1,4 +1,4 @@
-function wbSankey() {
+function wbSankeyDiagram() {
     "use strict";
 
     var width = 500
@@ -90,6 +90,7 @@ function wbSankey() {
                 })
                 .attr("dy", ".35em")
                 .attr("text-anchor", "end")
+                .attr("fill", fill)
                 .attr("transform", null)
                 .text(function(d) {
                     return d.name;

@@ -1,5 +1,5 @@
 (function(){
-    d3wb.theme("dark")
+    d3wb.theme("gotham")
     d3wb.util.injectCSS(`
     * {
         background-color: ` + d3wb.color.background + `;
