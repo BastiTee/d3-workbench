@@ -1,12 +1,10 @@
 (function() {
 
     var cv = d3wb.initConfig()
-        .attr("width", 1000)
-        .attr("height", 500)
         .attr("margin", {
             top: 10,
             right: 50,
-            bottom: 50,
+            bottom: 30,
             left: 50
         })
         .data("data.txt")

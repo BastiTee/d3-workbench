@@ -1,6 +1,5 @@
 var cv = d3wb.initConfig()
-    .attr("width", 800)
-    .attr("height", 300)
+    .attr("height", 280)
     .initCanvas()
 
 var plotGradient = function(data, idx, descr) {

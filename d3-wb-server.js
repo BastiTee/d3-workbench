@@ -53,7 +53,7 @@ Optional arguments:
         }
         return fs.readFileSync(filepath, "utf8")
     }
-    
+
     var ignored = function(ignore, file) {
         for (var i in ignore) {
             if (file === ignore[i]) {
@@ -98,11 +98,6 @@ Optional arguments:
                     .replace(/#ID#/g, uuid(file))
                     .replace(/#FILE#/g, file)
                     .replace(/#HEIGHT#/g, json.height)
-                if (json.replace) {
-                    fig = fig.replace(/#CLASS#/g, "")
-                } else {
-                    fig = fig.replace(/#CLASS#/g, "ft-no-overlay")
-                }
                 figs = figs + fig + "\n"
             }
         });
@@ -160,8 +155,7 @@ Optional arguments:
             fsPath = fsPath.replace(/\/+$/, "").replace(/.*\//, "")
             // create json
             var json = {
-                "title": fsPath,
-                "replace": false
+                "title": fsPath
             }
             // write json
             fs.writeFileSync(jsonFilepath, JSON.stringify(

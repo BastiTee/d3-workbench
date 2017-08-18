@@ -1,12 +1,7 @@
 (function() {
 
     var cv = d3wb.initConfig()
-        .attr("margin", { // default margin: 0x0x0x0
-            top: 50,
-            right: 50,
-            bottom: 50,
-            left: 50
-        })
+        .attr("margin", "50 50 50 50")
         .attr("debug", true) // draw debug canvas 
         .data(["data.csv"]) // returns config object
         .initCanvas() // converts config object to canvas object 

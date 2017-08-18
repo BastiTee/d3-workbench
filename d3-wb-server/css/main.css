@@ -1,43 +1,41 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-
+@import url('https://fonts.googleapis.com/css?family=Abel');
 * {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Abel', sans-serif;
 }
 
 body {
-    margin: 0;
+    margin: 0em;
 }
 
 *::-webkit-scrollbar {
-    width: 0px;
+    width: 0em;
     background: transparent;
 }
 
 .d3entry {
     position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 .d3entry-title {
-    position: absolute; 
+    position: absolute;
     font-size: 130%;
+    top: 100%;
+    z-index: 999;
     width: 100%;
-    top: 0px;
-    padding-top: 100px;
-    padding: 10px 0px 2px 0px;
+    padding: 0.8em 0em 0.8em 0em;
+    background-color: rgba(255, 255, 255, 1.0);
+    box-shadow: 0em 1.2em 2em rgba(0, 0, 0, 0.3);
 }
 
 .d3figure {
     width: 100%;
-    max-width: 800px;
+    max-width: 50em;
     height: 100%;
-    margin-top: 0.8em;
-    margin-bottom: 0.8em;
+    margin-top: 4em;
     margin-left: auto;
     margin-right: auto;
-}
-
-.ft-no-overlay {
-    padding-top: 3.0em;
 }
 
 .footer {
@@ -57,8 +55,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    margin-bottom: -4em;
 }
 
 .header img {
@@ -87,18 +84,8 @@ body {
     margin: 1em 0em 1em 0em;
 }
 
-.button {
-    text-decoration: none;
-    padding: 2px 10px 2px 10px;
-    color: white;
-    text-align: center;
-    background: #bdc3c7;
-    cursor: pointer;
-    -webkit-box-shadow: inset 0 -2px #acb2b7;
-    box-shadow: inset 0 -2px #acb2b7;
-}
-
 .coll-list {
+    margin-top: 5em;
     text-align: center;
 }
 
@@ -106,7 +93,26 @@ body {
     margin-bottom: 0.5em;
 }
 
-.d3coll .button {
+.button {
+    text-decoration: none;
+    padding: 2px 10px 2px 10px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0 -2px #acb2b7;
+    box-shadow: inset 0 -2px #acb2b7;
+}
+
+.fig-button {
+    position: absolute;
+    left: 0px;
+    margin: 0px 0px 0px 10px;
+    padding: 2px 10px 2px 10px;
+    background: #bdc3c7;
+    font-size: 80%;
+}
+
+.coll-button {
     background: #61A2EF;
 }
 
@@ -136,48 +142,6 @@ body {
     .d3coll .button {
         font-size: 260%;
     }
-}
-
-#loadoverlay {
-    height: 100%;
-    width: 100%;
-    opacity: 1;
-    top: 0;
-    left: 0;
-    background-color: white;
-    position: absolute;
-    padding: 0;
-    margin: 0px;
-    padding: 0px;
-    z-index: 998;
-}
-
-#loadspinner {
-    position: absolute;
-    z-index: 999;
-    width: 30px;
-    height: 30px;
-}
-
-.double-bounce1, .double-bounce2 {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    opacity: 0.6;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-    animation: sk-bounce 2.0s infinite ease-in-out;
-}
-
-#loadspinner>* {
-    background-color: #61A2EF;
-}
-
-.double-bounce2 {
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
 }
 
 @-webkit-keyframes sk-bounce {

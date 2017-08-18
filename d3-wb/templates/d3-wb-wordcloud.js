@@ -15,7 +15,7 @@
             .words(data)
             .padding(1)
             .rotate(0)
-            .font("Source Sans Pro")
+            .font("Abel")
             .fontSize(function(d) {
                 return d.fontsize;
             })

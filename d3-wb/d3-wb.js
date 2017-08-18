@@ -287,6 +287,9 @@ var d3wb = (function() {
             return
         }
 
+        console.log("div-size=")
+        console.log(d3.select(config.parentDivId)
+            .node().getBoundingClientRect())
         var bbox = d3.select(config.parentDivId).node().getBoundingClientRect()
         var newWid = bbox.width
         if (newWid < 1) {
@@ -305,10 +308,6 @@ var d3wb = (function() {
             object === null ||
             object === "");
     };
-
-    var getSelectionDimension = function(sel, dim) {
-        console.log(sel.node().getBoundingClientRect())
-    }
 
     var getDocumentDimension = function(dim) {
         return Math.max(

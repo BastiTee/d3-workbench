@@ -3,7 +3,7 @@
     var cv = d3wb.initConfig()
         .attr("width", 500)
         .attr("margin.right", 100)
-        // .attr("debug", true)
+        .attr("margin.bottom", 10)
         .data("data.csv")
         .initCanvas()
 
