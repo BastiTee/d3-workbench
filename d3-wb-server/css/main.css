@@ -117,11 +117,14 @@ body {
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .header {
+    	margin-top: 1em;
+    }
     .header img {
-        height: 80px;
+        height: 90px;
     }
     .header .text {
-        font-size: 350%;
+        font-size: 400%;
     }
     .d3entry-title {
         font-size: 230%;
@@ -130,7 +133,7 @@ body {
         font-size: 160%;
     }
     .button {
-        font-size: 190%;
+        font-size: 100%;
     }
     .d3entry iframe {
         margin-top: 1.4em;
@@ -139,27 +142,8 @@ body {
         width: 0px;
         background: transparent;
     }
-    .d3coll .button {
-        font-size: 260%;
+    .coll-button {
+        font-size: 300%;
     }
 }
 
-@-webkit-keyframes sk-bounce {
-    0%, 100% {
-        -webkit-transform: scale(0.0)
-    }
-    50% {
-        -webkit-transform: scale(1.0)
-    }
-}
-
-@keyframes sk-bounce {
-    0%, 100% {
-        transform: scale(0.0);
-        -webkit-transform: scale(0.0);
-    }
-    50% {
-        transform: scale(1.0);
-        -webkit-transform: scale(1.0);
-    }
-}
