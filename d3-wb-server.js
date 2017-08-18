@@ -12,8 +12,6 @@ Optional arguments:
           Defaults to ./d3-wb
 -s SBRES       Alternative path to d3-wb-server resources.
           Defaults to ./d3-wb-server
--v VERSION     Don't use latest version, but fixed version
-          from ./d3-wb-release folder, e.g., "0.2.0".
 -p PORT        Server port.
           Defaults to 50321
 -r D3WBROOT    Root path to d3-workbench.
@@ -102,20 +100,11 @@ Optional arguments:
             }
         });
 
-        var template = argv.v ?
-            fileToStr("legacy/index-collection-legacy.html") :
-            fileToStr("index-collection.html")
+        var template = fileToStr("index-collection.html")
         var indexDoc = template
             .replace(/#LINKS#/g, figs)
             .replace(/#COLLS#/g, colls)
             .replace(/#PAGE#/g, pageJson.title)
-        if (argv.v) {
-            indexDoc = indexDoc.replace(/#VERSION#/g, argv.v)
-            // external CSS was removed after 0.2.0-pre
-            if (argv.v != "0.2.0-pre" && argv.v != "0.1.0-pre") {
-                indexDoc = indexDoc.replace(/.*d3-wb\.min\.css.*/, "")
-            }
-        }
         if (level == 1) {
             indexDoc = indexDoc.replace(/\.\.\/res\//g, "./res/")
         }
@@ -273,16 +262,7 @@ Optional arguments:
             response.writeHead(200, {
                 "Content-Type": "text/html"
             });
-            var template = argv.v ?
-                fileToStr("legacy/index-canvas-legacy.html") :
-                fileToStr("index-canvas.html")
-            if (argv.v) {
-                template = template.replace(/#VERSION#/g, argv.v)
-                // external CSS was removed after 0.2.0-pre
-                if (argv.v != "0.2.0-pre" && argv.v != "0.1.0-pre") {
-                    template = template.replace(/.*d3-wb\.min\.css.*/, "")
-                }
-            }
+            var template = fileToStr("index-canvas.html")
             response.write(template);
             response.end();
         } else {
@@ -320,10 +300,6 @@ Optional arguments:
     // set static folders
     server.use("/d3_wb", express.static(argv.w))
     server.use("/res", express.static(argv.s))
-    if (argv.v) {
-        server.use("/rel", express.static(
-            argv.r + "/d3-wb-releases"))
-    }
     server.use(express.static(argv.i));
 
     // start server
