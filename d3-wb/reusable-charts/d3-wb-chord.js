@@ -11,13 +11,10 @@
         }
     `)
 
-    d3wb.plotChordDiagram = function(mat, keys, cv, attr) {
-
-        attr = attr || {}
-        attr.indicator = attr.indicator || "samples"
-        cv.svg.attr("transform",
-            "translate(" + (cv.wid / 2 + cv.mar.left) + "," +
-            (cv.hei / 2 + cv.mar.top) + ")")
+    d3wb.plotChordDiagram = function(mat, keys, cv) {
+        cv.svg.attr("transform", "translate(" +
+            (cv.wid / 2 + cv.mar.left) + "," +
+            (cv.hei / 2 + cv.mar.top) + ")");
 
         var innerRadius = cv.hei / 2 - 100;
 
@@ -93,10 +90,10 @@
             })
             .attr("d", ribbon.radius(innerRadius))
             .call(wbCooltip().selector(function(d) {
-                return keys[d.source.index].key + " w/ " 
-                    + keys[d.source.subindex].key + "\n"
-                    + d.source.value
-                    
+                return keys[d.source.index].key + " w/ " +
+                    keys[d.source.subindex].key + "\n" +
+                    d.source.value
+
 
             }))
     }

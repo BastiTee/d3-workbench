@@ -1,7 +1,7 @@
-function numericValueHistogram() {
+function wbNumericValueHistogram() {
     "use strict";
 
-    var width = 800
+    var width = 300
     var height = 300
     var barColor = "red"
     var axisColor = "white"
@@ -28,7 +28,9 @@ function numericValueHistogram() {
                 .attr("class", "axis axis-x")
             sel.append("g")
                 .attr("class", "axis axis-y")
-            var brush = d3.brushX().on("end", brushed)
+            var brush = d3.brushX()
+                .extent([[0, 0], [width, height]])
+                .on("end", brushed)
             var clickTimeout = null
             var clickDelay = 350;
             sel.append("g")

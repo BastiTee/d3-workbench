@@ -246,7 +246,6 @@
             selection.each(function(data, i) {
                 var s = d3.select(this.ownerSVGElement)
                 var root = s.node().getBBox()
-
                 var g = s.append("g")
                 var box = g.append("rect")
                 var textG = g.append("text")
@@ -271,7 +270,7 @@
                     .attr("y", txtBox.y - padding)
                     .style("fill", fill)
                     .style("opacity", opacity)
-                var xAbs = root.width - padding - margin
+                var xAbs = root.width - margin - padding
                 var yAbs = padding + margin
                 g.attr("transform", "translate(" + xAbs + "," + yAbs + ")")
             })
@@ -280,6 +279,12 @@
         chart.color = function(value) {
             if (!arguments.length) return color
             color = value;
+            return chart;
+        }
+
+        chart.fill = function(value) {
+            if (!arguments.length) return fill
+            fill = value;
             return chart;
         }
 
