@@ -15,7 +15,7 @@
         cv.svg.call(d3wb.add.yAxisLabel("Number of videos")
             .color(d3wb.color.foreground))
 
-        var chart = wbNumericValueHistogram()
+        var chart = wbNumbericHistogram()
             .height(cv.hei)
             .width(cv.wid)
             .barColor(d3wb.color.blue)

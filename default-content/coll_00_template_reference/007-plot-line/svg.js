@@ -1,16 +1,9 @@
 (function() {
 
-    var cv = d3wb.initConfig()
-        .attr("margin", {
-            top: 10,
-            right: 10,
-            bottom: 50,
-            left: 50
-        })
+    var cv = d3wb.initConfig().attr("margin", "10 10 50 50")
         .data("data.csv")
-        // .locale("de")
+        .locale("de")
         .initCanvas()
-    d3wb.util.setLocale("de")
 
     d3.csv(cv.config.data(), function(error, data) {
 

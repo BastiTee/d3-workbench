@@ -1,4 +1,4 @@
-function wbNumericValueHistogram() {
+function wbNumbericHistogram() {
     "use strict";
 
     var width = 300

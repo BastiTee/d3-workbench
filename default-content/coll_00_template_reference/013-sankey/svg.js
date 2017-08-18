@@ -5,9 +5,12 @@
         .initCanvas()
 
     d3.json(cv.config.data(), function(error, data) {
-        d3wb.plotSankeyDiagram(data, cv, {
-            /* no attributes currently */
-        });
+
+        var chart = wbSankey()
+            .width(cv.wid)
+            .height(cv.hei)
+        cv.svg.datum(data).call(chart)
+
     })
 
 })()

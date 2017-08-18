@@ -1,62 +1,106 @@
-(function() {
+function wbDonutChart() {
     "use strict";
 
-    d3wb.plotDonutChart = function(data, cv) {
+    var width = 500
+    var height = 500
+    var fillLegend = "black"
+    var colors = d3.scaleOrdinal(d3.schemeCategory10)
 
-        var pie = d3.pie()
-            .value(function(d) {
-                return d.percent
-            })
-            .sort(null)
-            .padAngle(.03);
+    var update = function() {}
 
-        var outerRadius = Math.min(cv.wid, cv.hei) / 2;
-        var innerRadius = Math.min(cv.wid, cv.hei) / 8;
+    function chart(selection) {
 
-        var color = d3wb.color.ordinal()
+        selection.each(function(data, i) {
+            var s = d3.select(this)
 
-        cv.svg.attr("transform", "translate(" +
-            (cv.wid / 2 + cv.mar.left) + "," +
-            (cv.hei / 2 + cv.mar.top) + ")");
+            var pie = d3.pie()
+                .value(function(d) {
+                    return d.percent
+                })
+                .sort(null)
+                .padAngle(.03);
 
-        var arc = d3.arc()
-            .outerRadius(outerRadius)
-            .innerRadius(innerRadius)
+            var outerRadius = Math.min(width, height) / 2;
+            var innerRadius = Math.min(width, height) / 8;
 
-        var path = cv.svg.selectAll("path")
-            .data(pie(data))
-            .enter()
-            .append("path")
-            .attr("d", arc)
-            .attr("fill", function(d, i) {
-                return color(d.data.label);
-            })
-            .call(wbCooltip().selector(function(d) {
-                return d.data.label + "\nTotal: " + d.data.count +
-                    "\nProzent: " + d3.format(",.2f")(d.data.percent)
-            }))
+            s.attr("transform", "translate(" +
+                (width / 2) + "," +
+                (height / 2) + ")");
 
-        var ordinal = d3.scaleOrdinal()
-            .domain(data.map(function(d) {
-                return d.label;
-            }))
-            .range(data.map(function(d) {
-                return color(d.label);
-            }));
+            var arc = d3.arc()
+                .outerRadius(outerRadius)
+                .innerRadius(innerRadius)
 
-        cv.svg.append("g")
-            .attr("class", "legend")
-            .attr("transform", function(d, i) {
-                return "translate(" + (outerRadius + 10) + "," +
-                    (-outerRadius + 10) + ")";
-            });
-        var legend = d3.legendColor()
-            .shape("path", d3.symbol().type(d3.symbolCircle).size(100)())
-            .scale(ordinal);
-        cv.svg.select(".legend")
-            .call(legend)
-            .style("fill", d3wb.color.foreground)
-            .style("font-size", "90%")
+            var path = s.selectAll("path")
+                .data(pie(data))
+                .enter()
+                .append("path")
+                .attr("class", "paths")
+                .attr("d", arc)
+                .attr("fill", function(d, i) {
+                    return colors(d.data.label);
+                })
 
-    };
-})()
+            var ordinal = d3.scaleOrdinal()
+                .domain(data.map(function(d) {
+                    return d.label;
+                }))
+                .range(data.map(function(d) {
+                    return colors(d.label);
+                }));
+
+            s.append("g")
+                .attr("class", "legend")
+                .attr("transform", function(d, i) {
+                    return "translate(" + (outerRadius + 10) + "," +
+                        (-outerRadius + 10) + ")";
+                });
+            var legend = d3.legendColor()
+                .shape("path", d3.symbol().type(d3.symbolCircle).size(100)())
+                .scale(ordinal);
+            s.select(".legend")
+                .call(legend)
+                .style("fill", fillLegend)
+                .style("font-size", "90%")
+
+            update = function(first) {
+                first = first || false
+
+                // add updatable part of charts here
+
+            }
+            update(true)
+        })
+    }
+
+    chart.width = function(value) {
+        if (!arguments.length) return width
+        width = value;
+        return chart;
+    }
+
+    chart.height = function(value) {
+        if (!arguments.length) return height
+        height = value;
+        return chart;
+    }
+
+    chart.fillLegend = function(value) {
+        if (!arguments.length) return fillLegend
+        fillLegend = value;
+        return chart;
+    }
+
+    chart.colors = function(value) {
+        if (!arguments.length) return colors
+        colors = value;
+        return chart;
+    }
+
+    chart.update = function() {
+        update()
+        return chart
+    }
+
+    return chart
+}

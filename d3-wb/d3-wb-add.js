@@ -20,15 +20,24 @@
         var color = "red"
         var type = d3.axisTop
         var y = 0
+        var rotation = undefined
 
         function chart(selection) {
 
             selection.each(function(data, i) {
                 injectAxisColor(color, "wb-axis-x")
                 var s = d3.select(this)
-                s.append("g")
+                var axis = s.append("g")
                     .attr("transform", "translate(0," + y + ")")
                     .attr("class", "wb-axis wb-axis-x").call(type(scale))
+                if (rotation == 90 ) {
+                    axis.selectAll("text")
+                        .attr("y", -2)
+                        .attr("x", -9)
+                        .attr("dy", ".35em")
+                        .style("text-anchor", "end")
+                        .attr("transform", "rotate(-90)")
+                }
             })
         }
 
@@ -47,6 +56,12 @@
         chart.color = function(value) {
             if (!arguments.length) return color
             color = value;
+            return chart;
+        }
+
+        chart.rotation = function(value) {
+            if (!arguments.length) return rotation
+            rotation = value;
             return chart;
         }
 

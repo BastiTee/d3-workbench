@@ -1,52 +1,105 @@
-(function() {
+function wbWordcloud() {
     "use strict";
 
-    d3wb.plotWordCloud = function(data, cv, attr) {
+    var width = 500
+    var height = 500
+    var colorRange = ["green", "green"]
 
-        data.forEach(function(d) {
-            d.fontsize = +d.textrank * 10000
-        });
-        var minMax = d3.extent(data, function(d) {
-            return d.textrank
-        })
-        var fgColors = d3wb.color.linearGradient(minMax, [cv.config.bgColor, d3wb.color.foreground])
+    function chart(selection) {
 
-        d3.layout.cloud().size([cv.wid, cv.hei])
-            .words(data)
-            .padding(1)
-            .rotate(0)
-            .font("Abel")
-            .fontSize(function(d) {
-                return d.fontsize;
+        selection.each(function(data, i) {
+            var s = d3.select(this)
+
+            data.forEach(function(d) {
+                d.fontsize = +d.textrank * 10000
+            });
+            var minMax = d3.extent(data, function(d) {
+                return d.textrank
             })
-            .on("end", function(data) {
-                cv.svg.attr("transform", "translate(" +
-                    (cv.wid / 2 + cv.mar.left) + "," +
-                    (cv.hei / 2 + cv.mar.top) + ")");
+            var fgColors = d3.scaleLinear().domain(minMax)
+                .interpolate(d3.interpolate)
+                .range(colorRange);
 
-                var cloud = cv.svg.selectAll("text")
-                    .data(data, function(d) {
-                        return d.text;
-                    })
+            d3.layout.cloud().size([width, height])
+                .words(data)
+                .padding(1)
+                .rotate(0)
+                .font("Abel")
+                .fontSize(function(d) {
+                    return d.fontsize;
+                })
+                .on("end", function(data) {
+                    s.attr("transform", "translate(" +
+                        (width / 2) + "," +
+                        (height / 2) + ")");
 
-                cloud.enter()
-                    .append("text")
-                    .style("fill", function(d) {
-                        return fgColors(d.textrank);
-                    })
-                    .attr("text-anchor", "middle")
-                    .attr('font-size', function(d) {
-                        return d.size + "px";
-                    })
-                    .attr("transform", function(d) {
-                        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-                    })
-                    .text(function(d) {
-                        return d.text;
-                    });
+                    var cloud = s.selectAll("text")
+                        .data(data, function(d) {
+                            return d.text;
+                        })
 
-                cloud.exit().remove();
+                    cloud.enter()
+                        .append("text")
+                        .style("fill", function(d) {
+                            return fgColors(d.textrank);
+                        })
+                        .attr("text-anchor", "middle")
+                        .attr('font-size', function(d) {
+                            return d.size + "px";
+                        })
+                        .attr("transform", function(d) {
+                            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                        })
+                        .text(function(d) {
+                            return d.text;
+                        });
 
-            }).start();
+                    cloud.exit().remove();
+
+                }).start();
+        })
     }
-})()
+
+    chart.width = function(value) {
+        if (!arguments.length) return width
+        width = value;
+        return chart;
+    }
+
+    chart.height = function(value) {
+        if (!arguments.length) return height
+        height = value;
+        return chart;
+    }
+
+    chart.xSelector = function(value) {
+        if (!arguments.length) return xSelector
+        xSelector = value;
+        return chart;
+    }
+
+    chart.ySelector = function(value) {
+        if (!arguments.length) return ySelector
+        ySelector = value;
+        return chart;
+    }
+
+    chart.scaleX = function(value) {
+        if (!arguments.length) return scaleX
+        scaleX = value;
+        return chart;
+    }
+
+    chart.scaleY = function(value) {
+        if (!arguments.length) return scaleY
+        scaleY = value;
+        return chart;
+    }
+
+    chart.update = function() {
+        update()
+        return chart
+    }
+
+    return chart
+}

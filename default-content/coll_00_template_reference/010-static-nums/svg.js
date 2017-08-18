@@ -7,9 +7,14 @@
         .initCanvas()
 
     d3.json(cv.config.data(), function(error, data) {
-        d3wb.plotStaticNumbers(data, cv, {
-            /* attributes */
-        });
+
+        var chart = wbStaticNumbers()
+            .width(cv.wid)
+            .height(cv.hei)
+            .fillNumber(d3wb.color.category()[1])
+            .fillLabel(d3wb.color.category()[6])
+        cv.svg.datum(data).call(chart)
+
     });
 
 }())
