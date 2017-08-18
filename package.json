@@ -1,6 +1,6 @@
 {
     "name": "d3-workbench",
-    "version": "0.3.0-pre",
+    "version": "0.4.0-pre",
     "description": "A workbench to simplify local development with d3.js.",
     "main": "d3-wb-server.js",
     "scripts": {

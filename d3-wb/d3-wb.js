@@ -287,9 +287,6 @@ var d3wb = (function() {
             return
         }
 
-        console.log("div-size=")
-        console.log(d3.select(config.parentDivId)
-            .node().getBoundingClientRect())
         var bbox = d3.select(config.parentDivId).node().getBoundingClientRect()
         var newWid = bbox.width
         if (newWid < 1) {

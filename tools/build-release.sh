@@ -26,7 +26,7 @@ echo ./d3-wb/libs/d3/d3.js
 find ./d3-wb/libs -type f -iname "*.js" | grep -v "d3.js" | sort
 echo ./d3-wb/d3-wb.js
 find ./d3-wb/*.js -maxdepth 1 | grep -v "d3-wb.js" | sort
-find ./d3-wb/templates/*.js  -maxdepth 1
+find ./d3-wb/reusable-charts/*.js  -maxdepth 1
 } | tr "\n" " "
 )
 
