@@ -1,25 +1,18 @@
 function wbChordDiagram() {
     "use strict";
 
-    var width = 500
-    var height = 500
-    var color = "black"
+    var radius = 500
+    var fill = "black"
+    var colors = d3.scaleOrdinal(d3.schemeCategory20c)
     var matrix
     var keys
-    var colors = d3.scaleOrdinal(d3.schemeCategory20c)
-
-    var update = function() {}
 
     function chart(selection) {
 
         selection.each(function() {
             var s = d3.select(this)
 
-            s.attr("transform", "translate(" +
-                (width / 2) + "," +
-                (height / 2) + ")");
-
-            var innerRadius = height / 2 - 100;
+            var innerRadius = radius / 2 - 100;
 
             var chord = d3.chord()
                 .padAngle(0.04)
@@ -59,8 +52,8 @@ function wbChordDiagram() {
                 .on("mousemove", function() {})
                 .on("mouseout", function() {})
             g.append("path")
-                .style("stroke", color)
-                .style("fill", color)
+                .style("stroke", fill)
+                .style("fill", fill)
                 .attr("d", arc);
 
             g.append("text")
@@ -77,7 +70,7 @@ function wbChordDiagram() {
                         "translate(" + (innerRadius + 26) + ")" +
                         (d.angle > Math.PI ? "rotate(180)" : "");
                 })
-                .style("fill", color)
+                .style("fill", fill)
                 .text(function(d) {
                     return keys[d.index].key
                 });
@@ -98,15 +91,9 @@ function wbChordDiagram() {
         })
     }
 
-    chart.width = function(value) {
-        if (!arguments.length) return width
-        width = value;
-        return chart;
-    }
-
-    chart.height = function(value) {
-        if (!arguments.length) return height
-        height = value;
+    chart.radius = function(value) {
+        if (!arguments.length) return radius
+        radius = value;
         return chart;
     }
 
@@ -121,16 +108,16 @@ function wbChordDiagram() {
         keys = value;
         return chart;
     }
-    
+
     chart.colors = function(value) {
         if (!arguments.length) return colors
         colors = value;
         return chart;
     }
-    
-    chart.color = function(value) {
-        if (!arguments.length) return color
-        color = value;
+
+    chart.fill = function(value) {
+        if (!arguments.length) return fill
+        fill = value;
         return chart;
     }
 

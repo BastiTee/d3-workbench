@@ -11,7 +11,7 @@ function wbNetworkDiagram() {
 
         selection.each(function(data, i) {
             var s = d3.select(this)
-            
+
             if (legend === undefined) {
                 var arr = []
                 data.nodes.forEach(function(d) {
@@ -19,7 +19,7 @@ function wbNetworkDiagram() {
                 })
                 var set = Array.from(new Set(arr.sort()))
                 legend = []
-                for (var i in set ) {
+                for (var i in set) {
                     legend.push([set[i], colors(set[i])])
                 }
             }
@@ -165,19 +165,19 @@ function wbNetworkDiagram() {
         height = value;
         return chart;
     }
-    
+
     chart.fill = function(value) {
         if (!arguments.length) return fill
         fill = value;
         return chart;
     }
-    
+
     chart.legend = function(value) {
         if (!arguments.length) return legend
         legend = value;
         return chart;
     }
-    
+
     chart.colors = function(value) {
         if (!arguments.length) return colors
         colors = value;

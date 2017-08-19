@@ -29,6 +29,10 @@
         cv.svg.call(
             d3wb.add.yAxisLabel("Number of users")
             .color(d3wb.color.foreground))
+        cv.svg.selectAll(".rects").call(wbCooltip()
+            .selector(function(d) {
+                return d["votes"] + " users"
+            }))
     })
 
 })()

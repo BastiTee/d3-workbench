@@ -10,21 +10,22 @@
         .await(function(error, matrix, keys) {
 
             var chart = wbChordDiagram()
-                .width(cv.wid)
-                .height(cv.hei)
+                .radius(cv.wid)
                 .matrix(matrix)
                 .keys(keys)
                 .colors(d3wb.color.ordinal())
-                .color(d3wb.color.foreground)
+                .fill(d3wb.color.foreground)
             cv.svg.call(chart)
+
+            cv.transformCircular()
 
             d3wb.util.injectCSS(
                 ".chord-circle:hover path.fade { display: none;}")
             cv.svg.selectAll(".chordpaths").call(
                 wbCooltip().selector(function(d) {
-                return keys[d.source.index].key + " w/ " +
-                    keys[d.source.subindex].key + "\n" +
-                    d.source.value
-            }))
+                    return keys[d.source.index].key + " w/ " +
+                        keys[d.source.subindex].key + "\n" +
+                        d.source.value
+                }))
         })
 })()

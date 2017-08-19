@@ -134,12 +134,12 @@ function wbHeatMap() {
         colors = value;
         return chart;
     }
-    
+
     chart.fill = function(value) {
         if (!arguments.length) return fill
         fill = value;
         return chart;
     }
-    
+
     return chart
 }

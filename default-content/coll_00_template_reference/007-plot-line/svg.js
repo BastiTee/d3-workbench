@@ -14,6 +14,7 @@
             d.close = +d.close;
         })
 
+        // create first lineplot 
         var chart = wbLinePlot()
             .width(cv.wid)
             .height(cv.hei)
@@ -23,8 +24,10 @@
             .yDataPoints("close")
         cv.svg.append("g").datum(data).call(chart)
 
+        // smooth data set 
         var dataSmooth = d3wb.util.smoothData(data, "date", "close", 30)
 
+        // create another plot on top
         var chart2 = wbLinePlot()
             .width(cv.wid)
             .height(cv.hei)
@@ -34,6 +37,7 @@
             .yDataPoints("close")
         cv.svg.append("g").datum(dataSmooth).call(chart2)
 
+        // add axis and controls 
         cv.svg.call(d3wb.add.xAxisBottom(chart.scaleX())
             .y(cv.hei)
             .color(d3wb.color.foreground))

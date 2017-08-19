@@ -17,6 +17,7 @@
             .colors(d3wb.color.ordinal())
             .fill(d3wb.color.foreground)
         cv.svg.datum(data).call(chart)
+
         cv.svg.selectAll(".circles").call(
             wbCooltip().selector(function(d) {
                 var type = d.group == 0 ? "type1" : d.group == 1 ?

@@ -23,10 +23,10 @@
         cv.svg.datum(data).call(chart)
         
         cv.svg.selectAll(".rects").call(wbCooltip().selector(function(d) {
-            return d.length
+            return d.length + " occurrences"
         }))
         cv.svg.selectAll(".valuerects").call(wbCooltip().selector(function(d) {
-            return d3.formatPrefix(".1", 1e6)(d.mean)
+            return d3.formatPrefix(".1", 1e6)(d.mean) + " average"
         }))
         
         cv.svg.call(d3wb.add.yAxis(chart.scaleY())

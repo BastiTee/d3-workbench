@@ -2,7 +2,7 @@ function wbLinePlot() {
     "use strict";
 
     var width = 500
-    var height = 300
+    var height = 500
     var xAxisScale = d3.scaleLinear()
     var yAxisScale = d3.scaleLinear()
     var xDataPoints = "x"
@@ -11,7 +11,7 @@ function wbLinePlot() {
     var scaleY;
     var stroke = "red"
     var axisColor = "white"
-    var curving = d3.curveBasis
+    var curve = d3.curveBasis
     var update = function() {}
 
     function chart(selection) {
@@ -38,7 +38,7 @@ function wbLinePlot() {
                         return d[yDataPoints]
                     }));
                 var line = d3.line()
-                    .curve(curving)
+                    .curve(curve)
                     .x(function(d) {
                         return scaleX(d[xDataPoints]);
                     })
@@ -109,9 +109,9 @@ function wbLinePlot() {
         return chart;
     }
 
-    chart.curving = function(value) {
-        if (!arguments.length) return curving
-        curving = value;
+    chart.curve = function(value) {
+        if (!arguments.length) return curve
+        curve = value;
         return chart;
     }
 

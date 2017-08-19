@@ -71,7 +71,7 @@ function wbWordCloud() {
         height = value;
         return chart;
     }
-    
+
     chart.colorRange = function(value) {
         if (!arguments.length) return colorRange
         colorRange = value;

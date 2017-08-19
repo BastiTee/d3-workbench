@@ -1,8 +1,8 @@
 function wbNumbericHistogram() {
     "use strict";
 
-    var width = 300
-    var height = 300
+    var width = 500
+    var height = 500
     var barColor = "red"
     var axisColor = "white"
     var numBins = 50

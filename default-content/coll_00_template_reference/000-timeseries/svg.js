@@ -18,7 +18,7 @@
 
         cv.svg.datum(data).call(chart)
         cv.svg.selectAll(".rects").call(wbCooltip().selector(function(d) {
-            return d.length
+            return d.length + " occurrences"
         }))
         cv.svg.call(d3wb.add.yAxis(chart.scaleY())
             .color(d3wb.color.foreground))

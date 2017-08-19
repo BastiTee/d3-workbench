@@ -5,8 +5,6 @@ function wbTreeMap() {
     var height = 500
     var colors = d3.scaleOrdinal(d3.schemeCategory20c)
     var fill = "black"
-    
-    var update = function() {}
 
     function chart(selection) {
 
@@ -41,7 +39,7 @@ function wbTreeMap() {
                 .data(root.leaves())
                 .enter().append("g")
                 .attr("class", "cells")
-                
+
                 .attr("transform", function(d) {
                     return "translate(" + d.x0 + "," + d.y0 + ")";
                 });
@@ -104,18 +102,18 @@ function wbTreeMap() {
         height = value;
         return chart;
     }
-    
+
     chart.colors = function(value) {
         if (!arguments.length) return colors
         colors = value;
         return chart;
     }
-    
+
     chart.fill = function(value) {
         if (!arguments.length) return fill
         fill = value;
         return chart;
     }
-    
+
     return chart
 }

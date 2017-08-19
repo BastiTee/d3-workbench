@@ -9,8 +9,6 @@ function wbBarChart() {
     var scaleY
     var fill = "blue"
 
-    var update = function() {}
-
     function chart(selection) {
 
         selection.each(function(data, i) {
@@ -37,6 +35,7 @@ function wbBarChart() {
             s.selectAll("rect")
                 .data(data)
                 .enter().append("rect")
+                .attr("class", "rects")
                 .attr("x", function(d) {
                     return scaleX(d[xSelector]);
                 })

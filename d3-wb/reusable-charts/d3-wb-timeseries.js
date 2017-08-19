@@ -39,8 +39,6 @@ function wbTimeseries() {
     var scaleY
     var scaleY2
 
-    var update = function() {}
-
     function chart(selection) {
 
         selection.each(function(data, i) {
@@ -214,16 +212,6 @@ function wbTimeseries() {
                     return i * (width / xAxisTicks.length) + (width / xAxisTicks.length / 2) - (padding1 / 2)
                 }).attr("y1", 0).attr("y2", 5).style("stroke",
                     fillAxis)
-
-            // add initialization code here
-
-            update = function(first) {
-                first = first || false
-
-                // add updatable part of charts here
-
-            }
-            update(true)
         })
     }
 
@@ -285,11 +273,6 @@ function wbTimeseries() {
         if (!arguments.length) return valueColumn
         valueColumn = value;
         return chart;
-    }
-
-    chart.update = function() {
-        update()
-        return chart
     }
 
     return chart

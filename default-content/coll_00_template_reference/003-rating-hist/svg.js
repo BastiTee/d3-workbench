@@ -26,6 +26,7 @@
                 "Click to select area\nDouble-click for reset")
             .color(d3wb.color.background)
             .fill(d3wb.color.foreground))
+        
     })
 
 

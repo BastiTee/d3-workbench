@@ -133,7 +133,7 @@ var d3wb = (function() {
                 "translate(" + config.margin.left + "," +
                 config.margin.top + ")")
 
-        return {
+        var cv = {
             canvas: svg,
             svg: g,
             width: config.innerWidth,
@@ -147,6 +147,14 @@ var d3wb = (function() {
             m: config.margin, // shorthand type 2
             config: config
         }
+
+        cv.transformCircular = function() {
+            this.svg.attr("transform", "translate(" +
+                (this.w / 2 + this.m.left) + "," +
+                (this.h / 2 + this.m.top) + ")");
+        }
+
+        return cv
     }
 
     var resolveEmbeddedDiv = function(config) {

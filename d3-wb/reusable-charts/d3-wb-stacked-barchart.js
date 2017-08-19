@@ -10,8 +10,6 @@ function wbStackedBarChart() {
     var scaleX
     var scaleY
 
-    var update = function() {}
-
     function chart(selection) {
 
         selection.each(function(data, i) {
@@ -97,16 +95,6 @@ function wbStackedBarChart() {
                     return d;
                 })
                 .attr("fill", legendFill)
-
-            // add initialization code here
-
-            update = function(first) {
-                first = first || false
-
-                // add updatable part of charts here
-
-            }
-            update(true)
         })
     }
 
@@ -156,11 +144,6 @@ function wbStackedBarChart() {
         if (!arguments.length) return legendFill
         legendFill = value;
         return chart;
-    }
-
-    chart.update = function() {
-        update()
-        return chart
     }
 
     return chart

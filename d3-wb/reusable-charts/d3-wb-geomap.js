@@ -11,7 +11,6 @@ function wbGeoMap() {
     var radius = 2
     var mapData
     var projection
-    var update = function() {}
 
     function chart(selection) {
 
@@ -107,10 +106,6 @@ function wbGeoMap() {
             pts.transition().delay(500).duration(1000)
                 .attr("r", radius)
 
-            update = function(first) {
-                first = first || false
-            }
-            update(true)
         })
     }
 
@@ -167,11 +162,6 @@ function wbGeoMap() {
         if (!arguments.length) return radius
         radius = value;
         return chart;
-    }
-
-    chart.update = function() {
-        update()
-        return chart
     }
 
     return chart

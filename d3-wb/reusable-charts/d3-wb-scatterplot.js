@@ -1,8 +1,8 @@
 function wbScatterPlot() {
     "use strict";
 
-    var width = 800
-    var height = 300
+    var width = 500
+    var height = 500
     var xAxisScale = d3.scaleLinear()
     var yAxisScale = d3.scaleLinear()
     var zAxisScale = d3.scaleLinear()

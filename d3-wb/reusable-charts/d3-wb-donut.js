@@ -1,8 +1,7 @@
 function wbDonutChart() {
     "use strict";
 
-    var width = 500
-    var height = 500
+    var radius = 500
     var fillLegend = "black"
     var colors = d3.scaleOrdinal(d3.schemeCategory10)
 
@@ -20,12 +19,8 @@ function wbDonutChart() {
                 .sort(null)
                 .padAngle(.03);
 
-            var outerRadius = Math.min(width, height) / 2;
-            var innerRadius = Math.min(width, height) / 8;
-
-            s.attr("transform", "translate(" +
-                (width / 2) + "," +
-                (height / 2) + ")");
+            var outerRadius = radius / 2;
+            var innerRadius = radius / 8;
 
             var arc = d3.arc()
                 .outerRadius(outerRadius)
@@ -63,25 +58,12 @@ function wbDonutChart() {
                 .style("fill", fillLegend)
                 .style("font-size", "90%")
 
-            update = function(first) {
-                first = first || false
-
-                // add updatable part of charts here
-
-            }
-            update(true)
         })
     }
 
-    chart.width = function(value) {
-        if (!arguments.length) return width
-        width = value;
-        return chart;
-    }
-
-    chart.height = function(value) {
-        if (!arguments.length) return height
-        height = value;
+    chart.radius = function(value) {
+        if (!arguments.length) return radius
+        radius = value;
         return chart;
     }
 
@@ -95,11 +77,6 @@ function wbDonutChart() {
         if (!arguments.length) return colors
         colors = value;
         return chart;
-    }
-
-    chart.update = function() {
-        update()
-        return chart
     }
 
     return chart

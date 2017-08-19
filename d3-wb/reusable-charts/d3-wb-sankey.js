@@ -6,8 +6,6 @@ function wbSankeyDiagram() {
     var fill = "black"
     var colors = d3.scaleOrdinal(d3.schemeCategory20c)
 
-    var update = function() {}
-
     function chart(selection) {
 
         selection.each(function(data, i) {
