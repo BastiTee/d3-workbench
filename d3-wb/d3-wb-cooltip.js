@@ -17,11 +17,11 @@ function wbCooltip() {
         selection.each(function(data, i) {
             var s = d3.select(this)
             var root = this.ownerSVGElement
+            var dim = root.getBBox()
             var active = false
             var gTooltip, rect, text
 
             var mousemove = function() {
-                var dim = root.getBBox()
                 var pos = d3.mouse(root)
                 var txtBox = rect.node().getBBox()
                 var newx = pos[0]

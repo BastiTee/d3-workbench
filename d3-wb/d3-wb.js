@@ -76,6 +76,11 @@ var d3wb = (function() {
         }
         return dc;
     }
+    
+    d3wb.logSVGSize = function(selection) {
+        var b = selection.ownerSVGElement.getBBox()
+        console.log(b.x + " x " + b.y + " | " + b.width + " x " + b.height)
+    }
 
     var initCanvas = function(config) {
 
