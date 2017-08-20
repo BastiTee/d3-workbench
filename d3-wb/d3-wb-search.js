@@ -1,62 +1,91 @@
 function wbTextbox() {
+    /* Inspired by: http://grokbase.com/t/gg/d3-js/14ctc4dbh6/
+     * how-can-i-make-text-editable-inside-svg-node
+     */
 
-    var text = "text",
-        fontsize = 12,
-        x = 10,
-        y = 30,
-        width = 100,
-        height = 20,
-        stroke = d3.rgb(240, 240, 240),
-        fill = d3.rgb(255, 255, 255),
-        cover,
-        rct,
-        txt
+    /* Public variables 
+     * TODO Write getters/setters
+     */
+    var text = "Search..."
+    var x = 10
+    var y = 10
+    var width = 120
+    var height = 40
+    var fill = "red"
+    var fillSelected = "orange"
+    var color = "white"
+    var colorSelected = "white"
+    var stroke = "darkred"
+    var strokeSelected = "darkorange"
+    var alwaysCallback = true
 
-    var focused = false;
-    var aligntext = function() {
-        txt_width = txt.node().getComputedTextLength();
-        txt.attr("x", .5 * (width - txt_width));
-        txt.attr("y", .5 * (height + fontsize) - 2);
-    };
+    /* Private variables */
 
-    var callback = function(cont) {
-        console.log("Text: " + cont);
+    var rectNode
+    var textNode
+    var cursorNode
+    var focused = false
+    var callback = function(text) {
+        console.log("textbox-callback '" + text + "'");
     }
 
+    var alignText = function() {
+        textB = textNode.node().getBoundingClientRect()
+        curB = cursorNode.node().getBoundingClientRect()
+        textNode.attr("x", .5 * (width - textB.width));
+        textNode.attr("y", .5 * (height - textB.height));
+        cursorNode.attr("x", width / 2 + textB.width / 2)
+        if (textB.height > 0) {
+            cursorNode.attr("y", .5 * (height - textB.height))
+        } else {
+            cursorNode.attr("y", .5 * (height - curB.height))
+        }
+    };
+
     var keydown = function() {
-        console.log("-- keydown (" + focused + ") | " + d3.event.keyCode);
         if (!focused) return;
         var code = d3.event.keyCode;
-        var cont = txt.text()
+        console.log("-- keydown=" + code);
+        var inputText = textNode.text()
+        var definedControls = [8, 13, 27]
+        if (code < 27 && !definedControls.includes(code)) {
+            return
+        }
         if (code == 8) { // Backspace
             d3.event.preventDefault();
-            cont = cont.substring(0, cont.length - 1);
-            aligntext()
-            txt.text(cont)
-        };
+            inputText = inputText.substring(0, inputText.length - 1);
+            textNode.text(inputText)
+            alignText()
+            if (alwaysCallback) {
+                callback(inputText)
+            }
+        }
         if (code == 13) { // Enter
-            cont = cont.trim()
-            console.log("CALLING '" + cont + "'");
-            callback(cont);
-        };
-        if (code == 27) {
-            rct.style("stroke", stroke)
-            rct.style("fill", "white")
+            callback(inputText)
+            // inputText = inputText.trim()
+        }
+        if (code == 27) { // Escape
+            rectNode.style("stroke", stroke)
+            rectNode.style("fill", fill)
+            cursorNode.attr("opacity", 0)
             focused = false
-            callback(undefined)
+            callback(undefined) // answer undefined so caller can reset
         }
     }
 
     var keypress = function() {
-        console.log("-- keypress (" + focused + ")");
-        if (!focused) return;
-        var cont = txt.text();
         var code = d3.event.keyCode;
-        if (code == 13 || code == 8 || code == 27)
+        console.log("-- keypress=" + code);
+        if (code <= 27) {
             return
-        cont = cont + String.fromCharCode(code);
-        txt.text(cont)
-        aligntext()
+        }
+        var inputText = textNode.text()
+        inputText = inputText + String.fromCharCode(code);
+        textNode.text(inputText)
+        alignText()
+        if (alwaysCallback) {
+            callback(inputText)
+        }
     }
 
     function chart(selection) {
@@ -69,9 +98,9 @@ function wbTextbox() {
                 .on("keydown", keydown)
                 .on("keypress", keypress)
                 .on("click", function() {
-                    console.log("-- clicked (" + focused + ")");
                     if (focused) {
-                        rct.attr("stroke", stroke)
+                        rectNode.attr("stroke", stroke)
+                        rectNode.attr("fill", fill)
                         focused = false;
                     }
                 });
@@ -79,34 +108,39 @@ function wbTextbox() {
             var textgroup = s.append("g")
                 .attr("transform", "translate(" + x + "," + y + ")");
 
-            rct = textgroup.append("rect")
+            rectNode = textgroup.append("rect")
                 .attr("width", width)
                 .attr("height", height)
+                .attr("rx", 5)
                 .style("fill", fill)
                 .style("stroke-width", "1px")
                 .style("stroke", stroke)
                 .style("opacity", 1);
-            txt = textgroup.append("text")
+            textNode = textgroup.append("text")
                 .text(text)
-                .style("fill", "black")
-            cover = textgroup.append("rect") // Transparent cover to hide cursor when mousing over text
+                .style("alignment-baseline", "hanging")
+                .style("fill", color)
+            cursorNode = textgroup.append("text")
+                .style("alignment-baseline", "hanging")
+                .style("fill", color)
+                .text("|")
+                .attr("opacity", 0)
+            var cover = textgroup.append("rect")
                 .attr("width", width)
                 .attr("height", height)
                 .style("opacity", 0);
-
             cover.on("click", function() {
                 focused = true;
-                rct.style("stroke", "#347bbe");
-                rct.style("fill", "yellow")
+                rectNode.style("stroke", strokeSelected)
+                rectNode.style("fill", fillSelected)
+                cursorNode.attr("opacity", 1)
                 d3.event.stopPropagation();
             })
-
-            var txt_width = txt.node().getComputedTextLength();
-            txt.attr("x", .5 * (width - txt_width));
-            txt.attr("y", .5 * (height + fontsize) - 2);
+            
+            alignText()
+            
         })
     }
-
 
     chart.callback = function(value) {
         if (!arguments.length) return callback
