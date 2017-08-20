@@ -3,30 +3,53 @@ function wbTextbox() {
      * how-can-i-make-text-editable-inside-svg-node
      */
 
-    /* Public variables 
-     * TODO Write getters/setters
-     */
+    /* Public variables */
     var text = "Search..."
     var x = 10
     var y = 10
     var width = 120
     var height = 40
+    var fontSize = "80%"
     var fill = "red"
     var fillSelected = "orange"
     var color = "white"
     var colorSelected = "white"
     var stroke = "darkred"
     var strokeSelected = "darkorange"
-    var alwaysCallback = true
+    var alwaysCallback = true // call callback on any new input text 
+    var returnEmpty = true // call callback on empty input text
+    var returnLowercase = true // return lowercase text?
+    var callback = function(text) {
+        console.log("textbox-callback '" + text + "'");
+    }
 
     /* Private variables */
 
+    var debug = false
     var rectNode
     var textNode
     var cursorNode
     var focused = false
-    var callback = function(text) {
-        console.log("textbox-callback '" + text + "'");
+
+    var logInt = function(log) {
+        if (debug)
+            console.log(log);
+    }
+
+    var callbackInternal = function(text) {
+        if (text === undefined) { // always return unfocus-indicator
+            callback(text)
+            return
+        }
+        if (returnLowercase) {
+            text = text.toLowerCase()
+        }
+
+        if (text !== "") {
+            callback(text)
+        } else if (returnEmpty) {
+            callback(text)
+        }
     }
 
     var alignText = function() {
@@ -45,7 +68,7 @@ function wbTextbox() {
     var keydown = function() {
         if (!focused) return;
         var code = d3.event.keyCode;
-        console.log("-- keydown=" + code);
+        logInt("-- keydown=" + code);
         var inputText = textNode.text()
         var definedControls = [8, 13, 27]
         if (code < 27 && !definedControls.includes(code)) {
@@ -57,11 +80,11 @@ function wbTextbox() {
             textNode.text(inputText)
             alignText()
             if (alwaysCallback) {
-                callback(inputText)
+                callbackInternal(inputText)
             }
         }
         if (code == 13) { // Enter
-            callback(inputText)
+            callbackInternal(inputText)
             // inputText = inputText.trim()
         }
         if (code == 27) { // Escape
@@ -69,13 +92,14 @@ function wbTextbox() {
             rectNode.style("fill", fill)
             cursorNode.attr("opacity", 0)
             focused = false
-            callback(undefined) // answer undefined so caller can reset
+            // answer undefined so caller can reset
+            callbackInternal(undefined)
         }
     }
 
     var keypress = function() {
         var code = d3.event.keyCode;
-        console.log("-- keypress=" + code);
+        logInt("-- keypress=" + code);
         if (code <= 27) {
             return
         }
@@ -84,7 +108,7 @@ function wbTextbox() {
         textNode.text(inputText)
         alignText()
         if (alwaysCallback) {
-            callback(inputText)
+            callbackInternal(inputText)
         }
     }
 
@@ -118,10 +142,12 @@ function wbTextbox() {
                 .style("opacity", 1);
             textNode = textgroup.append("text")
                 .text(text)
+                .style("font-size", fontSize)
                 .style("alignment-baseline", "hanging")
                 .style("fill", color)
             cursorNode = textgroup.append("text")
                 .style("alignment-baseline", "hanging")
+                .style("font-size", fontSize)
                 .style("fill", color)
                 .text("|")
                 .attr("opacity", 0)
@@ -136,9 +162,9 @@ function wbTextbox() {
                 cursorNode.attr("opacity", 1)
                 d3.event.stopPropagation();
             })
-            
+
             alignText()
-            
+
         })
     }
 
@@ -147,5 +173,90 @@ function wbTextbox() {
         callback = value;
         return chart;
     }
+
+    chart.text = function(value) {
+        if (!arguments.length) return text
+        text = value;
+        return chart;
+    }
+
+    chart.fill = function(value) {
+        if (!arguments.length) return fill
+        fill = value;
+        return chart;
+    }
+
+    chart.fillSelected = function(value) {
+        if (!arguments.length) return fillSelected
+        fillSelected = value;
+        return chart;
+    }
+
+    chart.stroke = function(value) {
+        if (!arguments.length) return stroke
+        stroke = value;
+        return chart;
+    }
+
+    chart.strokeSelected = function(value) {
+        if (!arguments.length) return strokeSelected
+        strokeSelected = value;
+        return chart;
+    }
+
+    chart.color = function(value) {
+        if (!arguments.length) return color
+        color = value;
+        return chart;
+    }
+
+    chart.colorSelected = function(value) {
+        if (!arguments.length) return colorSelected
+        colorSelected = value;
+        return chart;
+    }
+
+    chart.text = function(value) {
+        if (!arguments.length) return text
+        text = value;
+        return chart;
+    }
+
+    chart.width = function(value) {
+        if (!arguments.length) return width
+        width = value;
+        return chart;
+    }
+
+    chart.height = function(value) {
+        if (!arguments.length) return height
+        height = value;
+        return chart;
+    }
+
+    chart.x = function(value) {
+        if (!arguments.length) return x
+        x = value;
+        return chart;
+    }
+
+    chart.y = function(value) {
+        if (!arguments.length) return y
+        y = value;
+        return chart;
+    }
+
+    chart.returnEmpty = function(value) {
+        if (!arguments.length) return returnEmpty
+        returnEmpty = value;
+        return chart;
+    }
+
+    chart.returnLowercase = function(value) {
+        if (!arguments.length) return returnLowercase
+        returnLowercase = value;
+        return chart;
+    }
+
     return chart;
 }
