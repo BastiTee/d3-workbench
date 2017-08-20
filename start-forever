@@ -1,6 +1,11 @@
 #!/bin/bash
 
 cd $( dirname $( readlink -f $0 ))
+[ ! -d "node_modules" ] && npm install
+echo "-- checking for forever"
+[ -z "$( command -v forever )" ] && {
+    sudo -H npm install -g forever
+}
 forever \
 --minUptime 1000 \
 --spinSleepTime 1000 \

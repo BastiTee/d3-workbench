@@ -3,26 +3,26 @@
     d3wb.util.injectCSS(`
     * {
         background-color: ` + d3wb.color.background + `;
-        color: ` + d3wb.color.foreground + `;
     }
     
-    .footer {
+    .page-footer {
         display: none;
     }
 
-    .header .text {
+    .page-header-text {
         color: ` + d3wb.color.foreground + `;
     }
 
-    .image img {
+    .page-header img {
         display: none;
     }
     
-    .d3entry-title {
+    .visualization-title {
         background-color: ` + d3wb.color.background + `;
+        color: ` + d3wb.color.foreground + `;
     }
     
-    .button {
+    .page-button {
         background-color: ` + d3wb.color.background + `;
         color: ` + d3wb.color.foreground + `;
     }

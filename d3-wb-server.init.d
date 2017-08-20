@@ -1,21 +1,21 @@
 #!/bin/sh
 
 # chkconfig: 345 99 10
-# description: Startup/shutdown script for d3-workbench
+# description: Example startup/shutdown script for d3-wb-server
 #
 ### BEGIN INIT INFO
-# Provides:          d3-workbench
+# Provides:          d3-wb-server
 # Required-Start:    $network $local_fs $remote_fs
 # Required-Stop::    $network $local_fs $remote_fs
 # Should-Start:      $all
 # Should-Stop:       $all
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: d3-workbench server suite
+# Short-Description: d3-wb-server server suite
 ### END INIT INFO
 
 # UNIQUE NAME
-NAME="d3-workbench"
+NAME="d3-wb-server"
 # Daemon process (path to node installation)
 DAEMON="$( dirname $( readlink -f $0 ))/start"
 # Process indicator

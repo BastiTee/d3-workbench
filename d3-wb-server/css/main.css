@@ -1,99 +1,50 @@
-@import url('https://fonts.googleapis.com/css?family=Abel');
+/***************************************************************************
+ * GLOBAL PAGE STYLES
+ ***************************************************************************/
+
+@font-face {
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Abel Regular'), local('Abel-Regular'), url('Abel.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
 * {
     font-family: 'Abel', sans-serif;
 }
 
 body {
+    /* fullpage mode */
     margin: 0em;
 }
 
 *::-webkit-scrollbar {
+    /* no scrollbars */
     width: 0em;
     background: transparent;
 }
 
-.d3entry {
-    position: relative;
-    margin: 0;
-    padding: 0;
+
+/***************************************************************************
+ * LIST OF COLLECTIONS
+ ***************************************************************************/
+
+.page-collection {
+    margin-bottom: 0.5em;
 }
 
-.d3entry-title {
-    position: absolute;
-    font-size: 130%;
-    top: 100%;
-    z-index: 999;
-    width: 100%;
-    padding: 0.8em 0em 0.8em 0em;
-    background-color: rgba(255, 255, 255, 1.0);
-    box-shadow: 0em 1.2em 2em rgba(0, 0, 0, 0.3);
-}
-
-.d3figure {
-    width: 100%;
-    max-width: 50em;
-    height: 100%;
-    margin-top: 4em;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.footer {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-.footer a, .footer a:visited {
-    text-decoration: none;
-    color: #555;
-}
-
-.header {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    margin-bottom: -4em;
-}
-
-.header img {
-    height: 60px;
-}
-
-.header .text {
-    text-align: center;
-    font-size: 240%;
-    color: #61A2EF;
-    margin: 0.1em 0em 0.1em 0em;
-    padding-bottom: 0.08em;
-    padding-left: 0.15em;
-}
-
-.header .image, .header .text {
-    display: inline-block;
-    vertical-align: bottom;
-}
-
-.link-list {
-    text-align: center;
-}
-
-.link-list p {
-    margin: 1em 0em 1em 0em;
-}
-
-.coll-list {
+.page-collection-list {
     margin-top: 5em;
     text-align: center;
 }
 
-.d3coll {
-    margin-bottom: 0.5em;
-}
 
-.button {
+/***************************************************************************
+ * BUTTONS
+ ***************************************************************************/
+
+.page-button {
     text-decoration: none;
     padding: 2px 10px 2px 10px;
     color: white;
@@ -103,47 +54,135 @@ body {
     box-shadow: inset 0 -2px #acb2b7;
 }
 
-.fig-button {
+.collection-page-button {
+    background: #61A2EF;
+}
+
+.visualization-page-button {
     position: absolute;
-    left: 0px;
-    margin: 0px 0px 0px 10px;
-    padding: 2px 10px 2px 10px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0.2em;
+    padding: 0.2em 0.8em 0.2em 0.8em;
     background: #bdc3c7;
     font-size: 80%;
 }
 
-.coll-button {
-    background: #61A2EF;
+
+/***************************************************************************
+ * LIST OF VISUALIZATIONS
+ ***************************************************************************/
+
+.visualization {
+    position: relative;
+    margin: 0;
+    padding: 0;
 }
+
+.visualization-svg-div {
+    width: 100%;
+    max-width: 50em;
+    height: 100%;
+    margin-top: 4em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0em;
+}
+
+.visualization-title {
+    position: absolute;
+    font-size: 130%;
+    top: 100%;
+    z-index: 999;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1.0);
+    box-shadow: 0em 1.2em 2em rgba(0, 0, 0, 0.3);
+}
+
+.visualization-title-text {
+    position: relative;
+    text-align: center;
+    margin: 0.7em 0em 0.7em 0em;
+}
+
+
+/***************************************************************************
+ * HEADER
+ ***************************************************************************/
+
+.page-header {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: -4em;
+}
+
+.page-header img {
+    height: 3.3em;
+}
+
+.page-header-text {
+    text-align: center;
+    font-size: 240%;
+    color: #61A2EF;
+    margin: 0.1em 0em 0.1em 0em;
+    padding-bottom: 0.08em;
+    padding-left: 0.15em;
+}
+
+.page-header-image, .page-header-text {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+
+/***************************************************************************
+ * FOOTER
+ ***************************************************************************/
+
+.page-footer {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+}
+
+.page-footer a, .page-footer a:visited {
+    text-decoration: none;
+    color: #555;
+}
+
+/***************************************************************************
+ * RESPONSIVENESS – TODO: This is barely a good configuration.
+ ***************************************************************************/
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    .header {
-    	margin-top: 1em;
+    .visualization-title {
+        font-size: 250%;
     }
-    .header img {
-        height: 90px;
-    }
-    .header .text {
-        font-size: 400%;
-    }
-    .d3entry-title {
-        font-size: 230%;
-    }
-    .footer {
-        font-size: 160%;
-    }
-    .button {
-        font-size: 100%;
-    }
-    .d3entry iframe {
-        margin-top: 1.4em;
-    }
-     ::-webkit-scrollbar {
-        width: 0px;
-        background: transparent;
-    }
-    .coll-button {
+    .page-button {
         font-size: 300%;
     }
+    .visualization-page-button {
+        font-size: 150%;
+    }
+    .visualization-page-button {
+        font-size: 100%;
+    }
+    .page-collection {
+        margin-bottom: 1em;
+    }
+    .page-header {
+        margin-top: 1em;
+    }
+    .page-header img {
+        height: 6em;
+    }
+    .page-header-text {
+        font-size: 400%;
+    }
+    .page-footer {
+        font-size: 250%;
+    }
 }
-

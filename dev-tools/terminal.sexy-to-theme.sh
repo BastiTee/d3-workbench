@@ -21,5 +21,5 @@ do
     echo "    },"
 done
 echo "}"
-} > ./themes/themes.json
-cat ./themes/themes.json
+} > ./themes/themes.js
+cat ./themes/themes.js
