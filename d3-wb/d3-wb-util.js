@@ -108,12 +108,19 @@
         head.appendChild(s);
     }
 
+
+    var logSVGSize = function(selection) {
+        var b = selection.ownerSVGElement.getBBox()
+        console.log(b.x + " x " + b.y + " | " + b.width + " x " + b.height)
+    }
+
     d3wb.util = {
         setLocale: setLocale,
         smoothData: smoothData,
         countCsvColumn: countCsvColumn,
         guid: guid,
-        injectCSS: injectCSS
+        injectCSS: injectCSS,
+        logSVGSize: logSVGSize
     }
 
 })()

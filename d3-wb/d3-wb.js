@@ -4,10 +4,9 @@ var d3wb = (function() {
     /* Global workbench object */
     var d3wb = {}
 
-    /* A global toggle to enable/disable logging and debug information */
-    d3wb.DEFAULT_DEBUG_STATE = false
-
-    d3wb.initConfig = function() {
+    d3wb.config = function() {
+        
+        var datasrc
 
         var dc = {
             /* Desired width of SVG element */
@@ -27,12 +26,10 @@ var d3wb = (function() {
              * the one with the given id
              */
             svgId: null,
-            /* Print out debug messages */
-            debug: d3wb.DEFAULT_DEBUG_STATE,
+            /* Print out debug messages and debug canvas */
+            debug: false,
             /* Background color */
-            bgColor: d3wb.color.background,
-            /* Default data path */
-            datasrc: undefined
+            bgColor: d3wb.color.background
         }
         /* Generic setter method for attributes */
         dc.attr = function(key, value) {
@@ -60,38 +57,19 @@ var d3wb = (function() {
             }
         }
         /* Setter method for the data source */
-        dc.data = function(datasrc) {
-            if (!arguments.length) return this.datasrc;
-            this.datasrc = datasrc
+        dc.data = function(value) {
+            if (!arguments.length) return datasrc
+            datasrc = value;
             return this
         }
         /* Initializer when configuration object is ready */
-        dc.initCanvas = function() {
-            return initCanvas(this)
-        }
-        /* Initializer when configuration object is ready */
-        dc.locale = function(locale) {
-            d3wb.util.setLocale(locale)
-            return this
+        dc.toCanvas = function() {
+            return toCanvas(this)
         }
         return dc;
     }
-    
-    d3wb.logSVGSize = function(selection) {
-        var b = selection.ownerSVGElement.getBBox()
-        console.log(b.x + " x " + b.y + " | " + b.width + " x " + b.height)
-    }
 
-    var initCanvas = function(config) {
-
-        // setup configuration
-        var dc = d3wb.initConfig()
-        config = config || dc
-        config.width = config.width || dc.width
-        config.height = config.height || dc.height
-        config.margin = config.margin || dc.margin
-        config.debug = config.debug || dc.debug
-        config.bgColor = config.bgColor || dc.bgColor
+    var toCanvas = function(config) {
 
         resolveEmbeddedDiv(config)
 
@@ -138,27 +116,33 @@ var d3wb = (function() {
                 "translate(" + config.margin.left + "," +
                 config.margin.top + ")")
 
-        var cv = {
-            canvas: svg,
-            svg: g,
-            width: config.innerWidth,
-            wid: config.innerWidth, // shorthand type 1
-            w: config.innerWidth, // shorthand type 2
-            height: config.innerHeight,
-            hei: config.innerHeight, // shorthand type 1
-            h: config.innerHeight, // shorthand type 2
-            margin: config.margin,
-            mar: config.margin, // shorthand type 1
-            m: config.margin, // shorthand type 2
-            config: config
-        }
-
+        var cv = g // default object is the drawable canvas
+        cv.svg = svg
+        // canvas width without margins (here goes the viz)
+        cv.width = config.innerWidth
+        cv.wid = config.innerWidth
+        cv.w = config.innerWidth
+        // canvas height without margins (here goes the viz)
+        cv.height = config.innerHeight
+        cv.hei = config.innerHeight
+        cv.h = config.innerHeight
+        // canvas margins (space around the viz)
+        cv.margin = config.margin
+        cv.mar = config.margin
+        cv.m = config.margin
+        // configuration object
+        cv.config = config
+        cv.con = config
+        cv.c = config
+        // data 
+        cv.data = config.data()
+        cv.d = config.data()
+        // helper method for circular visualizaions
         cv.transformCircular = function() {
-            this.svg.attr("transform", "translate(" +
+            this.attr("transform", "translate(" +
                 (this.w / 2 + this.m.left) + "," +
                 (this.h / 2 + this.m.top) + ")");
         }
-
         return cv
     }
 
