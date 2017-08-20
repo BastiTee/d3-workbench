@@ -3,6 +3,11 @@ var d3wb = (function() {
 
     /* Global workbench object */
     var d3wb = {}
+    
+    /* Symbol constant */
+    d3wb.symbol = {
+        mean: "Ø"
+    }
 
     d3wb.config = function() {
 
@@ -37,7 +42,9 @@ var d3wb = (function() {
                 return
             }
             key = String(key).trim()
-            value = String(value).trim()
+            if (typeof value === "string") {
+                value = String(value).trim()
+            }
             if (key.match(/^margin\..+$/)) {
                 // margin access with sublevel, e.g., "margin.top"
                 var split = key.split(".")
