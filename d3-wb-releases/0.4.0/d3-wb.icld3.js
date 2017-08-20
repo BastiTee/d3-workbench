@@ -26496,10 +26496,15 @@ var d3wb = (function() {
         }
         /* Generic setter method for attributes */
         dc.attr = function(key, value) {
+            if (key === undefined || value === undefined) {
+                return
+            }
+            key = String(key).trim()
+            value = String(value).trim()
             if (key.match(/^margin\..+$/)) {
                 // margin access with sublevel, e.g., "margin.top"
                 var split = key.split(".")
-                this[split[0]][split[1]] = value
+                this[split[0]][split[1]] = +value
                 return this
             } else if (key == "margin" &&
                 String(value).match(
@@ -26507,10 +26512,10 @@ var d3wb = (function() {
                 // margin accessw with TRBL mode 
                 var split = value.split(/[ ]+/)
                 this["margin"] = {
-                    top: split[0],
-                    right: split[1],
-                    bottom: split[2],
-                    left: split[3]
+                    top: +split[0],
+                    right: +split[1],
+                    bottom: +split[2],
+                    left: +split[3]
                 }
                 return this
             } else {
