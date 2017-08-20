@@ -1,6 +1,4 @@
 FROM ubuntu:16.04
-LABEL version="1.0"
-LABEL description="d3-workbench node.js environment."
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
@@ -13,10 +11,8 @@ RUN mkdir /workdir
 COPY default-content/ /workdir/default-content
 COPY d3-wb/ /workdir/d3-wb
 COPY d3-wb-server/ /workdir/d3-wb-server
-
 COPY package.json /workdir
 COPY d3-wb-server.js /workdir
-COPY default-content-auth.json /workdir
 
 WORKDIR /workdir
 RUN npm install

@@ -17,7 +17,7 @@
 # UNIQUE NAME
 NAME="d3-workbench"
 # Daemon process (path to node installation)
-DAEMON="<PATH-TO-GITREPO-ROOT>/start"
+DAEMON="$( dirname $( readlink -f $0 ))/start"
 # Process indicator
 PID_PATTERN="node d3-wb-server.js"
 

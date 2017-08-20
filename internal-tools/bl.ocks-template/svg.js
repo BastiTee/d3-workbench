@@ -9,7 +9,7 @@
     d3.queue() // load-pattern for multiple datasets
         .defer(d3.csv, cv.data[0])
         .await(function(error, data) {
-                
+
             // do something with the data.. 
             cv.selectAll("text")
                 .data(data).enter().append("text")
