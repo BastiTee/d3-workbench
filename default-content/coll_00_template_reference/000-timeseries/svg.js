@@ -1,10 +1,10 @@
 (function() {
 
-    var cv = d3wb.initConfig().attr("margin", "10 10 50 60")
+    var cv = d3wb.config().attr("margin", "10 10 50 60")
         .data("data.txt")
-        .initCanvas()
+        .toCanvas()
 
-    d3.csv(cv.config.data(), function(error, data) {
+    d3.csv(cv.data, function(error, data) {
         data.forEach(function(d) {
             d.date = new Date(+d.date);
         });
@@ -16,15 +16,15 @@
             .fillAxis(d3wb.color.foreground)
             .target("minute-of-day")
 
-        cv.svg.datum(data).call(chart)
-        cv.svg.selectAll(".rects").call(wbCooltip().selector(function(d) {
+        cv.datum(data).call(chart)
+        cv.selectAll(".rects").call(wbCooltip().selector(function(d) {
             return d.length + " occurrences"
         }))
-        cv.svg.call(d3wb.add.yAxis(chart.scaleY())
+        cv.call(d3wb.add.yAxis(chart.scaleY())
             .color(d3wb.color.foreground))
-        cv.svg.call(d3wb.add.xAxisLabel("Minute")
+        cv.call(d3wb.add.xAxisLabel("Minute")
             .color(d3wb.color.foreground).orientation("bottom"))
-        cv.svg.call(d3wb.add.yAxisLabel("Count")
+        cv.call(d3wb.add.yAxisLabel("Count")
             .color(d3wb.color.foreground))
 
     })

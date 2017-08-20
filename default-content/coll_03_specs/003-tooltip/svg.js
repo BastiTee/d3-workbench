@@ -1,12 +1,12 @@
 (function() {
 
-    var cv = d3wb.initConfig()
+    var cv = d3wb.config()
         .data("data.csv")
-        .initCanvas()
+        .toCanvas()
 
-    d3.csv(cv.config.data(), function(error, data) {
+    d3.csv(cv.data, function(error, data) {
         var dim = cv.wid / 3
-        cv.svg.selectAll("rect")
+        cv.selectAll("rect")
             .data(data).enter().append("rect")
             .attr("class", "rectangles")
             .attr("width", dim * 1.5)
@@ -21,7 +21,7 @@
                 return d["value"]
             })
 
-        var tt = cv.svg.append("g")
+        var tt = cv.append("g")
         var rectTooltip = wbCooltip()
             .color(d3wb.color.background)
             .fill(d3wb.color.foreground)
@@ -31,7 +31,7 @@
             .selector(function(d) {
                 return d["value"]
             })
-        cv.svg.selectAll(".rectangles").call(rectTooltip)
+        cv.selectAll(".rectangles").call(rectTooltip)
         
     })
 })()

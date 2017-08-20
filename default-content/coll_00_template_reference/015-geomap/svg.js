@@ -1,12 +1,12 @@
 (function() {
 
-    var cv = d3wb.initConfig()
+    var cv = d3wb.config()
         .data(["de-federal-states.json", "data.csv"])
-        .initCanvas()
+        .toCanvas()
 
     d3.queue()
-        .defer(d3.json, cv.config.data()[0])
-        .defer(d3.csv, cv.config.data()[1])
+        .defer(d3.json, cv.data[0])
+        .defer(d3.csv, cv.data[1])
         .await(function(error, mapData, infoData) {
 
             // only datasets with lat/lon set
@@ -48,7 +48,7 @@
                     }
                 })
                 .mapData(mapData)
-            cv.svg.datum(infoData).call(geoMap)
+            cv.datum(infoData).call(geoMap)
 
             // add tooltips to circles 
             var ct = wbCooltip()
@@ -63,7 +63,7 @@
                         d["plz"] + " " + d["stadt"] + "\n#" +
                         d["bhnummer"]
                 })
-            cv.svg.selectAll("circle").call(ct)
+            cv.selectAll("circle").call(ct)
 
             // annotate bonn
             d3wb.util.injectCSS(`
@@ -90,7 +90,7 @@
                 dx: -30,
                 dy: -60
             }])
-            cv.svg.append("g").call(an)
+            cv.append("g").call(an)
 
         });
 })()

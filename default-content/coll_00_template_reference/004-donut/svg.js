@@ -1,22 +1,22 @@
 (function() {
 
-    var cv = d3wb.initConfig()
+    var cv = d3wb.config()
         .attr("margin.right", 100)
         .attr("margin.bottom", 10)
         .data("data.csv")
-        .initCanvas()
+        .toCanvas()
 
-    d3.csv(cv.config.data(), function(error, data) {
+    d3.csv(cv.data, function(error, data) {
         data = d3wb.util.countCsvColumn(data, "category")
 
         var chart = wbDonutChart()
             .radius(Math.min(cv.wid, cv.hei))
             .colors(d3wb.color.ordinal())
             .fillLegend(d3wb.color.foreground)
-        cv.svg.datum(data).call(chart)
+        cv.datum(data).call(chart)
 
         cv.transformCircular()
-        cv.svg.selectAll(".paths").call(
+        cv.selectAll(".paths").call(
             wbCooltip().selector(
                 function(d) {
                     return d.data.label + "\nTotal: " + d.data.count +

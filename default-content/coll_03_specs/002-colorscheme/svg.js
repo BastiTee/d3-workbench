@@ -1,17 +1,17 @@
-var cv = d3wb.initConfig()
+var cv = d3wb.config()
     .attr("height", 280)
-    .initCanvas()
+    .toCanvas()
 
 var plotGradient = function(data, idx, descr) {
     idx = idx * height
-    var rectWid = cv.config.width / data.length
+    var rectWid = cv.w / data.length
     
     var tt = wbCooltip()
         .selector(function() {
             return descr
         })
     
-    cv.svg.append("g")
+    cv.append("g")
         .attr("id", "gradient" + idx)
         .attr("transform", "translate(0, " + idx + ")").selectAll("rect")
         .data(data).enter()

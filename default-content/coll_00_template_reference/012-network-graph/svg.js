@@ -1,10 +1,10 @@
 (function() {
 
-    var cv = d3wb.initConfig()
+    var cv = d3wb.config()
         .data("data.json")
-        .initCanvas()
+        .toCanvas()
 
-    d3.json(cv.config.data(), function(error, data) {
+    d3.json(cv.data, function(error, data) {
 
         var chart = wbNetworkDiagram()
             .width(cv.wid)
@@ -16,9 +16,9 @@
             ])
             .colors(d3wb.color.ordinal())
             .fill(d3wb.color.foreground)
-        cv.svg.datum(data).call(chart)
+        cv.datum(data).call(chart)
 
-        cv.svg.selectAll(".circles").call(
+        cv.selectAll(".circles").call(
             wbCooltip().selector(function(d) {
                 var type = d.group == 0 ? "type1" : d.group == 1 ?
                     "type2" : "type3"

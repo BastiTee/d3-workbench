@@ -1,10 +1,10 @@
 (function() {
 
-    var cv = d3wb.initConfig().attr("margin", "10 10 40 60")
+    var cv = d3wb.config().attr("margin", "10 10 40 60")
         .data("data.csv")
-        .initCanvas()
+        .toCanvas()
 
-    d3.csv(cv.config.data(), function(error, data) {
+    d3.csv(cv.data, function(error, data) {
         var col = d3wb.color.category()
 
         var chart = wbBarChart()
@@ -13,23 +13,23 @@
             .xSelector("space")
             .ySelector("votes")
             .fill(d3wb.color.blue)
-        cv.svg.datum(data).call(chart)
+        cv.datum(data).call(chart)
 
-        cv.svg.call(
+        cv.call(
             d3wb.add.yAxis(chart.scaleY())
             .color(d3wb.color.foreground))
-        cv.svg.call(
+        cv.call(
             d3wb.add.xAxis(chart.scaleX())
             .y(cv.hei)
             .color(d3wb.color.foreground))
-        cv.svg.call(
+        cv.call(
             d3wb.add.xAxisLabel("Storage size")
             .color(d3wb.color.foreground)
             .orientation("bottom"))
-        cv.svg.call(
+        cv.call(
             d3wb.add.yAxisLabel("Number of users")
             .color(d3wb.color.foreground))
-        cv.svg.selectAll(".rects").call(wbCooltip()
+        cv.selectAll(".rects").call(wbCooltip()
             .selector(function(d) {
                 return d["votes"] + " users"
             }))

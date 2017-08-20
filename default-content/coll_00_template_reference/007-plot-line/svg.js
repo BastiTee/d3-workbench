@@ -1,11 +1,11 @@
 (function() {
 
-    var cv = d3wb.initConfig().attr("margin", "10 10 50 50")
+    var cv = d3wb.config().attr("margin", "10 10 50 50")
         .data("data.csv")
-        .locale("de")
-        .initCanvas()
+        .toCanvas()
+    d3wb.util.setLocale("de")
 
-    d3.csv(cv.config.data(), function(error, data) {
+    d3.csv(cv.data, function(error, data) {
 
         // prepare data
         var parseTime = d3.timeParse("%Y-%m-%d");
@@ -22,7 +22,7 @@
             .xAxisScale(d3.scaleTime())
             .xDataPoints("date")
             .yDataPoints("close")
-        cv.svg.append("g").datum(data).call(chart)
+        cv.append("g").datum(data).call(chart)
 
         // smooth data set 
         var dataSmooth = d3wb.util.smoothData(data, "date", "close", 30)
@@ -35,18 +35,18 @@
             .xAxisScale(d3.scaleTime())
             .xDataPoints("date")
             .yDataPoints("close")
-        cv.svg.append("g").datum(dataSmooth).call(chart2)
+        cv.append("g").datum(dataSmooth).call(chart2)
 
         // add axis and controls 
-        cv.svg.call(d3wb.add.xAxisBottom(chart.scaleX())
+        cv.call(d3wb.add.xAxisBottom(chart.scaleX())
             .y(cv.hei)
             .color(d3wb.color.foreground))
-        cv.svg.call(d3wb.add.yAxis(chart.scaleY())
+        cv.call(d3wb.add.yAxis(chart.scaleY())
             .color(d3wb.color.foreground))
-        cv.svg.call(d3wb.add.xAxisLabel("Datum")
+        cv.call(d3wb.add.xAxisLabel("Datum")
             .color(d3wb.color.foreground)
             .orientation("bottom"))
-        cv.svg.call(d3wb.add.yAxisLabel("Wert")
+        cv.call(d3wb.add.yAxisLabel("Wert")
             .color(d3wb.color.foreground))
 
     });

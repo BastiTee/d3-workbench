@@ -5,8 +5,6 @@ var d3wb = (function() {
     var d3wb = {}
 
     d3wb.config = function() {
-        
-        var datasrc
 
         var dc = {
             /* Desired width of SVG element */
@@ -29,7 +27,9 @@ var d3wb = (function() {
             /* Print out debug messages and debug canvas */
             debug: false,
             /* Background color */
-            bgColor: d3wb.color.background
+            bgColor: d3wb.color.background,
+            /* Interal datasource */
+            datasrc: undefined
         }
         /* Generic setter method for attributes */
         dc.attr = function(key, value) {
@@ -58,8 +58,8 @@ var d3wb = (function() {
         }
         /* Setter method for the data source */
         dc.data = function(value) {
-            if (!arguments.length) return datasrc
-            datasrc = value;
+            if (!arguments.length) return this.datasrc
+            this.datasrc = value;
             return this
         }
         /* Initializer when configuration object is ready */
@@ -130,10 +130,6 @@ var d3wb = (function() {
         cv.margin = config.margin
         cv.mar = config.margin
         cv.m = config.margin
-        // configuration object
-        cv.config = config
-        cv.con = config
-        cv.c = config
         // data 
         cv.data = config.data()
         cv.d = config.data()

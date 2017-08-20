@@ -1,10 +1,10 @@
 (function() {
 
-    var cv = d3wb.initConfig().attr("margin", "25 5 80 80")
+    var cv = d3wb.config().attr("margin", "25 5 80 80")
         .data("data.csv")
-        .initCanvas()
+        .toCanvas()
 
-    d3.csv(cv.config.data(), function(error, data) {
+    d3.csv(cv.data, function(error, data) {
 
         var start = d3wb.color.cyan.fade(50)
         var end = d3wb.color.red.fade(20)
@@ -15,9 +15,9 @@
             .height(cv.hei)
             .colors(colors)
             .fill(d3wb.color.foreground)
-        cv.svg.datum(data).call(chart)
+        cv.datum(data).call(chart)
 
-        cv.svg.selectAll(".hour").call(
+        cv.selectAll(".hour").call(
             wbCooltip().selector(function(d) {
                 return d.value
             }))

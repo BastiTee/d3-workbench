@@ -1,7 +1,7 @@
 (function() {
 
     // d3wb.setGermanLocale()
-    var cv = d3wb.initConfig()
+    var cv = d3wb.config()
         .attr("margin", {
             top: 10,
             right: 50,
@@ -9,9 +9,9 @@
             left: 80
         })
         .data("data.csv")
-        .initCanvas()
+        .toCanvas()
 
-    d3.csv(cv.config.data(), function(error, data) {
+    d3.csv(cv.data, function(error, data) {
         if (error) throw error;
         data.forEach(function(d) {
             d["x"] = +d["Market value $m"]
@@ -32,16 +32,16 @@
             .colorHigh(d3wb.color.red)
             .axisColor(d3wb.color.foreground)
 
-        cv.svg.datum(data).call(plot)
+        cv.datum(data).call(plot)
 
-        cv.svg.selectAll("rect")
+        cv.selectAll("rect")
             .call(wbCooltip().selector(function(d) {
                 return d["Company"] + " (" + d["Country"] +
                     ")\n" + d["Market value $m"] + " M$\n"
             }))
 
-        cv.svg.call(d3wb.add.xAxisLabel("Market value $m").color(d3wb.color.foreground).orientation("bottom"))
-        cv.svg.call(d3wb.add.yAxisLabel("Employees").color(d3wb.color.foreground))
+        cv.call(d3wb.add.xAxisLabel("Market value $m").color(d3wb.color.foreground).orientation("bottom"))
+        cv.call(d3wb.add.yAxisLabel("Employees").color(d3wb.color.foreground))
 
     });
 

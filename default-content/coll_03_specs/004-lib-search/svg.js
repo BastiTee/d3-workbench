@@ -1,8 +1,8 @@
 (function() {
 
-    var cv = d3wb.initConfig().data("data.csv").initCanvas()
+    var cv = d3wb.config().data("data.csv").toCanvas()
     var colors = d3wb.color.category()
-    d3.csv(cv.config.data(), function(error, data) {
+    d3.csv(cv.data, function(error, data) {
 
         // create your actual data visualization...
         createDataVisualization(data)
@@ -30,7 +30,7 @@
 
         // create the search bar 
         var t = wbTextbox().callback(callback)
-        cv.svg.call(t)
+        cv.call(t)
 
         // create more controls for this demonstration
         createOtherControls()
@@ -39,7 +39,7 @@
     var createDataVisualization = function(data) {
         var rectSize = 50
         var topSpace = 60
-        var boxes = cv.svg.selectAll(".boxes")
+        var boxes = cv.selectAll(".boxes")
             .data(data).enter()
             .append("g")
             .attr("class", "boxes")
@@ -51,7 +51,7 @@
                 return "translate(" + x + "," + y + ")"
             })
 
-        cv.svg.selectAll(".boxes")
+        cv.selectAll(".boxes")
             .append("rect")
             .attr("class", "rects")
             .attr("fill", function(d, i) {
@@ -59,7 +59,7 @@
             })
             .attr("width", rectSize).attr("height", rectSize)
 
-        cv.svg.selectAll(".boxes")
+        cv.selectAll(".boxes")
             .append("text")
             .attr("class", "texts")
             .text(function(d) {
@@ -74,12 +74,12 @@
         var box = d3wb.add.infoBox(
             `Hover rectangles to see solutions.
 Use search box to search animals by food.`).fill(d3wb.color.black)
-        cv.svg.call(box)
+        cv.call(box)
 
         // add solutions as tooltips
         var tooltip = wbCooltip().selector(function(d) {
             return d["food"]
         })
-        cv.svg.selectAll(".boxes").call(tooltip)
+        cv.selectAll(".boxes").call(tooltip)
     }
 })()
