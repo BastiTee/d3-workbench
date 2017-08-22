@@ -38,6 +38,30 @@
             white: "#FFFFFF",
             yellow: "#FFFFAF"
         },
+        monokai: {
+            background: "#272822",
+            black: "#272822",
+            blue: "#66D9EF",
+            cyan: "#A1EFE4",
+            foreground: "#F8F8F2",
+            green: "#A6E22E",
+            magenta: "#AE81FF",
+            red: "#F92672",
+            white: "#F8F8F2",
+            yellow: "#F4BF75"
+        },
+        ocean: {
+            background: "#2B303B",
+            black: "#2B303B",
+            blue: "#8FA1B3",
+            cyan: "#96B5B4",
+            foreground: "#C0C5CE",
+            green: "#A3BE8C",
+            magenta: "#B48EAD",
+            red: "#BF616A",
+            white: "#C0C5CE",
+            yellow: "#EBCB8B"
+        },
         sweetlove: {
             background: "#1F1F1F",
             black: "#4A3637",
@@ -49,6 +73,30 @@
             red: "#D17B49",
             white: "#C0B18B",
             yellow: "#AF865A"
+        },
+        tomorrowlight: {
+            background: "#FFFFFF",
+            black: "#1D1F21",
+            blue: "#81A2BE",
+            cyan: "#8ABEB7",
+            foreground: "#373B41",
+            green: "#B5BD68",
+            magenta: "#B294BB",
+            red: "#CC6666",
+            white: "#C5C8C6",
+            yellow: "#F0C674"
+        },
+        yousay: {
+            background: "#F5E7DE",
+            black: "#666661",
+            blue: "#4C7399",
+            cyan: "#D97742",
+            foreground: "#34302D",
+            green: "#4C3226",
+            magenta: "#BF9986",
+            red: "#992E2E",
+            white: "#34302D",
+            yellow: "#A67C53"
         },
     }
 
@@ -133,6 +181,14 @@
     var ordinal = function() {
         return d3.scaleOrdinal(d3wb.color.category());
     }
+    
+    var smallOrdinal = function() {
+        var smallCategory = []
+        for (var i = 2; i < 25; i += 5) {
+            smallCategory.push(d3wb.color.category()[i]);
+        }
+        return d3.scaleOrdinal(smallCategory);
+    }
 
     var linearGradient = function(minMax, fromTo) {
         fromTo = fromTo || [d3wb.color.white, d3wb.color.black]
@@ -167,7 +223,8 @@
             category: category,
             quantile: quantile,
             linearGradient: linearGradient,
-            ordinal: ordinal
+            ordinal: ordinal,
+            smallOrdinal: smallOrdinal
         }
         // add directy accessible colors 
         for (var key in newTheme) {
