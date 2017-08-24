@@ -36,6 +36,7 @@ function wbButton() {
             text.attr("pointer-events", "none")
                 .attr("text-anchor", "left")
                 .attr("alignment-baseline", "hanging")
+                .style("user-select", "none")
                 .style("cursor", "pointer")
                 .style("font-size", fontSize)
                 .style("fill", color)

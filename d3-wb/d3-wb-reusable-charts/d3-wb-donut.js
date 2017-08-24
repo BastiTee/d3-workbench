@@ -33,15 +33,15 @@ function wbDonutChart() {
                 .attr("class", "paths")
                 .attr("d", arc)
                 .attr("fill", function(d, i) {
-                    return colors(d.data.label);
+                    return colors(i);
                 })
 
             var ordinal = d3.scaleOrdinal()
                 .domain(data.map(function(d) {
                     return d.label;
                 }))
-                .range(data.map(function(d) {
-                    return colors(d.label);
+                .range(data.map(function(d, i) {
+                    return colors(i);
                 }));
 
             s.append("g")

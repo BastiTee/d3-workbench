@@ -67,13 +67,18 @@
         return smoothData;
     }
 
-    var countCsvColumn = function(data, column, sort) {
+    var countCsvColumn = function(data, column, sort, ignore) {
         sort = sort === undefined ? true : sort
         var nestedData = d3.nest()
             .key(function(d) {
                 return d[column];
             })
             .entries(data);
+        if (ignore !== undefined && ignore.length > 0) {
+            nestedData = nestedData.filter(function(d) {
+                return !ignore.includes(d.key)
+            })
+        }
         var countData = []
         for (var i = 0; i < nestedData.length; i++) {
             var sub_obj = {

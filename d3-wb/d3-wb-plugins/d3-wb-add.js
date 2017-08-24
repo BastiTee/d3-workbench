@@ -119,6 +119,8 @@
 
         var color = "red"
         var fontSize = "140%"
+        
+        var update = function () {}
 
         function chart(selection) {
 
@@ -132,7 +134,11 @@
                     .attr("alignment-baseline", "hanging")
                     .style("fill", color)
                     .style("font-size", fontSize)
-                    .text(text);
+                    
+                update = function() {
+                    s.selectAll(".wb-title").text(text)
+                }
+                update()
             })
         }
 
@@ -147,6 +153,17 @@
             fontSize = value;
             return chart;
         }
+        
+        chart.text = function(value) {
+            if (!arguments.length) return text
+            text = value
+            return chart;
+        }
+        
+        chart.update = function() {
+            update()
+        }
+        
         return chart
     }
 
