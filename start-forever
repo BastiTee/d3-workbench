@@ -1,5 +1,9 @@
 #!/bin/bash
 
+for arg in $@; do # make folders or file paths absolute before cd'ing 
+    [ -d "$arg" ] || [ -f "$arg" ] && arg=$(readlink -f "$arg")
+    arg_new="$arg_new $arg"
+done
 cd $( dirname $( readlink -f $0 ))
 [ ! -d "node_modules" ] && npm install
 echo "-- checking for forever"
@@ -11,4 +15,4 @@ forever \
 --spinSleepTime 1000 \
 --watch \
 --watchIgnore '*.log' \
-d3-wb-server.js $@
+d3-wb-server.js $arg_new
