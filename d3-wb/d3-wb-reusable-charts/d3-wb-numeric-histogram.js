@@ -6,7 +6,8 @@ function wbNumericHistogram() {
     var barColor = "red"
     var axisColor = "white"
     var numBins = 50
-    
+    var updateCallback = function() {}
+
     function chart(selection) {
 
         selection.each(function(data, i) {
@@ -21,22 +22,25 @@ function wbNumericHistogram() {
             var xAxis = d3.axisBottom(x)
             var yAxis = d3.axisLeft(y)
 
-            var rectg = sel.append("g")
 
+            var brush = d3.brushX()
+                .extent([
+                    [0, 0],
+                    [width, height]
+                ])
+                .on("end", brushed)
+            var clickTimeout = null
+            var clickDelay = 350;
+            var brushgroup = sel.append("g")
+                .attr("class", "brush")
+                .call(brush);
+            var rectg = sel.append("g")
             sel.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .attr("class", "axis axis-x")
             sel.append("g")
                 .attr("class", "axis axis-y")
-            var brush = d3.brushX()
-                .extent([[0, 0], [width, height]])
-                .on("end", brushed)
-            var clickTimeout = null
-            var clickDelay = 350;
-            sel.append("g")
-                .attr("class", "brush")
-                .call(brush);
-
+                
             draw(xMinMax)
 
             function draw(xMinMax) {
@@ -88,6 +92,9 @@ function wbNumericHistogram() {
                     .attr("stroke", axisColor)
                 sel.selectAll(".axis text")
                     .attr("fill", axisColor)
+
+                updateCallback()
+
             }
 
             function brushed() {
@@ -146,10 +153,16 @@ function wbNumericHistogram() {
         axisColor = value;
         return chart;
     }
-    
+
     chart.numBins = function(value) {
         if (!arguments.length) return numBins
         numBins = value;
+        return chart;
+    }
+    
+    chart.updateCallback = function(value) {
+        if (!arguments.length) return updateCallback
+        updateCallback = value;
         return chart;
     }
 
