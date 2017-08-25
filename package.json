@@ -1,6 +1,6 @@
 {
     "name": "d3-workbench",
-    "version": "0.5.1-pre",
+    "version": "0.5.0-pre",
     "description": "A d3.js-powered workbench for rapid visualization prototyping",
     "main": "d3-wb-server.js",
     "scripts": {
