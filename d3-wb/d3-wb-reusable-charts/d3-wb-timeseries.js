@@ -33,6 +33,7 @@ function wbTimeseries() {
     var fillValues = "orange"
     var fillAxis = "black"
     var valueColumn = undefined
+    var valueColumnAggregation = d3.mean
     var xSelector = "x"
     var ySelector = "y"
     var scaleX
@@ -143,7 +144,7 @@ function wbTimeseries() {
                     d.forEach(function(s) {
                         values = values.concat(s.value);
                     });
-                    d.mean = d3.mean(values)
+                    d.mean = valueColumnAggregation(values)
                 });
                 var x = d3.scaleOrdinal().domain(xAxisTicks).range(
                     d3.range(0, width, width / xAxisTicks.length));
@@ -272,6 +273,12 @@ function wbTimeseries() {
     chart.valueColumn = function(value) {
         if (!arguments.length) return valueColumn
         valueColumn = value;
+        return chart;
+    }
+    
+    chart.valueColumnAggregation = function(value) {
+        if (!arguments.length) return valueColumnAggregation
+        valueColumnAggregation = value;
         return chart;
     }
 

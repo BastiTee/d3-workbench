@@ -130,6 +130,7 @@
                 s.append("text")
                     .attr("class", "wb-title")
                     .attr("x", root.width / 2)
+                    .attr("y", 5)
                     .attr("text-anchor", "middle")
                     .attr("alignment-baseline", "hanging")
                     .style("fill", color)
@@ -170,7 +171,7 @@
     var xAxisLabel = function(text) {
 
         var color = "red"
-        var padding = 10
+        var padding = 15
         var orientation = "top"
 
         function chart(selection) {
@@ -217,7 +218,7 @@
     var yAxisLabel = function(text) {
 
         var color = "red"
-        var padding = 10
+        var padding = 5
         var orientation = "left"
 
         function chart(selection) {
@@ -241,8 +242,8 @@
                         return t
                     })
                     .style("text-anchor", "middle")
-                    .style("fill", color)
                     .attr("alignment-baseline", "hanging")
+                    .style("fill", color)
                     .text(text)
 
             })
