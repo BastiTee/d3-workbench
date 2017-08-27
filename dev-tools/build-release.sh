@@ -49,7 +49,7 @@ function release() {
     echo -e "   > input-files: $@"
 
     echo "   > packing human-readable js"
-    for file in $@; do cat $file; echo; done > ${tdir}/${tfile}.js
+    for file in $@; do cat $file; echo ";"; done > ${tdir}/${tfile}.js
 
     echo "   > uglifying human-readable js"
     uglifyjs --compress --mangle -- $@ > ${tdir}/${tfile}.min.js

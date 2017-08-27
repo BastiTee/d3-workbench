@@ -262,7 +262,13 @@ Optional arguments:
             response.writeHead(200, {
                 "Content-Type": "text/html"
             });
-            var template = fileToStr("index-canvas.html")
+            try {
+                // if there is a manual index, return it... 
+                var template = fs.readFileSync(path.join(fsPath, "index.html"));
+            } catch (error) {
+                // otherwise generate it 
+                var template = fileToStr("index-canvas.html")
+            }
             response.write(template);
             response.end();
         } else {

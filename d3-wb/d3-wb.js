@@ -3,7 +3,7 @@ var d3wb = (function() {
 
     /* Global workbench object */
     var d3wb = {}
-    
+
     /* Symbol constant */
     d3wb.symbol = {
         mean: "Ø"
@@ -161,25 +161,29 @@ var d3wb = (function() {
         }
         var scriptPath = scriptElements[
             scriptElements.length - 1].src.split('/');
+
         if (isVoid(scriptPath) || scriptPath.length < 2) {
             return undefined;
         }
         var scriptPath = scriptPath[scriptPath.length - 2];
-        var embedded = scriptElements[scriptElements.length - 1].getAttribute(
-            'data-embedded') || false
+        var scriptEl = scriptElements[scriptElements.length - 1];
+        var embedded = scriptEl.getAttribute('embedded') || false
+        if (config.debug) {
+            console.log("scri-path | " + scriptPath);
+            console.log("embedded  | " + embedded);
+        }
         if (!embedded) {
             return
         }
-        var uid = "d3wb-" + decodeURIComponent(scriptPath)
-            .trim().replace(/[^a-zA-Z0-9-]/, '_')
-        config.svgId = "svg-" + uid
-        config.parentDivId = uid
-        var dataPath = scriptElements[scriptElements.length - 1]
-            .getAttribute('data-path') || undefined
-        if (dataPath !== undefined) {
-            setPathToData(config, dataPath)
-        } else {
-            setPathToData(config, scriptPath)
+        config.svgId = scriptEl.getAttribute('svgid') || false
+        config.parentDivId = scriptEl.getAttribute('divid') || false
+        var dataPath = scriptEl.getAttribute('datapath') || undefined
+        setPathToData(config, dataPath)
+        if (config.debug) {
+            console.log("svg-id    | " + config.svgId);
+            console.log("parent-id | " + config.parentDivId);
+            console.log("data-path | " + dataPath)
+            console.log("res-path  | " + config.datasrc)
         }
     }
 

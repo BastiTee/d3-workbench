@@ -1,3 +1,4 @@
 {
-    "title": "Technical specifications"
+    "title": "Technical specifications",
+    "ignore": [ "000-index-manual" ]
 }
