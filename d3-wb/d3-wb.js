@@ -6,7 +6,9 @@ var d3wb = (function() {
 
     /* Symbol constant */
     d3wb.symbol = {
-        mean: "Ø"
+        mean: "Ø",
+        median: "x̃",
+        sum: "Σ"
     }
 
     d3wb.config = function() {
