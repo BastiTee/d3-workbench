@@ -5,6 +5,8 @@ function wbNetworkDiagram() {
     var height = 500
     var fill = "black"
     var legend;
+    var collide = 0.5
+    var thicknessRange = [1, 20]
     var colors = d3.scaleOrdinal(["red", "green", "blue"])
 
     function chart(selection) {
@@ -36,7 +38,7 @@ function wbNetworkDiagram() {
             var minMax2 = d3.extent(data.links, function(d) {
                 return d.value
             })
-            var thick = d3.scaleLinear().domain(minMax2).range([1, 20])
+            var thick = d3.scaleLinear().domain(minMax2).range(thicknessRange)
 
             var simulation = d3.forceSimulation()
                 .force("link", d3.forceLink().id(function(d) {
@@ -47,7 +49,7 @@ function wbNetworkDiagram() {
                 .force("x", d3.forceX(width).strength(0.06))
                 .force("y", d3.forceY(height).strength(0.06))
                 .force("collide", d3.forceCollide().radius(function(d) {
-                    return d.r + 0.5;
+                    return d.r + collide;
                 }).iterations(4))
 
             var link = s.append("g")
@@ -181,6 +183,18 @@ function wbNetworkDiagram() {
     chart.colors = function(value) {
         if (!arguments.length) return colors
         colors = value;
+        return chart;
+    }
+    
+    chart.collide = function(value) {
+        if (!arguments.length) return collide
+        collide = value;
+        return chart;
+    }
+    
+    chart.thicknessRange = function(value) {
+        if (!arguments.length) return thicknessRange
+        thicknessRange = value;
         return chart;
     }
 
