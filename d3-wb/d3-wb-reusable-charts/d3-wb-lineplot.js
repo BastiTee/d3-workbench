@@ -9,6 +9,8 @@ function wbLinePlot() {
     var yDataPoints = "y"
     var scaleX;
     var scaleY;
+    var xMinMax;
+    var yMinMax;
     var stroke = "red"
     var axisColor = "white"
     var curve = d3.curveBasis
@@ -22,21 +24,19 @@ function wbLinePlot() {
             s.append("path").attr("class", "line")
 
             update = function(data) {
-                
-                var xMinMax = d3.extent(data, function(d) {
-                    return d[xDataPoints];
-                })
-                var yMinMax = d3.extent(data, function(d) {
-                    return d[yDataPoints];
-                })
-                scaleX = xAxisScale.rangeRound([0, width]).domain(
-                    d3.extent(data, function(d) {
+
+                if (xMinMax === undefined) {
+                    xMinMax = d3.extent(data, function(d) {
                         return d[xDataPoints];
-                    }));
-                scaleY = yAxisScale.rangeRound([height, 0]).domain(
-                    d3.extent(data, function(d) {
-                        return d[yDataPoints]
-                    }));
+                    })
+                }
+                if (yMinMax === undefined) {
+                    yMinMax = d3.extent(data, function(d) {
+                        return d[yDataPoints];
+                    })
+                }
+                scaleX = xAxisScale.rangeRound([0, width]).domain(xMinMax);
+                scaleY = yAxisScale.rangeRound([height, 0]).domain(yMinMax);
                 var line = d3.line()
                     .curve(curve)
                     .x(function(d) {
@@ -126,6 +126,18 @@ function wbLinePlot() {
     chart.update = function(data) {
         update(data)
         return chart
+    }
+    
+    chart.xMinMax = function(value) {
+        if (!arguments.length) return xMinMax
+        xMinMax = value;
+        return chart;
+    }
+    
+    chart.yMinMax = function(value) {
+        if (!arguments.length) return yMinMax
+        yMinMax = value;
+        return chart;
     }
 
     return chart
