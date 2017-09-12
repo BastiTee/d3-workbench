@@ -30,7 +30,7 @@
                 var axis = s.append("g")
                     .attr("transform", "translate(0," + y + ")")
                     .attr("class", "wb-axis wb-axis-x").call(type(scale))
-                if (rotation == 90 ) {
+                if (rotation == 90) {
                     axis.selectAll("text")
                         .attr("y", -2)
                         .attr("x", -9)
@@ -119,8 +119,8 @@
 
         var color = "red"
         var fontSize = "140%"
-        
-        var update = function () {}
+
+        var update = function() {}
 
         function chart(selection) {
 
@@ -135,7 +135,7 @@
                     .attr("alignment-baseline", "hanging")
                     .style("fill", color)
                     .style("font-size", fontSize)
-                    
+
                 update = function() {
                     s.selectAll(".wb-title").text(text)
                 }
@@ -154,17 +154,17 @@
             fontSize = value;
             return chart;
         }
-        
+
         chart.text = function(value) {
             if (!arguments.length) return text
             text = value
             return chart;
         }
-        
+
         chart.update = function() {
             update()
         }
-        
+
         return chart
     }
 
@@ -370,6 +370,71 @@
         return chart
     }
 
+    var legend = function() {
+
+        var color = "white"
+        var colors = ["red", "green", "blue"]
+        var text = ["Item 1", "Item 2", "Item 3"]
+        var x = 0
+        var y = 0
+
+        function chart(selection) {
+
+            selection.each(function() {
+                var s = d3.select(this)
+                s.append("g")
+                    .attr("class", "legend")
+                    .attr("transform", "translate(" + x + "," + y + ")")
+                var ordinal = d3.scaleOrdinal()
+                    .domain(text.map(function(d) {
+                        return d;
+                    }))
+                    .range(text.map(function(d, i) {
+                        return colors[i];
+                    }));
+                var legend = d3.legendColor()
+                    .shape("path", d3.symbol().type(d3.symbolCircle).size(100)())
+                    .scale(ordinal);
+                s.select(".legend")
+                    .call(legend)
+                    .style("fill", color)
+                    .style("font-size", "90%")
+            })
+        }
+
+        chart.x = function(value) {
+            if (!arguments.length) return x
+            x = value;
+            return chart;
+        }
+
+        chart.y = function(value) {
+            if (!arguments.length) return y
+            y = value;
+            return chart;
+        }
+
+        chart.text = function(value) {
+            if (!arguments.length) return text
+            text = value;
+            return chart;
+        }
+
+        chart.colors = function(value) {
+            if (!arguments.length) return colors
+            colors = value;
+            return chart;
+        }
+
+        chart.color = function(value) {
+            if (!arguments.length) return color
+            color = value;
+            return chart;
+        }
+
+        return chart
+    }
+
     d3wb.add = {
         xAxis: xAxis,
         xAxisBottom: xAxisBottom,
@@ -379,7 +444,8 @@
         yAxisLabel: yAxisLabel,
         title: title,
         infoBox: infoBox,
-        shadow: shadow
+        shadow: shadow,
+        legend: legend
     }
 
 })()

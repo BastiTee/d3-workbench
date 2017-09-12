@@ -139,6 +139,16 @@
         }
         return category
     }
+    
+    var categoryMain = function() {
+        var colors = [
+            "blue", "cyan", "green", "magenta", "red", "yellow", "foreground"]
+        var category = []
+        for (var i = 0; i < colors.length; i++) {
+            category.push(castColor(colors[i]))
+        }
+        return category
+    }
 
     var interpolateToArray = function(ipol, length, loHiBound) {
         loHiBound = loHiBound || [0.0, 1.0]
@@ -221,6 +231,7 @@
             array: array,
             gradientArray: gradientArray,
             category: category,
+            categoryMain: categoryMain,
             quantile: quantile,
             linearGradient: linearGradient,
             ordinal: ordinal,
