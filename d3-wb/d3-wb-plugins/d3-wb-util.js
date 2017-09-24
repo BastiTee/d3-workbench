@@ -1,6 +1,17 @@
 (function() {
     "use strict";
 
+    var changeCSVSeparator = function(sep) {
+        d3.csv = function(url, callback) {
+            d3.request(url)
+                .mimeType("text/csv")
+                .response(function(xhr) {
+                    return d3.dsvFormat(sep).parse(xhr.responseText);
+                })
+                .get(callback);
+        }
+    }
+
     var setLocale = function(lang) {
         if (lang == "de") {
             d3.timeFormat = d3.timeFormatLocale({
@@ -119,13 +130,60 @@
         console.log(b.x + " x " + b.y + " | " + b.width + " x " + b.height)
     }
 
+    /**
+     * A method to convert a JSON object holding K/V-pairs like..
+     * 
+     * {
+     *      "object_1": {
+     *          "key1": "value1",
+     *          "key2": "value2"
+     *      },
+     *     "object_2": { .. }
+     * }
+     * 
+     * to a parsed CSV object like...
+     * 
+     * key, key1, key2
+     * object_1, value1, value2
+     * object_2, ..
+     *
+     * Method assumes that each object has same attributes.
+     */
+    var jsonAttributeMapToCSV = function(json) {
+        // create header
+        var header = ["key"]
+        for (var objKey in json[Object.keys(json)[0]]) {
+            header.push(objKey) // add all object keys of first object 
+        }
+        // create csv output
+        var csv = ["\"" + header.join("\",\"") + "\""]
+        for (var key in json) {
+            var csvRow = [key]
+            for (var h in header) {
+                if (h == 0) {
+                    continue
+                }
+                var selector = header[h]
+                csvRow.push(json[key][selector])
+            }
+            csv.push("\"" + csvRow.join("\",\"") + "\"")
+        }
+        // parse CSV string to d3-like CSV object 
+        var csvString = csv.join("\n")
+        var csvResult = d3.csvParse(csvString)
+        // fin.
+        return csvResult
+    }
+
     d3wb.util = {
         setLocale: setLocale,
+        changeCSVSeparator: changeCSVSeparator,
         smoothData: smoothData,
         countCsvColumn: countCsvColumn,
         guid: guid,
         injectCSS: injectCSS,
-        logSVGSize: logSVGSize
+        logSVGSize: logSVGSize,
+        jsonAttributeMapToCSV: jsonAttributeMapToCSV
     }
 
 })()

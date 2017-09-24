@@ -65,6 +65,20 @@
             return chart;
         }
 
+        chart.scale = function(value) {
+            if (!arguments.length) return scale
+            scale = value;
+            return chart;
+        }
+        
+        chart.fontSize = function(value) {
+            d3wb.util.injectCSS(`
+                .wb-axis-x text {
+                  font-size: ` + value + `;
+              }`)
+            return chart;
+        }
+
         return chart
     }
 
@@ -105,6 +119,20 @@
         chart.color = function(value) {
             if (!arguments.length) return color
             color = value;
+            return chart;
+        }
+
+        chart.scale = function(value) {
+            if (!arguments.length) return scale
+            scale = value;
+            return chart;
+        }
+
+        chart.fontSize = function(value) {
+            d3wb.util.injectCSS(`
+                .wb-axis-y text {
+                  font-size: ` + value + `;
+              }`)
             return chart;
         }
 

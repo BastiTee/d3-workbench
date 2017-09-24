@@ -11,6 +11,8 @@ var d3wb = (function() {
         sum: "Σ"
     }
 
+    var standaloneBodyId = "#standalone-body"
+
     d3wb.config = function() {
 
         var dc = {
@@ -119,7 +121,7 @@ var d3wb = (function() {
             .attr("fill", config.bgColor)
 
         // if standalone-svg div is present, make background the same color
-        d3.select("#standalone-body")
+        d3.select(standaloneBodyId)
             .style("background-color", config.bgColor)
 
         drawDebugCanvas(svg, config)
@@ -147,6 +149,8 @@ var d3wb = (function() {
         // data 
         cv.data = config.data()
         cv.d = config.data()
+        // embedding
+        cv.div = config.parentDivId ? config.parentDivId : standaloneBodyId
         // helper method for circular visualizaions
         cv.transformCircular = function() {
             this.attr("transform", "translate(" +
