@@ -6,11 +6,10 @@ function wbGeoMap() {
     var height = 500
     var mapFill = "#666666"
     var mapStroke = "#555555"
-    var dotFill = "#5A6A8B"
-    var dotStroke = "#4e5c79"
-    var radius = 2
-    var mapData
+    var mapStrokeWidth = 1
+    var boundsManual
     var projection
+    var update = function() {}
 
     function chart(selection) {
 
@@ -52,7 +51,13 @@ function wbGeoMap() {
                     .style("stroke-width", 1.00 + "px");
             }
 
-            var bounds = d3.geoBounds(mapData)
+            var bounds = d3.geoBounds(data)
+            if (boundsManual) {
+                bounds = boundsManual
+                console.log("-- manually set bounds to " + bounds);
+            } else {
+                console.log("-- bounds read to " + bounds);
+            }
             var bottomLeft = bounds[0]
             var topRight = bounds[1]
             var rotLong = -(topRight[0] + bottomLeft[0]) / 2
@@ -79,32 +84,21 @@ function wbGeoMap() {
 
             geoPath = d3.geoPath().projection(projection);
 
-            s.selectAll("path.feature")
-                .data(mapData.features)
-                .enter()
-                .append("path")
-                .attr("d", geoPath)
-                .style("fill", mapFill)
-                .style("stroke", mapStroke)
-                .style("stroke-width", 1)
-                .on("click", applyZoom)
-
-            var pts = s.selectAll("circle")
-                .data(data)
-                .enter()
-                .append("circle")
-                .attr("transform", function(d) {
-                    var p = projection([d['lon'], d['lat']])
-                    return "translate(" + p + ")"
-                })
-                .style("stroke", dotStroke)
-                .style("stroke-width", "0.4")
-                .attr("opacity", 0.9)
-                .style("fill", dotFill)
-
-            /* highlight long - distance stations */
-            pts.transition().delay(500).duration(1000)
-                .attr("r", radius)
+            update = function() {
+                s.selectAll(".wb-feature-paths")
+                    .exit()
+                    .remove()
+                    .data(data.features)
+                    .enter()
+                    .append("path")
+                    .attr("d", geoPath)
+                    .attr("class", "wb-feature-paths")
+                    .style("fill", mapFill)
+                    .style("stroke", mapStroke)
+                    .style("stroke-width", mapStrokeWidth)
+                    .on("click", applyZoom)
+            }
+            update()
 
         })
     }
@@ -121,18 +115,11 @@ function wbGeoMap() {
         return chart;
     }
 
-    chart.mapData = function(value) {
-        if (!arguments.length) return mapData
-        mapData = value;
-        return chart;
-    }
-
     chart.projection = function(value) {
         if (!arguments.length) return projection
         projection = value;
         return chart;
     }
-
 
     chart.mapFill = function(value) {
         if (!arguments.length) return mapFill
@@ -146,22 +133,20 @@ function wbGeoMap() {
         return chart;
     }
 
-    chart.dotFill = function(value) {
-        if (!arguments.length) return dotFill
-        dotFill = value;
+    chart.boundsManual = function(value) {
+        if (!arguments.length) return boundsManual
+        boundsManual = value;
         return chart;
     }
 
-    chart.dotStroke = function(value) {
-        if (!arguments.length) return dotStroke
-        dotStroke = value;
+    chart.mapStrokeWidth = function(value) {
+        if (!arguments.length) return mapStrokeWidth
+        mapStrokeWidth = value;
         return chart;
     }
-
-    chart.radius = function(value) {
-        if (!arguments.length) return radius
-        radius = value;
-        return chart;
+    
+    chart.update = function() {
+        update()
     }
 
     return chart

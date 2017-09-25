@@ -32,23 +32,36 @@
                 .height(cv.height)
                 .mapFill(d3wb.color.blue)
                 .mapStroke(d3wb.color.blue.fade(10))
-                .dotFill(function(d) {
+            cv.datum(mapData).call(geoMap)
+
+            var pts = cv.selectAll("circle")
+                .data(infoData)
+                .enter()
+                .append("circle")
+                .attr("transform", function(d) {
+                    var p = geoMap.projection()([d['lon'], d['lat']])
+                    return "translate(" + p + ")"
+                })
+                .style("stroke", d3wb.color.yellow.fade(10))
+                .style("stroke-width", "0.4")
+                .attr("opacity", 0.9)
+                .style("fill", function(d) {
                     if (d["fern"] == 1) {
                         return d3wb.color.yellow
                     } else {
                         return d3wb.color.yellow.fade(20)
                     }
                 })
-                .dotStroke(d3wb.color.yellow.fade(10))
-                .radius(function(d) {
+
+            /* highlight long - distance stations */
+            pts.transition().delay(500).duration(1000)
+                .attr("r", function(d) {
                     if (d["fern"] == 1) {
                         return 4
                     } else {
                         return 1
                     }
                 })
-                .mapData(mapData)
-            cv.datum(infoData).call(geoMap)
 
             // add tooltips to circles 
             var ct = wbCooltip()

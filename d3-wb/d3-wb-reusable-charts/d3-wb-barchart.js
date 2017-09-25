@@ -57,13 +57,13 @@ function wbBarChart() {
                         if (widthFactor >= 1) {
                             return scaleX(d[xSelector])
                         } else {
-                            var diff = scaleX.bandwidth() - 
-                             scaleX.bandwidth()*widthFactor
-                            return scaleX(d[xSelector]) + diff/2
+                            var diff = scaleX.bandwidth() -
+                                scaleX.bandwidth() * widthFactor
+                            return scaleX(d[xSelector]) + diff / 2
                         }
                     })
                     .attr("width", function(d) {
-                        return scaleX.bandwidth()*widthFactor
+                        return scaleX.bandwidth() * widthFactor
                     })
                     .attr("y", function(d) {
                         return scaleY(d[ySelector]);
@@ -76,6 +76,9 @@ function wbBarChart() {
                             return fill
                         } else if (typeof fill === "function") {
                             return fill(i)
+                        } else if (typeof fill === "object" &&
+                            String(fill).startsWith('rgb')) {
+                            return fill
                         } else {
                             return fill[i]
                         }
@@ -184,7 +187,7 @@ function wbBarChart() {
         padding = value;
         return chart;
     }
-    
+
     chart.widthFactor = function(value) {
         if (!arguments.length) return widthFactor
         widthFactor = value;
