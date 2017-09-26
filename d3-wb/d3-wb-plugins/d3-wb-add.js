@@ -70,7 +70,7 @@
             scale = value;
             return chart;
         }
-        
+
         chart.fontSize = function(value) {
             d3wb.util.injectCSS(`
                 .wb-axis-x text {
@@ -337,6 +337,12 @@
             })
         }
 
+        chart.opacity = function(value) {
+            if (!arguments.length) return opacity
+            opacity = value;
+            return chart;
+        }
+
         chart.color = function(value) {
             if (!arguments.length) return color
             color = value;
@@ -398,9 +404,70 @@
         return chart
     }
 
+    var dropdown = function(id) {
+        
+        var id = d3wb.util.randId()
+        var div
+        var options
+        var callback = function() {}
+
+        function chart(selection) {
+
+            selection.each(function() {
+                var s = d3.select(this)
+                var selectDistrict = s
+                    .append("select")
+                    .attr("id", id)
+                    .on("change", callback)
+                selectDistrict
+                    .selectAll("option")
+                    .data(options).enter()
+                    .append("option")
+                    .text(function(d) {
+                        return d;
+                    });
+                d3wb.util.injectCSS(`
+                    #` + id + ` {
+                        position: absolute;
+                    }
+                `)
+            })
+        }
+
+        chart.style = function(key, value) {
+            d3wb.util.injectCSS(`
+                #` + id + ` {
+                    ` + key + `: ` + value + `;
+                }
+            `)
+            return chart;
+        }
+
+        chart.options = function(value) {
+            if (!arguments.length) return options
+            options = value;
+            return chart;
+        }
+
+        chart.callback = function(value) {
+            if (!arguments.length) return callback
+            callback = value;
+            return chart;
+        }
+        
+        chart.id = function(value) {
+            if (!arguments.length) return "#" + id
+            id = value;
+            return chart;
+        }
+        
+        return chart
+    }
+
     var legend = function() {
 
         var color = "white"
+        var stroke
         var colors = ["red", "green", "blue"]
         var text = ["Item 1", "Item 2", "Item 3"]
         var x = 0
@@ -421,13 +488,23 @@
                         return colors[i];
                     }));
                 var legend = d3.legendColor()
-                    .shape("path", d3.symbol().type(d3.symbolCircle).size(100)())
-                    .scale(ordinal);
+                    .shape("path",
+                        d3.symbol().type(d3.symbolCircle).size(100)())
+                    .scale(ordinal)
                 s.select(".legend")
                     .call(legend)
                     .style("fill", color)
                     .style("font-size", "90%")
+                if (stroke) {
+                    s.selectAll("path.swatch").style("stroke", stroke)
+                }
             })
+        }
+
+        chart.stroke = function(value) {
+            if (!arguments.length) return stroke
+            stroke = value;
+            return chart;
         }
 
         chart.x = function(value) {
@@ -473,6 +550,7 @@
         title: title,
         infoBox: infoBox,
         shadow: shadow,
+        dropdown: dropdown,
         legend: legend
     }
 
