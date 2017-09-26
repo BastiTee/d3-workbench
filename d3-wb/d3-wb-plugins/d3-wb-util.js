@@ -34,8 +34,8 @@
             s4() + '-' + s4() + s4() + s4();
     }
 
-    function randId() {
-        return "d3wb-" + Math.random().toString(36).substr(2, 10);
+    function websafeGuid() {
+        return "d3wb-" + guid()
     }
 
     var s4 = function() {
@@ -185,7 +185,7 @@
         smoothData: smoothData,
         countCsvColumn: countCsvColumn,
         guid: guid,
-        randId: randId,
+        websafeGuid: websafeGuid,
         injectCSS: injectCSS,
         logSVGSize: logSVGSize,
         jsonAttributeMapToCSV: jsonAttributeMapToCSV

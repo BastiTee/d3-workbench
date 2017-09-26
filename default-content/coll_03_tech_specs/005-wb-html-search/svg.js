@@ -29,8 +29,11 @@
         }
 
         // create the search bar 
-        var t = wbTextbox().callback(callback)
-        cv.call(t)
+        var t = d3wb.html.textfield()
+            .callback(callback)
+            .style("top", "10px")
+            .style("left", "10px")
+        cv.div.call(t)
 
         // create more controls for this demonstration
         createOtherControls()
@@ -66,6 +69,7 @@
                 return d["animal"]
             })
             .attr("fill", "white")
+            .attr("pointer-events", "none")
             .attr("alignment-baseline", "hanging")
     }
 

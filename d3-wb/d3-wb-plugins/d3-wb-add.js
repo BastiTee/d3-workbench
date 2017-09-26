@@ -404,66 +404,6 @@
         return chart
     }
 
-    var dropdown = function(id) {
-        
-        var id = d3wb.util.randId()
-        var div
-        var options
-        var callback = function() {}
-
-        function chart(selection) {
-
-            selection.each(function() {
-                var s = d3.select(this)
-                var selectDistrict = s
-                    .append("select")
-                    .attr("id", id)
-                    .on("change", callback)
-                selectDistrict
-                    .selectAll("option")
-                    .data(options).enter()
-                    .append("option")
-                    .text(function(d) {
-                        return d;
-                    });
-                d3wb.util.injectCSS(`
-                    #` + id + ` {
-                        position: absolute;
-                    }
-                `)
-            })
-        }
-
-        chart.style = function(key, value) {
-            d3wb.util.injectCSS(`
-                #` + id + ` {
-                    ` + key + `: ` + value + `;
-                }
-            `)
-            return chart;
-        }
-
-        chart.options = function(value) {
-            if (!arguments.length) return options
-            options = value;
-            return chart;
-        }
-
-        chart.callback = function(value) {
-            if (!arguments.length) return callback
-            callback = value;
-            return chart;
-        }
-        
-        chart.id = function(value) {
-            if (!arguments.length) return "#" + id
-            id = value;
-            return chart;
-        }
-        
-        return chart
-    }
-
     var legend = function() {
 
         var color = "white"
@@ -550,7 +490,6 @@
         title: title,
         infoBox: infoBox,
         shadow: shadow,
-        dropdown: dropdown,
         legend: legend
     }
 

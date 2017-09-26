@@ -22,13 +22,15 @@
     cv.datum(sets[pt]).call(chart)
 
     // create a button
-    var button = wbButton()
-        .labels(["Exact values", "Lightly smoothed", "Heavily smoothed"])
+    var button = d3wb.html.button()
+        .options(["Lightly smoothed", "Heavily smoothed", "Exact values"])
+        .style("top", cv.mar.top + "px")
+        .style("left", (cv.mar.left + 2) + "px")
         .callback(function() {
             pt = (pt + 1) % sets.length
             chart.update(sets[pt])
         })
-    cv.call(button)
+    cv.div.call(button)
 
     // append a bunch of stuff
     cv.call(d3wb.add.xAxis(chart.scaleX())

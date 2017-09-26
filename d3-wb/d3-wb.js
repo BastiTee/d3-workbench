@@ -150,7 +150,8 @@ var d3wb = (function() {
         cv.data = config.data()
         cv.d = config.data()
         // embedding
-        cv.div = config.parentDivId ? config.parentDivId : standaloneBodyId
+        cv.div = d3.select(config.parentDivId ? config.parentDivId 
+            : standaloneBodyId)
         // helper method for circular visualizaions
         cv.transformCircular = function() {
             this.attr("transform", "translate(" +
