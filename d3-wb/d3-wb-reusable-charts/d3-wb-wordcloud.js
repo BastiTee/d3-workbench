@@ -24,7 +24,7 @@ function wbWordCloud() {
                 .words(data)
                 .padding(1)
                 .rotate(0)
-                .font("Abel")
+                .font("Roboto Condensed")
                 .fontSize(function(d) {
                     return d.fontsize;
                 })
