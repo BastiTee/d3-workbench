@@ -159,8 +159,7 @@ Optional arguments:
             fs.readFileSync(fsPath + "/local.css")
         } catch (error) {
             fs.writeFileSync(fsPath + "/local.css",
-                "/* Add some CSS here to configure the index page of " +
-                "this folder */\n", "UTF-8")
+                fileToStr("templates/template-local.css"), "UTF-8")
         }
     }
 
