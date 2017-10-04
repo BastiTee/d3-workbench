@@ -12,8 +12,9 @@
         return text
     }
     var left = "10px"
-    var col2 = 110
-    var col3 = 310
+    var elWidth = "180px"
+    var col2 = 210
+    var col3 = 350
 
     // -----------------------------------------------------------------------
     // DROPDOWN ELEMENT 
@@ -31,7 +32,7 @@
         .callback(dropdownCallback)
         .style("top", "20px")
         .style("left", left)
-        .style("width", "95px")
+        .style("width", elWidth)
     cv.div.call(dropdown)
     createText(col3, 25).text(dropdown.id())
 
@@ -50,7 +51,7 @@
         .callback(buttonCallback)
         .style("top", "55px")
         .style("left", left)
-        .style("width", "95px")
+        .style("width", elWidth)
     cv.div.call(button)
     createText(col3, 60).text(button.id())
 
@@ -71,7 +72,7 @@
         .options(["Next option", "Previous option"])
         .style("top", "85px")
         .style("left", left)
-        .style("width", "95px")
+        .style("width", elWidth)
     cv.div.call(button2)
     createText(col3, 90).text(button2.id())
 
@@ -91,7 +92,7 @@
         .callback(textfieldCallback)
         .style("top", "115px")
         .style("left", left)
-        .style("width", "92px")
+        .style("width", "167px")
     cv.div.call(textfield)
     createText(col3, 121).text(button2.id())
 
