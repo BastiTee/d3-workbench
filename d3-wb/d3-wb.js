@@ -217,7 +217,7 @@ var d3wb = (function() {
             .attr("height", config.height)
             .attr("fill", d3wb.color.background.fade(20))
         svg.append("text")
-            .attr("x", config.width).attr("alignment-baseline", "hanging")
+            .attr("x", config.width).attr("dominant-baseline", "hanging")
             .attr("text-anchor", "end").attr("fill", d3wb.color.white)
             .text(config.width + "x" + config.height);
         svg.append("rect")
@@ -226,12 +226,12 @@ var d3wb = (function() {
             .attr("fill", d3wb.color.background.fade(10))
         svg.append("text")
             .attr("font-size", "80%")
-            .attr("x", config.margin.left / 2).attr("alignment-baseline", "hanging")
+            .attr("x", config.margin.left / 2).attr("dominant-baseline", "hanging")
             .attr("text-anchor", "middle").attr("fill", d3wb.color.white)
             .text(config.margin.left);
         svg.append("text")
             .attr("font-size", "80%")
-            .attr("y", config.margin.top / 2).attr("alignment-baseline", "middle")
+            .attr("y", config.margin.top / 2).attr("dominant-baseline", "middle")
             .attr("text-anchor", "begin").attr("fill", d3wb.color.white)
             .text(config.margin.top);
         svg.append("rect")
@@ -243,14 +243,14 @@ var d3wb = (function() {
         svg.append("text")
             .attr("font-size", "80%")
             .attr("x", config.width - config.margin.right / 2).attr("y", config.height)
-            .attr("alignment-baseline", "baseline")
+            .attr("dominant-baseline", "baseline")
             .attr("text-anchor", "middle").attr("fill", d3wb.color.white)
             .text(config.margin.right);
         svg.append("text")
             .attr("font-size", "80%")
             .attr("x", config.width).attr("y",
                 config.height - config.margin.bottom / 2)
-            .attr("alignment-baseline", "middle")
+            .attr("dominant-baseline", "middle")
             .attr("text-anchor", "end").attr("fill", d3wb.color.white)
             .text(config.margin.bottom);
     }
@@ -265,7 +265,7 @@ var d3wb = (function() {
             .attr("height", config.innerHeight)
             .attr("fill", d3wb.color.white.fade(30))
         g.append("text")
-            .attr("x", config.innerWidth).attr("alignment-baseline", "hanging")
+            .attr("x", config.innerWidth).attr("dominant-baseline", "hanging")
             .attr("text-anchor", "end").attr("fill", d3wb.color.white)
             .text(config.innerWidth + "x" + config.innerHeight);
         g.append("circle")

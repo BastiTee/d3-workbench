@@ -9,6 +9,7 @@ function wbGeoMap() {
     var mapStrokeWidth = 1
     var boundsManual
     var projection
+    var allowZoom = true
     var update = function() {}
 
     function chart(selection) {
@@ -96,7 +97,10 @@ function wbGeoMap() {
                     .style("fill", mapFill)
                     .style("stroke", mapStroke)
                     .style("stroke-width", mapStrokeWidth)
-                    .on("click", applyZoom)
+                if (allowZoom) {
+                    s.selectAll(".wb-feature-paths")
+                        .on("click", applyZoom)
+                }
             }
             update()
 
@@ -142,6 +146,12 @@ function wbGeoMap() {
     chart.mapStrokeWidth = function(value) {
         if (!arguments.length) return mapStrokeWidth
         mapStrokeWidth = value;
+        return chart;
+    }
+    
+    chart.allowZoom = function(value) {
+        if (!arguments.length) return allowZoom
+        allowZoom = value;
         return chart;
     }
     

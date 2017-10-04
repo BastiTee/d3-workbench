@@ -27,7 +27,7 @@ function wbStaticNumbers() {
                 })
                 .attr("y", height)
                 .attr("text-anchor", "left")
-                .attr("alignment-baseline", "baseline")
+                .attr("dominant-baseline", "baseline")
                 .attr("fill", fillNumber)
                 .style("font-size", "20")
                 .style("font-weight", "bold")

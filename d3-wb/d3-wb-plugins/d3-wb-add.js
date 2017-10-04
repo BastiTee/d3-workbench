@@ -160,7 +160,7 @@
                     .attr("x", root.width / 2)
                     .attr("y", 5)
                     .attr("text-anchor", "middle")
-                    .attr("alignment-baseline", "hanging")
+                    .attr("dominant-baseline", "hanging")
                     .style("fill", color)
                     .style("font-size", fontSize)
 
@@ -219,7 +219,7 @@
                     })
                     .style("text-anchor", "middle")
                     .style("fill", color)
-                    .attr("alignment-baseline", function() {
+                    .attr("dominant-baseline", function() {
                         if (orientation == "top")
                             return "hanging"
                         else
@@ -270,7 +270,7 @@
                         return t
                     })
                     .style("text-anchor", "middle")
-                    .attr("alignment-baseline", "hanging")
+                    .attr("dominant-baseline", "hanging")
                     .style("fill", color)
                     .text(text)
 
@@ -314,7 +314,7 @@
                 for (var i in split) {
                     textG.append("tspan")
                         .style("text-anchor", "end")
-                        .style("alignment-baseline", "hanging")
+                        .style("dominant-baseline", "hanging")
                         .style("font-size", fontSize)
                         .style("fill", color)
                         .attr("x", 0)
@@ -412,6 +412,8 @@
         var text = ["Item 1", "Item 2", "Item 3"]
         var x = 0
         var y = 0
+        var symbol = d3.symbolCircle
+        var symbolSize = 100
 
         function chart(selection) {
 
@@ -429,7 +431,7 @@
                     }));
                 var legend = d3.legendColor()
                     .shape("path",
-                        d3.symbol().type(d3.symbolCircle).size(100)())
+                        d3.symbol().type(symbol).size(symbolSize)())
                     .scale(ordinal)
                 s.select(".legend")
                     .call(legend)
@@ -474,6 +476,18 @@
         chart.color = function(value) {
             if (!arguments.length) return color
             color = value;
+            return chart;
+        }
+        
+        chart.symbol = function(value) {
+            if (!arguments.length) return symbol
+            symbol = value;
+            return chart;
+        }
+        
+        chart.symbolSize = function(value) {
+            if (!arguments.length) return symbolSize
+            symbolSize = value;
             return chart;
         }
 

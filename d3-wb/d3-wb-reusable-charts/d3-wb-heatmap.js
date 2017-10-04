@@ -41,7 +41,7 @@ function wbHeatMap() {
                 })
                 .style("text-anchor", "end")
                 .style("fill", fill)
-                .attr("alignment-baseline", "middle")
+                .attr("dominant-baseline", "middle")
                 .attr("transform", "translate(-6," + gridSizeY / 2 + ")")
 
             var timeLabels = s.selectAll(".timeLabel")
@@ -105,7 +105,7 @@ function wbHeatMap() {
                 });
 
             legend.append("text")
-                .attr("alignment-baseline", "hanging")
+                .attr("dominant-baseline", "hanging")
                 .text(function(d) {
                     return "≥ " + Math.round(d);
                 })

@@ -79,7 +79,7 @@ function wbPackedBubbles() {
                 .attr("class", "texts")
                 .style("font-size", "10px")
                 .style("text-anchor", "middle")
-                .style("alignment-baseline", "middle")
+                .style("dominant-baseline", "middle")
                 .attr("x", 0)
                 .attr("y", 0)
                 .text(function(d) {

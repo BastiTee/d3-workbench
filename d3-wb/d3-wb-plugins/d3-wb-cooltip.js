@@ -66,7 +66,7 @@ function wbCooltip() {
                 for (var i in split) {
                     text.append("tspan")
                         .style("text-anchor", "middle")
-                        .style("alignment-baseline", "hanging")
+                        .style("dominant-baseline", "hanging")
                         .style("fill", color)
                         .attr("x", 0)
                         .attr("dy", function() {

@@ -70,7 +70,7 @@
             })
             .attr("fill", "white")
             .attr("pointer-events", "none")
-            .attr("alignment-baseline", "hanging")
+            .attr("dominant-baseline", "hanging")
     }
 
     var createOtherControls = function() {

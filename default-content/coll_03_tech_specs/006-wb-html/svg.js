@@ -7,7 +7,7 @@
         var text = cv.append("g")
             .attr("transform", "translate(" + x + ", " + y + ")")
             .append("text")
-            .style("alignment-baseline", "hanging")
+            .style("dominant-baseline", "hanging")
             .style("font-size", "80%")
         return text
     }
