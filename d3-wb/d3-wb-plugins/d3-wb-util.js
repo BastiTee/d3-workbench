@@ -179,6 +179,16 @@
         return csvResult
     }
 
+    var getBoundingBoxCenter = function(selection) {
+        // get the DOM element from a D3 selection
+        // you could also use "this" inside .each()
+        var element = d3.select(selection).node();
+        // use the native SVG interface to get the bounding box
+        var bbox = element.getBBox();
+        // return the center of the bounding box
+        return [bbox.x + bbox.width / 2, bbox.y + bbox.height / 2];
+    }
+
     d3wb.util = {
         setLocale: setLocale,
         changeCSVSeparator: changeCSVSeparator,
@@ -188,7 +198,8 @@
         websafeGuid: websafeGuid,
         injectCSS: injectCSS,
         logSVGSize: logSVGSize,
-        jsonAttributeMapToCSV: jsonAttributeMapToCSV
+        jsonAttributeMapToCSV: jsonAttributeMapToCSV,
+        getBoundingBoxCenter: getBoundingBoxCenter
     }
 
 })()

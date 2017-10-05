@@ -194,7 +194,6 @@ function wbTimeseries() {
                         var xForm = d3.timeDays(new Date(2017, 0, 1),
                             new Date(2017, 0, 8))
                         return xAxisFormat(xForm[xAxisTicks[i]])
-                        return ""
                     }
                 })
                 .style("text-anchor", "middle")

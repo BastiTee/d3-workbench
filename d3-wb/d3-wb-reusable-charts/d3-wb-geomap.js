@@ -55,9 +55,9 @@ function wbGeoMap() {
             var bounds = d3.geoBounds(data)
             if (boundsManual) {
                 bounds = boundsManual
-                console.log("-- manually set bounds to " + bounds);
+                // console.log("-- manually set bounds to " + bounds);
             } else {
-                console.log("-- bounds read to " + bounds);
+                // console.log("-- bounds read to " + bounds);
             }
             var bottomLeft = bounds[0]
             var topRight = bounds[1]
