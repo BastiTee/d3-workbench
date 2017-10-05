@@ -5,7 +5,13 @@ trgdir=$( readlink -f "$1" )
 cd "$( dirname "$( readlink -f "$0" )" )"
 echo "-- target directory: $trgdir"
 echo "-- compiling release"
-./build-release.sh > tmpfile
+./build-release.sh -f > tmpfile
+[ $? != 0 ] && { 
+    echo "-------------------"
+    cat tmpfile
+    echo "-------------------"
+    exit 1
+}
 srclib=$( grep -e "d3-wb.min.js$" tmpfile )
 srcdir=$( sed -e "s/\/d3-wb.min.js//g" <<< $srclib )
 rm tmpfile

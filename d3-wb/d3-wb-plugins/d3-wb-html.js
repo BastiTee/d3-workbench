@@ -41,6 +41,8 @@
 
         function chart(selection) {
 
+            selection = resolve(selection)
+
             selection.each(function() {
                 var s = d3.select(this)
 
@@ -89,6 +91,8 @@
 
         function chart(selection) {
 
+            selection = resolve(selection)
+
             selection.each(function() {
                 var s = d3.select(this)
 
@@ -132,6 +136,8 @@
 
         function chart(selection) {
 
+            selection = resolve(selection)
+
             selection.each(function() {
                 var s = d3.select(this)
 
@@ -157,6 +163,16 @@
         var c = commonElements(chart)
 
         return chart
+    }
+
+    function resolve(selection) {
+        // check for cv.div parameter. If available use it instead,
+        // it means user using d3wb but called cv.call() instead of 
+        // cv.div.call()
+        if (selection["div"] !== undefined) {
+            return selection["div"]
+        }
+        return selection;
     }
 
     d3wb.html = {
