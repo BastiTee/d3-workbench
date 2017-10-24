@@ -20,6 +20,29 @@ This software is currently in alpha-state, but almost interface-stable. Once thi
 
 A demo d3-worbench instance can be found at <https://d3-workbench.basti.site>
 
+## How to use the workbench
+
+The following sections will shortly describe what you need to use d3-workbench, how to set it up and work on your visualization and how to deploy to a production system.
+
+### Prerequisites
+
+d3-workbench is a nodejs framework and uses npm, so your current directory should be a nodejs project. To get started from a blank file use `npm init` and answer the questions poping up.
+
+### Installation
+
+Installing d3-workbench is only possible from git: `npm install --save git+https://git@github.com/BastiTee/d3-workbench`
+
+### During development
+
+While developing your prototyp, we recommend using browsersync so that your browser gets updated and reloads all the files when you save them on disk. `npm install --save -D browser-sync` will help you.
+
+To start up the workbench use `node node_modules/d3-workbench/d3-wb-server.js &` and `./node_modules/.bin/browser-sync start --proxy "localhost:50321" --files d3-wb-server.js d3-wb-server/* d3-wb/* default-content/*`
+
+### Deploying
+
+To be continued...
+
+
 ## License and disclaimer
 
 This software is licensed under [GPLv3](https://github.com/BastiTee/d3-workbench/blob/master/LICENSE).
