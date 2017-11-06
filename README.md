@@ -32,7 +32,7 @@ d3-workbench is a [node.js](https://nodejs.org/en/) framework and uses [npm](htt
 Global installation as admin-user is recommended. This can be done via npm:
 
 ```
-sudo -H npm install -g d3-workbench
+sudo npm install -g d3-workbench
 ```
 
 Now you can run:
@@ -53,7 +53,7 @@ and visit <http://localhost:50321>. Use any other value for `-i` to set your own
 
 While developing your prototype, it's recommended to use `browsersync`, so that your browser gets updated and reloads all the files when you save them on disk. Install it via:
 
-`npm install -g browser-sync`
+`sudo npm install -g browser-sync`
 
 To start up d3-workbench over browsersync, start the workbench as background process:
 
