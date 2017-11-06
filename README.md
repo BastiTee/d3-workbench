@@ -26,22 +26,51 @@ The following sections will shortly describe what you need to use d3-workbench, 
 
 ### Prerequisites
 
-d3-workbench is a nodejs framework and uses npm, so your current directory should be a nodejs project. To get started from a blank file use `npm init` and answer the questions poping up.
+d3-workbench is a node.js framework and uses npm, so make sure you have both installed and `npm` available on the command-line.
 
 ### Installation
 
-Installing d3-workbench is only possible from git: `npm install --save git+https://git@github.com/BastiTee/d3-workbench`
+Installation can be done as Admin via npm:
+
+```
+npm install -g d3-workbench
+```
+
+Now you can run:
+
+```
+d3-workbench -h
+```
+
+to check the possible command-line options. To start d3-workbench with some sample content, run:
+
+```
+d3-workbench -i +DEMO
+```
+
+and visit <http://localhost:50321>. Use any other value for `-i` to set your own workbench folder.
 
 ### During development
 
-While developing your prototyp, we recommend using browsersync so that your browser gets updated and reloads all the files when you save them on disk. `npm install --save -D browser-sync` will help you.
+While developing your prototype, it's recommended to use `browsersync`, so that your browser gets updated and reloads all the files when you save them on disk. Install it via:
 
-To start up the workbench use `node node_modules/d3-workbench/d3-wb-server.js &` and `./node_modules/.bin/browser-sync start --proxy "localhost:50321" --files d3-wb-server.js d3-wb-server/* d3-wb/* default-content/*`
+`npm install -g browser-sync`
+
+To start up d3-workbench over browsersync, start the workbench as background process:
+
+```
+d3-workbench -i my_working_folder &
+```
+
+and then proxy the workbench with browser-sync:
+
+```
+browser-sync start --proxy "localhost:50321" --files my_working_folder/*
+```
 
 ### Deploying
 
 To be continued...
-
 
 ## License and disclaimer
 
