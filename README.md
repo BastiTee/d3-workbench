@@ -12,7 +12,6 @@
 - Compatibility with [d3.js](https://d3js.org) Version 4
 - Compatibility with [bl.ocks.org](https://bl.ocks.org)
 - Working offline
-- Easy deployment via init.d and/or Docker
 
 ## Current status
 
@@ -26,14 +25,14 @@ The following sections will shortly describe what you need to use d3-workbench, 
 
 ### Prerequisites
 
-d3-workbench is a node.js framework and uses npm, so make sure you have both installed and `npm` available on the command-line.
+d3-workbench is a [node.js](https://nodejs.org/en/) framework and uses [npm](https://www.npmjs.com/), so make sure you have both installed and `npm` available on the command-line.
 
 ### Installation
 
-Installation can be done as Admin via npm:
+Global installation as admin-user is recommended. This can be done via npm:
 
 ```
-npm install -g d3-workbench
+sudo -H npm install -g d3-workbench
 ```
 
 Now you can run:
@@ -67,10 +66,6 @@ and then proxy the workbench with browser-sync:
 ```
 browser-sync start --proxy "localhost:50321" --files my_working_folder/*
 ```
-
-### Deploying
-
-To be continued...
 
 ## License and disclaimer
 
