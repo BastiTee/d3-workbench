@@ -21,6 +21,9 @@ const server = express();
 const fs = require("fs");
 const path = require("path");
 const parse = require("minimist")
+const bs = require("browser-sync").create();
+const internalPort = 61426
+const pj = require('../package.json');
 
 // argument parser
 var argv = parse(process.argv.slice(2));
@@ -51,7 +54,6 @@ argv.p = argv.p || 50321
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-// load templates
 var fileToStr = (file) => {
 
     file = file.split("/")
@@ -69,6 +71,23 @@ var ignored = function(ignore, file) {
         }
     }
     return false;
+}
+
+var compareVersions = function(folder) {
+    var localVersion;
+    var versionFile = path.join(folder, "d3-wb-version")
+    try {
+        localVersion = fs.readFileSync(versionFile, "utf8")
+    } catch (error) {
+        // version file not present
+        fs.writeFileSync(versionFile, pj.version, "utf8")
+        return
+    }
+    if (localVersion != pj.version) {
+        console.error("WARNING: You are running d3-workbench version " +
+            pj.version + ", but workbench was created using version " +
+            localVersion + ". This might lead to broken visualizations.")
+    }
 }
 
 var generateIndexDocument = function(requestPath, fsPath, level) {
@@ -185,9 +204,7 @@ var createLocalJs = function(fsPath, level) {
 }
 
 var createSampleContent = function(fsPath) {
-    if (argv.v) {
-        console.log("-- setting up content at: " + fsPath);
-    }
+    log("-- setting up content at: " + fsPath);
     // info.json and local.css for root folder
     createAndLoadInfoJson(fsPath)
     createLocalCss(fsPath)
@@ -287,7 +304,9 @@ var serveIndexPage = function(request, response, next) {
 //////////////////////////////////////////////////////////////////////////
 
 var log = function(message) {
-    return // uncomment to add logs
+    if (!argv.v) {
+        return
+    }
     message = message || ""
     console.log("/// " + message);
 }
@@ -300,10 +319,10 @@ var uuid = function(file) {
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-if (argv.v) {
-    console.log("-- options: ");
-    console.log(argv);
-}
+compareVersions(argv.i)
+
+log("-- options: ");
+log(argv);
 
 createSampleContent(argv.i)
 
@@ -317,5 +336,18 @@ server.use("/res", express.static(path.resolve(__dirname + "/../d3-wb-server")))
 server.use(express.static(argv.i));
 
 // start server
-server.listen(argv.p);
-console.log(">> http://localhost:" + argv.p + " << " + argv.i);
+server.listen(internalPort);
+
+// create browsersync proxy
+var watchFolder = argv.i + "/**/*"
+log("Watching files in " + watchFolder)
+bs.watch(watchFolder).on("change", bs.reload);
+bs.init({
+    proxy: "http://localhost:" + internalPort,
+    port: argv.p,
+    ui: false,
+    notify: false,
+    logLevel: argv.v ? "info" : "silent"
+});
+
+log(">> http://localhost:" + argv.p + " << " + argv.i);

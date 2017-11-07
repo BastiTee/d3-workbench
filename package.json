@@ -1,20 +1,21 @@
 {
-    "name": "d3-workbench",
-    "version": "0.6.1",
-    "description": "A d3.js-powered workbench for rapid visualization prototyping",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/BastiTee/d3-workbench"
-    },
-    "preferGlobal": "true",
-    "bin": {
-        "d3-workbench": "bin/d3-wb-server.js"
-    },
-    "author": "Basti Tee",
-    "license": "GPL-3.0",
-    "homepage": "https://github.com/BastiTee/d3-workbench",
-    "dependencies": {
-        "express": "^4.13.4",
-        "minimist": "^1.2.0"
-    }
+  "name": "d3-workbench",
+  "version": "0.6.1",
+  "description": "A d3.js-powered workbench for rapid visualization prototyping",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BastiTee/d3-workbench"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "d3-workbench": "bin/d3-wb-server.js"
+  },
+  "author": "Basti Tee",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/BastiTee/d3-workbench",
+  "dependencies": {
+    "browser-sync": "^2.18.13",
+    "express": "^4.13.4",
+    "minimist": "^1.2.0"
+  }
 }
