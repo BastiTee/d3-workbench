@@ -3,7 +3,7 @@
 
 ## In a nutshell
 
-d3-workbench helps you to rapidly create data visualization prototypes using [d3.js.](https://d3js.org).
+d3-workbench helps you to rapidly create data visualization prototypes using [d3.js](https://d3js.org).
 
 It consists of three main components:
 
