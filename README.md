@@ -1,18 +1,37 @@
 # d3-workbench
 
-> A d3.js-powered workbench for rapid visualization prototyping
-
 ## In a nutshell
 
-d3-workbench is a suite of libraries based on [d3.js](https://d3js.org) allowing for rapid prototyping of data visualizations.
+d3-workbench helps you to rapidly create data visualization prototypes using [d3.js v4](https://d3js.org).
 
 It consists of three main components:
 
-- `d3-wb`, a collection of Javascript-libraries extending [d3.js](https://d3js.org).
-- `d3-wb-server`, a [node](https://nodejs.org/en/)-based server application rendering your visualizations for the browser.
-- `workbench`, a working directory.
+- `d3-wb`, a collection of Javascript-libraries and plugins extending [d3.js](https://d3js.org).
+- `d3-wb-server`, a local application rendering visualizations in your browser while you develop.
+- `workbench`, your working directory.
 
-While `d3-wb` is independent from `d3-wb-server`, the latter requires `d3-wb`. All components are based on [d3.js](https://d3js.org) Version 4.
+All components are based on [d3.js](https://d3js.org) Version 4.
+
+## Quick start
+
+d3-workbench uses [node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Make sure you have both installed and `npm` available on the command-line.
+
+As admin run
+
+```
+npm install -g d3-workbench
+d3-workbench -i +DEMO
+```
+
+A browser window will open and display a demo workbench. To start with your own project, create a new folder somewhere and run
+
+```
+d3-workbench -i /path/to/myfolder
+```
+
+Instead of the demo workbench, an empty workbench is created, providing you with a new collection containing a sample visualization.
+
+## Components
 
 ### d3-wb
 
@@ -46,40 +65,30 @@ On top-level you will find your collections (in the example a collection of [cha
 
 Inside a collection you will find one folder for each of the collection's visualizations, e.g., an [example implementation](default-content/coll_00_chart_reference/002-barchart) of the reusable bar chart.
 
-## How to use the workbench
+## Workflow
 
-The following sections will shortly describe what you need to use d3-workbench, how to set it up and work on your visualization. A running `d3-wb-server` demo instance can be found at <https://d3-workbench.basti.site>.
+### Start visualizing
 
-### Prerequisites
+_TODO_
 
-d3-workbench is a [node.js](https://nodejs.org/en/) framework and uses [npm](https://www.npmjs.com/), so make sure you have both installed and `npm` available on the command-line.
+### Share collections
 
-### Installation
+_TODO_
 
-Global installation as admin-user is recommended. This can be done via npm:
+### Self-host your collections online
 
-```
-sudo npm install -g d3-workbench
-```
+_TODO_
 
-Now you can run:
+### Integrate visualizations in other websites
 
-```
-d3-workbench -h
-```
-
-to check the possible command-line options.
-
-**Quick demo**: To start d3-workbench with some sample content, run `d3-workbench -i +DEMO` and visit <http://localhost:50321>.
-
-**Work with your own content**: To start d3-workbench to work on own content, create a folder somewhere and run `d3-workbench -i /path/to/my/folder` and continue like before. Notice that `d3-wb-server` automatically creates a sample collection and visualization.
+_TODO_
 
 ## License and further information
-
-To get in contact with me, find me at [twitter](https://twitter.com/basti_tee).
 
 This software is licensed under [GPLv3](https://github.com/BastiTee/d3-workbench/blob/master/LICENSE).
 
 For convenience, this software bundles the [source-code of other open-source software](https://github.com/BastiTee/d3-workbench/tree/master/d3-wb/). Licenses can be found in the respective subfolders.
 
 Icon made by <https://www.flaticon.com/authors/smashicons> from <https://www.flaticon.com/> is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
+
+You can get in contact with me via my [hub-page](https://basti.site).
