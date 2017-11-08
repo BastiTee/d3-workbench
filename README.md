@@ -1,5 +1,5 @@
 # d3-workbench
-
+<img align="right" src="d3-wb-server/gfx/favicon.png" alt="alt text" width="150" height="150">
 ## In a nutshell
 
 d3-workbench helps you to rapidly create data visualization prototypes using [d3.js v4](https://d3js.org).
