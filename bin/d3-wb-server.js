@@ -12,6 +12,7 @@ Usage: node d3-wb-server.js -i WORKBENCH [-p PORT]
 Optional arguments:
 
     -p PORT         Server port. Defaults to 50321.
+    -n              Disable hot-reload via browser-sync.
     -v              Verbose output.
 `
 
@@ -336,18 +337,25 @@ server.use("/res", express.static(path.resolve(__dirname + "/../d3-wb-server")))
 server.use(express.static(argv.i));
 
 // start server
-server.listen(internalPort);
+if (argv.n) {
 
-// create browsersync proxy
-var watchFolder = argv.i + "/**/*"
-log("Watching files in " + watchFolder)
-bs.watch(watchFolder).on("change", bs.reload);
-bs.init({
-    proxy: "http://localhost:" + internalPort,
-    port: argv.p,
-    ui: false,
-    notify: false,
-    logLevel: argv.v ? "info" : "silent"
-});
+    server.listen(argv.p);
+
+} else {
+
+    server.listen(internalPort);
+
+    // create browsersync proxy
+    var watchFolder = argv.i + "/**/*"
+    log("Watching files in " + watchFolder)
+    bs.watch(watchFolder).on("change", bs.reload);
+    bs.init({
+        proxy: "http://localhost:" + internalPort,
+        port: argv.p,
+        ui: false,
+        notify: false,
+        logLevel: argv.v ? "info" : "silent"
+    });
+}
 
 log(">> http://localhost:" + argv.p + " << " + argv.i);
