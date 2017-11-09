@@ -1,8 +1,6 @@
 ![header-image](d3-wb-server/gfx/header.png)
 
-[![GitHub release](https://img.shields.io/github/release/BastiTee/d3-workbench.svg)](https://github.com/BastiTee/d3-workbench/releases/latest)
-[![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://d3-workbench.basti.site/)
-
+[![GitHub release](https://img.shields.io/github/release/BastiTee/d3-workbench.svg)](https://github.com/BastiTee/d3-workbench/releases/latest) [![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://d3-workbench.basti.site/)
 
 # In a nutshell
 
@@ -93,7 +91,12 @@ The overall file/folder structure for your `workbench`:
 
 The `info.json` file currently supports the following options:
 
-
+**Option** | **Explanation**
+---------- | -------------------------------------------------------------
+title      | Title of the current (sub-) page
+isroot     | Mark the current folder as root folder (deprecated)
+height     | Desired visualization height (only applied to visualizations)
+ignore     | A list of sub-folders to be ignored
 
 # Workflow
 
