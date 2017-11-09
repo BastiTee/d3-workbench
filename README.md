@@ -12,6 +12,10 @@ It consists of three main components:
 - `d3-wb-server`, a local application rendering visualizations in your browser while you develop.
 - `workbench`, your working directory.
 
+d3-workbench is not a framework, even though it offers libraries with strict APIs. It's neither required to use any of the utilities, reusable charts or plugins (e.g., if you just want to benefit from the server component), nor is your data visualization bound to a d3-workbench environment. 
+
+Think of d3-workbench as a distribution as in «Linux distribution» with [d3.js](https://d3js.org) being the kernel.
+
 All components are [d3.js V4-ready](https://github.com/d3/d3/blob/master/CHANGES.md).
 
 # Quick start
