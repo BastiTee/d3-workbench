@@ -1,9 +1,8 @@
-# d3-workbench
-<img align="right" src="d3-wb-server/gfx/favicon.png" alt="alt text" width="150" height="150">
+![header-image](d3-wb-server/gfx/header.png)
 
-## In a nutshell
+# In a nutshell
 
-d3-workbench helps you to rapidly create data visualization prototypes using [d3.js](https://d3js.org).
+d3-workbench helps you to quickly create data visualization prototypes with [d3.js](https://d3js.org).
 
 It consists of three main components:
 
@@ -11,16 +10,21 @@ It consists of three main components:
 - `d3-wb-server`, a local application rendering visualizations in your browser while you develop.
 - `workbench`, your working directory.
 
-All components are based on [d3.js](https://d3js.org) Version 4.
+All components are [d3.js V4-ready](https://github.com/d3/d3/blob/master/CHANGES.md).
 
-## Quick start
+# Quick start
 
-d3-workbench uses [node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Make sure you have both installed and `npm` available on the command-line.
+d3-workbench uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Make sure you have both installed and `npm` available on the command-line.
 
-As admin run
+As admin install by executing
 
 ```
 npm install -g d3-workbench
+```
+
+and to start as regular user
+
+```
 d3-workbench -i +DEMO
 ```
 
@@ -30,13 +34,13 @@ A browser window will open and display a demo workbench. To start with your own 
 d3-workbench -i /path/to/myfolder
 ```
 
-Instead of the demo workbench, an empty workbench is created, providing you with a new collection containing a sample visualization.
+Instead of the demo workbench, an empty workbench is created, providing you with a new collection containing a sample visualization to start with.
 
-## Components
+# Components
 
-### d3-wb
+## d3-wb
 
-`d3-wb` loosely bundles the following components:
+`d3-wb` consists of the following components:
 
 - [`d3-wb.js`](d3-wb/d3-wb.js): The core component that minimizes boilerplate code for common tasks such as setting up SVGs with margin conventions, handling data paths, resizing SVGs to parent DIVs, etc.
 - [`d3-wb-plugins`](d3-wb/d3-wb-plugins): A set of plug-ins to speed up visualization by providing utilities for recurring tasks such as adding titles, axis, tool-tips or HTML-components, changing color themes and working with data.
@@ -44,13 +48,11 @@ Instead of the demo workbench, an empty workbench is created, providing you with
 - [`d3-plugins`](d3-wb/d3-plugins): External d3-plugins that are required for some of the reusable charts.
 - [`d3`](d3-wb/d3): The heart and soul of everything; a static version of [d3.js](https://d3js.org) Version 4.
 
-A [library release](https://bastitee.github.io/d3-workbench-ghp/) of those components provides different combinations of the above components, depending on what you require.
+[Library releases](https://bastitee.github.io/d3-workbench-ghp/) of different combinations of these components are available depending on your needs.
 
-### d3-wb-server
+## d3-wb-server
 
-`d3-wb-server` is an engine, that supports you to manage and create your data visualization prototypes. Currently two levels exist: Collections and visualizations where the latter is part of a collection.
-
-`d3-wb-server` takes care of..
+`d3-wb-server` is an engine, that helps you to manage and create your data visualization prototypes. `d3-wb-server` takes care of..
 
 - Assembling and rendering of your local files into a browser-based collection/visualization viewer
 - Automatic lookup and setup of local files/folders
@@ -58,33 +60,55 @@ A [library release](https://bastitee.github.io/d3-workbench-ghp/) of those compo
 - Standalone fullscreen SVGs and SVG galleries out of the box
 - Offline-work
 
-### workbench
+## workbench
 
-`workbench` is a local folder that contains your collections and visualizations. Shipped with d3-workbench comes a [workbench](default-content) that demonstrates all the reusable charts and libraries.
+`workbench` is a local folder that contains your visualization work in progress. Shipped with d3-workbench comes a [workbench](default-content) that demonstrates all the reusable charts and libraries. Your work is organized in collections.
 
-On top-level you will find your collections (in the example a collection of [chart examples](default-content/coll_00_chart_reference) and [utility examples](default-content/coll_01_tech_specs)).
+In your workbench's top-level you will find your collections (in the example a collection of [chart examples](default-content/coll_00_chart_reference) and [utility examples](default-content/coll_01_tech_specs)).
 
 Inside a collection you will find one folder for each of the collection's visualizations, e.g., an [example implementation](default-content/coll_00_chart_reference/002-barchart) of the reusable bar chart.
 
-## Workflow
+# Workflow
 
-### Start visualizing
+Below you find some information on a typical workflow using d3-workbench.
 
-_TODO_
+## Start visualizing
 
-### Share collections
+In the beginning you probably use d3-workbench as described above. After you've installed the application, you create a new `workbench` and create collections and visualizations.
 
-_TODO_
+Consider the [default workbench](default-content) as an up-to-date cookbook for all things possible with d3-workbench. For example if you want to create a sankey diagram yourself, checkout the [visualization](default-content/coll_00_chart_reference/013-sankey) code, especially the necessary [data format](default-content/coll_00_chart_reference/013-sankey/data.json) and the [javascript-code](default-content/coll_00_chart_reference/013-sankey/svg.js).
 
-### Self-host your collections online
+## Share collections
 
-_TODO_
+`workbench` folders have no external dependencies except for d3-workbench available on the command line. If you want to share your collections, you can simple ZIP-compress your `workbench` and send it to someone. Or you might put your `workbench` on GitHub and work collaboratively. Notice that each `workbench` contains a [version-file](default-content/d3-wb-version) indicating the d3-workbench version it was created with.
 
-### Integrate visualizations in other websites
+## Integrate visualizations in other websites
 
-_TODO_
+As long as you haven't introduced any new dependencies, you can include the [library components of d3-workbench](#d3-wb) into [bl.ocks](https://bl.ocks.org/) or your own website. There is an example [bl.ock](https://bl.ocks.org/BastiTee/84675415bfbcaebbf5397e645a26b706)/[gist](https://gist.github.com/BastiTee/84675415bfbcaebbf5397e645a26b706) where you can see how it's applied.
 
-## License and further information
+## Self-host your collections online
+
+Of course you can simple put a web server in front of a running d3-workbench instance and host your work from there. There is a demo instance using this particular method available at <https://d3-workbench.basti.site/>.
+
+In this case a simple Apache-based URL-Rewrite was used:
+
+```
+RewriteEngine On
+RewriteRule ^(.*)$ http://localhost:50321/$1 [P]
+```
+
+# Work in progress
+
+Even though the overall interfaces are stable, so you can safely work with d3-workbench, the project is still evolving and there is a ton of things still to do. This includes..
+
+- [ ] Documenting the [main libraries](#d3-wb)
+- [ ] Detailed documentation for additional `workbench` files
+- [ ] Externalize d3 and plugin libraries obtained from GitHub
+- [ ] ..
+
+Contributions and beta-testers are always welcome.
+
+# License and further information
 
 This software is licensed under [GPLv3](https://github.com/BastiTee/d3-workbench/blob/master/LICENSE).
 
