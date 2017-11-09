@@ -72,6 +72,29 @@ In your workbench's top-level you will find your collections (in the example a c
 
 Inside a collection you will find one folder for each of the collection's visualizations, e.g., an [example implementation](default-content/coll_00_chart_reference/002-barchart) of the reusable bar chart.
 
+The overall file/folder structure for your `workbench`:
+
+```
+<workbench>
+  |-- d3-wb-version      - Stores the d3-workbench version that created this workbench
+  |-- info.json          - A file to configure the top-level webpage
+  |-- local.css          - A local CSS file to change the appearance of the top-level webpage
+  |-- local.cs           - A local JS file to be executed if the top-level webpage is requested
+  |-- collection_1/      - A subfolder, i.e. a collection of visualizations
+      |-- info.json      - Like above, but applied to the current collection
+      |-- local.css      - Like above, but applied to the current collection
+      |-- local.js       - Like above, but applied to the current collection
+      |-- viz_1/         - A visualization
+          |-- info.json  - Like above, but applied to the current visualization
+          |-- data.csv   - A file containing the data for this visualization
+          |-- svg.js     - The implementation file for this visualization
+  |-- collection_2/      ...
+```
+
+The `info.json` file currently supports the following options:
+
+
+
 # Workflow
 
 Below you find some information on a typical workflow using d3-workbench.
@@ -92,7 +115,7 @@ As long as you haven't introduced any new dependencies, you can include the [lib
 
 ## Self-host your collections online
 
-Of course you can simple put a web server in front of a running d3-workbench instance and host your work from there. There is a demo instance using this particular method available at [![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://d3-workbench.basti.site/)
+Of course you can simple put a web server in front of a running d3-workbench instance and host your work from there. There is a demo instance using this particular method available at <https://d3-workbench.basti.site/>.
 
 In this case a simple Apache-based URL-Rewrite was used:
 
