@@ -1,5 +1,9 @@
 ![header-image](d3-wb-server/gfx/header.png)
 
+[![GitHub release](https://img.shields.io/github/release/BastiTee/d3-workbench.svg)](https://github.com/BastiTee/d3-workbench/releases/latest)
+[![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://d3-workbench.basti.site/)
+
+
 # In a nutshell
 
 d3-workbench helps you to quickly create data visualization prototypes with [d3.js](https://d3js.org).
@@ -88,7 +92,7 @@ As long as you haven't introduced any new dependencies, you can include the [lib
 
 ## Self-host your collections online
 
-Of course you can simple put a web server in front of a running d3-workbench instance and host your work from there. There is a demo instance using this particular method available at <https://d3-workbench.basti.site/>.
+Of course you can simple put a web server in front of a running d3-workbench instance and host your work from there. There is a demo instance using this particular method available at [![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://d3-workbench.basti.site/)
 
 In this case a simple Apache-based URL-Rewrite was used:
 
