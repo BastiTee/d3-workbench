@@ -42,6 +42,14 @@ d3-workbench -i /path/to/myfolder
 
 Instead of the demo workbench, an empty workbench is created, providing you with a new collection containing a sample visualization to start with.
 
+To start d3-workbench from source, use the `start` script
+
+```
+npm start -- -i /path/to/myfolder -v
+```
+
+Notice the `--` otherwise the remaining options are considered `npm` options.
+
 # Components
 
 ## d3-wb

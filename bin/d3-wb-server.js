@@ -32,7 +32,7 @@ if (argv.h !== undefined) {
     console.log(help)
     process.exit(0)
 }
-if (argv.i === undefined) {
+if (argv.i === undefined || argv.i == true || argv.i == false ) {
     console.log("No workbench/working folder provided!");
     console.log(help)
     process.exit(0)

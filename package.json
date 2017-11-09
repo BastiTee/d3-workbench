@@ -10,6 +10,9 @@
   "bin": {
     "d3-workbench": "bin/d3-wb-server.js"
   },
+  "scripts": {
+      "start": "node bin/d3-wb-server.js"
+  },
   "author": "Basti Tee",
   "license": "GPL-3.0",
   "homepage": "https://github.com/BastiTee/d3-workbench",
