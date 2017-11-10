@@ -26,11 +26,11 @@ body {
  * LIST OF COLLECTIONS
  ***************************************************************************/
 
-.page-collection {
+div.page-collection {
     margin-bottom: 0.5em;
 }
 
-.page-collection-list {
+div.page-collection-list {
     margin-top: 5em;
     text-align: center;
 }
@@ -40,7 +40,7 @@ body {
  * BUTTONS
  ***************************************************************************/
 
-.page-button {
+a.page-button {
     text-decoration: none;
     padding: 2px 10px 2px 10px;
     color: white;
@@ -50,11 +50,11 @@ body {
     box-shadow: inset 0 -2px #acb2b7;
 }
 
-.collection-page-button {
+a.collection-page-button {
     background: #61A2EF;
 }
 
-.visualization-page-button {
+a.visualization-page-button {
     position: absolute;
     left: 0;
     top: 50%;
@@ -70,13 +70,13 @@ body {
  * LIST OF VISUALIZATIONS
  ***************************************************************************/
 
-.visualization {
+div.visualization {
     position: relative;
     margin: 0;
     padding: 0;
 }
 
-.visualization-svg-div {
+div.visualization-svg-div {
     width: 100%;
     max-width: 50em;
     height: 100%;
@@ -86,7 +86,7 @@ body {
     padding: 0em;
 }
 
-.visualization-title {
+div.visualization-title {
     position: absolute;
     font-size: 130%;
     top: 100%;
@@ -96,7 +96,7 @@ body {
     box-shadow: 0em 1.2em 2em rgba(0, 0, 0, 0.3);
 }
 
-.visualization-title-text {
+div.visualization-title-text {
     position: relative;
     text-align: center;
     margin: 0.7em 0em 0.7em 0em;
@@ -107,18 +107,18 @@ body {
  * HEADER
  ***************************************************************************/
 
-.page-header {
+div.page-header {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     margin-bottom: -4em;
 }
 
-.page-header img {
+div.page-header img {
     height: 3.3em;
 }
 
-.page-header-text {
+div.page-header-text {
     text-align: center;
     font-size: 240%;
     color: #61A2EF;
@@ -127,9 +127,13 @@ body {
     padding-left: 0.15em;
 }
 
-.page-header-image, .page-header-text {
+div.page-header-image, .page-header-text {
     display: inline-block;
     vertical-align: bottom;
+}
+
+div.link-list {
+
 }
 
 
@@ -137,14 +141,14 @@ body {
  * FOOTER
  ***************************************************************************/
 
-.page-footer {
+div.page-footer {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1em;
 }
 
-.page-footer a, .page-footer a:visited {
+div.page-footer a, .page-footer a:visited {
     text-decoration: none;
     color: #555;
 }
@@ -153,7 +157,8 @@ body {
  * RESPONSIVENESS – TODO: This is barely a good configuration.
  ***************************************************************************/
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+/* Landscape phones and down */
+@media (max-width: 480px) { 
     .visualization-title {
         font-size: 250%;
     }
@@ -181,4 +186,19 @@ body {
     .page-footer {
         font-size: 250%;
     }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+
+}
+
+/* Large desktop */
+@media (min-width: 1200px) { 
+
 }
