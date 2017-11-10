@@ -4,7 +4,10 @@
 
 const demosymbol = "+DEMO"
 const help = `
-Usage: node d3-wb-server.js -i WORKBENCH [-p PORT]
+Usage: 
+
+    node d3-wb-server.js -i WORKBENCH [OPTIONS...]
+    npm start -- -i WORKBENCH [OPTIONS...]
 
     -i WORKBENCH    Path to your workbench folder. Use ` + demosymbol +
     ` for example content.
