@@ -154,8 +154,6 @@ Contributions and beta-testers are always welcome.
 
 This software is licensed under [GPLv3](https://github.com/BastiTee/d3-workbench/blob/master/LICENSE).
 
-For convenience, this software bundles the [source-code of other open-source software](https://github.com/BastiTee/d3-workbench/tree/master/d3-wb/). Licenses can be found in the respective subfolders.
-
 Icon made by <https://www.flaticon.com/authors/smashicons> from <https://www.flaticon.com/> is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
 
 You can get in contact with me via my [hub-page](https://basti.site).
