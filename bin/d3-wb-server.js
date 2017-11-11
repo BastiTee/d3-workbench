@@ -336,6 +336,7 @@ server.use(serveIndexPage)
 
 // set static folders
 server.use("/d3_wb", express.static(path.resolve(__dirname + "/../d3-wb")))
+server.use("/libs", express.static(path.resolve(__dirname + "/../node_modules")))
 server.use("/res", express.static(path.resolve(__dirname + "/../d3-wb-server")))
 server.use(express.static(argv.i));
 

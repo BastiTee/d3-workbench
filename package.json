@@ -11,14 +11,20 @@
     "d3-workbench": "bin/d3-wb-server.js"
   },
   "scripts": {
-      "start": "node bin/d3-wb-server.js"
+    "start": "node bin/d3-wb-server.js"
   },
   "author": "Basti Tee",
   "license": "GPL-3.0",
   "homepage": "https://github.com/BastiTee/d3-workbench",
   "dependencies": {
-    "browser-sync": "^2.18.13",
-    "express": "^4.13.4",
-    "minimist": "^1.2.0"
+    "browser-sync": "2.18.13",
+    "d3": "4.11.0",
+    "d3-cloud": "1.2.4",
+    "d3-sankey": "0.4.2",
+    "d3-scale-chromatic": "1.1.1",
+    "d3-svg-annotation": "2.1.0",
+    "d3-svg-legend": "2.24.1",
+    "express": "4.13.4",
+    "minimist": "1.2.0"
   }
 }

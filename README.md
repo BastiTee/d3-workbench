@@ -57,10 +57,8 @@ Notice the `--` otherwise the remaining options are considered `npm` options.
 `d3-wb` consists of the following components:
 
 - [`d3-wb.js`](d3-wb/d3-wb.js): The core component that minimizes boilerplate code for common tasks such as setting up SVGs with margin conventions, handling data paths, resizing SVGs to parent DIVs, etc.
-- [`d3-wb-plugins`](d3-wb/d3-wb-plugins): A set of plug-ins to speed up visualization by providing utilities for recurring tasks such as adding titles, axis, tool-tips or HTML-components, changing color themes and working with data.
-- [`d3-wb-reusable-charts`](d3-wb/d3-wb-reusable-charts): A collection of basic charts such as bar, line, scatter or donut charts. All charts are designed to be fully reusable (in the spirit of [«Towards Reusable Charts»](https://bost.ocks.org/mike/chart/) and [«Towards Updatable D3.js Charts»](https://www.toptal.com/d3-js/towards-reusable-d3-js-charts)) and can be used independently from d3-workbench.
-- [`d3-plugins`](d3-wb/d3-plugins): External d3-plugins that are required for some of the reusable charts.
-- [`d3`](d3-wb/d3): The heart and soul of everything; a static version of [d3.js](https://d3js.org) Version 4.
+- [`d3-wb-modules/`](d3-wb/d3-wb-modules): A set of modules to speed up visualization by providing utilities for recurring tasks such as adding titles, axis, tool-tips or HTML-components, changing color themes and working with data.
+- [`d3-wb-reusable-charts/`](d3-wb/d3-wb-reusable-charts): A collection of basic charts such as bar, line, scatter or donut charts. All charts are designed to be fully reusable (in the spirit of [«Towards Reusable Charts»](https://bost.ocks.org/mike/chart/) and [«Towards Updatable D3.js Charts»](https://www.toptal.com/d3-js/towards-reusable-d3-js-charts)) and can be used independently from d3-workbench.
 
 [Library releases](https://bastitee.github.io/d3-workbench-ghp/) of different combinations of these components are available depending on your needs.
 
@@ -143,10 +141,12 @@ RewriteRule ^(.*)$ http://localhost:50321/$1 [P]
 
 Even though the overall interfaces are stable, so you can safely work with d3-workbench, the project is still evolving and there is a ton of things still to do. This includes..
 
-- [ ] Documenting the [main libraries](#d3-wb)
-- [ ] Detailed documentation for additional `workbench` files
-- [ ] Externalize d3 and plugin libraries obtained from GitHub
-- [ ] ..
+- [ ] Document main library
+- [ ] Document d3-wb-modules
+- [ ] Document d3-wb-reusable-charts
+- [ ] Fix build process after switching to npm-based dependency management
+- [x] Detailed documentation for additional `workbench` files
+- [x] Externalize d3 and plugin libraries obtained from GitHub
 
 Contributions and beta-testers are always welcome.
 
