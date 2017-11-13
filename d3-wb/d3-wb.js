@@ -150,8 +150,8 @@ var d3wb = (function() {
         cv.data = config.data()
         cv.d = config.data()
         // embedding
-        cv.div = d3.select(config.parentDivId ? config.parentDivId 
-            : standaloneBodyId)
+        cv.div = d3.select(config.parentDivId ? config.parentDivId :
+            standaloneBodyId)
         // helper method for circular visualizaions
         cv.transformCircular = function() {
             this.attr("transform", "translate(" +
@@ -194,16 +194,32 @@ var d3wb = (function() {
         }
     }
 
+    var isUrl = function(path) {
+        if (path === undefined) {
+            return false
+        }
+        if (path.match(/^(https?).*/)) {
+            return true
+        }
+        return false
+    }
+
     var setPathToData = function(config, path) {
         if (config.datasrc === undefined) {
             return
         }
         if (typeof config.datasrc === 'string' ||
             config.datasrc instanceof String) {
+            if (isUrl(config.datasrc)) {
+                return
+            }
             config.datasrc = path + "/" + config.datasrc
             return
         }
         for (var i = 0; i < config.datasrc.length; i++) {
+            if (isUrl(config.datasrc[i])) {
+                continue
+            }
             config.datasrc[i] = path + "/" + config.datasrc[i]
         }
     }
