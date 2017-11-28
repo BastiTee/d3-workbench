@@ -56,6 +56,7 @@ function wbNetworkDiagram() {
                 .selectAll("line")
                 .data(data.links)
                 .enter().append("line")
+                .attr("class", "lines")
                 .attr("stroke-width", function(d) {
                     return thick(d.value)
                 })
@@ -185,13 +186,13 @@ function wbNetworkDiagram() {
         colors = value;
         return chart;
     }
-    
+
     chart.collide = function(value) {
         if (!arguments.length) return collide
         collide = value;
         return chart;
     }
-    
+
     chart.thicknessRange = function(value) {
         if (!arguments.length) return thicknessRange
         thicknessRange = value;

@@ -11,7 +11,7 @@
         }
         .` + cclass + ` text{
           fill: ` + color + `;
-        }  
+        }
         `)
     }
 
@@ -161,6 +161,7 @@
                     .attr("y", 5)
                     .attr("text-anchor", "middle")
                     .attr("dominant-baseline", "hanging")
+                    .style("pointer-events", "none")
                     .style("fill", color)
                     .style("font-size", fontSize)
 
@@ -336,7 +337,8 @@
                     .style("opacity", opacity)
                 var xAbs = x !== undefined ? x : root.width - margin - padding
                 var yAbs = y !== undefined ? y : padding + margin
-                g.attr("transform", "translate(" + xAbs + "," + yAbs + "),rotate("+ rotate +")")
+                g.attr("transform", "translate(" + xAbs + "," + yAbs +
+                    "),rotate(" + rotate + ")")
             })
         }
 
@@ -363,31 +365,31 @@
             margin = value;
             return chart;
         }
-        
+
         chart.roundCorners = function(value) {
             if (!arguments.length) return roundCorners
             roundCorners = value;
             return chart;
         }
-        
+
         chart.rotate = function(value) {
             if (!arguments.length) return rotate
             rotate = value;
             return chart;
         }
-        
+
         chart.x = function(value) {
             if (!arguments.length) return x
             x = value;
             return chart;
         }
-        
+
         chart.y = function(value) {
             if (!arguments.length) return y
             y = value;
             return chart;
         }
-        
+
         return chart
     }
 
@@ -506,13 +508,13 @@
             color = value;
             return chart;
         }
-        
+
         chart.symbol = function(value) {
             if (!arguments.length) return symbol
             symbol = value;
             return chart;
         }
-        
+
         chart.symbolSize = function(value) {
             if (!arguments.length) return symbolSize
             symbolSize = value;
