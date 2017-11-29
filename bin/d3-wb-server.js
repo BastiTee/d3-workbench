@@ -200,9 +200,7 @@ var createLocalJs = function(fsPath, level) {
         fs.readFileSync(fsPath + "/local.js")
     } catch (error) {
         fs.writeFileSync(fsPath + "/local.js",
-            `(function(){
-    // add code here
-})()`, "UTF-8")
+            "(function(){\n// add code here\n})()", "UTF-8")
     }
 }
 
