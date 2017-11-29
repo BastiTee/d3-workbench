@@ -1,31 +1,32 @@
 #!/usr/bin/env node
 
-const demosymbol = "+DEMO"
-const help = `
-Usage:
+"use strict";
 
-    node d3-wb-server.js -i WORKBENCH [OPTIONS...]
-    npm start -- -i WORKBENCH [OPTIONS...]
-
-    -i WORKBENCH    Path to your workbench folder. Use ` + demosymbol +
-    ` for example content.
-
-Optional arguments:
-
-    -p PORT         Server port. Defaults to 50321.
-    -n              Disable hot-reload via browser-sync.
-    -v              Verbose output.
-`
+var demosymbol = "+DEMO"
+var help = "\n\
+Usage:\n\
+\n\
+    node d3-wb-server.js -i WORKBENCH [OPTIONS...]\n\
+    npm start -- -i WORKBENCH [OPTIONS...]\n\
+\n\
+    -i WORKBENCH    Path to your workbench folder. Use +DEMO for example content.\n\
+\n\
+Optional arguments:\n\
+\n\
+    -p PORT         Server port. Defaults to 50321.\n\
+    -n              Disable hot-reload via browser-sync.\n\
+    -v              Verbose output.\n\
+"
 
 // external libraries
-const express = require("express");
-const server = express();
-const fs = require("fs");
-const path = require("path");
-const parse = require("minimist")
-const bs = require("browser-sync").create();
-const internalPort = 61426
-const pj = require('../package.json');
+var express = require("express");
+var server = express();
+var fs = require("fs");
+var path = require("path");
+var parse = require("minimist")
+var bs = require("browser-sync").create();
+var internalPort = 61426
+var pj = require('../package.json');
 
 // argument parser
 var argv = parse(process.argv.slice(2));
@@ -33,7 +34,7 @@ if (argv.h !== undefined) {
     console.log(help)
     process.exit(0)
 }
-if (argv.i === undefined || argv.i == true || argv.i == false ) {
+if (argv.i === undefined || argv.i == true || argv.i == false) {
     console.log("No workbench/working folder provided!");
     console.log(help)
     process.exit(0)
@@ -56,7 +57,7 @@ argv.p = argv.p || 50321
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-var fileToStr = (file) => {
+var fileToStr = function(file) {
 
     file = file.split("/")
     var filepath = path.resolve(__dirname + "/../d3-wb-server")
@@ -103,7 +104,7 @@ var generateIndexDocument = function(requestPath, fsPath, level) {
     var pageJson = createAndLoadInfoJson(fsPath)
     var ignore = pageJson["ignore"] || []
     var fsList = fs.readdirSync(fsPath)
-    fsList.forEach(file => {
+    fsList.forEach(function(file) {
         if (ignored(ignore, file)) {
             return
         }
@@ -218,7 +219,7 @@ var createSampleContent = function(fsPath) {
         fs.mkdirSync(path.join(fsPath, "collection"))
         var collections = getSubDirs(fsPath)
     }
-    collections.forEach(collection => {
+    collections.forEach(function(collection) {
         collection = path.join(fsPath, collection)
         // info.json and local.css for collection folder
         createAndLoadInfoJson(collection)
@@ -231,7 +232,7 @@ var createSampleContent = function(fsPath) {
             fs.mkdirSync(path.join(collection, "visualization"))
             var visualizations = getSubDirs(collection)
         }
-        visualizations.forEach(visualization => {
+        visualizations.forEach(function(visualization) {
             visualization = path.join(collection, visualization)
             createAndLoadInfoJson(visualization)
             createTemplateVisualization(visualization)

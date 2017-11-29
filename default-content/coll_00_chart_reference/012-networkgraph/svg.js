@@ -15,7 +15,7 @@
                 ["type3", d3wb.color.category()[2]]
             ])
             .colors(d3wb.color.ordinal())
-            .fill(d3wb.color.foreground)
+            .legendColor(d3wb.color.foreground)
         cv.datum(data).call(chart)
 
         cv.selectAll(".circles").call(
