@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-"use strict";
-
 const demosymbol = "+DEMO"
 const help = `
-Usage: 
+Usage:
 
     node d3-wb-server.js -i WORKBENCH [OPTIONS...]
     npm start -- -i WORKBENCH [OPTIONS...]
@@ -40,7 +38,7 @@ if (argv.i === undefined || argv.i == true || argv.i == false ) {
     console.log(help)
     process.exit(0)
 }
-// check if demo content was requested 
+// check if demo content was requested
 if (argv.i === demosymbol) {
     argv.i = path.resolve(__dirname + "/../default-content")
 }
@@ -290,10 +288,10 @@ var serveIndexPage = function(request, response, next) {
             "Content-Type": "text/html"
         });
         try {
-            // if there is a manual index, return it... 
+            // if there is a manual index, return it...
             var template = fs.readFileSync(path.join(fsPath, "index.html"));
         } catch (error) {
-            // otherwise generate it 
+            // otherwise generate it
             var template = fileToStr("index-canvas.html")
         }
         response.write(template);
