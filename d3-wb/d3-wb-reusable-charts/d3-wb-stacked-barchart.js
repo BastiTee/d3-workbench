@@ -7,8 +7,11 @@ function wbStackedBarChart() {
     var ySelector = "y"
     var colors = ["red", "green", "blue"]
     var legendFill = "black"
+    var legendX = 0
+    var legendY = 0
     var scaleX
     var scaleY
+    var sortBySum = false
 
     function chart(selection) {
 
@@ -36,9 +39,11 @@ function wbStackedBarChart() {
 
             var keys = data.columns.slice(1);
 
-            data.sort(function(a, b) {
-                return b.total - a.total;
-            });
+            if (sortBySum) {
+                data.sort(function(a, b) {
+                    return b.total - a.total;
+                });
+            }
             scaleX.domain(data.map(function(d) {
                 return d.id;
             }));
@@ -74,6 +79,7 @@ function wbStackedBarChart() {
             var legend = s.append("g")
                 .attr("font-size", "75%")
                 .attr("text-anchor", "end")
+                .attr("transform", "translate(" + legendX + "," + legendY + ")")
                 .selectAll("g")
                 .data(keys.slice())
                 .enter().append("g")
@@ -81,14 +87,15 @@ function wbStackedBarChart() {
                     return "translate(0," + i * 20 + ")";
                 });
 
+            var rw = 19
             legend.append("rect")
-                .attr("x", width - 19)
-                .attr("width", 19)
-                .attr("height", 19)
+                .attr("x", -rw)
+                .attr("width", rw)
+                .attr("height", rw)
                 .attr("fill", scaleZ);
 
             legend.append("text")
-                .attr("x", width - 24)
+                .attr("x", -rw-3)
                 .attr("y", 9.5)
                 .attr("dy", "0.32em")
                 .text(function(d) {
@@ -143,6 +150,24 @@ function wbStackedBarChart() {
     chart.legendFill = function(value) {
         if (!arguments.length) return legendFill
         legendFill = value;
+        return chart;
+    }
+
+    chart.legendX = function(value) {
+        if (!arguments.length) return legendX
+        legendX = value;
+        return chart;
+    }
+
+    chart.legendY = function(value) {
+        if (!arguments.length) return legendY
+        legendY = value;
+        return chart;
+    }
+
+    chart.sortBySum = function(value) {
+        if (!arguments.length) return sortBySum
+        sortBySum = value;
         return chart;
     }
 
