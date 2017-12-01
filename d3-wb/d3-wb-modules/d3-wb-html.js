@@ -217,6 +217,7 @@
                         position: absolute;
                         margin: 0;
                         padding: 0;
+                        pointer-events:none;
                     }
                     #` + c.id + `-in {
                         position: relative;
@@ -232,6 +233,7 @@
                         padding: 0;
                         color: ` + controlColor + `;
                         font-size: ` + controlFontSize + `;
+                        pointer-events: auto;
                     }
                     #` + c.id + `-in:hover {
                         cursor: default;
@@ -240,6 +242,12 @@
                     #` + c.id + `-ib {
                         position: relative;
                         text-align: left;
+                        -webkit-touch-callout: none;
+                        -webkit-user-select: none;
+                        -khtml-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
                         margin: 0;
                         padding: 0.5em;
                         border-radius: 0.4em;

@@ -8,7 +8,7 @@
         createDataVisualization(data)
 
         // create a callback to decide what to do
-        // with the text content 
+        // with the text content
         var callback = function(text) {
             console.log("-- callback='" + text + "'");
             d3.selectAll(".rects")
@@ -28,7 +28,7 @@
                 })
         }
 
-        // create the search bar 
+        // create the search bar
         var t = d3wb.html.textfield()
             .callback(callback)
             .style("top", "10px")
@@ -75,10 +75,15 @@
 
     var createOtherControls = function() {
         // add an info box how to use it
-        var box = d3wb.add.infoBox(
-            `Hover rectangles to see solutions.
-Use search box to search animals by food.`).fill(d3wb.color.black)
-        cv.call(box)
+        var box = d3wb.html.infoBox()
+        .controlColor(d3wb.color.foreground)
+        .controlColorHover(d3wb.color.red)
+        .infoColor("#fff")
+        .infoFill("#444")
+        .infoContent(`<b>Hover</b> rectangles to see solutions.</br><b>Use search box</b> to search animals by food.`)
+        .style("top", "35px")
+        .style("left", "10px")
+        cv.div.call(box)
 
         // add solutions as tooltips
         var tooltip = wbCooltip().selector(function(d) {

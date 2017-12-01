@@ -22,11 +22,6 @@
             .axisColor(d3wb.color.foreground)
         cv.datum(data).call(chart);
 
-        cv.call(d3wb.add.infoBox(
-                "Click to select area\nDouble-click for reset")
-            .color(d3wb.color.background)
-            .fill(d3wb.color.foreground))
-        
     })
 
 

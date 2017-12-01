@@ -292,107 +292,6 @@
         return chart
     }
 
-    var infoBox = function(text) {
-
-        var color = "white"
-        var fill = "red"
-        var fontSize = "80%"
-        var padding = 10
-        var margin = 10
-        var opacity = 0.8
-        var lineHeight = 15
-        var roundCorners = 5
-        var x
-        var y
-        var rotate = 0
-
-        function chart(selection) {
-
-            selection.each(function(data, i) {
-                var s = d3.select(this.ownerSVGElement)
-                var root = s.node().getBBox()
-                var g = s.append("g")
-                var box = g.append("rect")
-                var textG = g.append("text")
-                var split = text.split("\n")
-                for (var i in split) {
-                    textG.append("tspan")
-                        .style("text-anchor", "end")
-                        .style("dominant-baseline", "hanging")
-                        .style("font-size", fontSize)
-                        .style("fill", color)
-                        .attr("x", 0)
-                        .attr("dy", function() {
-                            return i == 0 ? 0 : lineHeight
-                        })
-                        .text(split[i])
-                }
-                var txtBox = textG.node().getBBox()
-                box.attr("rx", roundCorners).attr("ry", roundCorners)
-                    .attr("width", txtBox.width + padding * 2)
-                    .attr("height", txtBox.height + padding * 2)
-                    .attr("x", txtBox.x - padding)
-                    .attr("y", txtBox.y - padding)
-                    .style("fill", fill)
-                    .style("opacity", opacity)
-                var xAbs = x !== undefined ? x : root.width - margin - padding
-                var yAbs = y !== undefined ? y : padding + margin
-                g.attr("transform", "translate(" + xAbs + "," + yAbs +
-                    "),rotate(" + rotate + ")")
-            })
-        }
-
-        chart.opacity = function(value) {
-            if (!arguments.length) return opacity
-            opacity = value;
-            return chart;
-        }
-
-        chart.color = function(value) {
-            if (!arguments.length) return color
-            color = value;
-            return chart;
-        }
-
-        chart.fill = function(value) {
-            if (!arguments.length) return fill
-            fill = value;
-            return chart;
-        }
-
-        chart.margin = function(value) {
-            if (!arguments.length) return margin
-            margin = value;
-            return chart;
-        }
-
-        chart.roundCorners = function(value) {
-            if (!arguments.length) return roundCorners
-            roundCorners = value;
-            return chart;
-        }
-
-        chart.rotate = function(value) {
-            if (!arguments.length) return rotate
-            rotate = value;
-            return chart;
-        }
-
-        chart.x = function(value) {
-            if (!arguments.length) return x
-            x = value;
-            return chart;
-        }
-
-        chart.y = function(value) {
-            if (!arguments.length) return y
-            y = value;
-            return chart;
-        }
-
-        return chart
-    }
-
     var shadow = function() {
 
         var blur = 3
@@ -532,7 +431,6 @@
         yAxisRight: yAxisRight,
         yAxisLabel: yAxisLabel,
         title: title,
-        infoBox: infoBox,
         shadow: shadow,
         legend: legend
     }

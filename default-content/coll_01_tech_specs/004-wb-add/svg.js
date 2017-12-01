@@ -2,7 +2,7 @@
     var cv = d3wb.config().attr("margin", "40 40 50 60")
         .toCanvas()
 
-    // create some data sets 
+    // create some data sets
     var data = Array.apply(null, Array(1007)).map(function(curr, i) {
         return {
             "x": i,
@@ -42,7 +42,6 @@
     cv.call(d3wb.add.yAxisLabel("Label for another y axis")
         .orientation("right"))
     cv.call(d3wb.add.title("Title of the chart"))
-    cv.call(d3wb.add.infoBox("This is a two-line\ninfo box. Yay!"))
     cv.selectAll(".wb-button").call(d3wb.add.shadow())
 
 })()
