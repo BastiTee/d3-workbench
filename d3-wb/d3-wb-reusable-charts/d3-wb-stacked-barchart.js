@@ -20,11 +20,6 @@ function wbStackedBarChart() {
         selection.each(function(data, i) {
             var s = d3.select(this)
 
-            // // remove ignored columns
-            // data.columns = dataRaw.columns.filter(function(d) {
-            //     return !ignoreColumns.includes(d)
-            // })
-
             // calculate totals
             data.forEach(function(d, i) {
                 var keys = Object.keys(d)
