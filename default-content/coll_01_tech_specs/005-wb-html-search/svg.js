@@ -76,13 +76,13 @@
     var createOtherControls = function() {
         // add an info box how to use it
         var box = d3wb.html.infoBox()
-        .controlColor(d3wb.color.foreground)
-        .controlColorHover(d3wb.color.red)
-        .infoColor("#fff")
-        .infoFill("#444")
-        .infoContent(`<b>Hover</b> rectangles to see solutions.</br><b>Use search box</b> to search animals by food.`)
-        .style("top", "35px")
-        .style("left", "10px")
+            .controlColor(d3wb.color.foreground)
+            .controlColorHover(d3wb.color.red)
+            .infoColor("#fff")
+            .infoFill("#444")
+            .infoContent(`<b>Hover</b> rectangles to see solutions.</br><b>Use search box</b> to search animals by food.`)
+            .style("top", "35px")
+            .style("left", "10px")
         cv.div.call(box)
 
         // add solutions as tooltips
