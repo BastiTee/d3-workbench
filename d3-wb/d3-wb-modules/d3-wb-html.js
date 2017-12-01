@@ -165,9 +165,138 @@
         return chart
     }
 
+    var infoBox = function() {
+
+        var controlColor = "white"
+        var controlColorHover = "yellow"
+        var controlFontSize = "150%"
+        var infoColor = "white"
+        var infoBorderColor = infoColor
+        var infoFill = "black"
+        var infoFontSize = "100%"
+        var infoOpacity = 0.9
+        var infoContent = `<b>Information</b></br>
+        This box contains information about the graph. It's intended to guide the user. You can use <i>html-style</i> as desired.
+        `
+
+        var open = false
+
+        function chart(selection) {
+
+            selection = resolve(selection)
+
+            selection.each(function() {
+                var s = d3.select(this)
+
+                var callbackImpl = function(element) {
+                    c.callback(element.value)
+                }
+
+                var div = s.append("div")
+                    .attr("id", c.id)
+
+                var input = div
+                    .append("p")
+                    .attr("id", c.id + "-in")
+                    .html("&#9432;")
+
+                var ib = div.append("p")
+                    .attr("id", c.id + "-ib")
+                    .html(infoContent)
+
+                input.on("click", function() {
+                    open = !open
+                    // console.log("-- " + (open ? "open" : "close") + " sesame!")
+                    var opac = open ? infoOpacity : 0.0
+                    d3wb.util.injectCSS(
+                        "#" + c.id + "-ib { opacity: " + opac + ";}")
+                })
+
+                d3wb.util.injectCSS(`
+                    #` + c.id + ` {
+                        position: absolute;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    #` + c.id + `-in {
+                        position: relative;
+                        text-align: left;
+                        width: 0;
+                        -webkit-touch-callout: none;
+                        -webkit-user-select: none;
+                        -khtml-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                        margin: 0;
+                        padding: 0;
+                        color: ` + controlColor + `;
+                        font-size: ` + controlFontSize + `;
+                    }
+                    #` + c.id + `-in:hover {
+                        cursor: default;
+                        color: ` + controlColorHover + `;
+                    }
+                    #` + c.id + `-ib {
+                        position: relative;
+                        text-align: left;
+                        margin: 0;
+                        padding: 0.5em;
+                        border-radius: 0.4em;
+                        border: 1px solid ` + infoBorderColor + `;
+                        color: ` + infoColor + `;
+                        font-size: ` + infoFontSize + `;
+                        background-color: ` + infoFill + `;
+                        opacity: 0;
+                    }
+                `)
+            })
+        }
+
+        var c = commonElements(chart)
+
+        chart.controlColor = function(value) {
+            if (!arguments.length) return controlColor
+            controlColor = value;
+            return chart;
+        }
+
+        chart.controlColorHover = function(value) {
+            if (!arguments.length) return controlColorHover
+            controlColorHover = value;
+            return chart;
+        }
+
+        chart.controlHover = function(value) {
+            if (!arguments.length) return controlHover
+            controlHover = value;
+            return chart;
+        }
+
+        chart.infoColor = function(value) {
+            if (!arguments.length) return infoColor
+            infoColor = value;
+            return chart;
+        }
+
+        chart.infoFill = function(value) {
+            if (!arguments.length) return infoFill
+            infoFill = value;
+            return chart;
+        }
+
+        chart.infoContent = function(value) {
+            if (!arguments.length) return infoContent
+            infoContent = value;
+            return chart;
+        }
+
+        return chart
+    }
+
     function resolve(selection) {
         // check for cv.div parameter. If available use it instead,
-        // it means user using d3wb but called cv.call() instead of 
+        // it means user using d3wb but called cv.call() instead of
         // cv.div.call()
         if (selection["div"] !== undefined) {
             return selection["div"]
@@ -178,7 +307,8 @@
     d3wb.html = {
         dropdown: dropdown,
         button: button,
-        textfield: textfield
+        textfield: textfield,
+        infoBox: infoBox
     }
 
 })()
