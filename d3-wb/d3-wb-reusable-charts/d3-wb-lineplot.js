@@ -7,6 +7,12 @@ function wbLinePlot() {
     var yAxisScale = d3.scaleLinear()
     var xDataPoints = "x"
     var yDataPoints = ["y"]
+    var xDataPointsFormat = function(datum) {
+        return datum
+    }
+    var yDataPointsFormat = function(datum) {
+        return datum
+    }
     var scaleX;
     var scaleY;
     var xMinMax;
@@ -19,6 +25,9 @@ function wbLinePlot() {
     var legendFill = "black"
     var legendX = 0
     var legendY = 0
+    var dataPointRadius = 7
+    var dataPointLineFill = "red"
+    var activateTooltip = false
     var update = function() {}
 
     function chart(selection) {
@@ -59,6 +68,29 @@ function wbLinePlot() {
                 })
                 .attr("fill", legendFill)
 
+
+            if (activateTooltip) {
+                s.append("line")
+                    .attr("class", "tooltip-line")
+                s.append("text")
+                    .attr("class", "tooltip-text")
+                    .attr("x", 5)
+                    .attr("y", 0)
+                    .style("font-size", "85%")
+                    .attr("text-anchor", "start")
+                    .attr("dominant-baseline", "hanging")
+                    .style("fill", legendFill)
+                yDataPoints.forEach(function(d, i) {
+                    s.append("circle")
+                        .attr("class", "tooltip-circle tooltip-circle-" + d)
+                })
+                var tipBox = s.append("rect")
+                    .attr("class", "selector-box")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("opacity", 0)
+            }
+
             update = function(data) {
 
                 if (xMinMax === undefined) {
@@ -94,11 +126,13 @@ function wbLinePlot() {
                     var classs = "line-" + yDataPoints[i]
                     if (s.select("." + classs).empty()) {
                         s.datum(data).append("path")
-                            .attr("class", classs)
+                            .attr("class", "line " + classs)
                             .attr("d", line)
                             .style("fill", "none")
                             .style("stroke-linecap", "round")
                             .style("stroke-linejoin", "round")
+                            .style("pointer-events", "none")
+
                             .style("stroke-width", strokeWidth)
                             .style("stroke", stroke[i])
                     } else {
@@ -107,9 +141,69 @@ function wbLinePlot() {
                             .attr("d", line)
                     }
                 })
-
             }
+
             update(data)
+
+            if (activateTooltip) {
+                tipBox
+                    .on("mousemove", drawTooltip)
+                    .on("mouseout", removeTooltip);
+            }
+
+            function drawTooltip() {
+                var information = []
+                var mouse = d3.mouse(s.node())
+                var bisect = d3.bisector(function(d) {
+                    return d[xDataPoints];
+                }).right;
+                var timestamp = scaleX.invert(mouse[0])
+                var index = bisect(data, timestamp)
+                var startDatum = data[index - 1]
+                information.push(xDataPointsFormat(startDatum[xDataPoints]))
+                var endDatum = data[index]
+                s.selectAll(".tooltip-line").attr("stroke", "red")
+                    .attr("x1", scaleX(timestamp))
+                    .attr("x2", scaleX(timestamp))
+                    .attr("y1", 0)
+                    .attr("y2", height);
+                yDataPoints.forEach(function(d, i) {
+                    var interpolate = d3.interpolateNumber(
+                        startDatum[yDataPoints[i]], endDatum[yDataPoints[i]])
+                    var range = endDatum[xDataPoints] - startDatum[xDataPoints]
+                    var valueY = interpolate((timestamp % range) / range);
+                    information.push(d + " – " + startDatum[yDataPoints[i]])
+                    s.select(".tooltip-circle-" + d)
+                        .attr("cx", scaleX(timestamp))
+                        .attr("cy", scaleY(valueY))
+                        .attr("r", dataPointRadius)
+                        .style("fill", stroke[i])
+                        .style("opacity", 1.0)
+
+                })
+                var t = s.selectAll(".tooltip-text")
+                    .style("opacity", 1.0)
+                s.selectAll(".tooltip-text-line").remove()
+                for (var i in information) {
+                    t.append("tspan")
+                        .attr("class", "tooltip-text-line")
+                        .attr("x", 5)
+                        .attr("dy", function() {
+                            return i == 0 ? 0 : 15
+                        })
+                        .text(information[i])
+                }
+            }
+
+            function removeTooltip() {
+                s.selectAll(".tooltip-line")
+                    .attr("stroke", "none");
+                s.selectAll(".tooltip-circle")
+                    .style("opacity", 0);
+                s.selectAll(".tooltip-text")
+                    .style("opacity", 0);
+            }
+
         })
     }
 
@@ -219,6 +313,31 @@ function wbLinePlot() {
     chart.setYMinToZero = function(value) {
         if (!arguments.length) return setYMinToZero
         setYMinToZero = value;
+        return chart;
+    }
+
+    chart.dataPointLineFill = function(value) {
+        if (!arguments.length) return dataPointLineFill
+        dataPointLineFill = value;
+        return chart;
+    }
+
+    chart.xDataPointsFormat = function(value) {
+        if (!arguments.length) return xDataPointsFormat
+        xDataPointsFormat = value;
+        return chart;
+    }
+
+    chart.yDataPointsFormat = function(value) {
+        if (!arguments.length) return yDataPointsFormat
+        yDataPointsFormat = value;
+        return chart;
+    }
+
+    chart.activateTooltip = function(value) {
+        if (!arguments.length) return activateTooltip
+        console.log("ATTENTION: This feature is experimental.");
+        activateTooltip = value;
         return chart;
     }
 

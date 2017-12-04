@@ -19,6 +19,7 @@
         .width(cv.wid)
         .height(cv.hei)
         .stroke(d3wb.color.red)
+        .legendX(cv.wid + cv.mar.right - 5)
     cv.datum(sets[pt]).call(chart)
 
     // create a button

@@ -4,9 +4,9 @@ function wbPackedBubbles() {
     var width = 500
     var height = 500
     var colorRange = ["green", "white"]
-    var fillRange = ["green", "red" ]
+    var fillRange = ["green", "red"]
     var fadeOpacity
-    
+
     function chart(selection) {
 
         selection.each(function(data, i) {
@@ -15,14 +15,14 @@ function wbPackedBubbles() {
             var minMax = d3.extent(data, function(d) {
                 return d.value
             })
-            
+
             var fgColors = d3.scaleLinear().domain(minMax)
                 .interpolate(d3.interpolate)
                 .range(colorRange);
             var bgColors = d3.scaleLinear().domain(minMax)
-            .interpolate(d3.interpolate)
-            .range(fillRange);
-            
+                .interpolate(d3.interpolate)
+                .range(fillRange);
+
             if (fadeOpacity) {
                 var opScale = d3.scaleLog().domain(minMax)
                     .range(fadeOpacity);
@@ -69,7 +69,7 @@ function wbPackedBubbles() {
                         return opScale(d.value)
                     }
                     return "1.0";
-                })            
+                })
 
             nodes
                 .append("a").attr("xlink:href", function(d) {
@@ -98,7 +98,7 @@ function wbPackedBubbles() {
                 .style("fill", function(d) {
                     return fgColors(d.value)
                 })
-                
+
         })
     }
 
@@ -113,13 +113,13 @@ function wbPackedBubbles() {
         height = value;
         return chart;
     }
-    
+
     chart.colorRange = function(value) {
         if (!arguments.length) return colorRange
         colorRange = value;
         return chart;
     }
-    
+
     chart.fillRange = function(value) {
         if (!arguments.length) return fillRange
         fillRange = value;

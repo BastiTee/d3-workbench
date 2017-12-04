@@ -27,7 +27,7 @@ function wbCooltip() {
                 var newx = pos[0]
                 var newy = pos[1] - txtBox.height
                 // STOP ON BORDERS
-                // left side 
+                // left side
                 newx = newx - (txtBox.width / 2) < 0 ?
                     txtBox.width / 2 : newx
                 // right side
@@ -35,10 +35,10 @@ function wbCooltip() {
                     dim.width - (txtBox.width / 2) : newx
                 // top side
                 newy = newy - padding < 0 ? padding : newy
-                // bottom side 
+                // bottom side
                 newy = newy + txtBox.height - padding > dim.height ?
                     dim.height - txtBox.height + padding : newy
-                // move 
+                // move
                 gTooltip.attr("transform", "translate(" +
                     newx + "," + newy + ")")
             }
