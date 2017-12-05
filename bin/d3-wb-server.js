@@ -350,6 +350,8 @@ if (argv.n) {
     var watchFolder = argv.i + "/**/*"
     log("Watching files in " + watchFolder)
     bs.watch(watchFolder).on("change", bs.reload);
+    bs.watch(path.resolve(__dirname + "/../d3-wb") + "/**/*")
+        .on("change", bs.reload);
     bs.init({
         proxy: "http://localhost:" + internalPort,
         port: argv.p,
