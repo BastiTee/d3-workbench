@@ -10,11 +10,15 @@
             .width(cv.wid)
             .height(cv.hei)
             .legend([
-                ["type1", d3wb.color.category()[0]],
-                ["type2", d3wb.color.category()[1]],
-                ["type3", d3wb.color.category()[2]]
+                ["type1", d3wb.color.category()[3]],
+                ["type2", d3wb.color.category()[6]],
+                ["type3", d3wb.color.category()[11]]
             ])
-            .colors(d3wb.color.ordinal())
+            .colors([
+                d3wb.color.category()[3],
+                d3wb.color.category()[6],
+                d3wb.color.category()[11],
+            ])
             .legendColor(d3wb.color.foreground)
         cv.datum(data).call(chart)
 

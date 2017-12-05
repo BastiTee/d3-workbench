@@ -18,7 +18,7 @@ function wbNetworkDiagram() {
 
     var collide = 0.5
 
-    var colors = d3.scaleOrdinal(["red", "green", "blue"])
+    var colors = ["red", "green", "blue"]
 
     function chart(selection) {
 
@@ -68,7 +68,7 @@ function wbNetworkDiagram() {
                     return d.r
                 })
                 .attr("fill", function(d) {
-                    return colors(d.group);
+                    return colors[d.group]
                 })
                 .style("stroke", nodeStroke)
                 .style("stroke-width", nodeStrokeWidth)
