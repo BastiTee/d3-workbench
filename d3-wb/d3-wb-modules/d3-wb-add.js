@@ -88,20 +88,41 @@
 
     var yAxis = function(scale) {
 
+        // configurable
         var color = "red"
         var type = d3.axisLeft
         var x = 0
+        var format = function(scale) {
+            return scale
+        }
+        // internal
+        var update = function() {}
+        var g
 
         function chart(selection) {
 
             selection.each(function(data, i) {
                 injectAxisColor(color, "wb-axis-y")
                 var s = d3.select(this)
-                s.append("g")
+                g = s.append("g")
                     .attr("class", "wb-axis wb-axis-y")
                     .attr("transform", "translate(" + x + ",0)")
-                    .call(type(scale))
+                update = function(scale) {
+                    g.call(format(type(scale)))
+                }
+                update(scale)
             })
+        }
+
+        chart.update = function(scale) {
+            update(scale)
+            return chart
+        }
+
+        chart.format = function(value) {
+            if (!arguments.length) return format
+            format = value;
+            return chart;
         }
 
         chart.type = function(value) {

@@ -10,6 +10,8 @@ function wbBarChart() {
     var scaleX
     var scaleY
     var yExtent
+    var sortBy
+    var sortDirection = "desc"
     var valuesShow
     var valuesFill = "black"
     var valuesPadding = 10
@@ -24,29 +26,44 @@ function wbBarChart() {
         selection.each(function(data, i) {
             var s = d3.select(this)
 
-            data.forEach(function(d) {
-                d[ySelector] = +d[ySelector]
-            })
-
             scaleX = d3
                 .scaleBand()
                 .rangeRound([0, width], .1)
                 .padding(padding)
-                .domain(data.map(function(d) {
-                    return d[xSelector]
-                }))
-
-            if (!yExtent) {
-                yExtent = [0, d3.max(data, function(d) {
-                    return d[ySelector];
-                })]
-            }
 
             scaleY = d3.scaleLinear()
                 .range([height, 0])
-                .domain(yExtent)
 
             update = function(data) {
+
+                data.forEach(function(d) {
+                    d[ySelector] = +d[ySelector]
+                })
+
+                if (sortBy) {
+                    data.sort(function(a, b) {
+                        if (sortDirection == "desc") {
+                            return +b[sortBy] - +a[sortBy]
+                        } else {
+                            return +a[sortBy] - +b[sortBy]
+                        }
+                    })
+                }
+
+                var yExtentLocal
+                if (!yExtent) {
+                    yExtentLocal = [0, d3.max(data, function(d) {
+                        return d[ySelector];
+                    })]
+                } else {
+                    yExtentLocal = yExtent
+                }
+                scaleY.domain(yExtentLocal)
+
+                scaleX.domain(data.map(function(d) {
+                    return d[xSelector]
+                }))
+
                 s.selectAll(".rects")
                     .remove()
                     .exit()
@@ -77,7 +94,7 @@ function wbBarChart() {
                         } else if (typeof fill === "function") {
                             return fill(i)
                         } else if (typeof fill === "object" &&
-                            String(fill).startsWith('rgb')) {
+                            String(fill).startsWith("rgb")) {
                             return fill
                         } else {
                             return fill[i]
@@ -191,6 +208,21 @@ function wbBarChart() {
     chart.widthFactor = function(value) {
         if (!arguments.length) return widthFactor
         widthFactor = value;
+        return chart;
+    }
+
+    chart.sortDirection = function(value) {
+        if (!arguments.length) return sortDirection
+        if (value != "desc" && value != "asc") {
+            throw Error("Only desc or asc are allowed as sort order.")
+        }
+        sortDirection = value;
+        return chart;
+    }
+
+    chart.sortBy = function(value) {
+        if (!arguments.length) return sortBy
+        sortBy = value;
         return chart;
     }
 
