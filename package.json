@@ -11,7 +11,8 @@
     "d3-workbench": "bin/d3-wb-server.js"
   },
   "scripts": {
-    "start": "node bin/d3-wb-server.js"
+    "start": "node bin/d3-wb-server.js",
+    "postinstall": "node bin/postinstall.js"
   },
   "author": "Basti Tee",
   "license": "GPL-3.0",
