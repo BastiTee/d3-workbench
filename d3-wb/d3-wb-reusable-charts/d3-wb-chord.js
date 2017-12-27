@@ -79,7 +79,7 @@ let wbChordDiagram = function() {
                     return keys[d.index].key;
                 });
 
-            s.selectAll('chord')
+            let chordPaths = s.selectAll('chord')
                 .data(function(chords) {
                     return chords;
                 })

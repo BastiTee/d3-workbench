@@ -11,6 +11,7 @@
             .width(cv.wid)
             .height(cv.hei)
             .legendFill(d3wb.color.foreground)
+            .legendX(cv.wid)
             .colors([col[0], col[3], col[7]]);
         cv.datum(data).call(chart);
 
