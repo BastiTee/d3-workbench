@@ -1,48 +1,53 @@
+/* exported wbClickMe */
+/**
+ * Click handler to be assigned to any DOM-element.
+ * @return {Object} A reusable, updatable click object.
+ */
 function wbClickMe() {
-    "use strict";
+    'use strict';
 
-    var supportedEvents = ["dblclick"]
-    var supportedActions = ["open"]
+    // let supportedEvents = ['dblclick'];
+    let supportedActions = ['open'];
 
-    var event = "dblclick"
-    var action = "open"
-    var openTarget = function(d, i) {
-        return "https://d3js.org/"
-    }
+    let event = 'dblclick';
+    let action = 'open';
+    let openTarget = function(d, i) {
+        return 'https://d3js.org/';
+    };
 
-    function chart(selection) {
-        selection.each(function(data, i) {
-            var s = d3.select(this)
-            if (action == "open") {
+    let chart = function(selection) {
+        selection.each(function(data, i, nodes) {
+            let s = d3.select(nodes[i]);
+            if (action == 'open') {
                 s.on(event, function(d, i) {
-                    var trg = openTarget(d, i)
-                    window.open(trg, '_blank')
-                })
+                    let trg = openTarget(d, i);
+                    window.open(trg, '_blank');
+                });
             }
-
-        })
-    }
+        });
+    };
 
     chart.event = function(value) {
-        if (!arguments.length) return event
+        if (!arguments.length) return event;
         event = value;
         return chart;
-    }
+    };
 
     chart.action = function(value) {
-        if (!arguments.length) return action
+        if (!arguments.length) return action;
         if (!supportedActions.includes(value)) {
-            throw new Error("Action '" + value + "' not supported! Allowed: " + supportedActions);
+            throw new Error('Action \'' + value +
+             '\' not supported! Allowed: ' + supportedActions);
         }
         action = value;
         return chart;
-    }
+    };
 
     chart.openTarget = function(value) {
-        if (!arguments.length) return openTarget
+        if (!arguments.length) return openTarget;
         openTarget = value;
         return chart;
-    }
+    };
 
-    return chart
-}
+    return chart;
+};

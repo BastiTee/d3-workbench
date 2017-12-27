@@ -1,65 +1,63 @@
 (function() {
-    "use strict";
+    'use strict';
 
-    function commonElements(chart) {
-        var c = {
-            "id": d3wb.util.websafeGuid(),
-            "div": d3.select("body"),
-            "callback": function() {
-                console.log("callback.")
+    let commonElements = function(chart) {
+        let c = {
+            'id': d3wb.util.websafeGuid(),
+            'div': d3.select('body'),
+            'callback': function() {
+                console.log('callback.');
             },
-            "callbackOnInit": false
-        }
+            'callbackOnInit': false,
+        };
 
         chart.id = function(value) {
-            if (!arguments.length) return "#" + c.id
+            if (!arguments.length) return '#' + c.id;
             id = value;
             return chart;
-        }
+        };
 
         chart.style = function(key, value) {
             d3wb.util.injectCSS(`
                     #` + c.id + ` {
                         ` + key + `: ` + value + `;
                     }
-                `)
+                `);
             return chart;
-        }
+        };
 
         chart.callback = function(value) {
-            if (!arguments.length) return c.callback
+            if (!arguments.length) return c.callback;
             c.callback = value;
             return chart;
-        }
+        };
 
-        return c
-    }
+        return c;
+    };
 
-    var dropdown = function() {
+    let dropdown = function() {
+        let options = ['Option 1', 'Option 2', 'Option 3'];
 
-        var options = ["Option 1", "Option 2", "Option 3"]
+        let chart = function(selection) {
+            selection = resolve(selection);
 
-        function chart(selection) {
+            selection.each(function(d, i, nodes) {
+                let s = d3.select(nodes[i]);
 
-            selection = resolve(selection)
+                let callbackImpl = function() {
+                    let value = d3.select('#' + c.id).property('value');
+                    let index = options.indexOf(value);
+                    c.callback(value, index);
+                };
 
-            selection.each(function() {
-                var s = d3.select(this)
-
-                var callbackImpl = function() {
-                    var value = d3.select("#" + c.id).property("value")
-                    var index = options.indexOf(value)
-                    c.callback(value, index)
-                }
-
-                var selectDistrict = s
-                    .append("select")
-                    .attr("id", c.id)
-                    .on("change", callbackImpl)
+                let selectDistrict = s
+                    .append('select')
+                    .attr('id', c.id)
+                    .on('change', callbackImpl);
                 selectDistrict
-                    .selectAll("option")
+                    .selectAll('option')
                     .data(options).enter()
-                    .append("option")
+                    .append('option')
                     .text(function(d) {
                         return d;
                     });
@@ -67,150 +65,140 @@
                         #` + c.id + ` {
                             position: absolute;
                         }
-                    `)
-                callbackImpl()
-            })
-        }
+                    `);
+                callbackImpl();
+            });
+        };
 
-        var c = commonElements(chart)
+        let c = commonElements(chart);
 
         chart.options = function(value) {
-            if (!arguments.length) return options
+            if (!arguments.length) return options;
             options = value;
             return chart;
-        }
+        };
 
-        return chart
-    }
+        return chart;
+    };
 
-    var button = function() {
+    let button = function() {
+        let options = ['Click me'];
+        let index = 0;
+        let buttonEl;
 
-        var options = ["Click me"]
-        var index = 0
-        var buttonEl
+        let chart = function(selection) {
+            selection = resolve(selection);
 
-        function chart(selection) {
+            selection.each(function(d, i, nodes) {
+                let s = d3.select(nodes[i]);
 
-            selection = resolve(selection)
-
-            selection.each(function() {
-                var s = d3.select(this)
-
-                var callbackImpl = function() {
-                    var value = d3.select("#" + c.id).text()
-                    var idx = options.indexOf(value)
-                    index = (index + 1) % (options.length)
-                    c.callback(value, idx)
-                    buttonEl.text(options[index])
-                }
+                let callbackImpl = function() {
+                    let value = d3.select('#' + c.id).text();
+                    let idx = options.indexOf(value);
+                    index = (index + 1) % (options.length);
+                    c.callback(value, idx);
+                    buttonEl.text(options[index]);
+                };
 
                 buttonEl = s
-                    .append("button")
-                    .attr("id", c.id)
+                    .append('button')
+                    .attr('id', c.id)
                     .text(options[index])
-                    .on("click", callbackImpl)
+                    .on('click', callbackImpl);
 
                 d3wb.util.injectCSS(`
                         #` + c.id + ` {
                             position: absolute;
                         }
-                    `)
+                    `);
                 if (c.callbackOnInit) {
-                    callbackImpl()
+                    callbackImpl();
                 }
-            })
-        }
+            });
+        };
 
-        var c = commonElements(chart)
+        let c = commonElements(chart);
 
         chart.options = function(value) {
-            if (!arguments.length) return options
+            if (!arguments.length) return options;
             options = value;
             return chart;
-        }
+        };
 
-        return chart
-    }
+        return chart;
+    };
 
-    var textfield = function() {
+    let textfield = function() {
+        let chart = function(selection) {
+            selection = resolve(selection);
 
-        function chart(selection) {
+            selection.each(function(d, i, nodes) {
+                let s = d3.select(nodes[i]);
 
-            selection = resolve(selection)
+                let callbackImpl = function(element) {
+                    c.callback(element.value);
+                };
 
-            selection.each(function() {
-                var s = d3.select(this)
-
-                var callbackImpl = function(element) {
-                    c.callback(element.value)
-                }
-
-                var input = s
-                    .append("input")
-                    .attr("id", c.id)
-                    .on("input", function() {
-                        callbackImpl(this)
-                    })
+                s
+                    .append('input')
+                    .attr('id', c.id)
+                    .on('input', function(d, i, nodes) {
+                        callbackImpl(nodes[i]);
+                    });
 
                 d3wb.util.injectCSS(`
                         #` + c.id + ` {
                             position: absolute;
                         }
-                    `)
-            })
-        }
+                    `);
+            });
+        };
 
-        var c = commonElements(chart)
+        let c = commonElements(chart);
 
-        return chart
-    }
+        return chart;
+    };
 
-    var infoBox = function() {
+    let infoBox = function() {
+        let controlColor = 'white';
+        let controlColorHover = 'yellow';
+        let controlFontSize = '150%';
+        let infoColor = 'white';
+        let infoBorderColor = infoColor;
+        let infoFill = 'black';
+        let infoFontSize = '100%';
+        let infoOpacity = 0.9;
+        let infoContent = `<b>Information</b></br>
+        This box contains information about the graph. It's intended `+
+        `to guide the user. You can use <i>html-style</i> as desired.
+        `;
 
-        var controlColor = "white"
-        var controlColorHover = "yellow"
-        var controlFontSize = "150%"
-        var infoColor = "white"
-        var infoBorderColor = infoColor
-        var infoFill = "black"
-        var infoFontSize = "100%"
-        var infoOpacity = 0.9
-        var infoContent = `<b>Information</b></br>
-        This box contains information about the graph. It's intended to guide the user. You can use <i>html-style</i> as desired.
-        `
+        let open = false;
 
-        var open = false
+        let chart = function(selection) {
+            selection = resolve(selection);
 
-        function chart(selection) {
+            selection.each(function(d, i, nodes) {
+                let s = d3.select(nodes[i]);
 
-            selection = resolve(selection)
+                let div = s.append('div')
+                    .attr('id', c.id);
 
-            selection.each(function() {
-                var s = d3.select(this)
+                let input = div
+                    .append('p')
+                    .attr('id', c.id + '-in')
+                    .html('&#9432;');
 
-                var callbackImpl = function(element) {
-                    c.callback(element.value)
-                }
+                div.append('p')
+                    .attr('id', c.id + '-ib')
+                    .html(infoContent);
 
-                var div = s.append("div")
-                    .attr("id", c.id)
-
-                var input = div
-                    .append("p")
-                    .attr("id", c.id + "-in")
-                    .html("&#9432;")
-
-                var ib = div.append("p")
-                    .attr("id", c.id + "-ib")
-                    .html(infoContent)
-
-                input.on("click", function() {
-                    open = !open
-                    // console.log("-- " + (open ? "open" : "close") + " sesame!")
-                    var opac = open ? infoOpacity : 0.0
+                input.on('click', function() {
+                    open = !open;
+                    let opac = open ? infoOpacity : 0.0;
                     d3wb.util.injectCSS(
-                        "#" + c.id + "-ib { opacity: " + opac + ";}")
-                })
+                        '#' + c.id + '-ib { opacity: ' + opac + ';}');
+                });
 
                 d3wb.util.injectCSS(`
                     #` + c.id + ` {
@@ -257,66 +245,65 @@
                         background-color: ` + infoFill + `;
                         opacity: 0;
                     }
-                `)
-            })
-        }
+                `);
+            });
+        };
 
-        var c = commonElements(chart)
+        let c = commonElements(chart);
 
         chart.controlColor = function(value) {
-            if (!arguments.length) return controlColor
+            if (!arguments.length) return controlColor;
             controlColor = value;
             return chart;
-        }
+        };
 
         chart.controlColorHover = function(value) {
-            if (!arguments.length) return controlColorHover
+            if (!arguments.length) return controlColorHover;
             controlColorHover = value;
             return chart;
-        }
+        };
 
         chart.controlHover = function(value) {
-            if (!arguments.length) return controlHover
+            if (!arguments.length) return controlHover;
             controlHover = value;
             return chart;
-        }
+        };
 
         chart.infoColor = function(value) {
-            if (!arguments.length) return infoColor
+            if (!arguments.length) return infoColor;
             infoColor = value;
             return chart;
-        }
+        };
 
         chart.infoFill = function(value) {
-            if (!arguments.length) return infoFill
+            if (!arguments.length) return infoFill;
             infoFill = value;
             return chart;
-        }
+        };
 
         chart.infoContent = function(value) {
-            if (!arguments.length) return infoContent
+            if (!arguments.length) return infoContent;
             infoContent = value;
             return chart;
-        }
+        };
 
-        return chart
-    }
+        return chart;
+    };
 
-    function resolve(selection) {
+    let resolve = function(selection) {
         // check for cv.div parameter. If available use it instead,
         // it means user using d3wb but called cv.call() instead of
         // cv.div.call()
-        if (selection["div"] !== undefined) {
-            return selection["div"]
+        if (selection['div'] !== undefined) {
+            return selection['div'];
         }
         return selection;
-    }
+    };
 
     d3wb.html = {
         dropdown: dropdown,
         button: button,
         textfield: textfield,
-        infoBox: infoBox
-    }
-
-})()
+        infoBox: infoBox,
+    };
+})();

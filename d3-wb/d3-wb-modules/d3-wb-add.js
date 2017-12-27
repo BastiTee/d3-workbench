@@ -1,7 +1,7 @@
 (function() {
-    "use strict";
+    'use strict';
 
-    var injectAxisColor = function(color, cclass) {
+    let injectAxisColor = function(color, cclass) {
         d3wb.util.injectCSS(`
         .` + cclass + ` line{
           stroke: ` + color + `;
@@ -12,327 +12,318 @@
         .` + cclass + ` text{
           fill: ` + color + `;
         }
-        `)
-    }
+        `);
+    };
 
-    var xAxis = function(scale) {
+    let xAxis = function(scale) {
+        let color = 'red';
+        let type = d3.axisTop;
+        let y = 0;
+        let rotation = undefined;
 
-        var color = "red"
-        var type = d3.axisTop
-        var y = 0
-        var rotation = undefined
-
-        function chart(selection) {
-
-            selection.each(function(data, i) {
-                injectAxisColor(color, "wb-axis-x")
-                var s = d3.select(this)
-                var axis = s.append("g")
-                    .attr("transform", "translate(0," + y + ")")
-                    .attr("class", "wb-axis wb-axis-x").call(type(scale))
+        let chart = function(selection) {
+            selection.each(function(data, i, nodes) {
+                injectAxisColor(color, 'wb-axis-x');
+                let s = d3.select(nodes[i]);
+                let axis = s.append('g')
+                    .attr('transform', 'translate(0,' + y + ')')
+                    .attr('class', 'wb-axis wb-axis-x').call(type(scale));
                 if (rotation == 90) {
-                    axis.selectAll("text")
-                        .attr("y", -2)
-                        .attr("x", -9)
-                        .attr("dy", ".35em")
-                        .style("text-anchor", "end")
-                        .attr("transform", "rotate(-90)")
+                    axis.selectAll('text')
+                        .attr('y', -2)
+                        .attr('x', -9)
+                        .attr('dy', '.35em')
+                        .style('text-anchor', 'end')
+                        .attr('transform', 'rotate(-90)');
                 }
-            })
-        }
+            });
+        };
 
         chart.type = function(value) {
-            if (!arguments.length) return type
+            if (!arguments.length) return type;
             type = value;
             return chart;
-        }
+        };
 
         chart.y = function(value) {
-            if (!arguments.length) return y
+            if (!arguments.length) return y;
             y = value;
             return chart;
-        }
+        };
 
         chart.color = function(value) {
-            if (!arguments.length) return color
+            if (!arguments.length) return color;
             color = value;
             return chart;
-        }
+        };
 
         chart.rotation = function(value) {
-            if (!arguments.length) return rotation
+            if (!arguments.length) return rotation;
             rotation = value;
             return chart;
-        }
+        };
 
         chart.scale = function(value) {
-            if (!arguments.length) return scale
+            if (!arguments.length) return scale;
             scale = value;
             return chart;
-        }
+        };
 
         chart.fontSize = function(value) {
             d3wb.util.injectCSS(`
                 .wb-axis-x text {
                   font-size: ` + value + `;
-              }`)
+              }`);
             return chart;
-        }
+        };
 
-        return chart
-    }
+        return chart;
+    };
 
-    var xAxisBottom = function(scale) {
-        return xAxis(scale).type(d3.axisBottom)
-    }
+    let xAxisBottom = function(scale) {
+        return xAxis(scale).type(d3.axisBottom);
+    };
 
-    var yAxis = function(scale) {
-
+    let yAxis = function(scale) {
         // configurable
-        var color = "red"
-        var type = d3.axisLeft
-        var x = 0
-        var format = function(scale) {
-            return scale
-        }
+        let color = 'red';
+        let type = d3.axisLeft;
+        let x = 0;
+        let format = function(scale) {
+            return scale;
+        };
         // internal
-        var update = function() {}
-        var g
+        let update = function() {};
+        let g;
 
-        function chart(selection) {
-
-            selection.each(function(data, i) {
-                injectAxisColor(color, "wb-axis-y")
-                var s = d3.select(this)
-                g = s.append("g")
-                    .attr("class", "wb-axis wb-axis-y")
-                    .attr("transform", "translate(" + x + ",0)")
+        let chart = function(selection) {
+            selection.each(function(data, i, nodes) {
+                injectAxisColor(color, 'wb-axis-y');
+                let s = d3.select(nodes[i]);
+                g = s.append('g')
+                    .attr('class', 'wb-axis wb-axis-y')
+                    .attr('transform', 'translate(' + x + ',0)');
                 update = function(scale) {
-                    g.call(format(type(scale)))
-                }
-                update(scale)
-            })
-        }
+                    g.call(format(type(scale)));
+                };
+                update(scale);
+            });
+        };
 
         chart.update = function(scale) {
-            update(scale)
-            return chart
-        }
+            update(scale);
+            return chart;
+        };
 
         chart.format = function(value) {
-            if (!arguments.length) return format
+            if (!arguments.length) return format;
             format = value;
             return chart;
-        }
+        };
 
         chart.type = function(value) {
-            if (!arguments.length) return type
+            if (!arguments.length) return type;
             type = value;
             return chart;
-        }
+        };
 
         chart.x = function(value) {
-            if (!arguments.length) return x
+            if (!arguments.length) return x;
             x = value;
             return chart;
-        }
+        };
 
         chart.color = function(value) {
-            if (!arguments.length) return color
+            if (!arguments.length) return color;
             color = value;
             return chart;
-        }
+        };
 
         chart.scale = function(value) {
-            if (!arguments.length) return scale
+            if (!arguments.length) return scale;
             scale = value;
             return chart;
-        }
+        };
 
         chart.fontSize = function(value) {
             d3wb.util.injectCSS(`
                 .wb-axis-y text {
                   font-size: ` + value + `;
-              }`)
+              }`);
             return chart;
-        }
+        };
 
-        return chart
-    }
+        return chart;
+    };
 
-    var yAxisRight = function(scale) {
-        return yAxis(scale).type(d3.axisRight)
-    }
+    let yAxisRight = function(scale) {
+        return yAxis(scale).type(d3.axisRight);
+    };
 
-    var title = function(text) {
+    let title = function(text) {
+        let color = 'red';
+        let fontSize = '140%';
 
-        var color = "red"
-        var fontSize = "140%"
+        let update = function() {};
 
-        var update = function() {}
-
-        function chart(selection) {
-
-            selection.each(function(data, i) {
-                var s = d3.select(this.ownerSVGElement)
-                var root = s.node().getBBox()
-                s.append("text")
-                    .attr("class", "wb-title")
-                    .attr("x", root.width / 2)
-                    .attr("y", 5)
-                    .attr("text-anchor", "middle")
-                    .attr("dominant-baseline", "hanging")
-                    .style("pointer-events", "none")
-                    .style("fill", color)
-                    .style("font-size", fontSize)
+        let chart = function(selection) {
+            selection.each(function(data, i, nodes) {
+                let s = d3.select(nodes[i].ownerSVGElement);
+                let root = s.node().getBBox();
+                s.append('text')
+                    .attr('class', 'wb-title')
+                    .attr('x', root.width / 2)
+                    .attr('y', 5)
+                    .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'hanging')
+                    .style('pointer-events', 'none')
+                    .style('fill', color)
+                    .style('font-size', fontSize);
 
                 update = function() {
-                    s.selectAll(".wb-title").text(text)
-                }
-                update()
-            })
-        }
+                    s.selectAll('.wb-title').text(text);
+                };
+                update();
+            });
+        };
 
         chart.color = function(value) {
-            if (!arguments.length) return color
+            if (!arguments.length) return color;
             color = value;
             return chart;
-        }
+        };
 
         chart.fontSize = function(value) {
-            if (!arguments.length) return fontSize
+            if (!arguments.length) return fontSize;
             fontSize = value;
             return chart;
-        }
+        };
 
         chart.text = function(value) {
-            if (!arguments.length) return text
-            text = value
+            if (!arguments.length) return text;
+            text = value;
             return chart;
-        }
+        };
 
         chart.update = function() {
-            update()
-        }
+            update();
+        };
 
-        return chart
-    }
+        return chart;
+    };
 
-    var xAxisLabel = function(text) {
+    let xAxisLabel = function(text) {
+        let color = 'red';
+        let padding = 15;
+        let orientation = 'top';
 
-        var color = "red"
-        var padding = 15
-        var orientation = "top"
-
-        function chart(selection) {
-
-            selection.each(function(data, i) {
-                var s = d3.select(this.ownerSVGElement)
-                var root = s.node().getBBox()
-                s.append("text") // text label for the x axis
-                    .attr("transform", function() {
-                        var t = "translate(" + (root.width / 2) + ","
-                        if (orientation == "top")
-                            t += padding
-                        else
-                            t += root.height - padding
-                        t += ")"
-                        return t
+        let chart = function(selection) {
+            selection.each(function(data, i, nodes) {
+                let s = d3.select(nodes[i].ownerSVGElement);
+                let root = s.node().getBBox();
+                s.append('text') // text label for the x axis
+                    .attr('transform', function() {
+                        let t = 'translate(' + (root.width / 2) + ',';
+                        if (orientation == 'top') {
+                            t += padding;
+                        } else {
+                            t += root.height - padding;
+                        };
+                        t += ')';
+                        return t;
                     })
-                    .style("text-anchor", "middle")
-                    .style("fill", color)
-                    .attr("dominant-baseline", function() {
-                        if (orientation == "top")
-                            return "hanging"
-                        else
-                            return "auto"
+                    .style('text-anchor', 'middle')
+                    .style('fill', color)
+                    .attr('dominant-baseline', function() {
+                        if (orientation == 'top') {
+                            return 'hanging';
+                        } else {
+                            return 'auto';
+                        };
                     })
                     .text(text);
-            })
-        }
+            });
+        };
 
         chart.color = function(value) {
-            if (!arguments.length) return color
+            if (!arguments.length) return color;
             color = value;
             return chart;
-        }
+        };
 
         chart.orientation = function(value) {
-            if (!arguments.length) return orientation
+            if (!arguments.length) return orientation;
             orientation = value;
             return chart;
-        }
-        return chart
-    }
+        };
+        return chart;
+    };
 
-    var yAxisLabel = function(text) {
+    let yAxisLabel = function(text) {
+        let color = 'red';
+        let padding = 5;
+        let orientation = 'left';
 
-        var color = "red"
-        var padding = 5
-        var orientation = "left"
-
-        function chart(selection) {
-
-            selection.each(function(data, i) {
-                var s = d3.select(this.ownerSVGElement)
-                var root = s.node().getBBox()
-                s.append("text") // text label for the x axis
-                    .attr("transform", function() {
-                        var t = "translate("
-                        if (orientation == "left")
-                            t += padding
-                        else
-                            t += root.width - padding
-                        t += "," + root.height / 2 + ") rotate("
-                        if (orientation == "left")
-                            t += "-90"
-                        else
-                            t += "90"
-                        t += ")"
-                        return t
+        let chart = function(selection) {
+            selection.each(function(data, i, nodes) {
+                let s = d3.select(nodes[i].ownerSVGElement);
+                let root = s.node().getBBox();
+                s.append('text') // text label for the x axis
+                    .attr('transform', function() {
+                        let t = 'translate(';
+                        if (orientation == 'left') {
+                            t += padding;
+                        } else {
+                            t += root.width - padding;
+                        };
+                        t += ',' + root.height / 2 + ') rotate(';
+                        if (orientation == 'left') {
+                            t += '-90';
+                        } else {
+                            t += '90';
+                        };
+                        t += ')';
+                        return t;
                     })
-                    .style("text-anchor", "middle")
-                    .attr("dominant-baseline", "hanging")
-                    .style("fill", color)
-                    .text(text)
-
-            })
-        }
+                    .style('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'hanging')
+                    .style('fill', color)
+                    .text(text);
+            });
+        };
 
         chart.color = function(value) {
-            if (!arguments.length) return color
+            if (!arguments.length) return color;
             color = value;
             return chart;
-        }
+        };
 
         chart.orientation = function(value) {
-            if (!arguments.length) return orientation
+            if (!arguments.length) return orientation;
             orientation = value;
             return chart;
-        }
-        return chart
-    }
+        };
+        return chart;
+    };
 
-    var shadow = function() {
+    let shadow = function() {
+        let blur = 3;
+        let xOffset = 2;
+        let yOffset = 1;
+        let opacity = 0.4;
+        let id = d3wb.util.guid();
 
-        var blur = 3
-        var xOffset = 2
-        var yOffset = 1
-        var opacity = 0.4
-        var id = d3wb.util.guid()
-
-        function chart(selection) {
-
-            selection.each(function() {
-                var s = d3.select(this)
-                var svg = d3.select(this.ownerSVGElement)
-                var defs = svg.append('defs');
-                var filter = defs.append('filter')
-                    .attr('id', id)
+        let chart = function(selection) {
+            selection.each(function(d, i, nodes) {
+                let s = d3.select(nodes[i]);
+                let svg = d3.select(nodes[i].ownerSVGElement);
+                let defs = svg.append('defs');
+                let filter = defs.append('filter')
+                    .attr('id', id);
                 filter.append('feGaussianBlur')
                     .attr('in', 'SourceAlpha')
                     .attr('stdDeviation', blur)
-                    .attr('result', 'blur')
+                    .attr('result', 'blur');
                 filter.append('feOffset')
                     .attr('in', 'blur')
                     .attr('dx', xOffset)
@@ -341,108 +332,106 @@
                 filter.append('feComponentTransfer')
                     .append('feFuncA')
                     .attr('type', 'linear')
-                    .attr("slope", opacity)
-                var feMerge = filter.append('feMerge');
+                    .attr('slope', opacity);
+                let feMerge = filter.append('feMerge');
                 feMerge.append('feMergeNode')
-                    .attr('in", "offsetBlur')
+                    .attr('in", "offsetBlur');
                 feMerge.append('feMergeNode')
                     .attr('in', 'SourceGraphic');
 
-                s.style("filter", "url(#" + id + ")")
-            })
-        }
-        return chart
-    }
+                s.style('filter', 'url(#' + id + ')');
+            });
+        };
+        return chart;
+    };
 
-    var legend = function() {
+    let legend = function() {
+        let color = 'white';
+        let stroke;
+        let colors = ['red', 'green', 'blue'];
+        let text = ['Item 1', 'Item 2', 'Item 3'];
+        let x = 0;
+        let y = 0;
+        let symbol = d3.symbolCircle;
+        let symbolSize = 100;
 
-        var color = "white"
-        var stroke
-        var colors = ["red", "green", "blue"]
-        var text = ["Item 1", "Item 2", "Item 3"]
-        var x = 0
-        var y = 0
-        var symbol = d3.symbolCircle
-        var symbolSize = 100
-
-        function chart(selection) {
-
-            selection.each(function() {
-                var s = d3.select(this)
-                s.append("g")
-                    .attr("class", "legend")
-                    .attr("transform", "translate(" + x + "," + y + ")")
-                var ordinal = d3.scaleOrdinal()
+        let chart = function(selection) {
+            selection.each(function(d, i, nodes) {
+                let s = d3.select(nodes[i]);
+                s.append('g')
+                    .attr('class', 'legend')
+                    .attr('transform', 'translate(' + x + ',' + y + ')');
+                let ordinal = d3.scaleOrdinal()
                     .domain(text.map(function(d) {
                         return d;
                     }))
                     .range(text.map(function(d, i) {
                         return colors[i];
                     }));
-                var legend = d3.legendColor()
-                    .shape("path",
+                let legend = d3.legendColor()
+                    .shape('path',
                         d3.symbol().type(symbol).size(symbolSize)())
-                    .scale(ordinal)
-                s.select(".legend")
+                    .scale(ordinal);
+                s.select('.legend')
                     .call(legend)
-                    .style("fill", color)
-                    .style("font-size", "90%")
+                    .style('fill', color)
+                    .style('font-size', '90%');
                 if (stroke) {
-                    s.selectAll("path.swatch").style("stroke", stroke)
+                    s.selectAll('path.swatch').style('stroke', stroke);
                 }
-            })
-        }
+            });
+        };
 
         chart.stroke = function(value) {
-            if (!arguments.length) return stroke
+            if (!arguments.length) return stroke;
             stroke = value;
             return chart;
-        }
+        };
 
         chart.x = function(value) {
-            if (!arguments.length) return x
+            if (!arguments.length) return x;
             x = value;
             return chart;
-        }
+        };
 
         chart.y = function(value) {
-            if (!arguments.length) return y
+            if (!arguments.length) return y;
             y = value;
             return chart;
-        }
+        };
 
         chart.text = function(value) {
-            if (!arguments.length) return text
+            if (!arguments.length) return text;
             text = value;
             return chart;
-        }
+        };
 
         chart.colors = function(value) {
-            if (!arguments.length) return colors
+            if (!arguments.length) return colors;
             colors = value;
             return chart;
-        }
+        };
 
         chart.color = function(value) {
-            if (!arguments.length) return color
+            if (!arguments.length) return color;
             color = value;
             return chart;
-        }
+        };
 
         chart.symbol = function(value) {
-            if (!arguments.length) return symbol
+            if (!arguments.length) return symbol;
             symbol = value;
             return chart;
-        }
+        };
 
         chart.symbolSize = function(value) {
-            if (!arguments.length) return symbolSize
+            if (!arguments.length) return symbolSize;
             symbolSize = value;
             return chart;
-        }
+        };
 
-        return chart
-    }
+        return chart;
+    };
 
     d3wb.add = {
         xAxis: xAxis,
@@ -453,7 +442,6 @@
         yAxisLabel: yAxisLabel,
         title: title,
         shadow: shadow,
-        legend: legend
-    }
-
-})()
+        legend: legend,
+    };
+})();
