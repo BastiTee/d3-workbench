@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/BastiTee/d3-workbench"
   },
-  "preferGlobal": "true",
+  "preferGlobal": true,
   "bin": {
     "d3-workbench": "bin/d3-wb-server.js"
   },
