@@ -1,42 +1,46 @@
-function wbDonutChart() {
-    "use strict";
+/* exported wbDonutChart */
+/**
+ * Basic donut chart with external legend.
+ * @return {Object} A reusable, updatable chart object.
+ */
+let wbDonutChart = function() {
+    'use strict';
 
-    var radius = 500
-    var fillLegend = "black"
-    var colors = d3.scaleOrdinal(d3.schemeCategory10)
+    let radius = 500;
+    let fillLegend = 'black';
+    let colors = d3.scaleOrdinal(d3.schemeCategory10);
 
-    var update = function() {}
+    // let update = function() {};
 
-    function chart(selection) {
+    let chart = function(selection) {
+        selection.each(function(data, i, nodes) {
+            let s = d3.select(nodes[i]);
 
-        selection.each(function(data, i) {
-            var s = d3.select(this)
-
-            var pie = d3.pie()
+            let pie = d3.pie()
                 .value(function(d) {
-                    return d.percent
+                    return d.percent;
                 })
                 .sort(null)
                 .padAngle(.03);
 
-            var outerRadius = radius / 2;
-            var innerRadius = radius / 8;
+            let outerRadius = radius / 2;
+            let innerRadius = radius / 8;
 
-            var arc = d3.arc()
+            let arc = d3.arc()
                 .outerRadius(outerRadius)
-                .innerRadius(innerRadius)
+                .innerRadius(innerRadius);
 
-            var path = s.selectAll("path")
+            s.selectAll('path')
                 .data(pie(data))
                 .enter()
-                .append("path")
-                .attr("class", "paths")
-                .attr("d", arc)
-                .attr("fill", function(d, i) {
+                .append('path')
+                .attr('class', 'paths')
+                .attr('d', arc)
+                .attr('fill', function(d, i) {
                     return colors(i);
-                })
+                });
 
-            var ordinal = d3.scaleOrdinal()
+            let ordinal = d3.scaleOrdinal()
                 .domain(data.map(function(d) {
                     return d.label;
                 }))
@@ -44,40 +48,39 @@ function wbDonutChart() {
                     return colors(i);
                 }));
 
-            s.append("g")
-                .attr("class", "legend")
-                .attr("transform", function(d, i) {
-                    return "translate(" + (outerRadius + 10) + "," +
-                        (-outerRadius + 10) + ")";
+            s.append('g')
+                .attr('class', 'legend')
+                .attr('transform', function(d, i) {
+                    return 'translate(' + (outerRadius + 10) + ',' +
+                        (-outerRadius + 10) + ')';
                 });
-            var legend = d3.legendColor()
-                .shape("path", d3.symbol().type(d3.symbolCircle).size(100)())
+            let legend = d3.legendColor()
+                .shape('path', d3.symbol().type(d3.symbolCircle).size(100)())
                 .scale(ordinal);
-            s.select(".legend")
+            s.select('.legend')
                 .call(legend)
-                .style("fill", fillLegend)
-                .style("font-size", "90%")
-
-        })
-    }
+                .style('fill', fillLegend)
+                .style('font-size', '90%');
+        });
+    };
 
     chart.radius = function(value) {
-        if (!arguments.length) return radius
+        if (!arguments.length) return radius;
         radius = value;
         return chart;
-    }
+    };
 
     chart.fillLegend = function(value) {
-        if (!arguments.length) return fillLegend
+        if (!arguments.length) return fillLegend;
         fillLegend = value;
         return chart;
-    }
+    };
 
     chart.colors = function(value) {
-        if (!arguments.length) return colors
+        if (!arguments.length) return colors;
         colors = value;
         return chart;
-    }
+    };
 
-    return chart
-}
+    return chart;
+};

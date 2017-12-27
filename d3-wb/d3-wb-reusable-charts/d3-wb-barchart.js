@@ -1,70 +1,73 @@
-function wbBarChart() {
-    "use strict";
+/* exported wbBarChart */
+/**
+ * Basic bar chart.
+ * @return {Object} A reusable, updatable chart object.
+ */
+let wbBarChart = function() {
+    'use strict';
 
-    var width = 500
-    var height = 500
-    var padding = 0.1
-    var widthFactor = 1.0
-    var xSelector = "x"
-    var ySelector = "y"
-    var scaleX
-    var scaleY
-    var yExtent
-    var sortBy
-    var sortDirection = "desc"
-    var valuesShow
-    var valuesFill = "black"
-    var valuesPadding = 10
-    var valueFormat = function(v) {
-        return v
-    }
-    var fill = "blue"
-    var update = function() {}
+    let width = 500;
+    let height = 500;
+    let padding = 0.1;
+    let widthFactor = 1.0;
+    let xSelector = 'x';
+    let ySelector = 'y';
+    let scaleX;
+    let scaleY;
+    let yExtent;
+    let sortBy;
+    let sortDirection = 'desc';
+    let valuesShow;
+    let valuesFill = 'black';
+    let valuesPadding = 10;
+    let valueFormat = function(v) {
+        return v;
+    };
+    let fill = 'blue';
+    let update = function() {};
 
-    function chart(selection) {
-
-        selection.each(function(data, i) {
-            let s = d3.select(this);
+    let chart = function(selection) {
+        selection.each(function(data, i, nodes) {
+            let s = d3.select(nodes[i]);
 
             scaleX = d3
                 .scaleBand()
                 .rangeRound([0, width], .1)
-                .padding(padding)
+                .padding(padding);
 
             scaleY = d3.scaleLinear()
-                .range([height, 0])
+                .range([height, 0]);
 
             update = function(data) {
-
                 data.forEach(function(d) {
-                    d[ySelector] = +d[ySelector]
-                })
+                    d[ySelector] = +d[ySelector];
+                });
 
                 if (sortBy) {
                     data.sort(function(a, b) {
-                        if (sortDirection == "desc") {
-                            return +b[sortBy] - +a[sortBy]
+                        if (sortDirection == 'desc') {
+                            return +b[sortBy] - +a[sortBy];
                         } else {
-                            return +a[sortBy] - +b[sortBy]
+                            return +a[sortBy] - +b[sortBy];
                         }
-                    })
+                    });
                 }
 
-                var yExtentLocal
+                let yExtentLocal;
                 if (!yExtent) {
                     yExtentLocal = [0, d3.max(data, function(d) {
                         return d[ySelector];
-                    })]
+                    })];
                 } else {
-                    yExtentLocal = yExtent
+                    yExtentLocal = yExtent;
                 }
-                scaleY.domain(yExtentLocal)
+                scaleY.domain(yExtentLocal);
 
                 scaleX.domain(data.map(function(d) {
-                    return d[xSelector]
-                }))
+                    return d[xSelector];
+                }));
 
-                s.selectAll(".rects")
+                s.selectAll('.rects')
                     .remove()
                     .exit()
                     .data(data)
@@ -88,14 +91,14 @@ function wbBarChart() {
                     .attr('height', function(d) {
                         return height - scaleY(d[ySelector]);
                     })
-                    .attr("fill", function(d, i) {
-                        if (typeof fill === "string") {
-                            return fill
-                        } else if (typeof fill === "function") {
-                            return fill(i)
-                        } else if (typeof fill === "object" &&
-                            String(fill).startsWith("rgb")) {
-                            return fill
+                    .attr('fill', function(d, i) {
+                        if (typeof fill === 'string') {
+                            return fill;
+                        } else if (typeof fill === 'function') {
+                            return fill(i);
+                        } else if (typeof fill === 'object' &&
+                            String(fill).startsWith('rgb')) {
+                            return fill;
                         } else {
                             return fill[i];
                         }
@@ -211,19 +214,19 @@ function wbBarChart() {
     };
 
     chart.sortDirection = function(value) {
-        if (!arguments.length) return sortDirection
-        if (value != "desc" && value != "asc") {
-            throw Error("Only desc or asc are allowed as sort order.")
+        if (!arguments.length) return sortDirection;
+        if (value != 'desc' && value != 'asc') {
+            throw Error('Only desc or asc are allowed as sort order.');
         }
         sortDirection = value;
         return chart;
-    }
+    };
 
     chart.sortBy = function(value) {
-        if (!arguments.length) return sortBy
+        if (!arguments.length) return sortBy;
         sortBy = value;
         return chart;
-    }
+    };
 
-    return chart
-}
+    return chart;
+};

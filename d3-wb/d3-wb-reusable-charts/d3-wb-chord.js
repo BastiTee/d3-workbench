@@ -1,125 +1,128 @@
-function wbChordDiagram() {
-    "use strict";
+/* exported wbChordDiagram */
+/**
+ * Chord diagram.
+ * @return {Object} A reusable, updatable chart object.
+ */
+let wbChordDiagram = function() {
+    'use strict';
 
-    var radius = 500
-    var fill = "black"
-    var colors = d3.scaleOrdinal(d3.schemeCategory20c)
-    var matrix
-    var keys
+    let radius = 500;
+    let fill = 'black';
+    let colors = d3.scaleOrdinal(d3.schemeCategory20c);
+    let matrix;
+    let keys;
 
-    function chart(selection) {
+    let chart = function(selection) {
+        selection.each(function(data, i, nodes) {
+            let s = d3.select(nodes[i]);
 
-        selection.each(function() {
-            var s = d3.select(this)
+            let innerRadius = radius / 2 - 100;
 
-            var innerRadius = radius / 2 - 100;
-
-            var chord = d3.chord()
+            let chord = d3.chord()
                 .padAngle(0.04)
                 .sortSubgroups(d3.descending)
                 .sortChords(d3.descending);
 
-            var arc = d3.arc()
+            let arc = d3.arc()
                 .innerRadius(innerRadius)
                 .outerRadius(innerRadius + 20);
 
-            var ribbon = d3.ribbon()
+            let ribbon = d3.ribbon()
                 .radius(innerRadius);
 
 
-            var chords = chord(matrix)
+            let chords = chord(matrix);
             s
-                .attr("class", "chord-circle")
-                .datum(chords)
+                .attr('class', 'chord-circle')
+                .datum(chords);
 
-            s.append("circle")
-                .attr("fill", "none")
-                .attr("pointer-events", "all")
-                .attr("r", innerRadius + 20)
+            s.append('circle')
+                .attr('fill', 'none')
+                .attr('pointer-events', 'all')
+                .attr('r', innerRadius + 20);
 
-            var g = s.selectAll("group")
+            let g = s.selectAll('group')
                 .data(function(chords) {
                     return chords.groups;
                 })
-                .enter().append("g")
-                .style("fill-opacity", ".8")
-                .on("mouseover", function(d, i) {
-                    chordPaths.classed("fade", function(p) {
+                .enter().append('g')
+                .style('fill-opacity', '.8')
+                .on('mouseover', function(d, i) {
+                    chordPaths.classed('fade', function(p) {
                         return p.source.index != i &&
                             p.target.index != i;
                     });
                 })
-                .on("mousemove", function() {})
-                .on("mouseout", function() {})
-            g.append("path")
-                .style("stroke", fill)
-                .style("fill", fill)
-                .attr("d", arc);
+                .on('mousemove', function() {})
+                .on('mouseout', function() {});
+            g.append('path')
+                .style('stroke', fill)
+                .style('fill', fill)
+                .attr('d', arc);
 
-            g.append("text")
+            g.append('text')
                 .each(function(d) {
                     d.angle = (d.startAngle + d.endAngle) / 2;
                 })
-                .attr("dy", ".35em")
-                .style("font-size", "90%")
-                .attr("text-anchor", function(d) {
-                    return d.angle > Math.PI ? "end" : null;
+                .attr('dy', '.35em')
+                .style('font-size', '90%')
+                .attr('text-anchor', function(d) {
+                    return d.angle > Math.PI ? 'end' : null;
                 })
-                .attr("transform", function(d) {
-                    return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")" +
-                        "translate(" + (innerRadius + 26) + ")" +
-                        (d.angle > Math.PI ? "rotate(180)" : "");
+                .attr('transform', function(d) {
+                    return 'rotate(' + (d.angle * 180 / Math.PI - 90) + ')' +
+                        'translate(' + (innerRadius + 26) + ')' +
+                        (d.angle > Math.PI ? 'rotate(180)' : '');
                 })
-                .style("fill", fill)
+                .style('fill', fill)
                 .text(function(d) {
-                    return keys[d.index].key
+                    return keys[d.index].key;
                 });
 
-            var chordPaths = s.selectAll("chord")
+            s.selectAll('chord')
                 .data(function(chords) {
                     return chords;
                 })
-                .enter().append("path")
-                .attr("class", "chordpaths")
-                .style("fill-opacity", ".8")
-                .style("stroke-width", "25px")
-                .style("fill", function(d, i) {
-                    return colors(i)
+                .enter().append('path')
+                .attr('class', 'chordpaths')
+                .style('fill-opacity', '.8')
+                .style('stroke-width', '25px')
+                .style('fill', function(d, i) {
+                    return colors(i);
                 })
-                .attr("d", ribbon.radius(innerRadius))
-
-        })
-    }
+                .attr('d', ribbon.radius(innerRadius));
+        });
+    };
 
     chart.radius = function(value) {
-        if (!arguments.length) return radius
+        if (!arguments.length) return radius;
         radius = value;
         return chart;
-    }
+    };
 
     chart.matrix = function(value) {
-        if (!arguments.length) return matrix
+        if (!arguments.length) return matrix;
         matrix = value;
         return chart;
-    }
+    };
 
     chart.keys = function(value) {
-        if (!arguments.length) return keys
+        if (!arguments.length) return keys;
         keys = value;
         return chart;
-    }
+    };
 
     chart.colors = function(value) {
-        if (!arguments.length) return colors
+        if (!arguments.length) return colors;
         colors = value;
         return chart;
-    }
+    };
 
     chart.fill = function(value) {
-        if (!arguments.length) return fill
+        if (!arguments.length) return fill;
         fill = value;
         return chart;
-    }
+    };
 
-    return chart
-}
+    return chart;
+};
