@@ -50,6 +50,13 @@ npm start -- -i /path/to/myfolder -v
 
 Notice the `--` otherwise the remaining options are considered `npm` options.
 
+To start d3-workbench through docker, you can build from the provided Dockerfile
+
+```
+docker build -t d3-workbench .
+docker run -ti --rm -p 50321:50321 d3-workbench
+```
+
 # Components
 
 ## d3-wb

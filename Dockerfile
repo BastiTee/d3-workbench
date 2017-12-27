@@ -1,5 +1,5 @@
 # docker build -t d3-workbench .
-# docker run -ti --rm -p 50321:50321 d3-workbench -i +DEMO
+# docker run -ti --rm -p 50321:50321 d3-workbench
 
 # INSTALL BASE SYSTEM
 FROM ubuntu:16.04
