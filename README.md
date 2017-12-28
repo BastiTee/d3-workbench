@@ -152,7 +152,7 @@ Even though the overall interfaces are stable, so you can safely work with d3-wo
 - [ ] Document d3-wb-modules
 - [ ] Document d3-wb-reusable-charts
 - [ ] Add a limitation segment to README
-- [ ] Fix build process after switching to npm-based dependency management
+- [x] Fix build process after switching to npm-based dependency management
 - [x] Detailed documentation for additional `workbench` files
 - [x] Externalize d3 and plugin libraries obtained from GitHub
 

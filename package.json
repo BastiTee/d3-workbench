@@ -12,7 +12,8 @@
   },
   "scripts": {
     "start": "node bin/d3-wb-server.js",
-    "postinstall": "node bin/postinstall.js"
+    "postinstall": "node bin/postinstall.js",
+    "prepublish": "node bin/prepublish.js"
   },
   "author": "Basti Tee",
   "license": "GPL-3.0",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "eslint": "^4.13.1",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "node-minify": "^2.4.1"
   }
 }
