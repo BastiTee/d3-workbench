@@ -148,6 +148,7 @@ RewriteRule ^(.*)$ http://localhost:50321/$1 [P]
 
 Even though the overall interfaces are stable, so you can safely work with d3-workbench, the project is still evolving and there is a ton of things still to do. This includes..
 
+- [ ] Get rid of d3wb.color dependency in d3-wb core module
 - [ ] Document main library
 - [ ] Document d3-wb-modules
 - [ ] Document d3-wb-reusable-charts
