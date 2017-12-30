@@ -1,37 +1,37 @@
 {
-  "name": "d3-workbench",
-  "version": "0.8.0",
-  "description": "A d3.js-powered workbench for rapid visualization prototyping",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BastiTee/d3-workbench"
-  },
-  "preferGlobal": true,
-  "bin": {
-    "d3-workbench": "bin/d3-wb-server.js"
-  },
-  "scripts": {
-    "start": "node bin/d3-wb-server.js",
-    "postinstall": "node bin/postinstall.js",
-    "prepublish": "node bin/prepublish.js"
-  },
-  "author": "Basti Tee",
-  "license": "GPL-3.0",
-  "homepage": "https://github.com/BastiTee/d3-workbench",
-  "dependencies": {
-    "browser-sync": "2.18.13",
-    "d3": "4.11.0",
-    "d3-cloud": "1.2.4",
-    "d3-sankey": "0.4.2",
-    "d3-scale-chromatic": "1.1.1",
-    "d3-svg-annotation": "2.1.0",
-    "d3-svg-legend": "2.24.1",
-    "express": "4.13.4",
-    "minimist": "1.2.0"
-  },
-  "devDependencies": {
-    "eslint": "^4.13.1",
-    "eslint-config-google": "^0.9.1",
-    "node-minify": "^2.4.1"
-  }
+    "name": "d3-workbench",
+    "version": "0.8.0",
+    "description": "A d3.js-powered workbench for rapid visualization prototyping",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BastiTee/d3-workbench"
+    },
+    "preferGlobal": true,
+    "bin": {
+        "d3-workbench": "bin/d3-wb-server.js"
+    },
+    "scripts": {
+        "start": "node bin/d3-wb-server.js",
+        "postinstall": "node bin/postinstall.js",
+        "prepublish": "node bin/prepublish.js"
+    },
+    "author": "Basti Tee",
+    "license": "GPL-3.0",
+    "homepage": "https://github.com/BastiTee/d3-workbench",
+    "dependencies": {
+        "browser-sync": "2.18.13",
+        "d3": "4.11.0",
+        "d3-cloud": "1.2.4",
+        "d3-sankey": "0.4.2",
+        "d3-scale-chromatic": "1.1.1",
+        "d3-svg-annotation": "2.1.0",
+        "d3-svg-legend": "2.24.1",
+        "express": "4.13.4",
+        "minimist": "1.2.0"
+    },
+    "devDependencies": {
+        "eslint": "^4.13.1",
+        "eslint-config-google": "^0.9.1",
+        "node-minify": "^2.4.1"
+    }
 }
