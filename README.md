@@ -144,25 +144,10 @@ RewriteEngine On
 RewriteRule ^(.*)$ http://localhost:50321/$1 [P]
 ```
 
-# Work in progress
-
-Even though the overall interfaces are stable, so you can safely work with d3-workbench, the project is still evolving and there is a ton of things still to do. This includes..
-
-- [ ] Get rid of d3wb.color dependency in d3-wb core module
-- [ ] Document main library
-- [ ] Document d3-wb-modules
-- [ ] Document d3-wb-reusable-charts
-- [ ] Add a limitation segment to README
-- [x] Fix build process after switching to npm-based dependency management
-- [x] Detailed documentation for additional `workbench` files
-- [x] Externalize d3 and plugin libraries obtained from GitHub
-
-Contributions and beta-testers are always welcome.
-
 # License and further information
 
 This software is licensed under [GPLv3](https://github.com/BastiTee/d3-workbench/blob/master/LICENSE).
 
 Icon made by <https://www.flaticon.com/authors/smashicons> from <https://www.flaticon.com/> is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
 
-You can get in contact with me via my [hub-page](https://basti.site).
+Even though the overall interfaces are stable, so you can safely work with d3-workbench, the project is still evolving and there is a ton of things still to do. This includes. Contributions and beta-testers are always welcome. You can get in contact with me via my [hub-page](https://basti.site).
