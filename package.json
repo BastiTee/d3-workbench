@@ -27,7 +27,7 @@
         "d3-scale-chromatic": ">=1.1.1",
         "d3-svg-annotation": ">=2.1.0",
         "d3-svg-legend": ">=2.24.1",
-        "d3-sankey": "0.4.2"
+        "d3-sankey": ">=0.7.1"
     },
     "devDependencies": {
         "eslint": "^4.13.1",
