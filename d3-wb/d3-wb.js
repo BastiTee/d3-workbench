@@ -9,10 +9,10 @@
  * @author BastiTee
  */
 (function(global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined'
-    ? factory(exports) : typeof define === 'function' &&
-    define.amd ? define(['exports'], factory) :
-    (factory((global.d3wb = global.d3wb || {})));
+    typeof exports === 'object' && typeof module !== 'undefined' ?
+        factory(exports) : typeof define === 'function' &&
+        define.amd ? define(['exports'], factory) :
+        (factory((global.d3wb = global.d3wb || {})));
 }(this, (function(exports) {
     'use strict';
 
@@ -47,8 +47,8 @@
             svgId: null,
             /* Print out debug messages and debug canvas */
             debug: false,
-            /* Background color */
-            bgColor: '#FFFFFF',
+            /* Background color (use theme default if available)*/
+            bgColor: getWbColorOrDefault(),
             /* Interal datasource */
             datasrc: undefined,
         };
@@ -243,46 +243,46 @@
         svg.append('rect')
             .attr('width', config.width)
             .attr('height', config.height)
-            .attr('fill', '#FFFFFF'.fade(20));
+            .attr('fill', getWbColorOrDefault('lightgrey'));
         svg.append('text')
             .attr('x', config.width).attr('dominant-baseline', 'hanging')
-            .attr('text-anchor', 'end').attr('fill', '#FFFFFF')
+            .attr('text-anchor', 'end').attr('fill', getWbColorOrDefault())
             .text(config.width + 'x' + config.height);
         svg.append('rect')
             .attr('width', config.margin.left)
             .attr('height', config.margin.top)
-            .attr('fill', '#FFFFFF'.fade(10));
+            .attr('fill', getWbColorOrDefault('verylightgrey'));
         svg.append('text')
             .attr('font-size', '80%')
             .attr('x', config.margin.left / 2)
             .attr('dominant-baseline', 'hanging')
-            .attr('text-anchor', 'middle').attr('fill', '#FFFFFF')
+            .attr('text-anchor', 'middle').attr('fill', getWbColorOrDefault())
             .text(config.margin.left);
         svg.append('text')
             .attr('font-size', '80%')
             .attr('y', config.margin.top / 2)
             .attr('dominant-baseline', 'middle')
-            .attr('text-anchor', 'begin').attr('fill', '#FFFFFF')
+            .attr('text-anchor', 'begin').attr('fill', getWbColorOrDefault())
             .text(config.margin.top);
         svg.append('rect')
             .attr('x', config.width - config.margin.right)
             .attr('y', config.height - config.margin.bottom)
             .attr('width', config.margin.right)
             .attr('height', config.margin.bottom)
-            .attr('fill', '#FFFFFF'.fade(10));
+            .attr('fill', getWbColorOrDefault('verylightgrey'));
         svg.append('text')
             .attr('font-size', '80%')
             .attr('x', config.width - config.margin.right / 2)
             .attr('y', config.height)
             .attr('dominant-baseline', 'baseline')
-            .attr('text-anchor', 'middle').attr('fill', '#FFFFFF')
+            .attr('text-anchor', 'middle').attr('fill', getWbColorOrDefault())
             .text(config.margin.right);
         svg.append('text')
             .attr('font-size', '80%')
             .attr('x', config.width).attr('y',
                 config.height - config.margin.bottom / 2)
             .attr('dominant-baseline', 'middle')
-            .attr('text-anchor', 'end').attr('fill', '#FFFFFF')
+            .attr('text-anchor', 'end').attr('fill', getWbColorOrDefault())
             .text(config.margin.bottom);
     };
 
@@ -294,31 +294,31 @@
         g.append('rect')
             .attr('width', config.innerWidth)
             .attr('height', config.innerHeight)
-            .attr('fill', '#FFFFFF'.fade(30));
+            .attr('fill', getWbColorOrDefault('grey'));
         g.append('text')
             .attr('x', config.innerWidth).attr('dominant-baseline', 'hanging')
-            .attr('text-anchor', 'end').attr('fill', '#FFFFFF')
+            .attr('text-anchor', 'end').attr('fill', getWbColorOrDefault())
             .text(config.innerWidth + 'x' + config.innerHeight);
         g.append('circle')
             .attr('cx', config.innerWidth / 2).attr('cy',
                 config.innerHeight / 2)
-            .attr('r', 5).attr('fill', '#FFFFFF');
+            .attr('r', 5).attr('fill', getWbColorOrDefault());
         g.append('line')
             .attr('x1', 0).attr('x2', config.innerWidth / 2)
             .attr('y1', 0).attr('y2', config.innerHeight / 2)
-            .attr('stroke-width', 1).attr('stroke', '#FFFFFF');
+            .attr('stroke-width', 1).attr('stroke', getWbColorOrDefault());
         g.append('line')
             .attr('x1', config.innerWidth).attr('x2', config.innerWidth / 2)
             .attr('y1', config.innerHeight).attr('y2', config.innerHeight / 2)
-            .attr('stroke-width', 1).attr('stroke', '#FFFFFF');
+            .attr('stroke-width', 1).attr('stroke', getWbColorOrDefault());
         g.append('line')
             .attr('x1', config.innerWidth).attr('x2', config.innerWidth / 2)
             .attr('y1', 0).attr('y2', config.innerHeight / 2)
-            .attr('stroke-width', 1).attr('stroke', '#FFFFFF');
+            .attr('stroke-width', 1).attr('stroke', getWbColorOrDefault());
         g.append('line')
             .attr('x1', 0).attr('x2', config.innerWidth / 2)
             .attr('y1', config.innerHeight).attr('y2', config.innerHeight / 2)
-            .attr('stroke-width', 1).attr('stroke', '#FFFFFF');
+            .attr('stroke-width', 1).attr('stroke', getWbColorOrDefault());
         g.attr('transform',
             'translate(' + config.margin.left + ',' + config.margin.top + ')');
     };
@@ -357,6 +357,24 @@
             document.documentElement['scroll' + dim],
             document.body['offset' + dim],
             document.documentElement['offset' + dim]);
+    };
+
+    const getWbColorOrDefault = function(color) {
+        let libPresent = d3wb.theme !== undefined;
+        switch (color) {
+            case 'grey':
+                return libPresent ? d3wb.color.background.fade(30) :
+                'rgb(192, 192, 192)';
+            case 'lightgrey':
+                return libPresent ? d3wb.color.background.fade(20) :
+                'rgb(162, 162, 162)';
+            case 'verylightgrey':
+                return libPresent ? d3wb.color.background.fade(10) :
+                'rgb(132, 132, 132)';
+            default:
+                return libPresent ? d3wb.color.background :
+                'rgb(255, 255, 255)';
+        }
     };
 
     return d3wb;
