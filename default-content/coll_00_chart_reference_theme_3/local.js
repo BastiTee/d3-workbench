@@ -13,15 +13,15 @@
     .page-header img {
         display: none;
     }
-    
+
     .visualization-title {
         background-color: ` + d3wb.color.background + ` !important;
         color: ` + d3wb.color.foreground + `;
     }
-    
+
     .page-button {
         background-color: ` + d3wb.color.background + ` !important;
         color: ` + d3wb.color.foreground + ` !important;
     }
-    `)
+    `);
 })();

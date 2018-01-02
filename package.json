@@ -13,7 +13,7 @@
     "scripts": {
         "start": "node bin/d3-wb-server.js",
         "postinstall": "node bin/postinstall.js",
-        "prepublishOnly": "node bin/prepublish.js"
+        "prepublishOnly": "./node_modules/.bin/eslint d3-wb-server/**/*.js d3-wb/**/*.js default-content/**/*.js && node bin/prepublish.js"
     },
     "author": "Basti Tee",
     "license": "GPL-3.0",
