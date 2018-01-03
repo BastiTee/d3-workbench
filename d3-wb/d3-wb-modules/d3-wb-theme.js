@@ -1,4 +1,16 @@
-(function() {
+/**
+ * d3-workbench (d3wb) 'theme' extension module.
+ *
+ * A module to simplify working with user-defined color sets/themes.
+ *
+ * @author BastiTee
+ */
+(function(global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ?
+        factory(exports) : typeof define === 'function' &&
+        define.amd ? define(['exports'], factory) :
+        (factory((global.d3wb.theme = global.d3wb.theme || {})));
+}(this, (function(exports) {
     'use strict';
 
     let themes = {
@@ -100,23 +112,9 @@
         },
     };
 
-    let extendColor = function(colorObj, colorName) {
-        colorObj.name = colorName;
-        colorObj.fade = function(pct) {
-            let lohi = lohiScaleArray(colorObj.name, 100);
-            return lohi[pct];
-        };
-        return colorObj;
-    };
-
-    let castColor = function(color) {
-        let label = color;
-        if (typeof color === 'string' && !color.startsWith('rgb')) {
-            color = d3.rgb(d3wb.color[color]);
-            color = extendColor(color, label);
-        }
-        return color;
-    };
+    /* *********************************************************************
+     * PUBLIC FUNCTIONS
+     * ********************************************************************* */
 
     let array = function(arr) {
         let newArr = [];
@@ -142,7 +140,8 @@
 
     let categoryMain = function() {
         let colors = [
-            'blue', 'cyan', 'green', 'magenta', 'red', 'yellow', 'foreground'];
+            'blue', 'cyan', 'green', 'magenta', 'red', 'yellow', 'foreground',
+        ];
         let category = [];
         for (let i = 0; i < colors.length; i++) {
             category.push(castColor(colors[i]));
@@ -212,6 +211,32 @@
             .domain(minMax).range(colors);
     };
 
+    /* *********************************************************************
+     * PRIVATE FUNCTIONS
+     * ********************************************************************* */
+
+    let extendColor = function(colorObj, colorName) {
+        colorObj.name = colorName;
+        colorObj.fade = function(pct) {
+            let lohi = lohiScaleArray(colorObj.name, 100);
+            return lohi[pct];
+        };
+        return colorObj;
+    };
+
+    let castColor = function(color) {
+        let label = color;
+        if (typeof color === 'string' && !color.startsWith('rgb')) {
+            color = d3.rgb(d3wb.color[color]);
+            color = extendColor(color, label);
+        }
+        return color;
+    };
+
+    /* *********************************************************************
+     * PUBLIC API
+     * ********************************************************************* */
+
     // sets up theme function that invokes d3wb.color object as well
     d3wb.theme = function(theme) {
         if (!arguments.length) {
@@ -249,4 +274,4 @@
     };
 
     d3wb.theme('light'); // sets default theme
-})();
+})));

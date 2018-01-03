@@ -1,19 +1,25 @@
-(function() {
+/**
+ * d3-workbench (d3wb) 'add' extension module.
+ *
+ * A collection of functions to create recurring figure elements such as
+ * x/y-axis, titles etc. with minimal boilerplate code.
+ *
+ * @author BastiTee
+ */
+(function(global, factory) {
+    if (global.d3wb.util === undefined) {
+        throw new Error('d3wb.util required but not loaded.');
+    }
+    typeof exports === 'object' && typeof module !== 'undefined' ?
+        factory(exports) : typeof define === 'function' &&
+        define.amd ? define(['exports'], factory) :
+        (factory((global.d3wb.add = global.d3wb.add || {})));
+}(this, (function(exports) {
     'use strict';
 
-    let injectAxisColor = function(color, cclass) {
-        d3wb.util.injectCSS(`
-        .` + cclass + ` line{
-          stroke: ` + color + `;
-        }
-        .` + cclass + ` path{
-          stroke: ` + color + `;
-        }
-        .` + cclass + ` text{
-          fill: ` + color + `;
-        }
-        `);
-    };
+    /* *********************************************************************
+     * PUBLIC FUNCTIONS
+     * ********************************************************************* */
 
     let xAxis = function(scale) {
         let color = 'red';
@@ -433,6 +439,10 @@
         return chart;
     };
 
+    /* *********************************************************************
+     * PUBLIC API
+     * ********************************************************************* */
+
     d3wb.add = {
         xAxis: xAxis,
         xAxisBottom: xAxisBottom,
@@ -444,4 +454,22 @@
         shadow: shadow,
         legend: legend,
     };
-})();
+
+    /* *********************************************************************
+     * PRIVATE FUNCTIONS
+     * ********************************************************************* */
+
+    let injectAxisColor = function(color, cclass) {
+        d3wb.util.injectCSS(`
+            .` + cclass + ` line{
+              stroke: ` + color + `;
+            }
+            .` + cclass + ` path{
+              stroke: ` + color + `;
+            }
+            .` + cclass + ` text{
+              fill: ` + color + `;
+            }
+            `);
+    };
+})));

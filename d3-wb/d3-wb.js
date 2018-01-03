@@ -9,6 +9,9 @@
  * @author BastiTee
  */
 (function(global, factory) {
+    if (global.d3 === undefined) {
+        throw new Error('d3 required but not loaded.');
+    }
     typeof exports === 'object' && typeof module !== 'undefined' ?
         factory(exports) : typeof define === 'function' &&
         define.amd ? define(['exports'], factory) :

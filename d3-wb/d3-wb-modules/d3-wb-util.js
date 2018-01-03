@@ -1,7 +1,27 @@
-(function() {
+/**
+ * d3-workbench (d3wb) 'util' extension module.
+ *
+ * A collection of utility functions to reduce boilerplate and to
+ * speed up visualization development.
+ *
+ * @author BastiTee
+ */
+(function(global, factory) {
+    if (global.d3wb === undefined) {
+        throw new Error('d3wb required but not loaded.');
+    }
+    typeof exports === 'object' && typeof module !== 'undefined' ?
+        factory(exports) : typeof define === 'function' &&
+        define.amd ? define(['exports'], factory) :
+        (factory((global.d3wb.util = global.d3wb.util || {})));
+}(this, (function(exports) {
     'use strict';
 
-    let changeCSVSeparator = function(sep) {
+    /* *********************************************************************
+     * PUBLIC FUNCTIONS
+     * ********************************************************************* */
+
+    const changeCSVSeparator = function(sep) {
         d3.csv = function(url, callback) {
             d3.request(url)
                 .mimeType('text/csv')
@@ -12,7 +32,7 @@
         };
     };
 
-    let setLocale = function(lang) {
+    const setLocale = function(lang) {
         if (lang == 'de') {
             d3.timeFormat = d3.timeFormatLocale({
                 'dateTime': '%A, der %e. %B %Y, %X',
@@ -33,22 +53,17 @@
         }
     };
 
-    let guid = function() {
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
+    const guid = function() {
+        return randomString() + randomString() + '-' + randomString()
+        + '-' + randomString() + '-' + randomString() + '-'
+        + randomString() + randomString() + randomString();
     };
 
-    let websafeGuid = function() {
+    const websafeGuid = function() {
         return 'd3wb-' + guid();
     };
 
-    let s4 = function() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    };
-
-    let smoothData = function(data, xSel, ySel, window) {
+    const smoothData = function(data, xSel, ySel, window) {
         let windowArr = [];
         let winAggs = [];
         // for each window create an aggregated value
@@ -88,7 +103,7 @@
         return smoothData;
     };
 
-    let countCsvColumn = function(data, column, sort, ignore) {
+    const countCsvColumn = function(data, column, sort, ignore) {
         sort = sort === undefined ? true : sort;
         let nestedData = d3.nest()
             .key(function(d) {
@@ -123,7 +138,7 @@
     };
 
 
-    let injectCSS = function(css) {
+    const injectCSS = function(css) {
         let head = document.getElementsByTagName('head')[0];
         let s = document.createElement('style');
         if (s.styleSheet) { // IE
@@ -135,7 +150,7 @@
     };
 
 
-    let logSVGSize = function(selection) {
+    const logSVGSize = function(selection) {
         let b = selection.ownerSVGElement.getBBox();
         console.log(b.x + ' x ' + b.y + ' | ' + b.width + ' x ' + b.height);
     };
@@ -161,7 +176,7 @@
      * @param {Object} json Input json data
      * @return {Array} Converted csv data
      */
-    let jsonAttributeMapToCSV = function(json) {
+    const jsonAttributeMapToCSV = function(json) {
         // create header
         let header = ['key'];
         let jsonMap = json[Object.keys(json)[0]];
@@ -193,7 +208,7 @@
         return csvResult;
     };
 
-    let getBoundingBoxCenter = function(selection) {
+    const getBoundingBoxCenter = function(selection) {
         // get the DOM element from a D3 selection
         // you could also use "this" inside .each()
         let element = d3.select(selection).node();
@@ -202,6 +217,10 @@
         // return the center of the bounding box
         return [bbox.x + bbox.width / 2, bbox.y + bbox.height / 2];
     };
+
+    /* *********************************************************************
+     * PUBLIC API
+     * ********************************************************************* */
 
     d3wb.util = {
         setLocale: setLocale,
@@ -215,4 +234,14 @@
         jsonAttributeMapToCSV: jsonAttributeMapToCSV,
         getBoundingBoxCenter: getBoundingBoxCenter,
     };
-})();
+
+    /* *********************************************************************
+     * PRIVATE FUNCTIONS
+     * ********************************************************************* */
+
+    let randomString = function() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    };
+})));
