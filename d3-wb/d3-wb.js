@@ -236,6 +236,8 @@
         }
     };
 
+    const nf = d3.format('.1f');
+
     const drawDebugCanvas = function(svg, config) {
         if (!config.debug) {
             return;
@@ -245,9 +247,13 @@
             .attr('height', config.height)
             .attr('fill', getWbColorOrDefault('lightgrey'));
         svg.append('text')
-            .attr('x', config.width).attr('dominant-baseline', 'hanging')
-            .attr('text-anchor', 'end').attr('fill', getWbColorOrDefault())
-            .text(config.width + 'x' + config.height);
+            .attr('x', config.width)
+            .attr('fill', getWbColorOrDefault())
+            .style('dominant-baseline', 'hanging')
+            .style('text-anchor', 'end')
+            .style('-moz-user-select', 'none')
+            .style('user-select', 'none')
+            .text(nf(config.width) + 'x' + nf(config.height));
         svg.append('rect')
             .attr('width', config.margin.left)
             .attr('height', config.margin.top)
@@ -255,15 +261,21 @@
         svg.append('text')
             .attr('font-size', '80%')
             .attr('x', config.margin.left / 2)
-            .attr('dominant-baseline', 'hanging')
-            .attr('text-anchor', 'middle').attr('fill', getWbColorOrDefault())
-            .text(config.margin.left);
+            .attr('fill', getWbColorOrDefault())
+            .style('dominant-baseline', 'hanging')
+            .style('text-anchor', 'middle')
+            .style('-moz-user-select', 'none')
+            .style('user-select', 'none')
+            .text(nf(config.margin.left));
         svg.append('text')
             .attr('font-size', '80%')
             .attr('y', config.margin.top / 2)
-            .attr('dominant-baseline', 'middle')
-            .attr('text-anchor', 'begin').attr('fill', getWbColorOrDefault())
-            .text(config.margin.top);
+            .attr('fill', getWbColorOrDefault())
+            .style('dominant-baseline', 'middle')
+            .style('text-anchor', 'begin')
+            .style('-moz-user-select', 'none')
+            .style('user-select', 'none')
+            .text(nf(config.margin.top));
         svg.append('rect')
             .attr('x', config.width - config.margin.right)
             .attr('y', config.height - config.margin.bottom)
@@ -274,16 +286,22 @@
             .attr('font-size', '80%')
             .attr('x', config.width - config.margin.right / 2)
             .attr('y', config.height)
-            .attr('dominant-baseline', 'baseline')
-            .attr('text-anchor', 'middle').attr('fill', getWbColorOrDefault())
-            .text(config.margin.right);
+            .attr('fill', getWbColorOrDefault())
+            .style('dominant-baseline', 'baseline')
+            .style('text-anchor', 'middle')
+            .style('-moz-user-select', 'none')
+            .style('user-select', 'none')
+            .text(nf(config.margin.right));
         svg.append('text')
             .attr('font-size', '80%')
             .attr('x', config.width).attr('y',
                 config.height - config.margin.bottom / 2)
-            .attr('dominant-baseline', 'middle')
-            .attr('text-anchor', 'end').attr('fill', getWbColorOrDefault())
-            .text(config.margin.bottom);
+            .attr('fill', getWbColorOrDefault())
+            .style('dominant-baseline', 'middle')
+            .style('text-anchor', 'end')
+            .style('-moz-user-select', 'none')
+            .style('user-select', 'none')
+            .text(nf(config.margin.bottom));
     };
 
     const drawDebugGroup = function(svg, config) {
@@ -296,9 +314,13 @@
             .attr('height', config.innerHeight)
             .attr('fill', getWbColorOrDefault('grey'));
         g.append('text')
-            .attr('x', config.innerWidth).attr('dominant-baseline', 'hanging')
-            .attr('text-anchor', 'end').attr('fill', getWbColorOrDefault())
-            .text(config.innerWidth + 'x' + config.innerHeight);
+            .attr('x', config.innerWidth)
+            .attr('fill', getWbColorOrDefault())
+            .style('dominant-baseline', 'hanging')
+            .style('text-anchor', 'end')
+            .style('-moz-user-select', 'none')
+            .style('user-select', 'none')
+            .text(nf(config.innerWidth) + 'x' + nf(config.innerHeight));
         g.append('circle')
             .attr('cx', config.innerWidth / 2).attr('cy',
                 config.innerHeight / 2)
