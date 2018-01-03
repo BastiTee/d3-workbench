@@ -1,0 +1,9 @@
+#!/bin/bash
+# A simple shell script to update and redeploy a d3-workbench instance
+# configured via init.d.
+
+cd $( dirname $( readlink -f $0 ))
+sudo /etc/init.d/d3-workbench stop
+git pull
+npm install
+sudo /etc/init.d/d3-workbench start
