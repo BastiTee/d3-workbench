@@ -12,7 +12,7 @@ It consists of three main components:
 - `d3-wb-server`, a local application rendering visualizations in your browser while you develop.
 - `workbench`, your working directory.
 
-d3-workbench is not a framework, even though it offers libraries with strict APIs. It's neither required to use any of the utilities, reusable charts or plugins (e.g., if you just want to benefit from the server component), nor is your data visualization bound to a d3-workbench environment. 
+d3-workbench is not a framework, even though it offers libraries with strict APIs. It's neither required to use any of the utilities, reusable charts or plugins (e.g., if you just want to benefit from the server component), nor is your data visualization bound to a d3-workbench environment.
 
 Think of d3-workbench as a distribution as in «Linux distribution» with [d3.js](https://d3js.org) being the kernel.
 
@@ -64,8 +64,8 @@ docker run -ti --rm -p 50321:50321 d3-workbench
 `d3-wb` consists of the following components:
 
 - [`d3-wb.js`](d3-wb/d3-wb.js): The core component that minimizes boilerplate code for common tasks such as setting up SVGs with margin conventions, handling data paths, resizing SVGs to parent DIVs, etc.
-- [`d3-wb-modules/`](d3-wb/d3-wb-modules): A set of modules to speed up visualization by providing utilities for recurring tasks such as adding titles, axis, tool-tips or HTML-components, changing color themes and working with data.
-- [`d3-wb-reusable-charts/`](d3-wb/d3-wb-reusable-charts): A collection of basic charts such as bar, line, scatter or donut charts. All charts are designed to be fully reusable (in the spirit of [«Towards Reusable Charts»](https://bost.ocks.org/mike/chart/) and [«Towards Updatable D3.js Charts»](https://www.toptal.com/d3-js/towards-reusable-d3-js-charts)) and can be used independently from d3-workbench.
+- [`d3-wb-modules/`](d3-wb/d3-wb-modules): A set of modules to speed up visualization by providing utilities for recurring tasks such as adding titles, axis, tool-tips or HTML-components, changing color themes and working with data. These modules require [`d3-wb.js`](d3-wb/d3-wb.js) to be loaded first.
+- [`d3-wb-reusable-charts/`](d3-wb/d3-wb-reusable-charts): A collection of basic charts such as bar, line, scatter or donut charts. All charts are designed to be fully reusable (in the spirit of [«Towards Reusable Charts»](https://bost.ocks.org/mike/chart/) and [«Towards Updatable D3.js Charts»](https://www.toptal.com/d3-js/towards-reusable-d3-js-charts)), can be used independently from d3-workbench and don't require [`d3-wb.js`](d3-wb/d3-wb.js).
 
 [Library releases](https://bastitee.github.io/d3-workbench-ghp/) of different combinations of these components are available depending on your needs.
 
@@ -85,7 +85,7 @@ docker run -ti --rm -p 50321:50321 d3-workbench
 
 In your workbench's top-level you will find your collections (in the example a collection of [chart examples](default-content/coll_00_chart_reference) and [utility examples](default-content/coll_01_tech_specs)).
 
-Inside a collection you will find one folder for each of the collection's visualizations, e.g., an [example implementation](default-content/coll_00_chart_reference/002-barchart) of the reusable bar chart.
+Inside a collection you will find one folder for each of the collection's visualizations, e.g., an [example implementation](default-content/coll_00_chart_reference/d3-wb-barchart) of the reusable bar chart.
 
 The overall file/folder structure for your `workbench`:
 
@@ -123,7 +123,7 @@ Below you find some information on a typical workflow using d3-workbench.
 
 In the beginning you probably use d3-workbench as described above. After you've installed the application, you create a new `workbench` and create collections and visualizations.
 
-Consider the [default workbench](default-content) as an up-to-date cookbook for all things possible with d3-workbench. For example if you want to create a sankey diagram yourself, checkout the [visualization](default-content/coll_00_chart_reference/013-sankey) code, especially the necessary [data format](default-content/coll_00_chart_reference/013-sankey/data.json) and the [javascript-code](default-content/coll_00_chart_reference/013-sankey/svg.js).
+Consider the [default workbench](default-content) as an up-to-date cookbook for all things possible with d3-workbench. For example if you want to create a sankey diagram yourself, checkout the [visualization](default-content/coll_00_chart_reference/d3-wb-sankey) code, especially the necessary [data format](default-content/coll_00_chart_reference/d3-wb-sankey/data.json) and the [javascript-code](default-content/coll_00_chart_reference/d3-wb-sankey/svg.js).
 
 ## Share collections
 
