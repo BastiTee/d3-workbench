@@ -20,9 +20,10 @@
                 return d['value'];
             });
 
-        let rectTooltip = wbCooltip()
-            .color(d3wb.color.background)
-            .fill(d3wb.color.foreground)
+        // appends a tooltip
+        let rectTooltip = d3wb.mouse.tooltip()
+            .color('#FFFFFF')
+            .fill('#000000')
             .opacity(0.7)
             .padding(10)
             .roundCorners(10)
@@ -30,5 +31,14 @@
                 return d['value'];
             });
         cv.selectAll('.rectangles').call(rectTooltip);
+
+        // appends a click-event
+        let rectDoubleClick = d3wb.mouse.click()
+            .action('open')
+            .event('dblclick')
+            .openTarget(function(d) {
+                return 'https://www.google.de/search?q=' + d.value;
+            });
+        cv.selectAll('.rectangles').call(rectDoubleClick);
     });
 })();

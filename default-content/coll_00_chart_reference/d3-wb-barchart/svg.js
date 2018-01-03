@@ -27,7 +27,7 @@
         cv.call(
             d3wb.add.yAxisLabel('Number of users')
             .color(d3wb.color.foreground));
-        cv.selectAll('.rects').call(wbCooltip()
+        cv.selectAll('.rects').call(d3wb.mouse.tooltip()
             .selector(function(d) {
                 return d['votes'] + ' users';
             }));

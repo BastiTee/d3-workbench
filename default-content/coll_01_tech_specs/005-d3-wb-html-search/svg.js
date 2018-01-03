@@ -85,7 +85,7 @@
         cv.div.call(box);
 
         // add solutions as tooltips
-        let tooltip = wbCooltip().selector(function(d) {
+        let tooltip = d3wb.mouse.tooltip().selector(function(d) {
             return d['food'];
         });
         cv.selectAll('.boxes').call(tooltip);

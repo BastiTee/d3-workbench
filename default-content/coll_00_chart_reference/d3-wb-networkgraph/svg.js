@@ -21,7 +21,7 @@
         cv.datum(data).call(chart);
 
         cv.selectAll('.circles').call(
-            wbCooltip().selector(function(d) {
+            d3wb.mouse.tooltip().selector(function(d) {
                 let type = d.group == 0 ? 'type1' : d.group == 1 ?
                     'type2' : 'type3';
                 return d.id + '\n' + type + '\nweight: ' +

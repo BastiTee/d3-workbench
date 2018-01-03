@@ -13,7 +13,7 @@
         cv.datum(data).call(chart);
 
         cv.selectAll('.cells')
-            .call(wbCooltip().selector(function(d) {
+            .call(d3wb.mouse.tooltip().selector(function(d) {
                 return d.data.id + '\n' + d.value;
             }));
     });

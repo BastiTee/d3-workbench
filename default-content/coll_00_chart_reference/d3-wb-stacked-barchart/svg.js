@@ -15,7 +15,7 @@
             .colors([col[0], col[3], col[7]]);
         cv.datum(data).call(chart);
 
-        cv.selectAll('.rects').call(wbCooltip().selector(function(d) {
+        cv.selectAll('.rects').call(d3wb.mouse.tooltip().selector(function(d) {
             let infos = [d.data.id];
 
             infos.push('total: ' + d.data.total);

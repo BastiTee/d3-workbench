@@ -16,7 +16,7 @@
 
         cv.transformCircular();
         cv.selectAll('.paths').call(
-            wbCooltip().selector(
+            d3wb.mouse.tooltip().selector(
                 function(d) {
                     return d.data.label + '\nTotal: ' + d.data.count +
                         '\nProzent: ' + d3.format(',.2f')(d.data.percent);

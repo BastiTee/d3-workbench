@@ -34,7 +34,7 @@
         cv.datum(data).call(plot);
 
         cv.selectAll('rect')
-            .call(wbCooltip().selector(function(d) {
+            .call(d3wb.mouse.tooltip().selector(function(d) {
                 return d['Company'] + ' (' + d['Country'] +
                     ')\n' + d['Market value $m'] + ' M$\n';
             }));

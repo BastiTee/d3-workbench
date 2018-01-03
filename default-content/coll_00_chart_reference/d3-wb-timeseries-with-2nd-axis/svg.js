@@ -23,10 +23,10 @@
 
         cv.datum(data).call(chart);
 
-        cv.selectAll('.rects').call(wbCooltip().selector(function(d) {
+        cv.selectAll('.rects').call(d3wb.mouse.tooltip().selector(function(d) {
             return d.length + ' occurrences';
         }));
-        cv.selectAll('.valuerects').call(wbCooltip().selector(function(d) {
+        cv.selectAll('.valuerects').call(d3wb.mouse.tooltip().selector(function(d) {
             return d3.formatPrefix('.1', 1e6)(d.mean) + ' average';
         }));
 

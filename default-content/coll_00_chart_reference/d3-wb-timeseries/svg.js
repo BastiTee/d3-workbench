@@ -17,7 +17,7 @@
             .target('minute-of-day');
 
         cv.datum(data).call(chart);
-        cv.selectAll('.rects').call(wbCooltip().selector(function(d) {
+        cv.selectAll('.rects').call(d3wb.mouse.tooltip().selector(function(d) {
             return d.length + ' occurrences';
         }));
         cv.call(d3wb.add.yAxis(chart.scaleY())

@@ -17,7 +17,7 @@
         cv.datum(data).call(chart);
 
         cv.selectAll('.hour').call(
-            wbCooltip().selector(function(d) {
+            d3wb.mouse.tooltip().selector(function(d) {
                 return d.value;
             }));
     });

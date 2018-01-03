@@ -17,7 +17,7 @@
             .fadeOpacity([0.1, 1.0]);
         cv.datum(data).call(chart);
 
-        let tt = wbCooltip().selector(function(d) {
+        let tt = d3wb.mouse.tooltip().selector(function(d) {
             return d.data.id + '\n' + d.data.value + ' births';
         });
         cv.selectAll('.circles').call(tt);

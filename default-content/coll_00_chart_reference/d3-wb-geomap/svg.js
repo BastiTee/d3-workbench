@@ -62,7 +62,7 @@
                 });
 
             // add tooltips to circles
-            let ct = wbCooltip()
+            let ct = d3wb.mouse.tooltip()
                 .color(d3wb.color.background)
                 .fill(d3wb.color.foreground)
                 .opacity(0.9)

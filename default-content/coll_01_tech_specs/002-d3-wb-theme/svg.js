@@ -7,7 +7,7 @@
         idx = idx * height;
         let rectWid = cv.w / data.length;
 
-        let tt = wbCooltip()
+        let tt = d3wb.mouse.tooltip()
             .selector(function() {
                 return descr;
             });
