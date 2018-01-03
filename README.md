@@ -8,11 +8,11 @@ d3-workbench helps you to quickly create data visualization prototypes with [d3.
 
 It consists of three main components:
 
-- `d3-wb`, a collection of Javascript-libraries and plugins extending [d3.js](https://d3js.org).
+- `d3-wb`, a collection of Javascript-libraries and plug-ins extending [d3.js](https://d3js.org).
 - `d3-wb-server`, a local application rendering visualizations in your browser while you develop.
 - `workbench`, your working directory.
 
-d3-workbench is not a framework, even though it offers libraries with strict APIs. It's neither required to use any of the utilities, reusable charts or plugins (e.g., if you just want to benefit from the server component), nor is your data visualization bound to a d3-workbench environment.
+d3-workbench is not a framework, even though it offers libraries with strict APIs. It's neither required to use any of the utilities, reusable charts or plug-ins (e.g., if you just want to benefit from the server component), nor is your data visualization bound to a d3-workbench environment.
 
 Think of d3-workbench as a distribution as in «Linux distribution» with [d3.js](https://d3js.org) being the kernel.
 
@@ -76,7 +76,7 @@ docker run -ti --rm -p 50321:50321 d3-workbench
 - Assembling and rendering of your local files into a browser-based collection/visualization viewer
 - Automatic lookup and setup of local files/folders
 - Auto-reload of the browser if you change a file in your workbench
-- Standalone fullscreen SVGs and SVG galleries out of the box
+- Standalone full-screen SVGs and SVG galleries out of the box
 - Offline-work
 
 ## workbench
