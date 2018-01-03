@@ -131,7 +131,7 @@ Consider the [default workbench](default-content) as an up-to-date cookbook for 
 
 ## Integrate visualizations in other websites
 
-As long as you haven't introduced any new dependencies, you can include the [library components of d3-workbench](#d3-wb) into [bl.ocks](https://bl.ocks.org/) or your own website. There is an example [bl.ock](https://bl.ocks.org/BastiTee/84675415bfbcaebbf5397e645a26b706)/[gist](https://gist.github.com/BastiTee/84675415bfbcaebbf5397e645a26b706) where you can see how it's applied. Inside the running demo instance you will find another [example](default-content/coll_00_chart_reference/000-index-manual/index.html) under the path [coll_01_tech_specs/000-index-manual/](http://localhost:50321/coll_01_tech_specs/000-index-manual/).
+As long as you haven't introduced any new dependencies, you can include the [library components of d3-workbench](#d3-wb) into [bl.ocks](https://bl.ocks.org/) or your own website. There is an example [bl.ock](https://bl.ocks.org/BastiTee/84675415bfbcaebbf5397e645a26b706)/[gist](https://gist.github.com/BastiTee/84675415bfbcaebbf5397e645a26b706) where you can see how it's applied. Inside the running demo instance you will find another [example](default-content/coll_01_tech_specs/000-index-manual/index.html) under the path [coll_01_tech_specs/000-index-manual/](http://localhost:50321/coll_01_tech_specs/000-index-manual/).
 
 To auto-scale your visualization to a surrounding `div` you would use a code snippet like this:
 
