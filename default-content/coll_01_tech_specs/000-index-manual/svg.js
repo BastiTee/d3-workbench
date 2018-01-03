@@ -9,8 +9,8 @@
         .defer(d3.csv, cv.data[0])
         .await(function(error, data) {
             let rand = Math.random();
-            let size = (cv.wid / 2)*rand;
-            let colors = d3wb.color.category();
+            let size = (cv.wid / 3)*rand;
+            let colors = d3.schemeCategory20c;
             let color = colors[Math.floor(colors.length*rand, 0)];
 
             cv.selectAll('rect')

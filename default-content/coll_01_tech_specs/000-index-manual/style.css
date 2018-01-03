@@ -1,0 +1,14 @@
+body {
+    padding: 1em;
+}
+
+.text {
+    width: 80%;
+    text-align: justify;
+}
+
+.figures {
+    width: 80%;
+    height: 15em;
+    border: 1px solid red;
+}

@@ -24,19 +24,19 @@ d3-workbench uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com
 
 As admin install by executing
 
-```
+```shell
 npm install -g d3-workbench
 ```
 
 and to start as regular user
 
-```
+```shell
 d3-workbench -i +DEMO
 ```
 
 A browser window will open and display a demo workbench. To start with your own project, create a new folder somewhere and run
 
-```
+```shell
 d3-workbench -i /path/to/myfolder
 ```
 
@@ -44,7 +44,7 @@ Instead of the demo workbench, an empty workbench is created, providing you with
 
 To start d3-workbench from source, use the `start` script
 
-```
+```shell
 npm start -- -i /path/to/myfolder -v
 ```
 
@@ -52,7 +52,7 @@ Notice the `--` otherwise the remaining options are considered `npm` options.
 
 To start d3-workbench through docker, you can build from the provided Dockerfile
 
-```
+```shell
 docker build -t d3-workbench .
 docker run -ti --rm -p 50321:50321 d3-workbench
 ```
@@ -131,7 +131,30 @@ Consider the [default workbench](default-content) as an up-to-date cookbook for 
 
 ## Integrate visualizations in other websites
 
-As long as you haven't introduced any new dependencies, you can include the [library components of d3-workbench](#d3-wb) into [bl.ocks](https://bl.ocks.org/) or your own website. There is an example [bl.ock](https://bl.ocks.org/BastiTee/84675415bfbcaebbf5397e645a26b706)/[gist](https://gist.github.com/BastiTee/84675415bfbcaebbf5397e645a26b706) where you can see how it's applied.
+As long as you haven't introduced any new dependencies, you can include the [library components of d3-workbench](#d3-wb) into [bl.ocks](https://bl.ocks.org/) or your own website. There is an example [bl.ock](https://bl.ocks.org/BastiTee/84675415bfbcaebbf5397e645a26b706)/[gist](https://gist.github.com/BastiTee/84675415bfbcaebbf5397e645a26b706) where you can see how it's applied. Inside the running demo instance you will find another [example](default-content/coll_00_chart_reference/000-index-manual/index.html) under the path [coll_01_tech_specs/000-index-manual/](http://localhost:50321/coll_01_tech_specs/000-index-manual/).
+
+To auto-scale your visualization to a surrounding `div` you would use a code snippet like this:
+
+```html
+<!-- Define a unique ID for the DIV containing the visualization
+     and optional a class to style it, e.g., the desired
+     width and height. -->
+<div id="figure" class="figures">
+    <!-- Add an empty SVG body with a unique SVG ID. -->
+    <svg id="svg-figure"></svg>
+    <!-- Reference your d3 script..
+         - embedded: set to true so d3wb will look for the surrounding DIV
+         - datapath: relative path to where your data is stored
+         - svgid: ID of your SVG element
+         - divid: ID of your surrounding DIV element
+    -->
+    <script src="svg.js"
+        embedded="true"
+        datapath="."
+        svgid="svg-figure"
+        divid="figure" ></script>
+</div>
+```
 
 ## Self-host your collections online
 
