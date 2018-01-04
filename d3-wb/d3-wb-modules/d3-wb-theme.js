@@ -26,6 +26,18 @@
             white: '#707880',
             yellow: '#DE935F',
         },
+        eqie6: {
+            background: '#111111',
+            black: '#222222',
+            blue: '#66A9B9',
+            cyan: '#6D878D',
+            foreground: '#CCCCCC',
+            green: '#B7CE42',
+            magenta: '#B7416E',
+            red: '#E84F4F',
+            white: '#CCCCCC',
+            yellow: '#FEA63C',
+        },
         gotham: {
             background: '#0A0F14',
             black: '#0A0F14',
@@ -269,6 +281,13 @@
                 color[key] = extendColor(color[key], key);
             }
         }
+        // add a theme list
+        d3wb.themes = [];
+        for (let key in themes) {
+            if (Object.prototype.hasOwnProperty.call(themes, key)) {
+                d3wb.themes.push(key);
+            }
+        };
         // make public
         d3wb.color = color;
     };
