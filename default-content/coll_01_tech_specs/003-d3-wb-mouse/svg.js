@@ -1,4 +1,6 @@
 (function() {
+    d3wb.theme('light');
+
     let cv = d3wb.config()
         .data('data.csv')
         .toCanvas();

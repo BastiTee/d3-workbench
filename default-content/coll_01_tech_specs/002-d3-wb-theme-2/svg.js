@@ -1,5 +1,20 @@
 (function() {
 
+    // programmatically create a custom theme
+    const customColors = {
+        background: '#ffffff',
+        black: '#000000',
+        blue: '#afafaf',
+        cyan: '#cdcdcd',
+        foreground: '#222222',
+        green: '#bfbfbf',
+        magenta: '#cecece',
+        red: '#a1a1a1',
+        white: '#eeeeee',
+        yellow: '#e5e5e5',
+    };
+    d3wb.theme.add('custom-bw', customColors);
+
     // define constant chart values
     const cv = d3wb.config().toCanvas();
     const themes = d3wb.themes;
@@ -66,7 +81,7 @@
         .options(themes)
         .style('top', btPad + 'px')
         .style('left', widthPad + 'px')
-        .style('width', width + 'px')
+        .style('width', (width * 1.5 + widthPad) + 'px')
         .style('height', Math.min(btHeight - btPad * 2, 30) + 'px')
         .callback(function(val) {
             d3wb.theme(val);

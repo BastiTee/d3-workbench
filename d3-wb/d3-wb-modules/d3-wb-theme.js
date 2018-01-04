@@ -13,6 +13,8 @@
 }(this, (function(exports) {
     'use strict';
 
+    let currentTheme = 'light';
+
     let themes = {
         dark: {
             background: '#1D1F21',
@@ -261,6 +263,8 @@
             }
             return colors;
         }
+        currentTheme = theme;
+        // console.log("changed theme to '" + theme + "'");
         let newTheme = themes[theme];
         // setup color object with public methods
         let color = {
@@ -292,5 +296,16 @@
         d3wb.color = color;
     };
 
-    d3wb.theme('light'); // sets default theme
+    d3wb.theme.add = function(name, colors) {
+        // add to internal data structure
+        themes[name] = colors;
+        // remind the current theme
+        let curTheme = currentTheme;
+        // invoke custom theme so that all data structures are created
+        d3wb.theme(name);
+        // reset the current theme
+        d3wb.theme(curTheme);
+    };
+
+    d3wb.theme(currentTheme); // sets default theme
 })));
