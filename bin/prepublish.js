@@ -46,7 +46,11 @@ bundle([
 ], 'd3-wb');
 // SUBMODULES STANDALONE
 bundle([
-    path.join(srcPath, 'd3-wb-modules/*.js'),
+    path.join(srcPath, 'd3-wb-modules/d3-wb-util.js'),
+    path.join(srcPath, 'd3-wb-modules/d3-wb-theme.js'),
+    path.join(srcPath, 'd3-wb-modules/d3-wb-mouse.js'),
+    path.join(srcPath, 'd3-wb-modules/d3-wb-add.js'),
+    path.join(srcPath, 'd3-wb-modules/d3-wb-html.js'),
 ], 'd3-wb-modules');
 // REUSABLE CHARTS STANDALONE
 bundle([

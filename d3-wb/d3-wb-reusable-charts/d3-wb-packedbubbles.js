@@ -11,6 +11,7 @@ function wbPackedBubbles() {
     let colorRange = ['green', 'white'];
     let fillRange = ['green', 'red'];
     let fadeOpacity;
+    let fadeScale;
 
     let chart = function(selection) {
         selection.each(function(data, i, nodes) {
@@ -27,9 +28,8 @@ function wbPackedBubbles() {
                 .interpolate(d3.interpolate)
                 .range(fillRange);
 
-            let opScale;
             if (fadeOpacity) {
-                opScale = d3.scaleLog().domain(minMax)
+                fadeScale = d3.scaleLog().domain(minMax)
                     .range(fadeOpacity);
             }
 
@@ -70,7 +70,7 @@ function wbPackedBubbles() {
                 })
                 .style('opacity', function(d) {
                     if (fadeOpacity) {
-                        return opScale(d.value);
+                        return fadeScale(d.value);
                     }
                     return '1.0';
                 });
@@ -84,6 +84,9 @@ function wbPackedBubbles() {
                 .style('font-size', '10px')
                 .style('text-anchor', 'middle')
                 .style('dominant-baseline', 'middle')
+                .style('cursor', 'default')
+                .style('user-select', 'none')
+                .style('-moz-user-select', 'none')
                 .attr('x', 0)
                 .attr('y', 0)
                 .text(function(d) {
@@ -95,7 +98,7 @@ function wbPackedBubbles() {
                 })
                 .style('opacity', function(d) {
                     if (fadeOpacity) {
-                        return opScale(d.value);
+                        return fadeScale(d.value);
                     }
                     return '1.0';
                 })
@@ -133,6 +136,12 @@ function wbPackedBubbles() {
     chart.fadeOpacity = function(value) {
         if (!arguments.length) return fadeOpacity;
         fadeOpacity = value;
+        return chart;
+    };
+
+    chart.fadeScale = function(value) {
+        if (!arguments.length) return fadeScale;
+        fadeScale = value;
         return chart;
     };
 

@@ -89,6 +89,8 @@
                 buttonEl = s
                     .append('button')
                     .attr('id', c.id)
+                    .style('user-select', 'none')
+                    .style('-moz-user-select', 'none')
                     .text(options[index])
                     .on('click', callbackImpl);
 
