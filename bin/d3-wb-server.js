@@ -89,6 +89,7 @@ const compareVersions = function(folder) {
         fs.writeFileSync(versionFile, pj.version, 'utf8');
         return;
     }
+    localVersion = localVersion.trim();
     if (localVersion != pj.version) {
         console.error('WARNING: You are running d3-workbench version ' +
             pj.version + ', but workbench was created using version ' +
