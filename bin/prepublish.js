@@ -71,7 +71,7 @@ compressor.minify({
             path.join(depsPath, 'd3-cloud', 'build/d3.layout.cloud.min.js'),
             path.join(depsPath, 'd3-sankey', 'build/d3-sankey.min.js'),
             path.join(depsPath, 'd3-scale-chromatic',
-                'build/d3-scale-chromatic.min.js'),
+                'dist/d3-scale-chromatic.min.js'),
             path.join(depsPath, 'd3-svg-legend', 'd3-legend.min.js'),
             path.join(depsPath, 'd3-svg-annotation', 'd3-annotation.min.js'),
         ], 'd3-wb-exdeps.min', false);
