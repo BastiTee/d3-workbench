@@ -1,6 +1,6 @@
 ![header-image](d3-wb-server/gfx/header.png)
 
-[![GitHub release](https://img.shields.io/github/release/BastiTee/d3-workbench.svg)](https://github.com/BastiTee/d3-workbench/releases/latest) [![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://d3-workbench.basti.site/)
+[![GitHub release](https://img.shields.io/github/release/BastiTee/d3-workbench.svg)](https://github.com/BastiTee/d3-workbench/releases/latest) [![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://d3-workbench.bastis.cloud/)
 
 # In a nutshell
 
