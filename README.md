@@ -158,7 +158,7 @@ To auto-scale your visualization to a surrounding `div` you would use a code sni
 
 ## Self-host your collections online
 
-Of course you can simple put a web server in front of a running d3-workbench instance and host your work from there. There is a demo instance using this particular method available at <https://d3-workbench.basti.site/>.
+Of course you can simple put a web server in front of a running d3-workbench instance and host your work from there. There is a demo instance using this particular method available at <https://d3-workbench.bastis.cloud/>.
 
 In this case a simple Apache-based URL-Rewrite was used:
 
@@ -173,4 +173,4 @@ This software is licensed under [GPLv3](https://github.com/BastiTee/d3-workbench
 
 Icon made by <https://www.flaticon.com/authors/smashicons> from <https://www.flaticon.com/> is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
 
-Even though the overall interfaces are stable, so you can safely work with d3-workbench, the project is still evolving and there is a ton of things still to do. This includes. Contributions and beta-testers are always welcome. You can get in contact with me via my [hub-page](https://basti.site).
+Even though the overall interfaces are stable, so you can safely work with d3-workbench, the project is still evolving and there is a ton of things still to do. This includes. Contributions and beta-testers are always welcome. You can get in contact with me via my [hub-page](https://bastis.cloud).
