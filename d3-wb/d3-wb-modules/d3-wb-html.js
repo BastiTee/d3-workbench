@@ -293,15 +293,15 @@
      * PRIVATE FUNCTIONS
      * ********************************************************************* */
 
-     let resolve = function(selection) {
-         // check for cv.div parameter. If available use it instead,
-         // it means user using d3wb but called cv.call() instead of
-         // cv.div.call()
-         if (selection['div'] !== undefined) {
-             return selection['div'];
-         }
-         return selection;
-     };
+    let resolve = function(selection) {
+        // check for cv.div parameter. If available use it instead,
+        // it means user using d3wb but called cv.call() instead of
+        // cv.div.call()
+        if (selection['div'] !== undefined) {
+            return selection['div'];
+        }
+        return selection;
+    };
 
     let commonElements = function(chart) {
         let c = {
@@ -320,6 +320,11 @@
         };
 
         chart.style = function(key, value) {
+            // convert to string and check for 'px' suffix
+            value = String(value)
+            if (!value.endsWith('px')) {
+                value = value + 'px';
+            }
             d3wb.util.injectCSS(`
                         #` + c.id + ` {
                             ` + key + `: ` + value + `;

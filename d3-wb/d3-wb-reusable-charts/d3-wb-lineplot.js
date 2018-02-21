@@ -27,9 +27,11 @@ function wbLinePlot() {
     let strokeWidth = 1;
     let axisColor = 'white';
     let curve = [d3.curveBasis];
+    let showLegend = true;
     let legendFill = 'black';
     let legendX = 0;
     let legendY = 0;
+    let lineClass;
     let dataPointRadius = 7;
     let dataPointLineFill = 'red';
     let activateTooltip = false;
@@ -41,40 +43,42 @@ function wbLinePlot() {
             let tipBox;
 
             if (yDataPoints.length * 2 != (curve.length + stroke.length)) {
-                throw Error('If you enter more than one y-data-point,'+
-                ' you need to set the curve and stroke options with '+
-                'equally-sized arrays.');
+                throw Error('If you enter more than one y-data-point,' +
+                    ' you need to set the curve and stroke options with ' +
+                    'equally-sized arrays.');
             }
 
-            let legend = s.append('g')
-                .attr('font-size', '75%')
-                .attr('text-anchor', 'end')
-                .attr('transform', 'translate(' + legendX + ',' + legendY + ')')
-                .selectAll('g')
-                .data(yDataPoints)
-                .enter().append('g')
-                .attr('transform', function(d, i) {
-                    return 'translate(0,' + i * 20 + ')';
-                });
+            if (showLegend) {
+                let legend = s.append('g')
+                    .attr('font-size', '75%')
+                    .attr('text-anchor', 'end')
+                    .attr('transform', 'translate(' +
+                        legendX + ',' + legendY + ')')
+                    .selectAll('g')
+                    .data(yDataPoints)
+                    .enter().append('g')
+                    .attr('transform', function(d, i) {
+                        return 'translate(0,' + i * 20 + ')';
+                    });
 
-            let rw = 19;
-            legend.append('rect')
-                .attr('x', -rw)
-                .attr('width', rw)
-                .attr('height', rw)
-                .attr('fill', function(d, i) {
-                    return (stroke[i]);
-                });
+                let rw = 19;
+                legend.append('rect')
+                    .attr('x', -rw)
+                    .attr('width', rw)
+                    .attr('height', rw)
+                    .attr('fill', function(d, i) {
+                        return (stroke[i]);
+                    });
 
-            legend.append('text')
-                .attr('x', -rw - 3)
-                .attr('y', 9.5)
-                .attr('dy', '0.32em')
-                .text(function(d) {
-                    return d;
-                })
-                .attr('fill', legendFill);
-
+                legend.append('text')
+                    .attr('x', -rw - 3)
+                    .attr('y', 9.5)
+                    .attr('dy', '0.32em')
+                    .text(function(d) {
+                        return d;
+                    })
+                    .attr('fill', legendFill);
+            }
 
             if (activateTooltip) {
                 s.append('line')
@@ -129,7 +133,8 @@ function wbLinePlot() {
                             return scaleY(d[yDataPoints[i]]);
                         });
 
-                    let classs = 'line-' + yDataPoints[i];
+                    let classs = lineClass ? lineClass :
+                        'line-' + yDataPoints[i];
                     if (s.select('.' + classs).empty()) {
                         s.datum(data).append('path')
                             .attr('class', 'line ' + classs)
@@ -344,6 +349,18 @@ function wbLinePlot() {
         activateTooltip = value;
         return chart;
     };
+
+    chart.showLegend = function(value) {
+        if (!arguments.length) return showLegend
+        showLegend = value;
+        return chart;
+    }
+
+    chart.lineClass = function(value) {
+        if (!arguments.length) return lineClass
+        lineClass = value;
+        return chart;
+    }
 
     return chart;
 }
