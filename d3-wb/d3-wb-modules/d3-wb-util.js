@@ -63,6 +63,19 @@
         return 'd3wb-' + guid();
     };
 
+    const makeUnselectable = function() {
+        return function(selection) {
+            selection.each(function(data, i, nodes) {
+                d3.select(nodes[i])
+                    .style('user-select', 'none')
+                    .style('-moz-user-select', 'none')
+                    .style('-webkit-user-select', 'none')
+                    .style('-ms-user-select', 'none')
+                    .style('pointer-style', 'none')
+            });
+        };
+    }
+
     const smoothData = function(data, xSel, ySel, window) {
         let windowArr = [];
         let winAggs = [];
@@ -233,6 +246,7 @@
         logSVGSize: logSVGSize,
         jsonAttributeMapToCSV: jsonAttributeMapToCSV,
         getBoundingBoxCenter: getBoundingBoxCenter,
+        makeUnselectable: makeUnselectable,
     };
 
     /* *********************************************************************
