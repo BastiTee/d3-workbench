@@ -321,7 +321,7 @@
 
         chart.style = function(key, value) {
             // convert to string and check for 'px' suffix
-            value = String(value)
+            value = String(value);
             if (!value.endsWith('px')) {
                 value = value + 'px';
             }

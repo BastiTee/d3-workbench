@@ -33,15 +33,15 @@
             selection.each(function(data, i, nodes) {
                 injectAxisColor(color, 'wb-axis-x');
                 let s = d3.select(nodes[i]);
-                let d3a = type(scale)
+                let d3a = type(scale);
                 if (ticks) {
-                    d3a.ticks(ticks)
+                    d3a.ticks(ticks);
                 }
                 let axis = s.append('g')
                     .attr('transform', 'translate(' + x + ',' + y + ')')
                     .attr('class', 'wb-axis wb-axis-x')
                     .call(d3wb.util.makeUnselectable())
-                    .call(d3a)
+                    .call(d3a);
                 if (rotation == 90) {
                     axis.selectAll('text')
                         .attr('y', -2)
@@ -60,16 +60,16 @@
         };
 
         chart.ticks = function(value) {
-            if (!arguments.length) return ticks
+            if (!arguments.length) return ticks;
             ticks = value;
             return chart;
-        }
+        };
 
         chart.x = function(value) {
-            if (!arguments.length) return x
+            if (!arguments.length) return x;
             x = value;
             return chart;
-        }
+        };
 
         chart.y = function(value) {
             if (!arguments.length) return y;
@@ -129,7 +129,7 @@
                 g = s.append('g')
                     .attr('class', 'wb-axis wb-axis-y')
                     .attr('transform', 'translate(' + x + ',0)')
-                    .call(d3wb.util.makeUnselectable())
+                    .call(d3wb.util.makeUnselectable());
                 update = function(scale) {
                     g.call(format(type(scale)));
                 };

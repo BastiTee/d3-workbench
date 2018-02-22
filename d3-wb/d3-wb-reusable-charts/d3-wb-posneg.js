@@ -19,17 +19,17 @@ let wbPosNeg = function() {
             let s = d3.select(nodes[i]);
 
             data.forEach(function(d) {
-                d['pos'] = +d['pos']
-                d['neg'] = +d['neg']
-                d['sum'] = +d['sum']
-            })
+                d['pos'] = +d['pos'];
+                d['neg'] = +d['neg'];
+                d['sum'] = +d['sum'];
+            });
             // reverse to make rect-generator code easier to read
-            data = data.reverse()
+            data = data.reverse();
 
             let xMinMax = d3.extent(data, function(d) {
-                return Math.max(d['pos'], -d['neg'])
-            })
-            xMinMax[0] = 0
+                return Math.max(d['pos'], -d['neg']);
+            });
+            xMinMax[0] = 0;
 
             scaleX = d3.scaleLinear()
                 .range([0, width / 2])
@@ -51,15 +51,15 @@ let wbPosNeg = function() {
                 .attr('class', 'rects-pos')
                 .attr('x', width / 2)
                 .attr('width', function(d) {
-                    return scaleX(d['pos'])
+                    return scaleX(d['pos']);
                 })
                 .attr('y', function(d) {
                     return scaleY(d['label']);
                 })
                 .attr('height', function(d) {
-                    return scaleY.bandwidth()
+                    return scaleY.bandwidth();
                 })
-                .style('fill', fillPos)
+                .style('fill', fillPos);
 
             s.selectAll('.rects-neg')
                 .remove()
@@ -68,19 +68,18 @@ let wbPosNeg = function() {
                 .enter().append('rect')
                 .attr('class', 'rects-neg')
                 .attr('x', function(d) {
-                    return (width / 2) - scaleX(-d['neg'])
+                    return (width / 2) - scaleX(-d['neg']);
                 })
                 .attr('width', function(d) {
-                    return scaleX(-d['neg'])
+                    return scaleX(-d['neg']);
                 })
                 .attr('y', function(d) {
                     return scaleY(d['label']);
                 })
                 .attr('height', function(d) {
-                    return scaleY.bandwidth()
+                    return scaleY.bandwidth();
                 })
-                .style('fill', fillNeg)
-
+                .style('fill', fillNeg);
         });
     };
 

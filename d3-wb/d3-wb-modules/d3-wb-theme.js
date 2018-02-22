@@ -40,6 +40,18 @@
             white: '#CCCCCC',
             yellow: '#FEA63C',
         },
+        google: {
+            background: '#FFFFFF',
+            black: '#1D1F21',
+            blue: '#3971ED',
+            cyan: '#3971ED',
+            foreground: '#373B41',
+            green: '#198844',
+            magenta: '#A36AC7',
+            red: '#CC342B',
+            white: '#C5C8C6',
+            yellow: '#FBA922',
+        },
         gotham: {
             background: '#0A0F14',
             black: '#0A0F14',

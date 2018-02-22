@@ -351,16 +351,16 @@ function wbLinePlot() {
     };
 
     chart.showLegend = function(value) {
-        if (!arguments.length) return showLegend
+        if (!arguments.length) return showLegend;
         showLegend = value;
         return chart;
-    }
+    };
 
     chart.lineClass = function(value) {
-        if (!arguments.length) return lineClass
+        if (!arguments.length) return lineClass;
         lineClass = value;
         return chart;
-    }
+    };
 
     return chart;
 }

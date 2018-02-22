@@ -71,10 +71,10 @@
                     .style('-moz-user-select', 'none')
                     .style('-webkit-user-select', 'none')
                     .style('-ms-user-select', 'none')
-                    .style('pointer-style', 'none')
+                    .style('pointer-style', 'none');
             });
         };
-    }
+    };
 
     const smoothData = function(data, xSel, ySel, window) {
         let windowArr = [];
