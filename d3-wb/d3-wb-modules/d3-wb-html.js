@@ -50,6 +50,9 @@
                 d3wb.util.injectCSS(`
                         #` + c.id + ` {
                             position: absolute;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
                         }
                     `);
                 callbackImpl();
@@ -322,14 +325,14 @@
         chart.style = function(key, value) {
             // convert to string and check for 'px' suffix
             value = String(value);
-            if (!value.endsWith('px')) {
+            if (!isNaN(value) && !value.endsWith('px')) {
                 value = value + 'px';
             }
             d3wb.util.injectCSS(`
-                        #` + c.id + ` {
-                            ` + key + `: ` + value + `;
-                        }
-                    `);
+                #` + c.id + ` {
+                    ` + key + `: ` + value + `;
+                }
+            `);
             return chart;
         };
 
