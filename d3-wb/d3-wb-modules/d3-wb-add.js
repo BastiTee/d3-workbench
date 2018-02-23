@@ -22,26 +22,21 @@
      * ********************************************************************* */
 
     let xAxis = function(scale) {
-        let color = 'red';
-        let type = d3.axisTop;
-        let y = 0;
-        let x = 0;
-        let ticks;
-        let rotation = undefined;
-
         let chart = function(selection) {
             selection.each(function(data, i, nodes) {
-                injectAxisColor(color, 'wb-axis-x');
                 let s = d3.select(nodes[i]);
-                let d3a = type(scale);
-                if (ticks) {
-                    d3a.ticks(ticks);
-                }
+                let d3a = c.type(scale);
+                appendTickStyle(d3a, c);
                 let axis = s.append('g')
-                    .attr('transform', 'translate(' + x + ',' + y + ')')
+                    .attr('transform', 'translate(' + c.x + ',' +
+                        c.y + ')')
                     .attr('class', 'wb-axis wb-axis-x')
-                    .call(d3wb.util.makeUnselectable())
-                    .call(d3a);
+                    .call(d3wb.util.makeUnselectable());
+                injectAxisColor(c.color, 'wb-axis-x');
+                c.update = function() {
+                    axis.call(d3a);
+                }
+                c.update();
                 if (rotation == 90) {
                     axis.selectAll('text')
                         .attr('y', -2)
@@ -53,56 +48,14 @@
             });
         };
 
-        chart.type = function(value) {
-            if (!arguments.length) return type;
-            type = value;
-            return chart;
-        };
-
-        chart.ticks = function(value) {
-            if (!arguments.length) return ticks;
-            ticks = value;
-            return chart;
-        };
-
-        chart.x = function(value) {
-            if (!arguments.length) return x;
-            x = value;
-            return chart;
-        };
-
-        chart.y = function(value) {
-            if (!arguments.length) return y;
-            y = value;
-            return chart;
-        };
-
-        chart.color = function(value) {
-            if (!arguments.length) return color;
-            color = value;
-            return chart;
-        };
-
+        let rotation = undefined;
         chart.rotation = function(value) {
             if (!arguments.length) return rotation;
             rotation = value;
             return chart;
         };
 
-        chart.scale = function(value) {
-            if (!arguments.length) return scale;
-            scale = value;
-            return chart;
-        };
-
-        chart.fontSize = function(value) {
-            d3wb.util.injectCSS(`
-                .wb-axis-x text {
-                  font-size: ` + value + `;
-              }`);
-            return chart;
-        };
-
+        let c = commonAxisElements(chart, d3.axisTop);
         return chart;
     };
 
@@ -111,75 +64,24 @@
     };
 
     let yAxis = function(scale) {
-        // configurable
-        let color = 'red';
-        let type = d3.axisLeft;
-        let x = 0;
-        let format = function(scale) {
-            return scale;
-        };
-        // internal
-        let update = function() {};
-        let g;
-
         let chart = function(selection) {
             selection.each(function(data, i, nodes) {
-                injectAxisColor(color, 'wb-axis-y');
                 let s = d3.select(nodes[i]);
-                g = s.append('g')
+                let d3a = c.type(scale);
+                appendTickStyle(d3a, c);
+                injectAxisColor(c.color, 'wb-axis-y');
+                let axis = s.append('g')
                     .attr('class', 'wb-axis wb-axis-y')
-                    .attr('transform', 'translate(' + x + ',0)')
+                    .attr('transform', 'translate(' + c.x + ',' + c.y + ')')
                     .call(d3wb.util.makeUnselectable());
-                update = function(scale) {
-                    g.call(format(type(scale)));
-                };
-                update(scale);
+                c.update = function() {
+                    axis.call(d3a);
+                }
+                c.update();
             });
         };
 
-        chart.update = function(scale) {
-            update(scale);
-            return chart;
-        };
-
-        chart.format = function(value) {
-            if (!arguments.length) return format;
-            format = value;
-            return chart;
-        };
-
-        chart.type = function(value) {
-            if (!arguments.length) return type;
-            type = value;
-            return chart;
-        };
-
-        chart.x = function(value) {
-            if (!arguments.length) return x;
-            x = value;
-            return chart;
-        };
-
-        chart.color = function(value) {
-            if (!arguments.length) return color;
-            color = value;
-            return chart;
-        };
-
-        chart.scale = function(value) {
-            if (!arguments.length) return scale;
-            scale = value;
-            return chart;
-        };
-
-        chart.fontSize = function(value) {
-            d3wb.util.injectCSS(`
-                .wb-axis-y text {
-                  font-size: ` + value + `;
-              }`);
-            return chart;
-        };
-
+        let c = commonAxisElements(chart, d3.axisLeft);
         return chart;
     };
 
@@ -493,5 +395,86 @@
               fill: ` + color + `;
             }
             `);
+    };
+
+    let commonAxisElements = function(chart, defaultType) {
+        let c = {};
+
+        c.x = 0;
+        chart.x = function(value) {
+            if (!arguments.length) return x;
+            c.x = value;
+            return chart;
+        };
+
+        c.y = 0;
+        chart.y = function(value) {
+            if (!arguments.length) return y;
+            c.y = value;
+            return chart;
+        };
+
+        c.type = defaultType;
+        chart.type = function(value) {
+            if (!arguments.length) return type;
+            c.type = value;
+            return chart;
+        };
+
+        c.ticks;
+        chart.ticks = function(value) {
+            if (!arguments.length) return ticks;
+            c.ticks = value;
+            return chart;
+        };
+
+        c.tickFormat;
+        chart.tickFormat = function(value) {
+            if (!arguments.length) return tickFormat;
+            c.tickFormat = value;
+            return chart;
+        };
+
+        c.color = 'red';
+        chart.color = function(value) {
+            if (!arguments.length) return color;
+            c.color = value;
+            return chart;
+        };
+
+        c.update = function() {};
+        chart.update = function(scale) {
+            c.update(scale);
+        };
+
+        chart.fontSize = function(value) {
+            d3wb.util.injectCSS(`
+                .wb-axis-x text {
+                  font-size: ` + value + `;
+              }`);
+            return chart;
+        };
+
+        chart.truncate = function(value) {
+            chart.tickFormat(function(d) {
+                if (d.length > value) {
+                    return d.substring(0, value) + '…';
+                } else {
+                    return d;
+                }
+            });
+            return chart;
+        };
+
+        return c;
+    };
+
+    let appendTickStyle = function(d3a, c) {
+        if (c.ticks) {
+            d3a.ticks(c.ticks);
+        }
+        if (c.tickFormat) {
+            d3a.tickFormat(c.tickFormat);
+        }
     };
 })));
