@@ -15,6 +15,7 @@ let wbBarChartPosNeg = function() {
     let scaleX;
     let scaleY;
     let yExtent;
+    let sortBy;
     let sortDirection = 'desc';
     let fillPos = 'green';
     let fillNeg = 'red';
@@ -37,17 +38,25 @@ let wbBarChartPosNeg = function() {
                     d[ySelector] = +d[ySelector];
                 });
 
-                data.sort(function(a, b) {
-                    if (sortDirection == 'desc') {
-                        return +b[ySelector] - +a[ySelector];
-                    } else {
-                        return +a[ySelector] - +b[ySelector];
-                    }
-                });
+                if (sortBy) {
+                    data.sort(function(a, b) {
+                        if (sortDirection == 'desc') {
+                            return +b[sortBy] - +a[sortBy];
+                        } else {
+                            return +a[sortBy] - +b[sortBy];
+                        }
+                    });
+                }
 
                 let yExtent = d3.extent(data, function(d) {
                     return d[ySelector];
                 });
+                // handle cases where there is no zero crossing
+                if (yExtent[0] < 0 && yExtent[1] < 0) {
+                    yExtent[1] = 0
+                } else if (yExtent[0] > 0 && yExtent[1] > 0) {
+                    yExtent[0] = 0
+                }
                 scaleY.domain(yExtent);
                 let zeroHeight = scaleY(yExtent[0]) - scaleY(0);
                 let zeroHeightInv = scaleY(yExtent[0]) - zeroHeight;
@@ -158,6 +167,12 @@ let wbBarChartPosNeg = function() {
         widthFactor = value;
         return chart;
     };
+
+    chart.sortBy = function(value) {
+        if (!arguments.length) return sortBy
+        sortBy = value;
+        return chart;
+    }
 
     chart.sortDirection = function(value) {
         if (!arguments.length) return sortDirection;
