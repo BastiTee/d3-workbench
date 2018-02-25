@@ -13,8 +13,13 @@ function wbStackedBarChart() {
     let idColumn = 'id';
     let colors = ['red', 'green', 'blue'];
     let legendFill = 'black';
+    let stroke = 'black';
+    let strokeWidth = 0;
     let legendX = 0;
     let legendY = 0;
+    let padding = 0.1;
+    let align = 0.0;
+    let showLegend = true;
     let ignoreColumns = [];
     let scaleX;
     let scaleY;
@@ -48,7 +53,8 @@ function wbStackedBarChart() {
 
             // generate scales
             scaleX = d3.scaleBand().rangeRound([0, width])
-                .paddingInner(0.05).align(0.1);
+                .padding(padding)
+                .align(align);
             scaleY = d3.scaleLinear().rangeRound([height, 0]);
             let scaleZ = d3.scaleOrdinal().range(colors);
             scaleX.domain(data.map(function(d) {
@@ -94,34 +100,39 @@ function wbStackedBarChart() {
                 .attr('height', function(d) {
                     return scaleY(d[0]) - scaleY(d[1]);
                 })
-                .attr('width', scaleX.bandwidth());
+                .attr('width', scaleX.bandwidth())
+                .style('stroke', stroke)
+                .style('stroke-width', strokeWidth);
 
-            let legend = s.append('g')
-                .attr('font-size', '75%')
-                .attr('text-anchor', 'end')
-                .attr('transform', 'translate(' + legendX + ',' + legendY + ')')
-                .selectAll('g')
-                .data(keys.slice())
-                .enter().append('g')
-                .attr('transform', function(d, i) {
-                    return 'translate(0,' + i * 20 + ')';
-                });
+            if (showLegend) {
+                let legend = s.append('g')
+                    .attr('font-size', '75%')
+                    .attr('text-anchor', 'end')
+                    .attr('transform', 'translate(' +
+                        legendX + ',' + legendY + ')')
+                    .selectAll('g')
+                    .data(keys.slice())
+                    .enter().append('g')
+                    .attr('transform', function(d, i) {
+                        return 'translate(0,' + i * 20 + ')';
+                    });
 
-            let rw = 19;
-            legend.append('rect')
-                .attr('x', -rw)
-                .attr('width', rw)
-                .attr('height', rw)
-                .attr('fill', scaleZ);
+                let rw = 19;
+                legend.append('rect')
+                    .attr('x', -rw)
+                    .attr('width', rw)
+                    .attr('height', rw)
+                    .attr('fill', scaleZ);
 
-            legend.append('text')
-                .attr('x', -rw - 3)
-                .attr('y', 9.5)
-                .attr('dy', '0.32em')
-                .text(function(d) {
-                    return d;
-                })
-                .attr('fill', legendFill);
+                legend.append('text')
+                    .attr('x', -rw - 3)
+                    .attr('y', 9.5)
+                    .attr('dy', '0.32em')
+                    .text(function(d) {
+                        return d;
+                    })
+                    .attr('fill', legendFill);
+            }
         });
     };
 
@@ -194,6 +205,36 @@ function wbStackedBarChart() {
     chart.ignoreColumns = function(value) {
         if (!arguments.length) return ignoreColumns;
         ignoreColumns = value;
+        return chart;
+    };
+
+    chart.padding = function(value) {
+        if (!arguments.length) return padding;
+        padding = value;
+        return chart;
+    };
+
+    chart.align = function(value) {
+        if (!arguments.length) return align;
+        align = value;
+        return chart;
+    };
+
+    chart.showLegend = function(value) {
+        if (!arguments.length) return showLegend;
+        showLegend = value;
+        return chart;
+    };
+
+    chart.stroke = function(value) {
+        if (!arguments.length) return stroke;
+        stroke = value;
+        return chart;
+    };
+
+    chart.strokeWidth = function(value) {
+        if (!arguments.length) return strokeWidth;
+        strokeWidth = value;
         return chart;
     };
 
