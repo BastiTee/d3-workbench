@@ -35,7 +35,7 @@
                 injectAxisColor(c.color, 'wb-axis-x');
                 c.update = function() {
                     axis.call(d3a);
-                }
+                };
                 c.update();
                 if (rotation == 90) {
                     axis.selectAll('text')
@@ -76,7 +76,7 @@
                     .call(d3wb.util.makeUnselectable());
                 c.update = function() {
                     axis.call(d3a);
-                }
+                };
                 c.update();
             });
         };
@@ -363,6 +363,189 @@
         return chart;
     };
 
+    let textblock = function(text) {
+        let width = 500;
+        let x = 0;
+        let y = 0;
+        let fill = 'white';
+        let baseline = 'top';
+        let lineShift = 0;
+        let debug = false;
+
+        // internal
+        let REF_FONTSIZE = 20;
+
+        let chart = function(selection) {
+            selection.each(function(data, i, nodes) {
+                let s = d3.select(nodes[i]);
+
+                let gDebug = s.append('g')
+                    .attr('class', 'wb-textblock-debug')
+
+                data = []; // convert to objects
+                text.split('\n').forEach(function(d) {
+                    data.push({
+                        'text': d.trim(),
+                    });
+                });
+
+                // draw and autoscale text
+                let g = s.append('g')
+                    .attr('class', 'wb-textblock')
+
+                g.selectAll('.wb-textblock-line')
+                    .data(data)
+                    .enter()
+                    .append('text')
+                    .attr('class', 'wb-textblock-line')
+                    .text(function(d) {
+                        return d.text;
+                    })
+                    .attr('text-anchor', 'left')
+                    .attr('dominant-baseline', 'hanging')
+                    .attr('fill', fill)
+                    .style('font-size', REF_FONTSIZE + 'px')
+                    .text(function(d) {
+                        return d.text;
+                    })
+                    .style('font-size', function(d, i, nodes) {
+                        return calculateNewFontsize(nodes[i], width) + 'px';
+                    })
+                    .each(function(d, i, nodes) {
+                        d.numberBox = nodes[i].getBBox();
+                    })
+                    .call(d3wb.util.makeUnselectable())
+
+                // relocate lines according to bounding box
+                g.selectAll('.wb-textblock-line')
+                    .each(function(d, i, nodes) {
+                        if (i == 0) {
+                            return;
+                        }
+                        d3.select(nodes[i])
+                            .attr('y', function(d) {
+                                // line over line
+                                let y = 0;
+                                for (let j = i - 1; j >= 0; j--) {
+                                    y = y + nodes[j].getBBox().height;
+                                }
+                                return y + lineShift * i;
+                            })
+                            .attr('x', function(d) {
+                                // centering
+                                let corr = width - nodes[i].getBBox().width;
+                                return corr / 2;
+                            });
+                        d.numberBox = nodes[i].getBBox();
+                    });
+
+                let totalHeight = 0;
+                data.forEach(function(d, i) {
+                    totalHeight += d.numberBox.height;
+                    if (i > 0) {
+                        totalHeight += lineShift;
+                    }
+                })
+
+                debugNumbers(s, data, gDebug, totalHeight);
+
+                let yPos = baseline == 'bottom' ?
+                    y - totalHeight : y;
+
+                g.attr('transform', 'translate(' + x + ',' + yPos + ')');
+                gDebug.attr('transform', 'translate(' + x + ',' + yPos + ')');
+
+            });
+        };
+
+        let calculateNewFontsize = function(thiss, width) {
+            let textLength = thiss.getComputedTextLength();
+            if (debug) {
+                console.log('TL=' + textLength);
+                console.log(thiss.getBBox().width);
+            }
+            return width / textLength * REF_FONTSIZE;
+        };
+
+        let debugNumbers = function(s, data, g, totalHeight) {
+            if (!debug) return;
+
+            g.append('circle')
+                .attr('r', 4)
+                .style('fill', 'yellow')
+            g.append('rect')
+                .attr('width', width)
+                .attr('height', totalHeight)
+                .style('fill', 'red')
+
+            g.selectAll('.wb-textblock-line-debug')
+                .data(data)
+                .enter()
+                .append('rect')
+                .attr('class', 'wb-textblock-line-debug')
+                .attr('x', function(d) {
+                    return d.numberBox.x;
+                })
+                .attr('y', function(d) {
+                    return d.numberBox.y;
+                })
+                .attr('height', function(d) {
+                    return d.numberBox.height;
+                })
+                .attr('width', function(d) {
+                    return d.numberBox.width;
+                })
+                .style('stroke', 'yellow')
+                .style('stroke-width', 1)
+                .style('fill', 'none');
+        };
+
+        chart.width = function(value) {
+            if (!arguments.length) return width;
+            width = value;
+            return chart;
+        };
+
+        chart.fill = function(value) {
+            if (!arguments.length) return fill;
+            fill = value;
+            return chart;
+        };
+
+        chart.x = function(value) {
+            if (!arguments.length) return x;
+            x = value;
+            return chart;
+        };
+
+        chart.y = function(value) {
+            if (!arguments.length) return y;
+            y = value;
+            return chart;
+        };
+
+        chart.lineShift = function(value) {
+            if (!arguments.length) return lineShift;
+            lineShift = value;
+            return chart;
+        };
+
+        chart.debug = function(value) {
+            if (!arguments.length) return debug
+            debug = value;
+            return chart;
+        }
+
+        chart.baseline = function(value) {
+            if (!arguments.length) return baseline
+            baseline = value;
+            return chart;
+        }
+
+        return chart;
+    };
+
+
     /* *********************************************************************
      * PUBLIC API
      * ********************************************************************* */
@@ -377,6 +560,7 @@
         title: title,
         shadow: shadow,
         legend: legend,
+        textblock: textblock,
     };
 
     /* *********************************************************************
