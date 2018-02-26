@@ -369,7 +369,7 @@
         let width = 500;
         let height = 400;
         let fill = 'white';
-        let backgroundColor = 'blue'
+        let backgroundColor = 'blue';
         let padding = 0;
         let borderRadius = 0;
         let adjustBackgroundHeight = false;
@@ -385,7 +385,7 @@
 
                 data = []; // convert to objects
                 // remove multiple linebreaks
-                text = text.replace(/\n+/, '\n')
+                text = text.replace(/\n+/, '\n');
                 text.split('\n').forEach(function(d) {
                     data.push({
                         'text': d.trim(),
@@ -395,7 +395,7 @@
                 // base group for text box
                 let g = s.append('g')
                     .attr('class', 'wb-textbox')
-                    .attr('transform', 'translate(' + x + ',' + y + ')')
+                    .attr('transform', 'translate(' + x + ',' + y + ')');
 
                 // background color
                 let bg = g.append('rect')
@@ -405,7 +405,7 @@
                     .attr('height', height + padding * 2)
                     .attr('rx', borderRadius)
                     .attr('ry', borderRadius)
-                    .attr('fill', backgroundColor)
+                    .attr('fill', backgroundColor);
 
                 // draw and autoscale text
                 let totalHeight = 0;
@@ -428,11 +428,11 @@
                         d.numberBox = nodes[i].getBBox();
                         totalHeight += d.numberBox.height;
                     })
-                    .call(d3wb.util.makeUnselectable())
+                    .call(d3wb.util.makeUnselectable());
 
                 let totalShift = data.legend == 1 ? 0 :
-                    (height - totalHeight) / (data.length - 1)
-                totalShift = totalShift > 0 ? 0 : totalShift
+                    (height - totalHeight) / (data.length - 1);
+                totalShift = totalShift > 0 ? 0 : totalShift;
 
                 // relocate lines according to bounding box
                 g.selectAll('.wb-textbox-line')
@@ -456,17 +456,16 @@
                                         totalShift;
                                 }
                                 return y;
-                            })
+                            });
                         d.numberBox = nodes[i].getBBox();
                     });
 
                 if (adjustBackgroundHeight) {
                     bg.attr('height', totalHeight +
-                        padding * 2 + totalShift * (data.length - 1))
+                        padding * 2 + totalShift * (data.length - 1));
                 }
 
                 drawDebugFrames(s, data, g);
-
             });
         };
 
@@ -478,7 +477,7 @@
         let drawDebugFrames = function(s, data, g) {
             if (!debug) return;
 
-            d3.selectAll('.wb-textbox-debug').remove()
+            d3.selectAll('.wb-textbox-debug').remove();
             g.append('g').attr('class', 'wb-textbox-debug')
                 .selectAll('.wb-textbox-line-debug')
                 .data(data)
@@ -502,7 +501,7 @@
 
             g.append('circle')
                 .attr('r', 4)
-                .style('fill', 'yellow')
+                .style('fill', 'yellow');
         };
 
         chart.x = function(value) {
@@ -524,10 +523,10 @@
         };
 
         chart.height = function(value) {
-            if (!arguments.length) return height
+            if (!arguments.length) return height;
             height = value;
             return chart;
-        }
+        };
 
         chart.fill = function(value) {
             if (!arguments.length) return fill;
@@ -536,10 +535,10 @@
         };
 
         chart.backgroundColor = function(value) {
-            if (!arguments.length) return backgroundColor
+            if (!arguments.length) return backgroundColor;
             backgroundColor = value;
             return chart;
-        }
+        };
 
         chart.padding = function(value) {
             if (!arguments.length) return padding;
@@ -548,16 +547,16 @@
         };
 
         chart.borderRadius = function(value) {
-            if (!arguments.length) return borderRadius
+            if (!arguments.length) return borderRadius;
             borderRadius = value;
             return chart;
-        }
+        };
 
         chart.adjustBackgroundHeight = function(value) {
-            if (!arguments.length) return adjustBackgroundHeight
+            if (!arguments.length) return adjustBackgroundHeight;
             adjustBackgroundHeight = value;
             return chart;
-        }
+        };
 
         return chart;
     };

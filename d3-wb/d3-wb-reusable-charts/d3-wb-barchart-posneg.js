@@ -14,7 +14,6 @@ let wbBarChartPosNeg = function() {
     let ySelector = 'y';
     let scaleX;
     let scaleY;
-    let yExtent;
     let sortBy;
     let sortDirection = 'desc';
     let fillPos = 'green';
@@ -53,9 +52,9 @@ let wbBarChartPosNeg = function() {
                 });
                 // handle cases where there is no zero crossing
                 if (yExtent[0] < 0 && yExtent[1] < 0) {
-                    yExtent[1] = 0
+                    yExtent[1] = 0;
                 } else if (yExtent[0] > 0 && yExtent[1] > 0) {
-                    yExtent[0] = 0
+                    yExtent[0] = 0;
                 }
                 scaleY.domain(yExtent);
                 let zeroHeight = scaleY(yExtent[0]) - scaleY(0);
@@ -169,10 +168,10 @@ let wbBarChartPosNeg = function() {
     };
 
     chart.sortBy = function(value) {
-        if (!arguments.length) return sortBy
+        if (!arguments.length) return sortBy;
         sortBy = value;
         return chart;
-    }
+    };
 
     chart.sortDirection = function(value) {
         if (!arguments.length) return sortDirection;
