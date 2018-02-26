@@ -57,6 +57,7 @@ function wbLinePlot() {
                     .selectAll('g')
                     .data(yDataPoints)
                     .enter().append('g')
+                    .call(d3wb.util.makeUnselectable())
                     .attr('transform', function(d, i) {
                         return 'translate(0,' + i * 20 + ')';
                     });

@@ -46,6 +46,7 @@ function wbStaticNumbers() {
                 .style('font-size', function(d, i, nodes) {
                     return calculateNewFontsize(nodes[i], cw, cp) + 'px';
                 })
+                .call(d3wb.util.makeUnselectable())
                 .each(function(d, i, nodes) {
                     d.numberBox = nodes[i].getBBox();
                 });
@@ -75,6 +76,7 @@ function wbStaticNumbers() {
                 .style('font-size', function(d, i, nodes) {
                     return calculateNewFontsize(nodes[i], cw, cp) + 'px';
                 })
+                .call(d3wb.util.makeUnselectable())
                 .each(function(d, i, nodes) {
                     d.numberBox = nodes[i].getBBox();
                 });
