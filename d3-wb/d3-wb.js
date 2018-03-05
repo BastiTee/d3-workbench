@@ -19,6 +19,23 @@
 }(this, (function(exports) {
     'use strict';
 
+    /* Global CSS prefixing */
+    const CSS_PREFIX = 'wb-';
+    d3wb.prefix = function(cssIdentifier) {
+        let split = cssIdentifier.trim().replace(/ +/g, ' ').split(' ');
+        let pfxSplit = [];
+        split.forEach(function(d) {
+            pfxSplit.push(CSS_PREFIX + d);
+        });
+        return pfxSplit.join(' ');
+    };
+    d3wb.selector = function(cssIdentifier) {
+        return '.' + CSS_PREFIX + cssIdentifier;
+    };
+    d3wb.idSelector = function(cssIdentifier) {
+        return '#' + CSS_PREFIX + cssIdentifier;
+    };
+
     /* Symbol constant */
     d3wb.symbol = {
         mean: 'Ø',
@@ -26,7 +43,7 @@
         sum: 'Σ',
     };
 
-    let standaloneBodyId = '#standalone-body';
+    let standaloneBodyId = d3wb.idSelector('standalone-body');
 
     d3wb.config = function() {
         let dc = {
@@ -129,23 +146,40 @@
 
         svg
             .attr('width', config.width)
-            .attr('height', config.height);
+            .attr('height', config.height)
+            .style('margin-left', 'auto')
+            .style('margin-top', 'auto');
         svg.append('rect')
+            .attr('class', d3wb.selector('svg-background'))
             .attr('width', config.width)
             .attr('height', config.height)
             .attr('fill', config.bgColor);
 
         // if standalone-svg div is present, make background the same color
+        // and remove margins and paddings
         d3.select(standaloneBodyId)
-            .style('background-color', config.bgColor);
+            .style('background-color', config.bgColor)
+            .style('margin', 0)
+            .style('overflow', 'hidden');
 
-        drawDebugCanvas(svg, config);
-        drawDebugGroup(svg, config);
+        if (config.debug) {
+            let debugGroup = svg.append('g')
+                .attr('class', d3wb.selector('debug'));
+            drawDebugCanvas(debugGroup, config);
+            drawDebugGroup(debugGroup, config);
+        }
 
         let g = svg.append('g')
+            .attr('class', d3wb.selector('inner-canvas'))
             .attr('transform',
                 'translate(' + config.margin.left + ',' +
                 config.margin.top + ')');
+
+        let divId = config.parentDivId ? config.parentDivId :
+            standaloneBodyId;
+        // inject position relative to DIV otherwise html elements
+        // will not be positioned correctly
+        d3.select(divId).style('position', 'relative');
 
         let cv = g; // default object is the drawable canvas
         cv.svg = svg;
@@ -165,8 +199,7 @@
         cv.data = config.data();
         cv.d = config.data();
         // embedding
-        cv.div = d3.select(config.parentDivId ? config.parentDivId :
-            standaloneBodyId);
+        cv.div = d3.select(divId);
         // helper method for circular visualizaions
         cv.transformCircular = function() {
             this.attr('transform', 'translate(' +
@@ -242,14 +275,13 @@
     const nf = d3.format('.1f');
 
     const drawDebugCanvas = function(svg, config) {
-        if (!config.debug) {
-            return;
-        }
-        svg.append('rect')
+        let g = svg.append('g')
+            .attr('class', d3wb.selector('debug-outer'));
+        g.append('rect')
             .attr('width', config.width)
             .attr('height', config.height)
             .attr('fill', getWbColorOrDefault('lightgrey'));
-        svg.append('text')
+        g.append('text')
             .attr('x', config.width)
             .attr('fill', getWbColorOrDefault())
             .style('dominant-baseline', 'hanging')
@@ -257,11 +289,11 @@
             .style('-moz-user-select', 'none')
             .style('user-select', 'none')
             .text(nf(config.width) + 'x' + nf(config.height));
-        svg.append('rect')
+        g.append('rect')
             .attr('width', config.margin.left)
             .attr('height', config.margin.top)
             .attr('fill', getWbColorOrDefault('verylightgrey'));
-        svg.append('text')
+        g.append('text')
             .attr('font-size', '80%')
             .attr('x', config.margin.left / 2)
             .attr('fill', getWbColorOrDefault())
@@ -270,7 +302,7 @@
             .style('-moz-user-select', 'none')
             .style('user-select', 'none')
             .text(nf(config.margin.left));
-        svg.append('text')
+        g.append('text')
             .attr('font-size', '80%')
             .attr('y', config.margin.top / 2)
             .attr('fill', getWbColorOrDefault())
@@ -279,13 +311,13 @@
             .style('-moz-user-select', 'none')
             .style('user-select', 'none')
             .text(nf(config.margin.top));
-        svg.append('rect')
+        g.append('rect')
             .attr('x', config.width - config.margin.right)
             .attr('y', config.height - config.margin.bottom)
             .attr('width', config.margin.right)
             .attr('height', config.margin.bottom)
             .attr('fill', getWbColorOrDefault('verylightgrey'));
-        svg.append('text')
+        g.append('text')
             .attr('font-size', '80%')
             .attr('x', config.width - config.margin.right / 2)
             .attr('y', config.height)
@@ -295,7 +327,7 @@
             .style('-moz-user-select', 'none')
             .style('user-select', 'none')
             .text(nf(config.margin.right));
-        svg.append('text')
+        g.append('text')
             .attr('font-size', '80%')
             .attr('x', config.width).attr('y',
                 config.height - config.margin.bottom / 2)
@@ -308,10 +340,8 @@
     };
 
     const drawDebugGroup = function(svg, config) {
-        if (!config.debug) {
-            return;
-        }
-        let g = svg.append('g');
+        let g = svg.append('g')
+            .attr('class', d3wb.selector('debug-inner'));
         g.append('rect')
             .attr('width', config.innerWidth)
             .attr('height', config.innerHeight)
@@ -389,16 +419,16 @@
         switch (color) {
             case 'grey':
                 return libPresent ? d3wb.color.background.fade(30) :
-                'rgb(192, 192, 192)';
+                    'rgb(192, 192, 192)';
             case 'lightgrey':
                 return libPresent ? d3wb.color.background.fade(20) :
-                'rgb(162, 162, 162)';
+                    'rgb(162, 162, 162)';
             case 'verylightgrey':
                 return libPresent ? d3wb.color.background.fade(10) :
-                'rgb(132, 132, 132)';
+                    'rgb(132, 132, 132)';
             default:
                 return libPresent ? d3wb.color.background :
-                'rgb(255, 255, 255)';
+                    'rgb(255, 255, 255)';
         }
     };
 
