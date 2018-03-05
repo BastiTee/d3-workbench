@@ -587,11 +587,11 @@
 
     let injectAxisColor = function(color, axis) {
         axis.selectAll('line')
-            .style('stroke', color)
+            .style('stroke', color);
         axis.selectAll('path')
-            .style('stroke', color)
+            .style('stroke', color);
         axis.selectAll('text')
-            .attr('fill', color)
+            .attr('fill', color);
     };
 
     let commonAxisElements = function(chart, defaultType) {
