@@ -29,8 +29,8 @@
         // create the search bar
         let t = d3wb.html.textfield()
             .callback(callback)
-            .style('top', '10px')
-            .style('left', '10px');
+            .style('top', 5)
+            .style('left', 35);
         cv.div.call(t);
 
         // create more controls for this demonstration
@@ -80,8 +80,8 @@
             .infoFill('#444')
             .infoContent(`<b>Hover</b> rectangles to see solutions.</br><b>` +
             `Use search box</b> to search animals by food.`)
-            .style('top', '35px')
-            .style('left', '10px');
+            .style('top', 10)
+            .style('left', 0);
         cv.div.call(box);
 
         // add solutions as tooltips

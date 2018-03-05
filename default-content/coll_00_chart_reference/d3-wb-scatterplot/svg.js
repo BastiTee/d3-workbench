@@ -1,12 +1,7 @@
 (function() {
     // d3wb.setGermanLocale()
     let cv = d3wb.config()
-        .attr('margin', {
-            top: 10,
-            right: 50,
-            bottom: 50,
-            left: 80,
-        })
+        .attr('margin', '10 50 60 80')
         .data('data.csv')
         .toCanvas();
 
@@ -28,8 +23,7 @@
             .xAxisScale(d3.scaleLog())
             .zDataPoints('Country code')
             .colorLow(d3wb.color.blue)
-            .colorHigh(d3wb.color.red)
-            .axisColor(d3wb.color.foreground);
+            .colorHigh(d3wb.color.red);
 
         cv.datum(data).call(plot);
 
@@ -44,5 +38,11 @@
             .orientation('bottom'));
         cv.call(d3wb.add.yAxisLabel('Employees')
             .color(d3wb.color.foreground));
+
+        cv.call(d3wb.add.xAxisBottom(plot.xAxisScale())
+            .y(cv.hei)
+            .tickFormat(d3.format('.2s')));
+        cv.call(d3wb.add.yAxis(plot.yAxisScale())
+            .tickFormat(d3.format('.2s')));
     });
 }());
