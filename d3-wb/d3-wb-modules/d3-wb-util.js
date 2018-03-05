@@ -40,13 +40,16 @@
                 'time': '%H:%M:%S',
                 'periods': ['AM', 'PM'],
                 'days': ['Sonntag', 'Montag', 'Dienstag',
-                'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+                    'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'
+                ],
                 'shortDays': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
                 'months': ['Januar', 'Februar', 'März', 'April',
-                'Mai', 'Juni', 'Juli', 'August', 'September',
-                'Oktober', 'November', 'Dezember'],
+                    'Mai', 'Juni', 'Juli', 'August', 'September',
+                    'Oktober', 'November', 'Dezember'
+                ],
                 'shortMonths': ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai',
-                'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                    'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'
+                ],
             }).format;
         } else {
             throw new Error('Unsupported locale.');
@@ -54,9 +57,9 @@
     };
 
     const guid = function() {
-        return randomString() + randomString() + '-' + randomString()
-        + '-' + randomString() + '-' + randomString() + '-'
-        + randomString() + randomString() + randomString();
+        return randomString() + randomString() + '-' + randomString() +
+            '-' + randomString() + '-' + randomString() + '-' +
+            randomString() + randomString() + randomString();
     };
 
     const websafeGuid = function() {
@@ -231,6 +234,19 @@
         return [bbox.x + bbox.width / 2, bbox.y + bbox.height / 2];
     };
 
+    const autocastNumericColumns = function(data) {
+        if (!data.columns) {
+            throw Error('Dataset for auto-casting does not contain a columns ' +
+                'attribute, i.e., doesn\'t seem to be an d3-like array of objects.')
+        }
+        data.forEach(function(d) {
+            for (let c in data.columns) {
+                let key = data.columns[c];
+                d[key] = isNaN(d[key]) ? d[key] : +d[key];
+            }
+        });
+    }
+
     /* *********************************************************************
      * PUBLIC API
      * ********************************************************************* */
@@ -247,6 +263,7 @@
         jsonAttributeMapToCSV: jsonAttributeMapToCSV,
         getBoundingBoxCenter: getBoundingBoxCenter,
         makeUnselectable: makeUnselectable,
+        autocastNumericColumns: autocastNumericColumns,
     };
 
     /* *********************************************************************
