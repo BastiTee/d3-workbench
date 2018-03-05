@@ -158,7 +158,6 @@
         let controlColorHover = 'red';
         let controlFontSize = '150%';
         let infoColor = 'white';
-        let infoBorderColor = infoColor;
         let infoFill = 'black';
         let infoFontSize = '100%';
         let infoOpacity = 0.8;
@@ -223,7 +222,7 @@
                         padding: 0.5em;
                         border-radius: 0.4em;
                         user-select: none;
-                        border: 1px solid ` + infoBorderColor + `;
+                        border: 1px solid ` + infoColor + `;
                         color: ` + infoColor + `;
                         font-size: ` + infoFontSize + `;
                         background-color: ` + infoFill + `;
