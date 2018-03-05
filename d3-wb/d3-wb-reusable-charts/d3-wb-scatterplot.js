@@ -8,26 +8,22 @@ function wbScatterPlot() {
 
     let width = 500;
     let height = 500;
+
+    let xDataPoints = 'x';
+    let yDataPoints = 'y';
+    let zDataPoints;
+
     let xAxisScale = d3.scaleLinear();
     let yAxisScale = d3.scaleLinear();
     let zAxisScale = d3.scaleLinear();
+
+    let color;
     let colorLow = 'green';
     let colorHigh = 'red';
-    let xDataPoints = 'x';
-    let yDataPoints = 'y';
-    let zDataPoints = 'x';
-    let axisColor = 'white';
-    let href = function() {
-        return undefined;
-    };
+
     let opacityDataPoints = undefined;
     let opacityRange = [0.0, 1.0];
-    let formatXAxis = function(xAxis) {
-        return xAxis;
-    };
-    let formatYAxis = function(yAxis) {
-        return yAxis;
-    };
+
     let update = function() {};
 
     let chart = function(selection) {
@@ -41,29 +37,23 @@ function wbScatterPlot() {
             let yMinMax = d3.extent(data, function(d) {
                 return d[yDataPoints];
             });
+            zDataPoints = zDataPoints || xDataPoints;
             let zMinMax = d3.extent(data, function(d) {
                 return d[zDataPoints];
             });
 
-            s.selectAll('.datapoint')
+            s.selectAll('.scatter-datapoint')
                 .data(data).enter()
-                .append('a').attr('xlink:href', href)
                 .append('rect')
-                .attr('class', 'datapoint')
+                .attr('class', 'scatter-datapoint')
                 .attr('width', rsize)
                 .attr('height', rsize)
                 .attr('rx', 5);
 
-            s.append('g')
-                .attr('class', 'axis axis-x')
-                .attr('transform', 'translate(0,' + height + ')');
-            s.append('g').attr('class', 'axis axis-y');
             let x;
             let y;
             let z;
             let o;
-            let xAxis;
-            let yAxis;
 
             update = function(first) {
                 first = first || false;
@@ -79,26 +69,12 @@ function wbScatterPlot() {
                 z = zAxisScale.domain(zMinMax)
                     .interpolate(d3.interpolate)
                     .range([colorLow, colorHigh]);
-                yAxis = d3.axisLeft(y);
-                formatYAxis(yAxis);
-                xAxis = d3.axisBottom(x);
-                formatXAxis(xAxis);
-
-                s.select('.axis-x').transition().duration(500).call(xAxis);
-                s.select('.axis-y').transition().duration(500).call(yAxis);
-
-                s.selectAll('.axis line')
-                    .attr('stroke', axisColor);
-                s.selectAll('.axis path')
-                    .attr('stroke', axisColor);
-                s.selectAll('.axis text')
-                    .attr('fill', axisColor);
 
                 let up;
                 if (first) {
-                    up = s.selectAll('.datapoint');
+                    up = s.selectAll('.scatter-datapoint');
                 } else {
-                    up = s.selectAll('.datapoint')
+                    up = s.selectAll('.scatter-datapoint')
                         .transition().duration(500);
                 }
 
@@ -182,12 +158,6 @@ function wbScatterPlot() {
         return chart;
     };
 
-    chart.axisColor = function(value) {
-        if (!arguments.length) return axisColor;
-        axisColor = value;
-        return chart;
-    };
-
     chart.colorLow = function(value) {
         if (!arguments.length) return colorLow;
         colorLow = value;
@@ -200,21 +170,10 @@ function wbScatterPlot() {
         return chart;
     };
 
-    chart.href = function(value) {
-        if (!arguments.length) return href;
-        href = value;
-        return chart;
-    };
-
-    chart.formatXAxis = function(value) {
-        if (!arguments.length) return formatXAxis;
-        formatXAxis = value;
-        return chart;
-    };
-
-    chart.formatYAxis = function(value) {
-        if (!arguments.length) return formatYAxis;
-        formatYAxis = value;
+    chart.color = function(value) {
+        if (!arguments.length) return color;
+        colorLow = value;
+        colorHigh = value;
         return chart;
     };
 
