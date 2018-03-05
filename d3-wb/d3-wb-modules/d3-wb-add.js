@@ -30,9 +30,9 @@
                 let axis = s.append('g')
                     .attr('transform', 'translate(' + c.x + ',' +
                         c.y + ')')
-                    .attr('class', 'wb-axis wb-axis-x')
+                    .attr('class', d3wb.prefix('axis axis-x'))
                     .call(d3wb.util.makeUnselectable());
-                injectAxisColor(c.color, 'wb-axis-x');
+                injectAxisColor(c.color, d3wb.prefix('axis-x'));
                 c.update = function() {
                     axis.call(d3a);
                 };
@@ -69,9 +69,9 @@
                 let s = d3.select(nodes[i]);
                 let d3a = c.type(scale);
                 appendTickStyle(d3a, c);
-                injectAxisColor(c.color, 'wb-axis-y');
+                injectAxisColor(c.color, d3wb.prefix('axis-y'));
                 let axis = s.append('g')
-                    .attr('class', 'wb-axis wb-axis-y')
+                    .attr('class', d3wb.prefix('axis axis-y'))
                     .attr('transform', 'translate(' + c.x + ',' + c.y + ')')
                     .call(d3wb.util.makeUnselectable());
                 c.update = function() {
@@ -90,7 +90,7 @@
     };
 
     let title = function(text) {
-        let color = 'red';
+        let color = 'black';
         let fontSize = '140%';
 
         let update = function() {};
@@ -100,7 +100,7 @@
                 let s = d3.select(nodes[i].ownerSVGElement);
                 let root = s.node().getBBox();
                 s.append('text')
-                    .attr('class', 'wb-title')
+                    .attr('class', d3wb.prefix('title'))
                     .attr('x', root.width / 2)
                     .attr('y', 5)
                     .attr('text-anchor', 'middle')
@@ -109,7 +109,7 @@
                     .style('font-size', fontSize);
 
                 update = function() {
-                    s.selectAll('.wb-title').text(text);
+                    s.selectAll(d3wb.selector('title')).text(text);
                 };
                 update();
             });
@@ -141,7 +141,7 @@
     };
 
     let xAxisLabel = function(text) {
-        let color = 'red';
+        let color = 'black';
         let padding = 15;
         let orientation = 'top';
 
@@ -189,7 +189,7 @@
     };
 
     let yAxisLabel = function(text) {
-        let color = 'red';
+        let color = 'black';
         let padding = 5;
         let orientation = 'left';
 
@@ -394,7 +394,7 @@
 
                 // base group for text box
                 let g = s.append('g')
-                    .attr('class', 'wb-textbox')
+                    .attr('class', d3wb.prefix('textbox'))
                     .attr('transform', 'translate(' + x + ',' + y + ')');
 
                 // background color
@@ -409,11 +409,11 @@
 
                 // draw and autoscale text
                 let totalHeight = 0;
-                g.selectAll('.wb-textbox-line')
+                g.selectAll(d3wb.selector('textbox-line'))
                     .data(data)
                     .enter()
                     .append('text')
-                    .attr('class', 'wb-textbox-line')
+                    .attr('class', d3wb.prefix('textbox-line'))
                     .attr('text-anchor', 'left')
                     .attr('dominant-baseline', 'hanging')
                     .attr('fill', fill)
@@ -435,7 +435,7 @@
                 totalShift = totalShift > 0 ? 0 : totalShift;
 
                 // relocate lines according to bounding box
-                g.selectAll('.wb-textbox-line')
+                g.selectAll(d3wb.selector('textbox-line'))
                     .each(function(d, i, nodes) {
                         // center line inside box
                         d3.select(nodes[i])
@@ -477,9 +477,9 @@
         let drawDebugFrames = function(s, data, g) {
             if (!debug) return;
 
-            d3.selectAll('.wb-textbox-debug').remove();
-            g.append('g').attr('class', 'wb-textbox-debug')
-                .selectAll('.wb-textbox-line-debug')
+            d3.selectAll(d3wb.selector('textbox-debug')).remove();
+            g.append('g').attr('class', d3wb.prefix('textbox-debug'))
+                .selectAll(d3wb.selector('textbox-line-debug'))
                 .data(data)
                 .enter()
                 .append('rect')
@@ -635,7 +635,7 @@
             return chart;
         };
 
-        c.color = 'red';
+        c.color = 'black';
         chart.color = function(value) {
             if (!arguments.length) return color;
             c.color = value;
@@ -645,14 +645,6 @@
         c.update = function() {};
         chart.update = function(scale) {
             c.update(scale);
-        };
-
-        chart.fontSize = function(value) {
-            d3wb.util.injectCSS(`
-                .wb-axis-x text {
-                  font-size: ` + value + `;
-              }`);
-            return chart;
         };
 
         chart.truncate = function(value) {
