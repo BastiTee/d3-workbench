@@ -56,6 +56,7 @@
                         }
                     `);
                 callbackImpl();
+                c.autoLocate();
             });
         };
 
@@ -105,6 +106,7 @@
                 if (c.callbackOnInit) {
                     callbackImpl();
                 }
+                c.autoLocate();
             });
         };
 
@@ -142,6 +144,7 @@
                             position: absolute;
                         }
                     `);
+                c.autoLocate();
             });
         };
 
@@ -150,16 +153,16 @@
         return chart;
     };
 
-    const infoBox = function() {
-        let controlColor = 'white';
-        let controlColorHover = 'yellow';
+    const infoBox = function(text) {
+        let controlColor = 'black';
+        let controlColorHover = 'red';
         let controlFontSize = '150%';
         let infoColor = 'white';
         let infoBorderColor = infoColor;
         let infoFill = 'black';
         let infoFontSize = '100%';
-        let infoOpacity = 0.9;
-        let infoContent = `<b>Information</b></br>
+        let infoOpacity = 0.8;
+        let infoContent = text || `<b>Information</b></br>
         This box contains information about the graph. It's intended ` +
             `to guide the user. You can use <i>html-style</i> as desired.
         `;
@@ -173,7 +176,8 @@
                 let s = d3.select(nodes[i]);
 
                 let div = s.append('div')
-                    .attr('id', c.id);
+                    .attr('id', c.id)
+                    .call(d3wb.util.makeUnselectable());
 
                 let input = div
                     .append('p')
@@ -202,12 +206,6 @@
                         position: relative;
                         text-align: left;
                         width: 0;
-                        -webkit-touch-callout: none;
-                        -webkit-user-select: none;
-                        -khtml-user-select: none;
-                        -moz-user-select: none;
-                        -ms-user-select: none;
-                        user-select: none;
                         margin: 0;
                         padding: 0;
                         color: ` + controlColor + `;
@@ -221,15 +219,10 @@
                     #` + c.id + `-ib {
                         position: relative;
                         text-align: left;
-                        -webkit-touch-callout: none;
-                        -webkit-user-select: none;
-                        -khtml-user-select: none;
-                        -moz-user-select: none;
-                        -ms-user-select: none;
-                        user-select: none;
                         margin: 0;
                         padding: 0.5em;
                         border-radius: 0.4em;
+                        user-select: none;
                         border: 1px solid ` + infoBorderColor + `;
                         color: ` + infoColor + `;
                         font-size: ` + infoFontSize + `;
@@ -237,6 +230,7 @@
                         opacity: 0;
                     }
                 `);
+                c.autoLocate();
             });
         };
 
@@ -308,12 +302,28 @@
 
     let commonElements = function(chart) {
         let c = {
-            'id': d3wb.util.websafeGuid(),
-            'div': d3.select('body'),
-            'callback': function() {
+            id: d3wb.util.websafeGuid(),
+            div: d3.select('body'),
+            callback: function() {
                 console.log('callback.');
             },
-            'callbackOnInit': false,
+            callbackOnInit: false,
+            leftOrRightSet: false, // necessary to auto-position on default
+            topOrBottomSet: false, // necessary to auto-position on default
+            autoLocate: function() {
+                if (!this.leftOrRightSet) {
+                    d3wb.util.injectCSS(`
+                        #` + c.id + ` {
+                            left: 0px;
+                        }`);
+                }
+                if (!this.topOrBottomSet) {
+                    d3wb.util.injectCSS(`
+                        #` + c.id + ` {
+                            top: 0px;
+                        }`);
+                }
+            },
         };
 
         chart.id = function(value) {
@@ -327,6 +337,13 @@
             value = String(value);
             if (!isNaN(value) && !value.endsWith('px')) {
                 value = value + 'px';
+            }
+            key = key.trim();
+            if (key == 'left' || key == 'right') {
+                c.leftOrRightSet = true;
+            }
+            if (key == 'bottom' || key == 'top') {
+                c.topOrBottomSet = true;
             }
             d3wb.util.injectCSS(`
                 #` + c.id + ` {
