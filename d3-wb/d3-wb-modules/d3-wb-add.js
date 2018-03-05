@@ -32,11 +32,11 @@
                         c.y + ')')
                     .attr('class', d3wb.prefix('axis axis-x'))
                     .call(d3wb.util.makeUnselectable());
-                injectAxisColor(c.color, d3wb.prefix('axis-x'));
                 c.update = function() {
                     axis.call(d3a);
                 };
                 c.update();
+                injectAxisColor(c.color, axis);
                 if (rotation == 90) {
                     axis.selectAll('text')
                         .attr('y', -2)
@@ -69,7 +69,6 @@
                 let s = d3.select(nodes[i]);
                 let d3a = c.type(scale);
                 appendTickStyle(d3a, c);
-                injectAxisColor(c.color, d3wb.prefix('axis-y'));
                 let axis = s.append('g')
                     .attr('class', d3wb.prefix('axis axis-y'))
                     .attr('transform', 'translate(' + c.x + ',' + c.y + ')')
@@ -78,6 +77,7 @@
                     axis.call(d3a);
                 };
                 c.update();
+                injectAxisColor(c.color, axis);
             });
         };
 
@@ -150,6 +150,7 @@
                 let s = d3.select(nodes[i].ownerSVGElement);
                 let root = s.node().getBBox();
                 s.append('text') // text label for the x axis
+                    .attr('class', d3wb.prefix('label label-x'))
                     .attr('transform', function() {
                         let t = 'translate(' + (root.width / 2) + ',';
                         if (orientation == 'top') {
@@ -198,6 +199,7 @@
                 let s = d3.select(nodes[i].ownerSVGElement);
                 let root = s.node().getBBox();
                 s.append('text') // text label for the x axis
+                    .attr('class', d3wb.prefix('label label-y'))
                     .attr('transform', function() {
                         let t = 'translate(';
                         if (orientation == 'left') {
@@ -289,7 +291,7 @@
             selection.each(function(d, i, nodes) {
                 let s = d3.select(nodes[i]);
                 s.append('g')
-                    .attr('class', 'legend')
+                    .attr('class', d3wb.prefix('legend'))
                     .attr('transform', 'translate(' + x + ',' + y + ')');
                 let ordinal = d3.scaleOrdinal()
                     .domain(text.map(function(d) {
@@ -302,7 +304,7 @@
                     .shape('path',
                         d3.symbol().type(symbol).size(symbolSize)())
                     .scale(ordinal);
-                s.select('.legend')
+                s.select(d3wb.selector('legend'))
                     .call(legend)
                     .style('fill', color)
                     .style('font-size', '90%');
@@ -583,18 +585,13 @@
      * PRIVATE FUNCTIONS
      * ********************************************************************* */
 
-    let injectAxisColor = function(color, cclass) {
-        d3wb.util.injectCSS(`
-            .` + cclass + ` line{
-              stroke: ` + color + `;
-            }
-            .` + cclass + ` path{
-              stroke: ` + color + `;
-            }
-            .` + cclass + ` text{
-              fill: ` + color + `;
-            }
-            `);
+    let injectAxisColor = function(color, axis) {
+        axis.selectAll('line')
+            .style('stroke', color)
+        axis.selectAll('path')
+            .style('stroke', color)
+        axis.selectAll('text')
+            .attr('fill', color)
     };
 
     let commonAxisElements = function(chart, defaultType) {
