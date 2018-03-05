@@ -150,7 +150,7 @@
             .style('margin-left', 'auto')
             .style('margin-top', 'auto');
         svg.append('rect')
-            .attr('class', d3wb.selector('svg-background'))
+            .attr('class', d3wb.prefix('svg-background'))
             .attr('width', config.width)
             .attr('height', config.height)
             .attr('fill', config.bgColor);
@@ -164,13 +164,13 @@
 
         if (config.debug) {
             let debugGroup = svg.append('g')
-                .attr('class', d3wb.selector('debug'));
+                .attr('class', d3wb.prefix('debug'));
             drawDebugCanvas(debugGroup, config);
             drawDebugGroup(debugGroup, config);
         }
 
         let g = svg.append('g')
-            .attr('class', d3wb.selector('inner-canvas'))
+            .attr('class', d3wb.prefix('inner-canvas'))
             .attr('transform',
                 'translate(' + config.margin.left + ',' +
                 config.margin.top + ')');
@@ -200,6 +200,8 @@
         cv.d = config.data();
         // embedding
         cv.div = d3.select(divId);
+        // parent div
+        cv.parentDivId = divId;
         // helper method for circular visualizaions
         cv.transformCircular = function() {
             this.attr('transform', 'translate(' +
@@ -276,7 +278,7 @@
 
     const drawDebugCanvas = function(svg, config) {
         let g = svg.append('g')
-            .attr('class', d3wb.selector('debug-outer'));
+            .attr('class', d3wb.prefix('debug-outer'));
         g.append('rect')
             .attr('width', config.width)
             .attr('height', config.height)
@@ -341,7 +343,7 @@
 
     const drawDebugGroup = function(svg, config) {
         let g = svg.append('g')
-            .attr('class', d3wb.selector('debug-inner'));
+            .attr('class', d3wb.prefix('debug-inner'));
         g.append('rect')
             .attr('width', config.innerWidth)
             .attr('height', config.innerHeight)
