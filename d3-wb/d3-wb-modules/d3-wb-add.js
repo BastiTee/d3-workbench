@@ -631,7 +631,7 @@
             if (!arguments.length) return type;
             c.scale = value;
             return chart;
-        }
+        };
 
         c.ticks;
         chart.ticks = function(value) {
