@@ -25,17 +25,21 @@
         let chart = function(selection) {
             selection.each(function(data, i, nodes) {
                 let s = d3.select(nodes[i]);
-                let d3a = c.type(scale);
-                appendTickStyle(d3a, c);
                 let axis = s.append('g')
                     .attr('transform', 'translate(' + c.x + ',' +
                         c.y + ')')
                     .attr('class', d3wb.prefix('axis axis-x'))
                     .call(d3wb.util.makeUnselectable());
-                c.update = function() {
-                    axis.call(d3a);
+                c.update = function(first) {
+                    first = first || false;
+                    let scale = applyScaleSettings(c);
+                    if (first) {
+                        axis.call(scale);
+                    } else {
+                        axis.transition().duration(500).call(scale);
+                    }
                 };
-                c.update();
+                c.update(true);
                 injectAxisColor(c.color, axis);
                 if (rotation == 90) {
                     axis.selectAll('text')
@@ -55,7 +59,7 @@
             return chart;
         };
 
-        let c = commonAxisElements(chart, d3.axisTop);
+        let c = commonAxisElements(chart, d3.axisTop, scale);
         return chart;
     };
 
@@ -67,21 +71,25 @@
         let chart = function(selection) {
             selection.each(function(data, i, nodes) {
                 let s = d3.select(nodes[i]);
-                let d3a = c.type(scale);
-                appendTickStyle(d3a, c);
                 let axis = s.append('g')
                     .attr('class', d3wb.prefix('axis axis-y'))
                     .attr('transform', 'translate(' + c.x + ',' + c.y + ')')
                     .call(d3wb.util.makeUnselectable());
-                c.update = function() {
-                    axis.call(d3a);
+                c.update = function(first) {
+                    first = first || false;
+                    let scale = applyScaleSettings(c);
+                    if (first) {
+                        axis.call(scale);
+                    } else {
+                        axis.transition().duration(500).call(scale);
+                    }
                 };
-                c.update();
+                c.update(true);
                 injectAxisColor(c.color, axis);
             });
         };
 
-        let c = commonAxisElements(chart, d3.axisLeft);
+        let c = commonAxisElements(chart, d3.axisLeft, scale);
         return chart;
     };
 
@@ -594,7 +602,7 @@
             .attr('fill', color);
     };
 
-    let commonAxisElements = function(chart, defaultType) {
+    let commonAxisElements = function(chart, defaultType, defaultScale) {
         let c = {};
 
         c.x = 0;
@@ -617,6 +625,13 @@
             c.type = value;
             return chart;
         };
+
+        c.scale = defaultScale;
+        chart.scale = function(value) {
+            if (!arguments.length) return type;
+            c.scale = value;
+            return chart;
+        }
 
         c.ticks;
         chart.ticks = function(value) {
@@ -658,12 +673,14 @@
         return c;
     };
 
-    let appendTickStyle = function(d3a, c) {
+    let applyScaleSettings = function(c) {
+        let currentScale = c.type(c.scale);
         if (c.ticks) {
-            d3a.ticks(c.ticks);
+            currentScale.ticks(c.ticks);
         }
         if (c.tickFormat) {
-            d3a.tickFormat(c.tickFormat);
+            currentScale.tickFormat(c.tickFormat);
         }
+        return currentScale;
     };
 })));
