@@ -58,6 +58,7 @@
      ************************************************************************/
 
     const configureCanvas = function() {
+
         let dc = {
             /* Desired width of SVG element */
             width: getDocumentDimension('Width'),
@@ -80,7 +81,7 @@
             /* Print out debug messages and debug canvas */
             debug: false,
             /* Background color (use theme default if available)*/
-            bgColor: getWbColorOrDefault(),
+            bgColor: d3wb.defaultBgColor || 'rgb(255, 255, 255)',
             /* Interal datasource */
             datasrc: undefined,
         };
@@ -160,16 +161,10 @@
             svg = d3.select('svg');
         }
 
-        svg
-            .attr('width', config.width)
+        svg.attr('width', config.width)
             .attr('height', config.height)
             .style('margin-left', 'auto')
             .style('margin-top', 'auto');
-        svg.append('rect')
-            .attr('class', d3wb.prefix('svg-background'))
-            .attr('width', config.width)
-            .attr('height', config.height)
-            .attr('fill', config.bgColor);
 
         // if standalone-svg div is present, make background the same color
         // and remove margins and paddings
@@ -178,12 +173,19 @@
             .style('margin', 0)
             .style('overflow', 'hidden');
 
+        svg.append('rect')
+            .attr('class', d3wb.prefix('svg-background'))
+            .attr('width', config.width)
+            .attr('height', config.height)
+            .attr('fill', config.bgColor);
+
         if (config.debug) {
             let debugGroup = svg.append('g')
                 .attr('class', d3wb.prefix('debug'));
             drawDebugCanvas(debugGroup, config);
             drawDebugGroup(debugGroup, config);
         }
+
 
         let g = svg.append('g')
             .attr('class', d3wb.prefix('inner-canvas'))
@@ -334,25 +336,6 @@
             document.documentElement['offset' + dim]);
     };
 
-    const getWbColorOrDefault = function(color) {
-        let libPresent = d3wb.theme !== undefined;
-        switch (color) {
-            case 'grey':
-                return libPresent ? d3wb.color.background.fade(30) :
-                    'rgb(192, 192, 192)';
-            case 'lightgrey':
-                return libPresent ? d3wb.color.background.fade(20) :
-                    'rgb(162, 162, 162)';
-            case 'verylightgrey':
-                return libPresent ? d3wb.color.background.fade(10) :
-                    'rgb(132, 132, 132)';
-            default:
-                return libPresent ? d3wb.color.background :
-                    'rgb(255, 255, 255)';
-        }
-    };
-
-
     /** **********************************************************************
      * PRIVATE METHODS FOR DEBUGGING CANVAS DRAWING
      ************************************************************************/
@@ -363,10 +346,10 @@
         g.append('rect')
             .attr('width', config.width)
             .attr('height', config.height)
-            .attr('fill', getWbColorOrDefault('lightgrey'));
+            .attr('fill', 'rgb(162, 162, 162)');
         g.append('text')
             .attr('x', config.width)
-            .attr('fill', getWbColorOrDefault())
+            .attr('fill', 'rgb(255, 255, 255)')
             .style('dominant-baseline', 'hanging')
             .style('text-anchor', 'end')
             .style('-moz-user-select', 'none')
@@ -376,11 +359,11 @@
         g.append('rect')
             .attr('width', config.margin.left)
             .attr('height', config.margin.top)
-            .attr('fill', getWbColorOrDefault('verylightgrey'));
+            .attr('fill', 'rgb(132, 132, 132)');
         g.append('text')
             .attr('font-size', '80%')
             .attr('x', config.margin.left / 2)
-            .attr('fill', getWbColorOrDefault())
+            .attr('fill', 'rgb(255, 255, 255)')
             .style('dominant-baseline', 'hanging')
             .style('text-anchor', 'middle')
             .style('-moz-user-select', 'none')
@@ -389,7 +372,7 @@
         g.append('text')
             .attr('font-size', '80%')
             .attr('y', config.margin.top / 2)
-            .attr('fill', getWbColorOrDefault())
+            .attr('fill', 'rgb(255, 255, 255)')
             .style('dominant-baseline', 'middle')
             .style('text-anchor', 'begin')
             .style('-moz-user-select', 'none')
@@ -400,12 +383,12 @@
             .attr('y', config.height - config.margin.bottom)
             .attr('width', config.margin.right)
             .attr('height', config.margin.bottom)
-            .attr('fill', getWbColorOrDefault('verylightgrey'));
+            .attr('fill', 'rgb(132, 132, 132)');
         g.append('text')
             .attr('font-size', '80%')
             .attr('x', config.width - config.margin.right / 2)
             .attr('y', config.height)
-            .attr('fill', getWbColorOrDefault())
+            .attr('fill', 'rgb(255, 255, 255)')
             .style('dominant-baseline', 'baseline')
             .style('text-anchor', 'middle')
             .style('-moz-user-select', 'none')
@@ -415,7 +398,7 @@
             .attr('font-size', '80%')
             .attr('x', config.width).attr('y',
                 config.height - config.margin.bottom / 2)
-            .attr('fill', getWbColorOrDefault())
+            .attr('fill', 'rgb(255, 255, 255)')
             .style('dominant-baseline', 'middle')
             .style('text-anchor', 'end')
             .style('-moz-user-select', 'none')
@@ -429,10 +412,10 @@
         g.append('rect')
             .attr('width', config.innerWidth)
             .attr('height', config.innerHeight)
-            .attr('fill', getWbColorOrDefault('grey'));
+            .attr('fill', 'rgb(192, 192, 192)');
         g.append('text')
             .attr('x', config.innerWidth)
-            .attr('fill', getWbColorOrDefault())
+            .attr('fill', 'rgb(255, 255, 255)')
             .style('dominant-baseline', 'hanging')
             .style('text-anchor', 'end')
             .style('-moz-user-select', 'none')
@@ -442,23 +425,23 @@
         g.append('circle')
             .attr('cx', config.innerWidth / 2).attr('cy',
                 config.innerHeight / 2)
-            .attr('r', 5).attr('fill', getWbColorOrDefault());
+            .attr('r', 5).attr('fill', 'rgb(255, 255, 255)');
         g.append('line')
             .attr('x1', 0).attr('x2', config.innerWidth / 2)
             .attr('y1', 0).attr('y2', config.innerHeight / 2)
-            .attr('stroke-width', 1).attr('stroke', getWbColorOrDefault());
+            .attr('stroke-width', 1).attr('stroke', 'rgb(255, 255, 255)');
         g.append('line')
             .attr('x1', config.innerWidth).attr('x2', config.innerWidth / 2)
             .attr('y1', config.innerHeight).attr('y2', config.innerHeight / 2)
-            .attr('stroke-width', 1).attr('stroke', getWbColorOrDefault());
+            .attr('stroke-width', 1).attr('stroke', 'rgb(255, 255, 255)');
         g.append('line')
             .attr('x1', config.innerWidth).attr('x2', config.innerWidth / 2)
             .attr('y1', 0).attr('y2', config.innerHeight / 2)
-            .attr('stroke-width', 1).attr('stroke', getWbColorOrDefault());
+            .attr('stroke-width', 1).attr('stroke', 'rgb(255, 255, 255)');
         g.append('line')
             .attr('x1', 0).attr('x2', config.innerWidth / 2)
             .attr('y1', config.innerHeight).attr('y2', config.innerHeight / 2)
-            .attr('stroke-width', 1).attr('stroke', getWbColorOrDefault());
+            .attr('stroke-width', 1).attr('stroke', 'rgb(255, 255, 255)');
         g.attr('transform',
             'translate(' + config.margin.left + ',' + config.margin.top + ')');
     };

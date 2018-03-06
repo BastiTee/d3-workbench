@@ -1,5 +1,7 @@
 (function() {
     d3wb.theme('dark');
+    d3wb.defaultBgColor = d3wb.color.background;
+
     d3wb.util.injectCSS(`
     * {
         background-color: ` + d3wb.color.background + `;
