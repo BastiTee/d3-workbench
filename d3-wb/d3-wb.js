@@ -186,7 +186,6 @@
             drawDebugGroup(debugGroup, config);
         }
 
-
         let g = svg.append('g')
             .attr('class', d3wb.prefix('inner-canvas'))
             .attr('transform',
@@ -199,7 +198,9 @@
         // will not be positioned correctly
         d3.select(divId).style('position', 'relative');
 
-        let cv = g; // default object is the drawable canvas
+        // default object is the drawable canvas
+        let cv = g;
+        // parent SVG object
         cv.svg = svg;
         // canvas width without margins (here goes the viz)
         cv.width = config.innerWidth;
@@ -213,6 +214,11 @@
         cv.margin = config.margin;
         cv.mar = config.margin;
         cv.m = config.margin;
+        // svg size including margins
+        cv.widthFull = config.innerWidth + config.margin.left +
+            config.margin.right;
+        cv.heightFull = config.innerHeight + config.margin.top +
+            config.margin.bottom;
         // data
         cv.data = config.data();
         cv.d = config.data();
