@@ -255,6 +255,7 @@
         let embedded = scriptEl.getAttribute('embedded') ||
             scriptEl.getAttribute('data-embedded') || false;
         if (config.debug) {
+            console.log('--------- | ---------');
             console.log('scri-path | ' + scriptPath);
             console.log('embedded  | ' + embedded);
         }

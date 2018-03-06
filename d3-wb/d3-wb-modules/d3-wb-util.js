@@ -235,6 +235,9 @@
     };
 
     const autocastNumericColumns = function(data) {
+        if (data === undefined) {
+            throw Error('Provided dataset is undefined.');
+        }
         if (!data.columns) {
             throw Error('Dataset for auto-casting does not contain a ' +
                 'columns attribute, i.e., doesn\'t seem to be an d3-like ' +
