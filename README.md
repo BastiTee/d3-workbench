@@ -2,6 +2,8 @@
 
 [![GitHub release](https://img.shields.io/github/release/BastiTee/d3-workbench.svg)](https://github.com/BastiTee/d3-workbench/releases/latest) [![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://d3-workbench.bastis.cloud/)
 
+**Update:** I wrote a [tutorial](https://bastis.cloud/2018/03/05/d3wb-chart-tutorial.html) on the basic usage of `d3-workbench` for my blog. 
+
 # In a nutshell
 
 d3-workbench helps you to quickly create data visualization prototypes with [d3.js](https://d3js.org).
