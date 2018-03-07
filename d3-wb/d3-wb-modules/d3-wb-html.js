@@ -36,31 +36,26 @@
                     c.callback(value, index);
                 };
 
-                let selectDistrict = s
-                    .append('select')
-                    .attr('id', c.id)
+                let div = appendBaseDiv(s, c);
+
+                let selectEl = div.append('select')
+                    .attr('id', c.id + '-control')
                     .on('change', callbackImpl);
-                selectDistrict
+                selectEl
                     .selectAll('option')
                     .data(options).enter()
                     .append('option')
+                    .attr('class', c.id + '-option')
                     .text(function(d) {
                         return d;
                     });
-                d3wb.util.injectCSS(`
-                        #` + c.id + ` {
-                            position: absolute;
-                            -webkit-appearance: none;
-                            -moz-appearance: none;
-                            appearance: none;
-                        }
-                    `);
+
                 callbackImpl();
                 c.autoLocate();
             });
         };
 
-        let c = commonElements(chart);
+        let c = commonElements(chart, 'dropdown');
 
         chart.options = function(value) {
             if (!arguments.length) return options;
@@ -90,19 +85,15 @@
                     buttonEl.text(options[index]);
                 };
 
-                buttonEl = s
-                    .append('button')
-                    .attr('id', c.id)
+                let div = appendBaseDiv(s, c);
+
+                buttonEl = div.append('button')
+                    .attr('id', c.id + '-control')
                     .style('user-select', 'none')
                     .style('-moz-user-select', 'none')
                     .text(options[index])
                     .on('click', callbackImpl);
 
-                d3wb.util.injectCSS(`
-                        #` + c.id + ` {
-                            position: absolute;
-                        }
-                    `);
                 if (c.callbackOnInit) {
                     callbackImpl();
                 }
@@ -110,7 +101,7 @@
             });
         };
 
-        let c = commonElements(chart);
+        let c = commonElements(chart, 'button');
 
         chart.options = function(value) {
             if (!arguments.length) return options;
@@ -132,23 +123,21 @@
                     c.callback(element.value);
                 };
 
-                s
-                    .append('input')
-                    .attr('id', c.id)
+                let div = appendBaseDiv(s, c);
+
+                div.append('input')
+                    .attr('id', c.id + '-control')
+                    .style('margin', 0)
+                    .style('padding', 0)
                     .on('input', function(d, i, nodes) {
                         callbackImpl(nodes[i]);
                     });
 
-                d3wb.util.injectCSS(`
-                        #` + c.id + ` {
-                            position: absolute;
-                        }
-                    `);
                 c.autoLocate();
             });
         };
 
-        let c = commonElements(chart);
+        let c = commonElements(chart, 'textfield');
 
         return chart;
     };
@@ -174,48 +163,40 @@
             selection.each(function(d, i, nodes) {
                 let s = d3.select(nodes[i]);
 
-                let div = s.append('div')
-                    .attr('id', c.id)
-                    .call(d3wb.util.makeUnselectable());
+                let div = appendBaseDiv(s, c);
 
                 let input = div
                     .append('p')
-                    .attr('id', c.id + '-in')
+                    .attr('id', c.id + '-control')
                     .html('&#9432;');
 
                 div.append('p')
-                    .attr('id', c.id + '-ib')
+                    .attr('id', c.id + '-infobox')
                     .html(infoContent);
 
                 input.on('click', function() {
                     open = !open;
                     let opac = open ? infoOpacity : 0.0;
                     d3wb.util.injectCSS(
-                        '#' + c.id + '-ib { opacity: ' + opac + ';}');
+                        '#' + c.id + '-infobox { opacity: ' + opac + ';}');
                 });
 
                 d3wb.util.injectCSS(`
                     #` + c.id + ` {
-                        position: absolute;
-                        margin: 0;
-                        padding: 0;
                         pointer-events:none;
                     }
-                    #` + c.id + `-in {
-                        position: relative;
-                        text-align: left;
-                        width: 0;
+                    #` + c.id + `-control {
                         margin: 0;
                         padding: 0;
                         color: ` + controlColor + `;
                         font-size: ` + controlFontSize + `;
                         pointer-events: auto;
                     }
-                    #` + c.id + `-in:hover {
+                    #` + c.id + `-button:hover {
                         cursor: default;
                         color: ` + controlColorHover + `;
                     }
-                    #` + c.id + `-ib {
+                    #` + c.id + `-infobox {
                         position: relative;
                         text-align: left;
                         margin: 0;
@@ -233,7 +214,7 @@
             });
         };
 
-        let c = commonElements(chart);
+        let c = commonElements(chart, 'infobox');
 
         chart.controlColor = function(value) {
             if (!arguments.length) return controlColor;
@@ -299,9 +280,18 @@
         return selection;
     };
 
-    let commonElements = function(chart) {
+    let appendBaseDiv = function(s, c) {
+        return s.append('div')
+            .attr('id', c.id)
+            .style('position', 'absolute')
+            .style('margin', 0)
+            .style('padding', 0)
+            .call(d3wb.util.makeUnselectable());
+    };
+
+    let commonElements = function(chart, type) {
         let c = {
-            id: d3wb.util.websafeGuid(),
+            id: d3wb.util.websafeShortGuid() + '-' + type,
             div: d3.select('body'),
             callback: function() {
                 console.log('callback.');

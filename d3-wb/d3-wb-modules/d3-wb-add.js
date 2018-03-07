@@ -251,7 +251,7 @@
         let xOffset = 2;
         let yOffset = 1;
         let opacity = 0.4;
-        let id = d3wb.util.guid();
+        let id = d3wb.util.websafeGuid();
 
         let chart = function(selection) {
             selection.each(function(d, i, nodes) {

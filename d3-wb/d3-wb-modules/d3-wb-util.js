@@ -62,14 +62,14 @@
             .substring(1);
     };
 
-    const guid = function() {
-        return randomString() + randomString() + '-' + randomString() +
-            '-' + randomString() + '-' + randomString() + '-' +
-            randomString() + randomString() + randomString();
+    const websafeGuid = function() {
+        return d3wb.prefix(randomString() + randomString() + '-' +
+            randomString() + '-' + randomString() + '-' + randomString() +
+            '-' + randomString() + randomString() + randomString());
     };
 
-    const websafeGuid = function() {
-        return d3wb.prefix(guid());
+    const websafeShortGuid = function() {
+        return d3wb.prefix(randomString() + randomString());
     };
 
     const makeUnselectable = function() {
@@ -274,8 +274,8 @@
         changeCSVSeparator: changeCSVSeparator,
         smoothData: smoothData,
         countCsvColumn: countCsvColumn,
-        guid: guid,
         websafeGuid: websafeGuid,
+        websafeShortGuid: websafeShortGuid,
         injectCSS: injectCSS,
         logSVGSize: logSVGSize,
         jsonAttributeMapToCSV: jsonAttributeMapToCSV,
@@ -284,5 +284,4 @@
         autocastNumericColumns: autocastNumericColumns,
         symbol: symbol,
     };
-
 })));
