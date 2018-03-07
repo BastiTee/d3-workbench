@@ -163,7 +163,6 @@
         // if standalone-svg div is present, make background the same color
         // and remove margins and paddings
         d3.select(standaloneBodyId)
-            .style('background-color', config.bgColor)
             .style('margin', 0)
             .style('overflow', 'hidden');
 

@@ -3,9 +3,10 @@
     d3wb.defaultBgColor = d3wb.color.background;
 
     d3wb.util.injectCSS(`
-    * {
+    #main {
         background-color: ` + d3wb.color.background + `;
     }
+
     .page-footer {
         display: none;
     }

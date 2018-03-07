@@ -257,7 +257,9 @@ const createTemplateVisualization = function(fsPath) {
 // ////////////////////////////////////////////////////////////////////////
 
 const normalizeRequestPath = function(requestPath) {
-    return requestPath.replace('index.html', '');
+    return requestPath
+        .replace('index.html', '')
+        .replace('embedded.html', '');
 };
 
 const setNoCache = function(request, response, next) {
@@ -269,7 +271,9 @@ const setNoCache = function(request, response, next) {
 };
 
 const serveIndexPage = function(request, response, next) {
-    let requestPath = normalizeRequestPath(request.path);
+    let requestPath = request.path.trim();
+    let filen = requestPath.replace(/.*\//, '');
+    requestPath = normalizeRequestPath(requestPath);
     let fsPath = path.join(argv.i, requestPath).replace('%20', ' ');
     let level = requestPath.split('/').length - 1;
 
@@ -284,7 +288,17 @@ const serveIndexPage = function(request, response, next) {
         });
         response.write(generateIndexDocument(requestPath, fsPath, level));
         response.end();
+    } else if (isContentFolder(requestPath) && level == 3 &&
+        filen == 'embedded.html') {
+        // on embedded html serve the embedded chart
+        response.writeHead(200, {
+            'Content-Type': 'text/html',
+        });
+        let template = fileToStr('index-embedded-canvas.html');
+        response.write(template);
+        response.end();
     } else if (isContentFolder(requestPath) && level == 3) {
+        // on remaining index documents serve the standalone-canvas
         response.writeHead(200, {
             'Content-Type': 'text/html',
         });
@@ -294,7 +308,7 @@ const serveIndexPage = function(request, response, next) {
             template = fs.readFileSync(path.join(fsPath, 'index.html'));
         } catch (error) {
             // otherwise generate it
-            template = fileToStr('index-canvas.html');
+            template = fileToStr('index-standalone-canvas.html');
         }
         response.write(template);
         response.end();
