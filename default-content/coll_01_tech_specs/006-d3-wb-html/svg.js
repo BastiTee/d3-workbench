@@ -93,7 +93,7 @@
         .style('left', left)
         .style('width', '167px');
     cv.div.call(textfield);
-    createText(col3, 121).text(button2.id());
+    createText(col3, 121).text(textfield.id());
 
     // -----------------------------------------------------------------------
 })();

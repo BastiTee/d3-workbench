@@ -31,7 +31,8 @@
                 let s = d3.select(nodes[i]);
 
                 let callbackImpl = function() {
-                    let value = d3.select('#' + c.id).property('value');
+                    let value = d3.select('#' + c.id +
+                        '-control').property('value');
                     let index = options.indexOf(value);
                     c.callback(value, index);
                 };
@@ -78,7 +79,8 @@
                 let s = d3.select(nodes[i]);
 
                 let callbackImpl = function() {
-                    let value = d3.select('#' + c.id).text();
+                    let value = d3.select('#' + c.id +
+                        '-control').text();
                     let idx = options.indexOf(value);
                     index = (index + 1) % (options.length);
                     c.callback(value, idx);
@@ -188,6 +190,7 @@
                     #` + c.id + `-control {
                         margin: 0;
                         padding: 0;
+                        width: 0px;
                         color: ` + controlColor + `;
                         font-size: ` + controlFontSize + `;
                         pointer-events: auto;
@@ -292,7 +295,6 @@
     let commonElements = function(chart, type) {
         let c = {
             id: d3wb.util.websafeShortGuid() + '-' + type,
-            div: d3.select('body'),
             callback: function() {
                 console.log('callback.');
             },
