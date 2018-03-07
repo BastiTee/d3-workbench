@@ -1,8 +1,13 @@
 <!doctype html>
+<html>
 
 <head>
     <meta charset="utf-8">
     <base target="_blank">
+    <title>Embedded canvas</title>
+    <!-- Server resources -->
+    <link rel="icon" href="../../res/gfx/favicon.png">
+    <link rel="stylesheet" href="../../res/css/main.css">
     <!-- External libraries -->
     <script src="../../libs/d3/build/d3.min.js"></script>
     <script src="../../libs/d3-cloud/build/d3.layout.cloud.js"></script>
@@ -37,11 +42,10 @@
     <script src="../../d3_wb/d3-wb-reusable-charts/d3-wb-timeseries.js"></script>
     <script src="../../d3_wb/d3-wb-reusable-charts/d3-wb-treemap.js"></script>
     <script src="../../d3_wb/d3-wb-reusable-charts/d3-wb-wordcloud.js"></script>
-    <!-- Server resources -->
-    <link rel="icon" href="../../res/gfx/favicon.png">
-    <link rel="stylesheet" href="../../res/css/main.css">
+
     <link rel="stylesheet" href="../local.css">
     <script src="../local.js"></script>
+
     <style>
         body {
             max-width: 80%;
@@ -49,19 +53,23 @@
             margin-right: auto;
             background-color: #cddadd;
         }
+
         #vis {
             height: 400px;
         }
+
         .vis-label {
             margin-top: 0.5em;
             width: 100%;
             text-align: center;
             font-size: 85%;
         }
+
         h1 {
             text-align: center;
         }
     </style>
+
 </head>
 
 <body>
@@ -72,11 +80,7 @@
     </p>
     <div id="vis">
         <svg id="svg-vis"></svg>
-        <script src="svg.js"
-            data-embedded="true"
-            data-datapath="."
-            data-svgid="svg-vis"
-            data-divid="vis"></script>
+        <script src="svg.js" data-embedded="true" data-datapath="." data-svgid="svg-vis" data-divid="vis"></script>
     </div>
     <div class="vis-label">Figure 1</div>
     <p>
@@ -85,3 +89,5 @@
     </p>
 
 </body>
+
+</html>
