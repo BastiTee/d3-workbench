@@ -23,13 +23,8 @@
      * PRIVATE CONSTANTS
      ************************************************************************/
 
-    const CSS_PREFIX = 'wb-';
-    const STANDALONE_BODY_ID = '#' + CSS_PREFIX + 'standalone-body';
-    const SYMBOLS = {
-        mean: 'Ø',
-        median: 'x̃',
-        sum: 'Σ',
-    };
+    const globalCssPrefix = 'wb-';
+    const standaloneBodyId = '#' + globalCssPrefix + 'standalone-body';
     const numberFormat = d3.format('.1f');
 
     /** **********************************************************************
@@ -40,17 +35,17 @@
         let split = cssIdentifier.trim().replace(/ +/g, ' ').split(' ');
         let pfxSplit = [];
         split.forEach(function(d) {
-            pfxSplit.push(CSS_PREFIX + d);
+            pfxSplit.push(globalCssPrefix + d);
         });
         return pfxSplit.join(' ');
     };
 
     const cssSelector = function(cssIdentifier) {
-        return '.' + CSS_PREFIX + cssIdentifier;
+        return '.' + globalCssPrefix + cssIdentifier;
     };
 
     const cssIdSelector = function(cssIdentifier) {
-        return '#' + CSS_PREFIX + cssIdentifier;
+        return '#' + globalCssPrefix + cssIdentifier;
     };
 
     /** **********************************************************************
@@ -58,7 +53,6 @@
      ************************************************************************/
 
     const configureCanvas = function() {
-
         let dc = {
             /* Desired width of SVG element */
             width: getDocumentDimension('Width'),
@@ -168,7 +162,7 @@
 
         // if standalone-svg div is present, make background the same color
         // and remove margins and paddings
-        d3.select(STANDALONE_BODY_ID)
+        d3.select(standaloneBodyId)
             .style('background-color', config.bgColor)
             .style('margin', 0)
             .style('overflow', 'hidden');
@@ -193,7 +187,7 @@
                 config.margin.top + ')');
 
         let divId = config.parentDivId ? config.parentDivId :
-            STANDALONE_BODY_ID;
+            standaloneBodyId;
         // inject position relative to DIV otherwise html elements
         // will not be positioned correctly
         d3.select(divId).style('position', 'relative');
@@ -466,8 +460,6 @@
         selector: cssSelector,
         /* Get CSS id selector with internal prefix */
         idSelector: cssIdSelector,
-        /* Symbol constants */
-        symbol: SYMBOLS,
     };
 
     return d3wb;

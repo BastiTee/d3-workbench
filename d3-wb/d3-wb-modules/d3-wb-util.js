@@ -56,6 +56,12 @@
         }
     };
 
+    const randomString = function() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    };
+
     const guid = function() {
         return randomString() + randomString() + '-' + randomString() +
             '-' + randomString() + '-' + randomString() + '-' +
@@ -63,7 +69,7 @@
     };
 
     const websafeGuid = function() {
-        return 'd3wb-' + guid();
+        return d3wb.prefix(guid());
     };
 
     const makeUnselectable = function() {
@@ -253,6 +259,12 @@
         });
     };
 
+    const symbol = {
+        mean: 'Ø',
+        median: 'x̃',
+        sum: 'Σ',
+    };
+
     /* *********************************************************************
      * PUBLIC API
      * ********************************************************************* */
@@ -270,15 +282,7 @@
         getBoundingBoxCenter: getBoundingBoxCenter,
         makeUnselectable: makeUnselectable,
         autocastNumericColumns: autocastNumericColumns,
+        symbol: symbol,
     };
 
-    /* *********************************************************************
-     * PRIVATE FUNCTIONS
-     * ********************************************************************* */
-
-    let randomString = function() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    };
 })));
