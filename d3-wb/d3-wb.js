@@ -345,10 +345,12 @@
         let g = svg.append('g')
             .attr('class', d3wb.prefix('debug-outer'));
         g.append('rect')
+            .attr('class', d3wb.prefix('debug-outer-bg'))
             .attr('width', config.width)
             .attr('height', config.height)
             .attr('fill', 'rgb(162, 162, 162)');
         g.append('text')
+            .attr('class', d3wb.prefix('debug-outer-bg-text'))
             .attr('x', config.width)
             .attr('fill', 'rgb(255, 255, 255)')
             .style('dominant-baseline', 'hanging')
@@ -358,10 +360,12 @@
             .text(numberFormat(config.width) + 'x' +
                 numberFormat(config.height));
         g.append('rect')
+            .attr('class', d3wb.prefix('debug-outer-tlc'))
             .attr('width', config.margin.left)
             .attr('height', config.margin.top)
             .attr('fill', 'rgb(132, 132, 132)');
         g.append('text')
+            .attr('class', d3wb.prefix('debug-outer-tlc-text'))
             .attr('font-size', '80%')
             .attr('x', config.margin.left / 2)
             .attr('fill', 'rgb(255, 255, 255)')
@@ -371,6 +375,7 @@
             .style('user-select', 'none')
             .text(numberFormat(config.margin.left));
         g.append('text')
+            .attr('class', d3wb.prefix('debug-outer-tlc-text'))
             .attr('font-size', '80%')
             .attr('y', config.margin.top / 2)
             .attr('fill', 'rgb(255, 255, 255)')
@@ -380,12 +385,14 @@
             .style('user-select', 'none')
             .text(numberFormat(config.margin.top));
         g.append('rect')
+            .attr('class', d3wb.prefix('debug-outer-brc'))
             .attr('x', config.width - config.margin.right)
             .attr('y', config.height - config.margin.bottom)
             .attr('width', config.margin.right)
             .attr('height', config.margin.bottom)
             .attr('fill', 'rgb(132, 132, 132)');
         g.append('text')
+            .attr('class', d3wb.prefix('debug-outer-brc-text'))
             .attr('font-size', '80%')
             .attr('x', config.width - config.margin.right / 2)
             .attr('y', config.height)
@@ -396,6 +403,7 @@
             .style('user-select', 'none')
             .text(numberFormat(config.margin.right));
         g.append('text')
+            .attr('class', d3wb.prefix('debug-outer-brc-text'))
             .attr('font-size', '80%')
             .attr('x', config.width).attr('y',
                 config.height - config.margin.bottom / 2)
@@ -411,10 +419,12 @@
         let g = svg.append('g')
             .attr('class', d3wb.prefix('debug-inner'));
         g.append('rect')
+            .attr('class', d3wb.prefix('debug-inner-bg'))
             .attr('width', config.innerWidth)
             .attr('height', config.innerHeight)
             .attr('fill', 'rgb(192, 192, 192)');
         g.append('text')
+            .attr('class', d3wb.prefix('debug-inner-bg-text'))
             .attr('x', config.innerWidth)
             .attr('fill', 'rgb(255, 255, 255)')
             .style('dominant-baseline', 'hanging')
@@ -424,22 +434,27 @@
             .text(numberFormat(config.innerWidth) + 'x' +
                 numberFormat(config.innerHeight));
         g.append('circle')
+            .attr('class', d3wb.prefix('debug-inner-center'))
             .attr('cx', config.innerWidth / 2).attr('cy',
                 config.innerHeight / 2)
             .attr('r', 5).attr('fill', 'rgb(255, 255, 255)');
         g.append('line')
+            .attr('class', d3wb.prefix('debug-inner-cross'))
             .attr('x1', 0).attr('x2', config.innerWidth / 2)
             .attr('y1', 0).attr('y2', config.innerHeight / 2)
             .attr('stroke-width', 1).attr('stroke', 'rgb(255, 255, 255)');
         g.append('line')
+            .attr('class', d3wb.prefix('debug-inner-cross'))
             .attr('x1', config.innerWidth).attr('x2', config.innerWidth / 2)
             .attr('y1', config.innerHeight).attr('y2', config.innerHeight / 2)
             .attr('stroke-width', 1).attr('stroke', 'rgb(255, 255, 255)');
         g.append('line')
+            .attr('class', d3wb.prefix('debug-inner-cross'))
             .attr('x1', config.innerWidth).attr('x2', config.innerWidth / 2)
             .attr('y1', 0).attr('y2', config.innerHeight / 2)
             .attr('stroke-width', 1).attr('stroke', 'rgb(255, 255, 255)');
         g.append('line')
+            .attr('class', d3wb.prefix('debug-inner-cross'))
             .attr('x1', 0).attr('x2', config.innerWidth / 2)
             .attr('y1', config.innerHeight).attr('y2', config.innerHeight / 2)
             .attr('stroke-width', 1).attr('stroke', 'rgb(255, 255, 255)');
