@@ -316,7 +316,7 @@ const log = function(message) {
 };
 
 const uuid = function(file) {
-    return 'd3wb-' + file.trim().replace(/[^a-zA-Z0-9-]/, '_');
+    return 'wb-' + file.trim().replace(/[^a-zA-Z0-9-]/, '_');
 };
 
 // ////////////////////////////////////////////////////////////////////////
