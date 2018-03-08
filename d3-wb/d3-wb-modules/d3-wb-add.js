@@ -98,6 +98,10 @@
     };
 
     let title = function(text) {
+        if (text === undefined || text == '') {
+            throw Error('Call to d3wb.add.title requires a text' +
+                ' string as function argument.');
+        }
         let color = 'black';
         let fontSize = '140%';
 
@@ -149,6 +153,11 @@
     };
 
     let xAxisLabel = function(text) {
+        if (text === undefined || text == '') {
+            throw Error('Call to d3wb.add.xAxisLabel requires a label' +
+                ' string as function argument.');
+        }
+
         let color = 'black';
         let padding = 15;
         let orientation = 'top';
@@ -191,6 +200,10 @@
 
         chart.orientation = function(value) {
             if (!arguments.length) return orientation;
+            if (value != 'top' && value != 'bottom') {
+                throw Error('Invalid orientation for d3wb.add.xAxisLabel. ' +
+                    'Allowed values: top, bottom');
+            }
             orientation = value;
             return chart;
         };
@@ -198,6 +211,11 @@
     };
 
     let yAxisLabel = function(text) {
+        if (text === undefined || text == '') {
+            throw Error('Call to d3wb.add.yAxisLabel requires a label' +
+                ' string as function argument.');
+        }
+
         let color = 'black';
         let padding = 5;
         let orientation = 'left';
@@ -240,59 +258,24 @@
 
         chart.orientation = function(value) {
             if (!arguments.length) return orientation;
+            if (value != 'left' && value != 'right') {
+                throw Error('Invalid orientation for d3wb.add.yAxisLabel. ' +
+                    'Allowed values: left, right');
+            }
             orientation = value;
             return chart;
         };
         return chart;
     };
 
-    let shadow = function() {
-        let blur = 3;
-        let xOffset = 2;
-        let yOffset = 1;
-        let opacity = 0.4;
-        let id = d3wb.util.websafeGuid();
-
-        let chart = function(selection) {
-            selection.each(function(d, i, nodes) {
-                let s = d3.select(nodes[i]);
-                let svg = d3.select(nodes[i].ownerSVGElement);
-                let defs = svg.append('defs');
-                let filter = defs.append('filter')
-                    .attr('id', id);
-                filter.append('feGaussianBlur')
-                    .attr('in', 'SourceAlpha')
-                    .attr('stdDeviation', blur)
-                    .attr('result', 'blur');
-                filter.append('feOffset')
-                    .attr('in', 'blur')
-                    .attr('dx', xOffset)
-                    .attr('dy', yOffset)
-                    .attr('result', 'offsetBlur');
-                filter.append('feComponentTransfer')
-                    .append('feFuncA')
-                    .attr('type', 'linear')
-                    .attr('slope', opacity);
-                let feMerge = filter.append('feMerge');
-                feMerge.append('feMergeNode')
-                    .attr('in", "offsetBlur');
-                feMerge.append('feMergeNode')
-                    .attr('in', 'SourceGraphic');
-
-                s.style('filter', 'url(#' + id + ')');
-            });
-        };
-        return chart;
-    };
-
     let legend = function() {
-        let color = 'white';
+        let color = 'black';
         let stroke;
-        let colors = ['red', 'green', 'blue'];
+        let colors = ['darkblue', 'blue', 'steelblue'];
         let text = ['Item 1', 'Item 2', 'Item 3'];
         let x = 0;
         let y = 0;
-        let symbol = d3.symbolCircle;
+        let symbol = d3.symbolTriangle;
         let symbolSize = 100;
 
         let chart = function(selection) {
@@ -319,6 +302,16 @@
                 if (stroke) {
                     s.selectAll('path.swatch').style('stroke', stroke);
                 }
+                // re-class legend components
+                s.selectAll('.cell')
+                    .attr('class', d3wb.prefix('cell'));
+                s.selectAll('.legendCells')
+                    .attr('class', d3wb.prefix('legend-cells'));
+                s.selectAll('.label')
+                    .attr('class', d3wb.prefix('cell-label'))
+                    .call(d3wb.util.makeUnselectable());
+                s.selectAll('.swatch')
+                    .attr('class', d3wb.prefix('cell-symbol'));
             });
         };
 
@@ -374,15 +367,19 @@
     };
 
     let textBox = function(text) {
+        if (text === undefined || text == '') {
+            throw Error('Call to d3wb.add.textBox requires a text' +
+                ' string as function argument.');
+        }
         let x = 0;
         let y = 0;
-        let width = 500;
-        let height = 400;
+        let width = 100;
+        let height = 100;
         let fill = 'white';
-        let backgroundColor = 'blue';
-        let padding = 0;
-        let borderRadius = 0;
-        let adjustBackgroundHeight = false;
+        let backgroundColor = 'steelblue';
+        let padding = 3;
+        let borderRadius = 5;
+        let adjustBackgroundHeight = true;
 
         let debug = false;
 
@@ -405,10 +402,12 @@
                 // base group for text box
                 let g = s.append('g')
                     .attr('class', d3wb.prefix('textbox'))
-                    .attr('transform', 'translate(' + x + ',' + y + ')');
+                    .attr('transform', 'translate(' +
+                        (x + padding) + ',' + (y + padding) + ')');
 
                 // background color
                 let bg = g.append('rect')
+                    .attr('class', d3wb.prefix('textbox-bg'))
                     .attr('x', -padding)
                     .attr('y', -padding)
                     .attr('width', width + padding * 2)
@@ -571,22 +570,43 @@
         return chart;
     };
 
+    let shadow = function() {
+        let blur = 3;
+        let xOffset = 2;
+        let yOffset = 1;
+        let opacity = 0.4;
+        let id = d3wb.util.websafeShortGuid() + '-shadow';
 
-    /* *********************************************************************
-     * PUBLIC API
-     * ********************************************************************* */
+        let chart = function(selection) {
+            selection.each(function(d, i, nodes) {
+                let s = d3.select(nodes[i]);
+                let svg = d3.select(nodes[i].ownerSVGElement);
+                let defs = svg.append('defs');
+                let filter = defs.append('filter')
+                    .attr('id', id);
+                filter.append('feGaussianBlur')
+                    .attr('in', 'SourceAlpha')
+                    .attr('stdDeviation', blur)
+                    .attr('result', 'blur');
+                filter.append('feOffset')
+                    .attr('in', 'blur')
+                    .attr('dx', xOffset)
+                    .attr('dy', yOffset)
+                    .attr('result', 'offsetBlur');
+                filter.append('feComponentTransfer')
+                    .append('feFuncA')
+                    .attr('type', 'linear')
+                    .attr('slope', opacity);
+                let feMerge = filter.append('feMerge');
+                feMerge.append('feMergeNode')
+                    .attr('in", "offsetBlur');
+                feMerge.append('feMergeNode')
+                    .attr('in', 'SourceGraphic');
 
-    d3wb.add = {
-        xAxis: xAxis,
-        xAxisBottom: xAxisBottom,
-        xAxisLabel: xAxisLabel,
-        yAxis: yAxis,
-        yAxisRight: yAxisRight,
-        yAxisLabel: yAxisLabel,
-        title: title,
-        shadow: shadow,
-        legend: legend,
-        textBox: textBox,
+                s.style('filter', 'url(#' + id + ')');
+            });
+        };
+        return chart;
     };
 
     /* *********************************************************************
@@ -602,9 +622,24 @@
             .attr('fill', color);
     };
 
-    let commonAxisElements = function(chart, defaultType, defaultScale) {
-        let c = {};
+    let applyScaleSettings = function(c) {
+        let currentScale = c.type(c.scale);
+        if (c.ticks) {
+            currentScale.ticks(c.ticks);
+        }
+        if (c.tickFormat) {
+            currentScale.tickFormat(c.tickFormat);
+        }
+        return currentScale;
+    };
 
+    let commonAxisElements = function(chart, defaultType, defaultScale) {
+        if (defaultScale === undefined) {
+            throw Error('Call to d3wb.add.axis requires a d3.scale as' +
+                ' function argument.');
+        }
+
+        let c = {};
         c.x = 0;
         chart.x = function(value) {
             if (!arguments.length) return x;
@@ -673,14 +708,22 @@
         return c;
     };
 
-    let applyScaleSettings = function(c) {
-        let currentScale = c.type(c.scale);
-        if (c.ticks) {
-            currentScale.ticks(c.ticks);
-        }
-        if (c.tickFormat) {
-            currentScale.tickFormat(c.tickFormat);
-        }
-        return currentScale;
+    /* *********************************************************************
+     * PUBLIC API
+     * ********************************************************************* */
+
+    d3wb.add = {
+        xAxis: xAxis,
+        xAxisTop: xAxis,
+        xAxisBottom: xAxisBottom,
+        xAxisLabel: xAxisLabel,
+        yAxis: yAxis,
+        yAxisLeft: yAxis,
+        yAxisRight: yAxisRight,
+        yAxisLabel: yAxisLabel,
+        title: title,
+        textBox: textBox,
+        legend: legend,
+        shadow: shadow,
     };
 })));
