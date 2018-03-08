@@ -1,6 +1,6 @@
 {
     "name": "d3-workbench",
-    "version": "0.10.1",
+    "version": "0.10.2",
     "description": "A d3.js-powered workbench for rapid visualization prototyping",
     "repository": {
         "type": "git",
