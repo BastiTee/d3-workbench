@@ -78,11 +78,14 @@
                     }
                     active = true;
                     gTooltip = d3.select(root).append('g')
+                        .attr('class', d3wb.prefix('tooltip'))
                         .style('pointer-events', 'none')
                         .style('user-select', 'none')
                         .style('-moz-user-select', 'none');
-                    rect = gTooltip.append('rect');
-                    text = gTooltip.append('text');
+                    rect = gTooltip.append('rect')
+                        .attr('class', d3wb.prefix('tooltip-box'));
+                    text = gTooltip.append('text')
+                        .attr('class', d3wb.prefix('tooltip-text'));
                     // append tooltip text
                     let string = '' + selector(d);
                     let split = string.split('\n');
@@ -198,7 +201,7 @@
             if (!arguments.length) return event;
             if (!supportedEvents.includes(value)) {
                 throw new Error('Event \'' + value +
-                 '\' not supported! Allowed: ' + supportedEvents);
+                    '\' not supported! Allowed: ' + supportedEvents);
             }
             event = value;
             return chart;
@@ -208,7 +211,7 @@
             if (!arguments.length) return action;
             if (!supportedActions.includes(value)) {
                 throw new Error('Action \'' + value +
-                 '\' not supported! Allowed: ' + supportedActions);
+                    '\' not supported! Allowed: ' + supportedActions);
             }
             action = value;
             return chart;
