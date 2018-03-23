@@ -67,7 +67,7 @@ compressor.minify({
     callback: function(err) {
         // .. then bundle d3 including plugins
         bundle([
-            path.join(depsPath, 'd3', 'build', 'd3.min.js'),
+            path.join(depsPath, 'd3', 'dist', 'd3.min.js'),
             path.join(depsPath, 'd3-cloud', 'build/d3.layout.cloud.min.js'),
             path.join(depsPath, 'd3-sankey', 'build/d3-sankey.min.js'),
             path.join(depsPath, 'd3-scale-chromatic',
