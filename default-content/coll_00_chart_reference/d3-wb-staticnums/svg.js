@@ -5,7 +5,7 @@
         .data('data.json')
         .toCanvas();
 
-    d3.json(cv.data, function(error, data) {
+    d3.json(cv.data).then(function(data) {
         let chart = wbStaticNumbers()
             .width(cv.wid)
             .height(cv.hei)

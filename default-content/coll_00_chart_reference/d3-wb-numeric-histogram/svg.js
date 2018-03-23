@@ -4,7 +4,7 @@
         .data('data.csv')
         .toCanvas();
 
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         data.forEach(function(d) {
             d.value = +d.value;
         });

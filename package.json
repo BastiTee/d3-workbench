@@ -1,6 +1,6 @@
 {
     "name": "d3-workbench",
-    "version": "0.10.2",
+    "version": "0.11.0",
     "description": "A d3.js-powered workbench for rapid visualization prototyping",
     "repository": {
         "type": "git",
@@ -22,11 +22,10 @@
         "express": "4.x",
         "minimist": "1.x",
         "browser-sync": "2.x",
-        "d3": "4.x",
-        "d3-cloud": ">=1.2.4",
-        "d3-scale-chromatic": ">=1.1.1",
+        "d3": "5.x",
         "d3-svg-annotation": ">=2.1.0",
         "d3-svg-legend": ">=2.24.1",
+        "d3-cloud": ">=1.2.4",
         "d3-sankey": ">=0.7.1"
     },
     "devDependencies": {

@@ -4,7 +4,7 @@
         .data('data.csv')
         .toCanvas();
 
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         const parseDate = d3.timeParse('%Y-%m-%d');
         data.forEach(function(d) {
             d.date = parseDate(d.date);

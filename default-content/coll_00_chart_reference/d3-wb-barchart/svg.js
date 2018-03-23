@@ -4,7 +4,7 @@
         .data('data.csv')
         .toCanvas();
 
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         let chart = wbBarChart()
             .width(cv.wid)
             .height(cv.hei)

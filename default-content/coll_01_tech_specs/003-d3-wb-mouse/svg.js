@@ -5,7 +5,7 @@
         .data('data.csv')
         .toCanvas();
 
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         let dim = cv.wid / 3;
         cv.selectAll('rect')
             .data(data).enter().append('rect')

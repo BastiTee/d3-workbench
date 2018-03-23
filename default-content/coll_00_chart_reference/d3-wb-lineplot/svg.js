@@ -4,7 +4,7 @@
         .toCanvas();
     d3wb.util.setLocale('de');
 
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         // prepare data
         let parseTime = d3.timeParse('%Y-%m-%d');
         data.forEach(function(d) {

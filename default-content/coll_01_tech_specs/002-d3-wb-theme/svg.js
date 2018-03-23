@@ -37,8 +37,8 @@
 
     /* ------- a basic category from d3.js ------------ */
     id += 1;
-    let data = d3wb.color.array(d3.schemeCategory20c);
-    plotGradient(data, id, 'Default d3.schemeCategory20c');
+    let data = d3wb.color.array(d3.schemeCategory10);
+    plotGradient(data, id, 'Default d3.schemeCategory10');
 
     /* ------ a simple gradient ----- */
     id += 1;

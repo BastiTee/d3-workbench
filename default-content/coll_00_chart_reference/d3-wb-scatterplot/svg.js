@@ -5,8 +5,7 @@
         .data('data.csv')
         .toCanvas();
 
-    d3.csv(cv.data, function(error, data) {
-        if (error) throw error;
+    d3.csv(cv.data).then(function(data) {
         data.forEach(function(d) {
             d['x'] = +d['Market value $m'];
             d['y'] = +d['Employees'];

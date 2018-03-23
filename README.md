@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/BastiTee/d3-workbench.svg)](https://github.com/BastiTee/d3-workbench/releases/latest) [![Demo Online](https://img.shields.io/badge/watch-demo-green.svg)](https://d3-workbench.bastis.cloud/)
 
-**Update:** I wrote a [tutorial](https://bastis.cloud/2018/03/05/d3wb-chart-tutorial.html) on the basic usage of `d3-workbench` for my blog. 
+**Update:** I wrote a [tutorial](https://bastis.cloud/2018/03/05/d3wb-chart-tutorial.html) on the basic usage of `d3-workbench` for my blog.
 
 # In a nutshell
 
@@ -18,7 +18,7 @@ d3-workbench is not a framework, even though it offers libraries with strict API
 
 Think of d3-workbench as a distribution as in «Linux distribution» with [d3.js](https://d3js.org) being the kernel.
 
-All components are [d3.js V4-ready](https://github.com/d3/d3/blob/master/CHANGES.md).
+All components are [d3.js V5-ready](https://github.com/d3/d3/blob/master/CHANGES.md).
 
 # Quick start
 

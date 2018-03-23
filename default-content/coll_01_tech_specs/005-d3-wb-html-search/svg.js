@@ -1,7 +1,7 @@
 (function() {
     let cv = d3wb.config().data('data.csv').toCanvas();
     let colors = d3wb.color.category();
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         // create your actual data visualization...
         createDataVisualization(data);
 

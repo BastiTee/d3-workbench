@@ -5,18 +5,21 @@
         .data(['data.csv']) // returns config object
         .toCanvas(); // converts config object to canvas object
 
-    d3.queue() // load-pattern for multiple datasets
-        .defer(d3.csv, cv.data[0])
-        .await(function(error, data) {
-            // do something with the data..
-            cv.selectAll('text')
-                .data(data).enter().append('text')
-                .text(function(d) {
-                    return d['id'] + ' != ' + d['value'];
-                })
-                .attr('text-anchor', 'middle')
-                .attr('x', cv.wid / 2)
-                .attr('y', cv.margin.top + 10)
-                .attr('fill', d3wb.color.white);
-        });
+    // load-pattern for multiple datasets
+    Promise.all([
+        d3.csv(cv.data[0]),
+        // ...
+    ]).then(function(values) {
+        let data = values[0];
+        // do something with the data..
+        cv.selectAll('text')
+            .data(data).enter().append('text')
+            .text(function(d) {
+                return d['id'] + ' != ' + d['value'];
+            })
+            .attr('text-anchor', 'middle')
+            .attr('x', cv.wid / 2)
+            .attr('y', cv.margin.top + 10)
+            .attr('fill', d3wb.color.white);
+    });
 })();

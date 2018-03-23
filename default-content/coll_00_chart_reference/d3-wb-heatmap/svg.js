@@ -4,7 +4,7 @@
         .data('data.csv')
         .toCanvas();
 
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         let start = d3wb.color.cyan.fade(50);
         let end = d3wb.color.red.fade(20);
         let colors = d3wb.color.gradientArray(start, end, 12);

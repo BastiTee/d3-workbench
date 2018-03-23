@@ -28,8 +28,7 @@
     console.log('cv.d      | ' + cv.d);
     console.log('cv.svg    | ' + cv.svg.node());
 
-    d3.csv(cv.data[0], function(error, data) {
-        console.log(data);
+    d3.csv(cv.data[0]).then(function(data) {
         cv.selectAll('.rects')
             .data(data).enter()
             .append('rect')

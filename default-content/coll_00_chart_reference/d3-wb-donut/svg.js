@@ -5,7 +5,7 @@
         .data('data.csv')
         .toCanvas();
 
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         data = d3wb.util.countCsvColumn(data, 'category');
 
         let chart = wbDonutChart()
