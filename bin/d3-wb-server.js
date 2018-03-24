@@ -138,7 +138,8 @@ const generateIndexDocument = function(requestPath, fsPath, level) {
     let indexDoc = template
         .replace(/#LINKS#/g, figs)
         .replace(/#COLLS#/g, colls)
-        .replace(/#PAGE#/g, pageJson.title);
+        .replace(/#PAGE#/g, pageJson.title)
+        .replace(/#VERSION#/g, pj.version);
     if (level == 1) {
         indexDoc = indexDoc.replace(/\.\.\/res\//g, './res/');
     }
