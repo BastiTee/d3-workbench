@@ -169,7 +169,7 @@
     let click = function() {
         // ------------------------------------
         const defaultEvent = 'dblclick';
-        const defaultAction = 'open';
+        const defaultAction = 'openTarget';
         const supportedEvents = [defaultEvent];
         const supportedActions = [defaultAction];
         // ------------------------------------
@@ -188,7 +188,7 @@
         };
 
         let evaluateEventOpen = function(action, event, s) {
-            if (action != 'open') {
+            if (action != 'openTarget') {
                 return;
             }
             s.on(event, function(d, i) {

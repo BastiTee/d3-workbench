@@ -36,7 +36,7 @@
 
         // appends a click-event
         let rectDoubleClick = d3wb.mouse.click()
-            .action('open')
+            .action('openTarget')
             .event('dblclick')
             .openTarget(function(d) {
                 return 'https://www.google.de/search?q=' + d.value;
